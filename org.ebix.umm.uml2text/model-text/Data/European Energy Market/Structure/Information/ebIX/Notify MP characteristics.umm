@@ -1,0 +1,434 @@
+DocLibrary "Data::European Energy Market::Structure::Information::ebIX::Notify MP characteristics"
+{
+	businessTerm:      
+	copyright:         
+	owner:             
+	reference:         
+	uniqueIdentifier:  ""
+	versionIdentifier: "2011.A"
+	
+	baseURN:           "un:unece:260:data:EEM"
+	namespacePrefix:   "rsm"
+
+	BIE: Data::ebix:org::ABIE
+	BDT: Data::ebix:org::BDT
+	
+	InfEnvelope "Notify MP characteristics"
+	{
+		MA NotifyMPCharacteristics
+		{
+			ASMA Header (0..1) Energy_Document
+			ASMA Process (0..1) Energy_Context
+			ASMA Payload (1..1) MasterDataMP_Event
+			
+			constraint
+			{ 
+			    context: Energy_Document
+			    kind: [bdt, document, invariant] 
+			    
+			    
+			    -- BDT Energy_Document
+			    -- Notify MP characteristics
+			    
+			    inv: self.Document_Type.content=DocumentNameCode::E07 
+			    inv: self.Document_Type.listIdentifier->size()=0
+			    inv: self.Document_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Creation.timeZoneCode->size()=0
+			    
+			    inv: self.Sender.Identification.schemeIdentifier->size()=0
+			    inv: self.Sender.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9 
+			    or self.Sender.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::305
+			    inv: self.Sender.Role.content=BusinessRoleCode::MDR
+			    inv: self.Sender.Role.listIdentifier->size()=0
+			    inv: self.Sender.Role.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    inv: self.Sender.Name.languageCode->size()=0
+			    inv: self.Sender.Name.languageCode->size()=0
+			    
+			    inv: self.Recipient.Identification.schemeIdentifier->size()=0
+			    inv: self.Recipient.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9 
+			    or self.Recipient.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::305
+			    inv: self.Recipient.Role.content=BusinessRoleCode::DDK
+			    or self.Recipient.Role.content=BusinessRoleCode::DDQ
+			    or self.Recipient.Role.content=BusinessRoleCode::DDM
+			    or self.Recipient.Role.content=BusinessRoleCode::DEA
+			    or self.Recipient.Role.content=BusinessRoleCode::MDR
+			    or self.Recipient.Role.content=BusinessRoleCode::TCR
+			    or self.Recipient.Role.content=BusinessRoleCode::Z06
+			    inv: self.Recipient.Role.listIdentifier->size()=0
+			    inv: self.Recipient.Role.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    inv: self.Recipient.Name.languageCode->size()=0
+			    inv: self.Recipient.Name.languageCode->size()=0
+			 }    
+			constraint
+			{ 
+			    context: Energy_Context
+			    kind: [bdt, document, invariant] 
+			    
+			    
+			    -- BDT Energy_Context
+			    -- Notify MP characteristics
+			    
+			    inv: self.Energy_BusinessProcess.content=BusinessReasonCode::E03 
+			    or self.Energy_BusinessProcess.content=BusinessReasonCode::E20 
+			    or self.Energy_BusinessProcess.content=BusinessReasonCode::E32 
+			    or self.Energy_BusinessProcess.content=BusinessReasonCode::E56 
+			    or self.Energy_BusinessProcess.content=BusinessReasonCode::E57 
+			    or self.Energy_BusinessProcess.content=BusinessReasonCode::E65 
+			    or self.Energy_BusinessProcess.content=BusinessReasonCode::E66 
+			    or self.Energy_BusinessProcess.content=BusinessReasonCode::E68 
+			    inv: self.Energy_BusinessProcess.listIdentifier->size()=0
+			    inv: self.Energy_BusinessProcess.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Energy_BusinessProcessRole.content=BusinessRoleCode::DDK
+			    or self.Energy_BusinessProcessRole.content=BusinessRoleCode::TCR
+			    inv: self.Energy_BusinessProcessRole.listIdentifier->size()=0
+			    inv: self.Energy_BusinessProcessRole.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Energy_IndustryClassification.content=SectorAreaIdentificationCode::23 
+			    or self.Energy_IndustryClassification.content=SectorAreaIdentificationCode::27
+			    inv: self.Energy_IndustryClassification.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			 }    
+			constraint
+			{ 
+			    context: NotifyMPCharacteristics
+			    kind: [abie, document, invariant] 
+			    
+			    
+			    -- Structure Document
+			    -- Notify MP characteristics
+			    
+			    inv: self.Header->size()=1
+			    inv: self.Process->size()=1
+			 }    
+			constraint
+			{ 
+			    context: NotifyMPCharacteristics
+			    kind: [payload, abie, invariant] 
+			    
+			    
+			    -- Structure Payload
+			    -- Notify MP characteristics
+			    
+			    inv: self.Header->size()=0
+			    inv: self.Process->size()=0
+			 }    
+			constraint
+			{ 
+			    context: Energy_Context
+			    kind: [abie, document, invariant] 
+			    
+			    
+			    -- Structure Energy_Context
+			    -- Notify MP characteristics
+			    
+			    inv: self.Energy_BusinessProcess->size()=1
+			    inv: self.Energy_BusinessProcessRole->size()=1
+			    --inv: self.Energy_IndustryClassification->size()=1
+			 }    
+			constraint
+			{ 
+			    context: Energy_Document
+			    kind: [abie, document, invariant] 
+			    
+			    
+			    -- Structure Energy_Document
+			    -- Notify MP characteristics
+			    
+			    inv: self.Identification->size()=1	  
+			    inv: self.Creation->size()=1
+			    inv: self.Document_Type->size()=1
+			    inv: self.Sender.Identification->size()=1
+			    inv: self.Sender.Role->size()=0
+			    inv: self.Sender.Name->size()=0
+			    inv: self.Recipient.Identification->size()=1
+			    inv: self.Recipient.Role->size()=0
+			    inv: self.Recipient.Name->size()=0
+			 }    
+			constraint
+			{ 
+			    context: MasterDataMP_Event
+			    kind: [payload, abie, document, invariant] 
+			    
+			    
+			    --Structure MasterDataMP_Event 
+			    -- Notify MP characteristics
+			    
+			    inv: self.Occurrence->size()=1
+			    --self.Identification->size()=1
+			    inv: self.OriginalBusinessDocument->size()=0
+			    --inv: self.Consumer_Involved->size()=1
+			    --inv: self.BusinessProcess->size()=1
+			    inv: self.MeteringPoint_Used->size()=1
+			    
+			    --inv: self.MP_Address->size()=1
+			    inv: self.MP_Address.Identification->size()=0
+			    --inv: self.MP_Address.Postcode->notEmpty()
+			    --inv: self.MP_Address.PostOfficeBox->size()=1
+			    --inv: self.MP_Address.BuildingNumber->size()=1
+			    --inv: self.MP_Address.RoomIdentification->size()=1
+			    --inv: self.MP_Address.FloorIdentification->size()=1
+			    --inv: self.MP_Address.StreetName->size()=1
+			    --inv: self.MP_Address.CityName->size()=1
+			    --inv: self.MP_Address.CountryName->notEmpty()
+			    
+			    --inv: self.MP_Position->size()=1
+			    --inv: self.MP_Position.Altitude->size()=1
+			    --inv: self.MP_Position.Latitude->size()=1
+			    --inv: self.MP_Position.Longitude->size()=1
+			    --inv: self.MP_Position.System->size()=1
+			    
+			    --inv: self.BalanceSupplier_Involved->size()=1
+			    --inv: self.BalanceSupplier_Involved.Identification->size()=1
+			    --*inv: self.BalanceSupplier_Involved.Role->size()=0
+			    --*inv: self.BalanceSupplier_Involved.Name->size()=0
+			    
+			    --*inv: self.TransportCapacityResponsible_Involved->notEmpty() implies self.BalanceResponsible_Involved->size()=0 
+			    --*inv: self.BalanceResponsible_Involved->notEmpty() implies self.TransportCapacityResponsible_Involved->size()=0 
+			    --inv: self.TransportCapacityResponsible_Involved->size()=1
+			    --inv: self.TransportCapacityResponsible_Involved.Identification->size()=1
+			    --*inv: self.TransportCapacityResponsible_Involved.Role->size()=0
+			    --*inv: self.TransportCapacityResponsible_Involved.Name->size()=0
+			    --inv: self.BalanceResponsible_Involved->size()=1
+			    --inv: self.BalanceResponsible_Involved.Identification->size()=1
+			    --*inv: self.BalanceResponsible_Involved.Role->size()=0
+			    --*inv: self.BalanceResponsible_Involved.Name->size()=0
+			    
+			    --inv: self.Consumer_Involved->size()=1
+			    --inv: self.Consumer_Involved.Identification->size()=1
+			    --*inv: self.Consumer_Involved.Role->size()=0
+			    --inv: self.Consumer_Involved.Name->size()=1
+			    inv: self.MeteredDataCollector_Involved->size()=0
+			    --*inv: self.MeteredDataCollector_Involved.Identification->size()=0
+			    --*inv: self.MeteredDataCollector_Involved.Role->size()=0
+			    --*inv: self.MeteredDataCollector_Involved.Name->size()=0
+			    --inv: self.MeteredDataResponsible_Involved->size()=1
+			    --inv: self.MeteredDataResponsible_Involved.Identification->size()=1
+			    --*inv: self.MeteredDataResponsible_Involved.Role->size()=0
+			    --*inv: self.MeteredDataResponsible_Involved.Name->size()=0
+			    --inv: self.GridAccessProvider_Involved->size()=1
+			    --inv: self.GridAccessProvider_Involved.Identification->size()=1
+			    --*inv: self.GridAccessProvider_Involved.Role->size()=0
+			    --*inv: self.GridAccessProvider_Involved.Name->size()=0
+			    
+			    inv: self.MP_Detail.MeteringGridArea_Used->size()=1
+			 }    
+			constraint
+			{ 
+			    context: MasterDataMP_Event
+			    kind: [payload, bdt, document, invariant] 
+			    
+			    
+			    -- BDT MasterDataMP_Event
+			    -- Notify MP characteristics
+			    
+			    inv: self.Occurrence.timeZoneCode->size()=0
+			    
+			    inv: self.MeteringPoint_Used.Identification.schemeIdentifier->size()=0
+			    inv: self.MeteringPoint_Used.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9
+			    
+			    --inv: self.MP_Address.Identification->notEmpty()
+			    --inv: self.MP_Address.Identification.schemeIdentifier->size()=0
+			    --inv: self.MP_Address.Identification.schemeAgencyIdentifier->size()=1
+			    --inv: self.MP_Address.Postcode->notEmpty()
+			    --inv: self.MP_Address.Postcode->forAll(languageCode="EN")
+			    --inv: self.MP_Address.PostOfficeBox->size()=1
+			    --inv: self.MP_Address.PostOfficeBox.languageCode="EN"
+			    --inv: self.MP_Address.BuildingNumber->size()=1
+			    --inv: self.MP_Address.BuildingNumber.languageCode="EN"
+			    --inv: self.MP_Address.RoomIdentification->size()=1
+			    --inv: self.MP_Address.RoomIdentification.languageCode="EN"
+			    --inv: self.MP_Address.FloorIdentification->size()=1
+			    --inv: self.MP_Address.FloorIdentification.languageCode="EN"
+			    --inv: self.MP_Address.StreetName->notEmpty()
+			    --inv: self.MP_Address.StreetName->forAll (languageCode="EN")
+			    --inv: self.MP_Address.CityName->size()=1
+			    --inv: self.MP_Address.CityName.languageCode="EN"
+			    --inv: self.MP_Address.CountryName->notEmpty()
+			    --inv: self.MP_Address.CountryName->forAll (languageCode="EN")
+			    
+			    --inv: self.MP_Position.Altitude->size()=1
+			    --inv: self.MP_Position.Altitude.unitCode->size()=1
+			    --inv: self.MP_Position.Altitude.unitCode=MeasurementCommonCode::KWH
+			    --inv: self.MP_Position.Latitude->size()=1
+			    --inv: self.MP_Position.Latitude.unitCode->size()=1
+			    --inv: self.MP_Position.Latitude.unitCode=MeasurementCommonCode::KWH
+			    --inv: self.MP_Position.Longitude->size()=1
+			    --inv: self.MP_Position.Longitude.unitCode->size()=1
+			    --inv: self.MP_Position.Longitude.unitCode=MeasurementCommonCode::KWH
+			    --inv: self.MP_Position.System.listIdentifier->size()=1
+			    --inv: self.MP_Position.System.listAgencyIdentifier->size()=1
+			    --inv: self.MP_Position.System.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    --inv: self.MP_Position.System.listVersionIdentifier->size()=1
+			    
+			    --inv: self.BalanceResponsible_Involved.Identification->size()=1
+			    inv: self.BalanceResponsible_Involved.Identification.schemeIdentifier->size()=0
+			    inv: self.BalanceResponsible_Involved.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9 
+			    or BalanceResponsible_Involved.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::305
+			    --inv: self.BalanceResponsible_Involved.Role.content=BusinessRoleCode::DDK
+			    --inv: self.BalanceResponsible_Involved.Role.listIdentifier->size()=0
+			    --inv: self.BalanceResponsible_Involved.Role.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    --inv: self.BalanceResponsible_Involved.Name.languageCode->size()=1
+			    --inv: self.BalanceResponsible_Involved.Name.languageCode="EN"
+			    
+			    --inv: self.BalanceSupplier_Involved.Identification->size()=1
+			    inv: self.BalanceSupplier_Involved.Identification.schemeIdentifier->size()=0
+			    inv: self.BalanceSupplier_Involved.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9 
+			    or BalanceSupplier_Involved.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::305
+			    --inv: self.BalanceSupplier_Involved.Role.content=BusinessRoleCode::DDQ
+			    --inv: self.BalanceSupplier_Involved.Role.listIdentifier->size()=0
+			    --inv: self.BalanceSupplier_Involved.Role.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    --inv: self.BalanceSupplier_Involved.Name.languageCode->size()=1
+			    --inv: self.BalanceSupplier_Involved.Name.languageCode="EN"
+			    
+			    --inv: self.TransportCapacityResponsible_Involved.Identification->size()=1
+			    inv: self.TransportCapacityResponsible_Involved.Identification.schemeIdentifier->size()=0
+			    inv: self.TransportCapacityResponsible_Involved.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9 
+			    or TransportCapacityResponsible_Involved.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::305
+			    --inv: self.TransportCapacityResponsible_Involved.Role.content=BusinessRoleCode::TCR
+			    --inv: self.TransportCapacityResponsible_Involved.Role.listIdentifier->size()=0
+			    --inv: self.TransportCapacityResponsible_Involved.Role.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    --inv: self.TransportCapacityResponsible_Involved.Name.languageCode->size()=1
+			    --inv: self.TransportCapacityResponsible_Involved.Name.languageCode="EN"
+			    
+			    --inv: self.Consumer_Involved.Identification->size()=1
+			    inv: self.Consumer_Involved.Identification.schemeIdentifier->size()=0
+			    inv: self.Consumer_Involved.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9 
+			    or Consumer_Involved.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::305
+			    --inv: self.Consumer_Involved.Role.content=BusinessRoleCode::UD
+			    --inv: self.Consumer_Involved.Role.listIdentifier->size()=0
+			    --inv: self.Consumer_Involved.Role.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    --inv: self.Consumer_Involved.Name.languageCode->size()=0
+			    --inv: self.Consumer_Involved.Name.languageCode="EN"
+			    
+			    --inv: self.MeteredDataCollector_Involved.Identification->size()=1
+			    --inv: self.MeteredDataCollector_Involved.Identification.schemeIdentifier->size()=0
+			    --inv: self.MeteredDataCollector_Involved.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9 
+			    --or MeteredDataCollector_Involved.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::305
+			    --inv: self.MeteredDataCollector_Involved.Role.content=BusinessRoleCode::DDE
+			    --inv: self.MeteredDataCollector_Involved.Role.listIdentifier->size()=0
+			    --inv: self.MeteredDataCollector_Involved.Role.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    --inv: self.MeteredDataCollector_Involved.Name.languageCode->size()=1
+			    --inv: self.MeteredDataCollector_Involved.Name.languageCode="EN"
+			    
+			    --inv: self.MeteredDataResponsible_Involved.Identification->size()=1
+			    inv: self.MeteredDataResponsible_Involved.Identification.schemeIdentifier->size()=0
+			    inv: self.MeteredDataResponsible_Involved.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9 
+			    or MeteredDataResponsible_Involved.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::305
+			    --inv: self.MeteredDataResponsible_Involved.Role.content=BusinessRoleCode::MDR
+			    --inv: self.MeteredDataResponsible_Involved.Role.listIdentifier->size()=0
+			    --inv: self.MeteredDataResponsible_Involved.Role.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    --inv: self.MeteredDataResponsible_Involved.Name.languageCode->size()=1
+			    --inv: self.MeteredDataResponsible_Involved.Name.languageCode="EN"
+			    
+			    --inv: self.GridAccessProvider_Involved.Identification->size()=1
+			    inv: self.GridAccessProvider_Involved.Identification.schemeIdentifier->size()=0
+			    inv: self.GridAccessProvider_Involved.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9 
+			    or GridAccessProvider_Involved.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::305
+			    --inv: self.GridAccessProvider_Involved.Role.content=BusinessRoleCode::DDM
+			    --inv: self.GridAccessProvider_Involved.Role.listIdentifier->size()=0
+			    --inv: self.GridAccessProvider_Involved.Role.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    --inv: self.GridAccessProvider_Involved.Name.languageCode->size()=1
+			    --inv: self.GridAccessProvider_Involved.Name.languageCode="EN"
+			    
+			    inv: self.MP_Detail.MeteringPoint_Type.content=MeteringPointTypeCode::E17
+			    or self.MP_Detail.MeteringPoint_Type.content=MeteringPointTypeCode::E18
+			    or self.MP_Detail.MeteringPoint_Type.content=MeteringPointTypeCode::E19
+			    inv: self.MP_Detail.MeteringPoint_Type.listIdentifier->size()=0
+			    inv: self.MP_Detail.MeteringPoint_Type.listAgencyIdentifier->size()=1
+			    inv: self.MP_Detail.MeteringPoint_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.MP_Detail.MeteringMethod_Type.content=MeteringMethodCode::E13
+			    or self.MP_Detail.MeteringMethod_Type.content=MeteringMethodCode::E14
+			    or self.MP_Detail.MeteringMethod_Type.content=MeteringMethodCode::E16
+			    or self.MP_Detail.MeteringMethod_Type.content=MeteringMethodCode::E24
+			    inv: self.MP_Detail.MeteringMethod_Type.listIdentifier->size()=0
+			    inv: self.MP_Detail.MeteringMethod_Type.listAgencyIdentifier->size()=1
+			    inv: self.MP_Detail.MeteringMethod_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.MP_Detail.SettlementMethod_Type.content=SettlementMethodCode::E01
+			    or self.MP_Detail.SettlementMethod_Type.content=SettlementMethodCode::E02
+			    or self.MP_Detail.SettlementMethod_Type.content=SettlementMethodCode::E15
+			    inv: self.MP_Detail.SettlementMethod_Type.listIdentifier->size()=0
+			    inv: self.MP_Detail.SettlementMethod_Type.listAgencyIdentifier->size()=1
+			    inv: self.MP_Detail.SettlementMethod_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.MP_Detail.GridConnectionContract_Type.content=GridAgreementTypeDescriptionCode::E01
+			    or self.MP_Detail.GridConnectionContract_Type.content=GridAgreementTypeDescriptionCode::E02
+			    or self.MP_Detail.GridConnectionContract_Type.content=GridAgreementTypeDescriptionCode::E03
+			    or self.MP_Detail.GridConnectionContract_Type.content=GridAgreementTypeDescriptionCode::E04
+			    inv: self.MP_Detail.GridConnectionContract_Type.listIdentifier->size()=0
+			    inv: self.MP_Detail.GridConnectionContract_Type.listAgencyIdentifier->size()=1
+			    inv: self.MP_Detail.GridConnectionContract_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    --inv: self.MP_Detail.Tax_Type.listIdentifier->size()=1
+			    --inv: self.MP_Detail.Tax_Type.listAgencyIdentifier->size()=1
+			    --inv: self.MP_Detail.Tax_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    --inv: self.MP_Detail.Tax_Type.listVersionIdentifier->size()=1
+			    
+			    --inv: self.MP_Detail.VoltageLevel_Type.content=VoltageLevelCode::E04
+			    inv: self.MP_Detail.VoltageLevel_Type.listIdentifier->size()=0
+			    inv: self.MP_Detail.VoltageLevel_Type.listAgencyIdentifier->size()=1
+			    inv: self.MP_Detail.VoltageLevel_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    --inv: self.MP_Detail.PressureLevel_Type.content=PressureLevelCode::E10
+			    inv: self.MP_Detail.PressureLevel_Type.listIdentifier->size()=0
+			    inv: self.MP_Detail.PressureLevel_Type.listAgencyIdentifier->size()=1
+			    inv: self.MP_Detail.PressureLevel_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    --inv: self.MP_Detail.AdministrativeStatus_Type.content=PhysicalStatusCode::E22
+			    inv: self.MP_Detail.AdministrativeStatus_Type.listIdentifier->size()=0
+			    inv: self.MP_Detail.AdministrativeStatus_Type.listAgencyIdentifier->size()=1
+			    inv: self.MP_Detail.AdministrativeStatus_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    --inv: self.MP_Detail.PhysicalStatus_Type.content=PhysicalStatusCode::E22
+			    inv: self.MP_Detail.PhysicalStatus_Type.listIdentifier->size()=0
+			    inv: self.MP_Detail.PhysicalStatus_Type.listAgencyIdentifier->size()=1
+			    inv: self.MP_Detail.PhysicalStatus_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.MP_Detail.StandardLoadProfile_Type->size()=0
+			    --inv: self.Reconciliation_Detail.StandardLoadProfile_Type.content=StandardLoadProfileCode::1A
+			    --inv: self.Reconciliation_Detail.StandardLoadProfile_Type.listIdentifier->size()=1
+			    --inv: self.Reconciliation_Detail.StandardLoadProfile_Type.listIdentifier=CodeListIdentificationCode::DPO
+			    --inv: self.Reconciliation_Detail.StandardLoadProfile_Type.listAgencyIdentifier->size()=1
+			    --inv: self.Reconciliation_Detail.StandardLoadProfile_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.MP_Detail.ScheduledMeterReading_Date.timeZoneCode->size()=0
+			    
+			    --inv: self.MP_Detail.MeterReadingFrequency_Duration.content="P1M"
+			    
+			    --inv: self.MP_Detail.MeteringGridArea_Used.Identification.schemeIdentifier->size()=0
+			    --inv: self.MP_Detail.MeteringGridArea_Used.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9
+			    
+			    inv: self.MP_Detail.BalanceGroup_Used.Identification.schemeIdentifier->size()=0
+			    inv: self.MP_Detail.BalanceGroup_Used.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9 
+			    or MP_Detail.BalanceGroup_Used.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::305
+			    
+			    inv: self.MP_Detail.ContractedConnection_Included.Identification.content=EnergyProductIdentifier::8716867000054
+			    inv: self.MP_Detail.ContractedConnection_Included.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9
+			    inv: self.MP_Detail.ContractedConnection_Included.Unit_Type->size()=1
+			    inv: self.MP_Detail.ContractedConnection_Included.Unit_Type.content=MeasurementCommonCode::KWT
+			    inv: self.MP_Detail.ContractedConnection_Included.Unit_Type.listIdentifier->size()=0
+			    inv: self.MP_Detail.ContractedConnection_Included.Unit_Type.listAgencyIdentifier->size()=1
+			    inv: self.MP_Detail.ContractedConnection_Included.Unit_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Reconciliation_Detail.Reconciliation_Included.Identification.content=EnergyProductIdentifier::8716867000030
+			    inv: self.Reconciliation_Detail.Reconciliation_Included.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9
+			    inv: self.Reconciliation_Detail.Reconciliation_Included.Unit_Type->size()=1
+			    inv: self.Reconciliation_Detail.Reconciliation_Included.Unit_Type.content=MeasurementCommonCode::KWH
+			    inv: self.Reconciliation_Detail.Reconciliation_Included.Unit_Type.listIdentifier->size()=0
+			    inv: self.Reconciliation_Detail.Reconciliation_Included.Unit_Type.listAgencyIdentifier->size()=1
+			    inv: self.Reconciliation_Detail.Reconciliation_Included.Unit_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Reconciliation_Detail.Annual_Period.Total.unitCode->size()=1
+			    inv: self.Reconciliation_Detail.Annual_Period.Total.unitCode=MeasurementCommonCode::KWH
+			    
+			    inv: self.Reconciliation_Detail.Annual_Period.MeterTimeFrame_Type->size()=1
+			    inv: self.Reconciliation_Detail.Annual_Period.MeterTimeFrame_Type.content=MeterTimeFrameCode::E10
+			    or self.Reconciliation_Detail.Annual_Period.MeterTimeFrame_Type.content=MeterTimeFrameCode::E11
+			    inv: self.Reconciliation_Detail.Annual_Period.MeterTimeFrame_Type.listIdentifier->size()=0
+			    inv: self.Reconciliation_Detail.Annual_Period.MeterTimeFrame_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			 }    
+		}
+	}
+}

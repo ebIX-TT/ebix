@@ -1,0 +1,27 @@
+1) Install Java 7
+2) Start Eclipse
+3) Choose a directory for the workspace
+4) Turn off  Project->Build Automatically
+
+5) Create a New Project, select the UMM project in the Xtext section, click next.
+6) Choose a name for the project, click finish.
+
+You should now have a project with three folders:
+- uml: the location for the UML export from MagicDraw
+- model-text: textual representation of the UML model (files end on .umm), and a spreadsheet with a summary of the model
+- schemas: the generated XSD schemas from the .umm files
+
+If you click right on the project and select properties, you will see two UMM specific property sheets:
+- UMM Stereotypes: use this sheet to specify the fully qualified names of the stereotypes . 
+- UMM Schema Generation: here you can adjust the schema agency, copyright notice, and disclaimer used in the XSD files.
+
+Advanced: In the Builders sheet of the project properties two builders are specified:
+- UMM Builder: reads the UML file(s), and generates the .umm files and the spreadsheet. 
+- XText Project Builder: generates the XSD files from the .umm files.
+
+7) Copy the exported files from MagicDraw in the uml directory inside the project.
+8) Select Project->Clean... from the menu. You must always perform a clean before a build. 
+(Bug alert: selecting Project->Build Project from the menu does not work. Build All, and selecting Build project from the project popup menu does work)
+
+
+

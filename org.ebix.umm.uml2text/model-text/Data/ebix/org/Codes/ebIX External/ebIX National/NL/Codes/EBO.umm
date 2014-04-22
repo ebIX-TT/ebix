@@ -1,0 +1,458 @@
+ENUMLibrary "Data::ebix:org::Codes::ebIX External::ebIX National::NL::Codes::EBO"
+{
+	businessTerm:      
+	copyright:         
+	owner:             
+	reference:         
+	uniqueIdentifier:  ""
+	versionIdentifier: ""
+	
+	baseURN:           "un:unece:260:data:EEM"
+	namespacePrefix:   "bcl"
+
+	Original EBO_DocumentNameCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "DocumentNameCode"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0004"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "C01" "Commercial Transaction to SO"  
+		CodelistEntry "C02" "Notification from SO"  
+		CodelistEntry "E01" "Production nomination"  
+		CodelistEntry "E02" "Aggregated production nomination"  
+		CodelistEntry "E09" "Master data balance responsibility"  
+		CodelistEntry "E17" "Schedule for delta values"  
+		CodelistEntry "E18" "Response to schedule delta values"  
+		CodelistEntry "E23" "Metered data for profiling"  
+		CodelistEntry "E24" "Aggregated metered data from Grid Company to Balance Supplier"  
+		CodelistEntry "E25" "Reconciled volumes to the Billing Agent"  
+		CodelistEntry "E26" "Reconciled volumes to Balance Responsible"  
+		CodelistEntry "E28" "Metered data Correction factor from Grid Company"  
+		CodelistEntry "E29" "Reconciled Volumes from Balance Responsible to Balance Supplier"  
+		CodelistEntry "E36" "Master data transport responsibility"  
+		CodelistEntry "E56" "Planned quantities to System Operator"  
+		CodelistEntry "E57" "Confirmation/rejection of planned quantities by System Operator"  
+	}
+	
+	Original EBO_GValueCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "GValueCode"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0008"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "G01" " 4"  
+		CodelistEntry "G02" "6"  
+		CodelistEntry "G03" "10"  
+		CodelistEntry "G04" "16"  
+		CodelistEntry "G05" "25"  
+		CodelistEntry "G06" "40"  
+		CodelistEntry "G07" "65"  
+		CodelistEntry "G08" "100"  
+		CodelistEntry "G09" "160"  
+		CodelistEntry "G10" "250"  
+		CodelistEntry "G11" "400"  
+		CodelistEntry "G12" "650"  
+		CodelistEntry "G13" "1000"  
+		CodelistEntry "G14" "1600"  
+		CodelistEntry "G15" "2500"  
+		CodelistEntry "G00" "unknown"  
+	}
+	
+	Original EBO_MeteringMethodCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "MeteringMethodCode"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0010"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "007" "Slimme meter pre-NTA"  
+		CodelistEntry "008" "Slimme meter NTA8130 versie 1"  
+	}
+	
+	Original EBO_PhysicalOrAdministrativeStatusCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "PhysicalOrAdministrativeStatusCode"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0014"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "IAL" "in aanleg"  
+		CodelistEntry "SLP" "gesloopt"  
+		CodelistEntry "IBD" "in bedrijf"  
+		CodelistEntry "UBD" "uit bedrijf"  
+	}
+	
+	Original EBO_MEPIndicationCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "MEPIndicationCode"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0009"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "00" "geen complex, geen verblijfsfunctie"  
+		CodelistEntry "01" "geen complex, wel verblijfsfunctie"  
+		CodelistEntry "10" "wel complex, geen verblijfsfunctie"  
+		CodelistEntry "11" "wel complex, wel verblijfsfunctie"  
+		CodelistEntry "22" "complex nvt, verblijfsfunctie nvt"  
+	}
+	
+	Original EBO_TemporaryDutchRegisterDescriptionCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "TemporaryDutchRegisterDescriptionCode"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0016"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "1" ""  
+		CodelistEntry "2" ""  
+		CodelistEntry "3" ""  
+		CodelistEntry "4" ""  
+	}
+	
+	Original EBO_ResponseReasonDescriptionCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "ResponseReasonDescriptionCode"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0015"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "E46" "Meter stand and metering date do not correspond"  
+		CodelistEntry "E76" "MP ID and additional information do not correspond"  
+		CodelistEntry "M03" ">1 TCR for Metering Point"  
+		CodelistEntry "N01" "Reference to unknown request"  
+		CodelistEntry "N02" "Invalid identification"  
+		CodelistEntry "N03" "Invalid activation period"  
+		CodelistEntry "N04" "Invalid activiation time"  
+		CodelistEntry "N05" "Invalid ramp rate"  
+		CodelistEntry "N06" "Invalid capacity"  
+		CodelistEntry "N07" "Price out of range"  
+		CodelistEntry "N08" "Received after gate closure"  
+		CodelistEntry "N09" "Price has been corrected"  
+		CodelistEntry "N10" "Updates are not allowed"  
+		CodelistEntry "N11" "Invalid reference"  
+		CodelistEntry "N12" "Data not in line with contract"  
+		CodelistEntry "N13" "Date of operation cannot be in the past"  
+		CodelistEntry "N14" "Date of operation is too far in the future"  
+		CodelistEntry "N15" "Received after start of day of operation"  
+		CodelistEntry "N16" "Capacity cannot vary within an offer"  
+		CodelistEntry "N17" "Changes in the past are not allowed"  
+		CodelistEntry "N18" "Price must be zero"  
+		CodelistEntry "N19" "Party connected to the grid has to be the same"  
+		CodelistEntry "N20" "Balance responsible has to be the same"  
+		CodelistEntry "N21" "Date of operation has to be the same"  
+		CodelistEntry "N22" "Request number has to be the same"  
+		CodelistEntry "N23" "Invalid reference to request"  
+		CodelistEntry "N24" "Unauthorized party for regulating power"  
+		CodelistEntry "N25" "Invalid order of PTU's"  
+		CodelistEntry "N26" "Unknown relation between offering party and party connected to the grid"  
+		CodelistEntry "N27" "Proposed data too old"  
+		CodelistEntry "N28" "Measuring date before already established date"  
+		CodelistEntry "N29" "Measured data lower than already established data"  
+		CodelistEntry "N30" "Already too many proposals received"  
+		CodelistEntry "N31" "Dispute reported too late"  
+		CodelistEntry "N32" "Non-event or disputed event measurements not allowed"  
+		CodelistEntry "N33" "Measurement does not comply to validation rules"  
+		CodelistEntry "N34" "Already ongoing measuring"  
+	}
+	
+	Original EBO_ConsumptionCategoryCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "ConsumptionCategoryCode"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0003"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "C01" "Retail"  
+		CodelistEntry "C02" "Wholesale"  
+	}
+	
+	Original EBO_DutchCapacityID
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "DutchCapacityID"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0005"
+		versionIdentifier:         "0.1.A"
+	}
+	
+	Original EBO_EValueCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "EValueCode"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0007"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "E00" "unknown"  
+		CodelistEntry "E01" "106"  
+		CodelistEntry "E02" "125"  
+		CodelistEntry "E03" "135"  
+		CodelistEntry "E04" "150"  
+		CodelistEntry "E05" "163"  
+		CodelistEntry "E06" "180"  
+		CodelistEntry "E07" "325"  
+		CodelistEntry "E08" "335"  
+		CodelistEntry "E09" "350"  
+		CodelistEntry "E10" "363"  
+		CodelistEntry "E11" "380"  
+	}
+	
+	Original EBO_MeterTypeCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "MeterTypeCode"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0012"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "M01" "Daily remote readable"  
+		CodelistEntry "M02" "Other"  
+		CodelistEntry "M03" "Smart meter"  
+	}
+	
+	Original EBO_NationalEdineVersion
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "NationalEdineVersion"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0013"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "E2NL38" "Edine version = NEDU release 14 (June 2011)"  
+		CodelistEntry "E4NL32" "Edine version = B-con release 8 (June 2005)"  
+		CodelistEntry "E4NL33" "Edine version = B-con release 9 (November 2005)"  
+		CodelistEntry "E4NL34" "Edine version = B-con release 10 (November 2006)"  
+		CodelistEntry "E4NL35" "Edine version = B-con release 11 (November 2007)"  
+		CodelistEntry "E4NL36" "Edine version = NEDU release 12 (November 2008)"  
+		CodelistEntry "E4NL37" "Edine version = NEDU release 13 (June 2009)"  
+		CodelistEntry "E4NL38" "Edine version = NEDU release 14 (June 2011)"  
+		CodelistEntry "E5NL32" "Edine version = B-con release 8 (June 2005)"  
+		CodelistEntry "E5NL33" "Edine version = B-con release 9 (November 2005)"  
+		CodelistEntry "E5NL34" "Edine version = B-con release 10 (November 2006)"  
+		CodelistEntry "E5NL35" "Edine version = B-con release 11 (November 2007)"  
+		CodelistEntry "E5NL36" "Edine version = NEDU release 12 (November 2008)"  
+		CodelistEntry "E5NL37" "Edine version = NEDU release 13 (June 2009)"  
+		CodelistEntry "E5NL38" "Edine version = NEDU release 14 (June 2011)"  
+	}
+	
+	Original EBO_BusinessReasonCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "BusinessReasonCode"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0001"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "C01" "Offer Regulating Power"  
+		CodelistEntry "C02" "Offer Reserve Power for Balancing"  
+		CodelistEntry "C03" "Offer Reserve Power Other"  
+		CodelistEntry "C04" "Overview Activated Reserve Power Other"  
+		CodelistEntry "C05" "Activate Reserve Power Other"  
+		CodelistEntry "E24" "Change of meter characteristic, last stand"  
+		CodelistEntry "E25" "Change of meter characteristic, first stand"  
+		CodelistEntry "E69" "Transparency, daily production"  
+		CodelistEntry "E70" "Transparency, quarterly production"  
+		CodelistEntry "E71" "Transparency, regulating & reserve"  
+		CodelistEntry "E99" "Non-event data collection"  
+		CodelistEntry "E0A" "Imbalance Settlement, Measured Data disputed"  
+		CodelistEntry "E0B" "Imbalance Settlement, Measured Data expected and not received"  
+		CodelistEntry "E0C" "Imbalance Settlement, Time limit for estimations exceeded"  
+		CodelistEntry "E0D" "Imbalance Settlement, Measured Data received but not expected"  
+		CodelistEntry "E0E" "Collected data established after dispute"  
+		CodelistEntry "N01" "Interchange power schedule"  
+	}
+	
+	Original EBO_MeterReadingOriginCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "MeterReadingOriginCode"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0011"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "E08" "Estimated by Netbeheerder"  
+		CodelistEntry "E09" "Estimated by Netbeheerder after consulting other parties"  
+		CodelistEntry "E10" "Estimated by Balance responsible (PV-er)"  
+		CodelistEntry "E11" "Estimated, checksum of pulses"  
+		CodelistEntry "N01" "Read by Netbeheerder"  
+		CodelistEntry "N02" "Determined by Netbeheerder"  
+		CodelistEntry "N03" "Negotiated by parties connected to grid"  
+	}
+	
+	Original EBO_BusinessDocumentAcceptanceStatusCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "BusinessDocumentAcceptanceStatusCode"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0026"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "E46" "Meter stand and metering date do not correspond"  
+		CodelistEntry "E76" "MP ID and additional information do not correspond"  
+		CodelistEntry "M03" ">1 TCR for Metering Point"  
+		CodelistEntry "N01" "Reference to unknown request"  
+		CodelistEntry "N02" "Invalid identification"  
+		CodelistEntry "N03" "Invalid activation period"  
+		CodelistEntry "N04" "Invalid activiation time"  
+		CodelistEntry "N05" "Invalid ramp rate"  
+		CodelistEntry "N06" "Invalid capacity"  
+		CodelistEntry "N07" "Price out of range"  
+		CodelistEntry "N08" "Received after gate closure"  
+		CodelistEntry "N09" "Price has been corrected"  
+		CodelistEntry "N10" "Updates are not allowed"  
+		CodelistEntry "N11" "Invalid reference"  
+		CodelistEntry "N12" "Data not in line with contract"  
+		CodelistEntry "N13" "Date of operation cannot be in the past"  
+		CodelistEntry "N14" "Date of operation is too far in the future"  
+		CodelistEntry "N15" "Received after start of day of operation"  
+		CodelistEntry "N16" "Capacity cannot vary within an offer"  
+		CodelistEntry "N17" "Changes in the past are not allowed"  
+		CodelistEntry "N18" "Price must be zero"  
+		CodelistEntry "N19" "Party connected to the grid has to be the same"  
+		CodelistEntry "N20" "Balance responsible has to be the same"  
+		CodelistEntry "N21" "Date of operation has to be the same"  
+		CodelistEntry "N22" "Request number has to be the same"  
+		CodelistEntry "N23" "Invalid reference to request"  
+		CodelistEntry "N24" "Unauthorized party for regulating power"  
+		CodelistEntry "N25" "Invalid order of PTU's"  
+		CodelistEntry "N26" "Unknown relation between offering party and party connected to the grid"  
+		CodelistEntry "N27" "Proposed data too old"  
+		CodelistEntry "N28" "Measuring date before already established date"  
+		CodelistEntry "N29" "Measured data lower than already established data"  
+		CodelistEntry "N30" "Already too many proposals received"  
+		CodelistEntry "N31" "Dispute reported too late"  
+		CodelistEntry "N32" "Non-event or disputed event measurements not allowed"  
+		CodelistEntry "N33" "Measurement does not comply to validation rules"  
+		CodelistEntry "N34" "Already ongoing measuring"  
+	}
+	
+	Original EBO_BusinessDocumenTypeCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "BusinessDocumentTypeCode"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0024"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "C01" "Commercial Transaction to SO"  
+		CodelistEntry "C02" "Notification from SO"  
+		CodelistEntry "E01" "Production nomination"  
+		CodelistEntry "E02" "Aggregated production nomination"  
+		CodelistEntry "E09" "Master data balance responsibility"  
+		CodelistEntry "E17" "Schedule for delta values"  
+		CodelistEntry "E18" "Response to schedule delta values"  
+		CodelistEntry "E23" "Metered data for profiling"  
+		CodelistEntry "E24" "Aggregated metered data from Grid Company to Balance Supplier"  
+		CodelistEntry "E25" "Reconciled volumes to the Billing Agent"  
+		CodelistEntry "E26" "Reconciled volumes to Balance Responsible"  
+		CodelistEntry "E28" "Metered data Correction factor from Grid Company"  
+		CodelistEntry "E29" "Reconciled Volumes from Balance Responsible to Balance Supplier"  
+		CodelistEntry "E36" "Master data transport responsibility"  
+		CodelistEntry "E56" "Planned quantities to System Operator"  
+		CodelistEntry "E57" "Confirmation/rejection of planned quantities by System Operator"  
+	}
+	
+	Original EBO_EstimationMethodCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "EstimationMethodCode"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0006"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "E08" "Estimated by Netbeheerder"  
+		CodelistEntry "E09" "Estimated by Netbeheerder after consulting other parties"  
+		CodelistEntry "E10" "Estmated by Balance Responsible (PV-er)"  
+		CodelistEntry "E11" "Estimated, checksum of pulses"  
+	}
+	
+	Original EBO_ReasonForTransactionCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "ReasonForTransactionCode"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0027"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "C01" "Offer Regulating Power"  
+		CodelistEntry "C02" "Offer Reserve Power for Balancing"  
+		CodelistEntry "C03" "Offer Reserve Power Other"  
+		CodelistEntry "C04" "Overview Activated Reserve Power Other"  
+		CodelistEntry "C05" "Activate Reserve Power Other"  
+		CodelistEntry "E24" "Change of meter characteristic, last stand"  
+		CodelistEntry "E25" "Change of meter characteristic, first stand"  
+		CodelistEntry "E69" "Transparency, daily production"  
+		CodelistEntry "E70" "Transparency, quarterly production"  
+		CodelistEntry "E71" "Transparency, regulating & reserve"  
+		CodelistEntry "E99" "Non-event data collection"  
+		CodelistEntry "E0A" "Imbalance Settlement, Measured Data disputed"  
+		CodelistEntry "E0B" "Imbalance Settlement, Measured Data expected and not received"  
+		CodelistEntry "E0C" "Imbalance Settlement, Time limit for estimations exceeded"  
+		CodelistEntry "E0D" "Imbalance Settlement, Measured Data received but not expected"  
+		CodelistEntry "E0E" "Collected data established after dispute"  
+		CodelistEntry "N01" "Interchange power schedule"  
+	}
+	
+	Original EBO_StandOriginCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "StandOriginCode"
+		codeListIdentifier:        "EBO"
+		dictionary:                ""
+		uniqueIdentifier:          "NL0028"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "N01" "Read by Netbeheerder"  
+		CodelistEntry "N02" "Determined by Netbeheerder"  
+		CodelistEntry "N03" "Negotiated by parties connected to grid"  
+	}
+	
+}

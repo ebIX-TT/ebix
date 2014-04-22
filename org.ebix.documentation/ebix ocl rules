@@ -1,0 +1,54 @@
+matchRemoveReference 
+	reference->size() = 0
+	of 
+	reference->isEmpty()
+
+
+matchMandatorySingleReference
+	reference->size() <= 1
+	Action: change cardinality of the reference to 1..1.
+
+
+matchSingleReference
+	reference->size() = 1
+	Action: change cardinality of the reference:
+		If the cardinality was 0..*, change the cardinality to 0..1.
+		If the cardinality was 1..*, change the cardinality to 1..1.
+		otherwise no change.
+
+
+matchReduceCodelistEntries
+	reference = codelist_entry
+	of
+	reference = codelist_entry1 or reference = codelist_entry2 or ...
+	Action: remove all other codelist entries for the involved Assembled from the model
+
+
+matchFixedValue
+	reference = literal
+	Action: default value
+
+
+matchChoice
+	reference_A->notEmpty() implies reference_B->size() = 0	
+	reference_A->isEmpty() implies reference_B->size() = 1
+	reference_A->notEmpty() implies (reference_B->size() = 0 and ... )
+	Action: (this construct represents a choice)
+	 
+		
+
+matchChoiceFixedValue
+	reference_B->size() = 1 implies reference_B = true
+	Action: (this construct represents a mandatory value for reference B if reference B is present)
+
+
+
+matchMandatory
+	reference_A->size() = 1 xor reference_B->size() = 1
+	of
+	reference_A->isNotEmpty() xor reference_B->size() = 1
+	Action: change cardinality of the reference:
+		If the cardinality was 0..*, change the cardinality to 1..*.
+		If the cardinality was 0..1, change the cardinality to 1..1.
+		otherwise no change.
+

@@ -1,0 +1,14 @@
+PRIMLibrary "PRIMLibrary"
+{
+	primitive Binary
+	primitive Boolean
+	primitive Decimal
+	primitive Double
+	primitive Float
+	primitive Integer
+	primitive NormalizedString
+	primitive String
+	primitive TimeDuration
+	primitive TimePoint
+	primitive Token
+}

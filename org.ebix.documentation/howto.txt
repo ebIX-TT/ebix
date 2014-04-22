@@ -1,0 +1,137 @@
+
+Reading UML adapted from example attached to bug:
+	https://bugs.eclipse.org/bugs/show_bug.cgi?id=382342
+	
+Applied stereotypes are always the same instance. The stereotypes needed for UMM are read from the resource set.
+	
+	
+Question: process only elements which are a direct child of the package, or also when the element is contained in a sub-package without library streotype.
+Example: the "Deprecated" package in ebix:org::Codes::ebIX External::ebIX National::NL::Codes::EBO
+
+Answer: only direct child.
+ 	
+Remark: tag value are now always taken from the specified stereotype  	
+
+
+
+Rebuild Xtext project:
+1) Create new project:
+name: org.ebix.umm
+dsl:  org.ebix.umm.Umm
+extension: umm
+
+2) Copy Umm.xtext
+
+3) Modify GenerateUmm.mwe2
+Uncomment: fragment = exporting.SimpleNamesFragment auto-inject {}
+Comment: fragment = exporting.QualifiedNamesFragment auto-inject {}
+Uncomment project wizard
+
+4) Generate
+Type y in the Console to download ANTLR 3 parser
+
+5) Run org.ebix.umm.ui as Eclipse application to check if it all works
+
+6) Move code:
+- Copy org.ebix.umm.invariants and org.ebix.umm.templates
+- Copy org.ebix.umm.validation.ocl.UmmOclValidator.xtend 
+- Update UmmValidator.xtend in org.ebix.umm.validation
+- Copy org.ebix.umm.generator.GenerateXsd.xtend
+- Update UmmGenerator.xtend in org.ebix.umm.generator
+- Update org.ebix.umm.scoping.UmmScopeProvider 
+ 
+7) Change project wizard to create uml, model-text, schemas, and add org.ebix.umm.uml2text.ummbuilder
+- Change org.ebix.umm.ui.wizard.UmmProjectCreator:
+
+	A)
+	protected static final String UML_ROOT = "uml";
+	protected static final String SRC_ROOT = "model-text";
+	protected static final String SRC_GEN_ROOT = "schemas";
+	protected final List<String> SRC_FOLDER_LIST = ImmutableList.of(UML_ROOT, SRC_ROOT, SRC_GEN_ROOT);
+
+	B)
+	Remove the code from enhanceProject creating some initial model
+
+	C)
+	Add the following two methods:
+	/* (non-Javadoc)
+	 * @see org.eclipse.xtext.ui.wizard.AbstractProjectCreator#getBuilders()
+	 * Add the builder from UML to UMM as first builder.
+	 */
+	@Override
+	protected String[] getBuilders() {
+    	return new String[]{
+    			"org.ebix.umm.uml2text.ummbuilder",
+    			XtextProjectHelper.BUILDER_ID
+    		};
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.xtext.ui.wizard.AbstractProjectCreator#getProjectNatures()
+	 * Only Xtext nature
+	 */
+	@Override
+	protected String[] getProjectNatures() {
+        return new String[] {
+    			XtextProjectHelper.NATURE_ID
+    		};
+	}
+	
+	D) 
+	Add following xtend class in org.ebix.umm project:
+		package org.ebix.umm.generator
+		
+		import org.eclipse.xtext.generator.IOutputConfigurationProvider
+		import org.eclipse.xtext.generator.OutputConfiguration
+		import org.eclipse.xtext.generator.IFileSystemAccess
+		
+		class UmmOutputConfigurationProvider implements IOutputConfigurationProvider {
+			
+			override getOutputConfigurations() {
+				val defaultOutput = new OutputConfiguration(IFileSystemAccess::DEFAULT_OUTPUT)
+				defaultOutput.setDescription("Output Folder")
+				defaultOutput.setOutputDirectory("./schemas")
+				defaultOutput.setOverrideExistingResources(true)
+				defaultOutput.setCreateOutputDirectory(true)
+				defaultOutput.setCleanUpDerivedResources(true)
+				defaultOutput.setSetDerivedProperty(true)
+				return newHashSet(defaultOutput);
+			}
+			
+		}	
+
+	E)
+	Add bind the class in UmmRuntimeModule.java:
+		import org.ebix.umm.generator.UmmOutputConfigurationProvider;
+		import org.eclipse.xtext.generator.IOutputConfigurationProvider;
+		
+		import com.google.inject.Binder;
+		import com.google.inject.Singleton;
+		
+		/**
+		 * Use this class to register components to be used at runtime / without the Equinox extension registry.
+		 */
+		public class UmmRuntimeModule extends org.ebix.umm.AbstractUmmRuntimeModule {
+		
+			@Override
+			public void configure(Binder binder) {
+			    super.configure(binder);
+		
+			    binder.bind(IOutputConfigurationProvider.class).to(UmmOutputConfigurationProvider.class).in(Singleton.class);
+			}
+		}
+	
+	
+Distribution)
+Create a product (follow http://kthoms.wordpress.com/2010/11/12/setting-up-a-rcp-product-for-a-dsl/).
+Only create a product. Features do not seem to work. 
+Download RCP Delta Pack (follow http://ugosan.org/eclipse-rcp-delta-pack/) 
+So on the product overview: 
+- Check "The product includes native launcher artifacts"
+- The product configuration is based on: plugins
+- In the dependecies tab add the org.ebix plugins, and then click add required plugins.
+- Add also org.eclipse.ui.ide.application, and then click add required plugins (again).
+Now you can export the product from the first tab.
+ 	
+ 
+

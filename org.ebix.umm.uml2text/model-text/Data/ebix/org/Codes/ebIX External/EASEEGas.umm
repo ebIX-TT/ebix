@@ -1,0 +1,13 @@
+ENUMLibrary "Data::ebix:org::Codes::ebIX External::EASEEGas"
+{
+	businessTerm:      
+	copyright:         
+	owner:             
+	reference:         
+	uniqueIdentifier:  ""
+	versionIdentifier: ""
+	
+	baseURN:           "un:unece:321:codelist:common"
+	namespacePrefix:   "bcl"
+
+}

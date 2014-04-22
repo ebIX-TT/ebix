@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://www.ebix.org/umm/Umm" 
+       class = "org.ebix.umm.umm.UmmPackage"
+       genModel = "org/ebix/umm/Umm.genmodel" /> 
+	
+  </extension>
+
+
+
+</plugin>

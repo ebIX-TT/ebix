@@ -1,0 +1,215 @@
+ENUMLibrary "Data::ebix:org::Codes::ebIX Original"
+{
+	businessTerm:      
+	copyright:         
+	owner:             
+	reference:         
+	uniqueIdentifier:  ""
+	versionIdentifier: ""
+	
+	baseURN:           "un:unece:260:data:EEM"
+	namespacePrefix:   "bcl"
+
+	Original CodeListIdentificationCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "CodeListIdentificationCode"
+		codeListIdentifier:        ""
+		dictionary:                ""
+		uniqueIdentifier:          "000001"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "BEL" "Belgian National Standard"  
+		CodelistEntry "DK" "Danish ebIX Group"  
+		CodelistEntry "EBO" "Edine Beheer Organisatie"  
+		CodelistEntry "DPO" "Dutch Profile Organisation"  
+		CodelistEntry "EKS" "Elkraft system"  
+		CodelistEntry "ELT" "Eltra"  
+		CodelistEntry "SLY" "Finnish Electricity Association"  
+		CodelistEntry "SM" "Norwegian ebIX organisation"  
+		CodelistEntry "SVK" "Svenska Kraftnät"  
+		CodelistEntry "TNT" "TenneT"  
+		CodelistEntry "VSE" "Verband Sweizerischer Elektrizitätsunternehmen"  
+	}
+	
+	Original DocumentNameCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "DocumentNameCode"
+		codeListIdentifier:        ""
+		dictionary:                ""
+		uniqueIdentifier:          "000010"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "E01" "Start of supply "  
+		CodelistEntry "E02" "Cancellation of supply"  
+		CodelistEntry "E03" "Notice of master data change"  
+		CodelistEntry "E04" "Overview of lost locations"  
+		CodelistEntry "E05" "Overview of new locations"  
+		CodelistEntry "E06" "Overview of active locations"  
+		CodelistEntry "E07" "Master data, metering point"  
+		CodelistEntry "E08" "Master data, meter"  
+		CodelistEntry "E09" "Master data, balance responsibility "  
+		CodelistEntry "E10" "Request for Master data, Metering point"  
+		CodelistEntry "E11" "Validated Metered Data from Grid Company to Balance supplier"  
+		CodelistEntry "E12" ""  
+		CodelistEntry "E13" "Validated Metered data (time series), quantity per period"  
+		CodelistEntry "E14" ""  
+		CodelistEntry "E15" ""  
+		CodelistEntry "E16" "Request for metered data"  
+		CodelistEntry "E17" "Schedule"  
+		CodelistEntry "E18" "Response to schedule"  
+		CodelistEntry "E19" ""  
+		CodelistEntry "E20" ""  
+		CodelistEntry "E21" "Master data, Consumer"  
+		CodelistEntry "E22" ""  
+		CodelistEntry "E23" "Metered data for profiling"  
+		CodelistEntry "E24" "Aggregated metered data for profiled metering points to Balance responsible party"  
+		CodelistEntry "E25" "Aggregated metered data for reconciliation for profiled metering points to the Reconciliation responsible party"  
+		CodelistEntry "E26" "Reconciliation volumes"  
+		CodelistEntry "E27" "Request according to German market rules"  
+		CodelistEntry "E28" "Exchange of correction factor for profiled plans"  
+		CodelistEntry "E29" "Aggregated metered data for verification of reconciliation"  
+		CodelistEntry "E30" "Collected data, from Metered data collector "  
+		CodelistEntry "E31" "Aggregate metered data from the Metered data aggregator, local"  
+		CodelistEntry "E32" "Aggregated metered data to Balance supplier"  
+		CodelistEntry "E33" ""  
+		CodelistEntry "E34" "Start of a contract according to German market rules"  
+		CodelistEntry "E35" "End of a contract according to German market rules"  
+		CodelistEntry "E36" "Master data, transport responsibility "  
+		CodelistEntry "E37" ""  
+		CodelistEntry "E38" "Request master data, Meter"  
+		CodelistEntry "E39" "Request metered data"  
+		CodelistEntry "E40" "List of MP allocated to Balance Responsible"  
+		CodelistEntry "E41" "Request to Meter administrator (MA) for change in Meter-db"  
+		CodelistEntry "E42" "Response from Meter administrator (MA) for change in Meter-db"  
+		CodelistEntry "E43" "Notification from Meter administrator to concerned parties"  
+		CodelistEntry "E44" "Notification from the Metering point administrator"  
+		CodelistEntry "E45" "Request to Grid access provider for changes in Grid access contract-db"  
+		CodelistEntry "E46" "Response from Grid access provider for changes in Grid access contract-db"  
+		CodelistEntry "E47" "Notification from Grid access provider to concerned parties for changes in Grid access contract-db"  
+		CodelistEntry "E48" "Start of providing a supply in the name of the new balance supplier"  
+		CodelistEntry "E49" ""  
+		CodelistEntry "E50" "End of providing a supply in the name of the new balance supplier"  
+		CodelistEntry "E51" ""  
+		CodelistEntry "E52" ""  
+		CodelistEntry "E53" ""  
+		CodelistEntry "E54" ""  
+		CodelistEntry "E55" ""  
+		CodelistEntry "ERR" "Processability Error Report"  
+		CodelistEntry "E56" "Request regarding planned quantities"  
+		CodelistEntry "E57" "Response regarding planned quantities (Confirmation/Rejection)"  
+		CodelistEntry "E58" "Request to change metering point attributes"  
+		CodelistEntry "E59" "Confirmation/rejection of change metering point attributes"  
+		CodelistEntry "E60" "Change request Meter Attribute"  
+		CodelistEntry "E61" "Confirmation/rejection of change meter attributes"  
+		CodelistEntry "E62" "Change request Field bus attributes"  
+		CodelistEntry "E63" "Confirmation/rejection of change Field bus attributes"  
+		CodelistEntry "E64" "Master data Field bus"  
+		CodelistEntry "E65" "Validated metered data, meter stand"  
+		CodelistEntry "E66" "Validated metered data, time series"  
+		CodelistEntry "E67" "Request regarding Cancellation"  
+		CodelistEntry "E68" "Response regarding Cancellation (Confirmation/Rejection)"  
+		CodelistEntry "E69" "Price Information"  
+		CodelistEntry "E70" "Information for Billing"  
+		CodelistEntry "E71" "Master Data Metering Grid Area"  
+		CodelistEntry "E72" "Request for Collected Data"  
+		CodelistEntry "E73" "Request for Validated Metered Data"  
+		CodelistEntry "E74" "Request for Aggregated Metered Data"  
+	}
+	
+	Original BusinessRoleCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "BusinessRoleCode"
+		codeListIdentifier:        ""
+		dictionary:                ""
+		uniqueIdentifier:          "000020"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "Z04" "Metered data aggregator, central"  
+		CodelistEntry "Z06" "Reconciliation responsible"  
+		CodelistEntry "Z07" "Reconciliation accountable"  
+		CodelistEntry "Z08" "Billing Agent"  
+		CodelistEntry "Z09" "Market operator"  
+		CodelistEntry "Z10" "Metering grid area administrator"  
+	}
+	
+	Original BusinessDomainCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "BusinessDomainCode"
+		codeListIdentifier:        ""
+		dictionary:                ""
+		uniqueIdentifier:          "000007"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "E01" "Structure"  
+		CodelistEntry "E02" "Measure"  
+		CodelistEntry "E03" "Settle"  
+		CodelistEntry "E04" "Plan"  
+		CodelistEntry "E05" "Operate"  
+		CodelistEntry "E06" "Bill"  
+		CodelistEntry "E07" "Trade"  
+	}
+	
+	Original EnergyProductIdentifier
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "9"
+		codeListName:              "EnergyProductIdentifier"
+		codeListIdentifier:        ""
+		dictionary:                ""
+		uniqueIdentifier:          "000002"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "5410000100016" "NaturalGas"  
+		CodelistEntry "8716867000016" "Power active"  
+		CodelistEntry "8716867000023" "Power reactive"  
+		CodelistEntry "8716867000030" "Energy active"  
+		CodelistEntry "8716867000047" "Energy reactive"  
+		CodelistEntry "8716867000054" "Connection capacity"  
+		CodelistEntry "8716867000061" "Connection use"  
+		CodelistEntry "8716867000078" "Transport capacity"  
+		CodelistEntry "8716867000085" "Transport use"  
+		CodelistEntry "8716867000139" "Energy reactive capacitive"  
+		CodelistEntry "8716867000146" "Energy reactive inductive"  
+	}
+	
+	Original ResponseConditionCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "ResponseConditionCode"
+		codeListIdentifier:        ""
+		dictionary:                ""
+		uniqueIdentifier:          "000076"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "100" "The object is approved"  
+	}
+	
+	Original QuantityQualityCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "QuantityQualityCode"
+		codeListIdentifier:        ""
+		dictionary:                ""
+		uniqueIdentifier:          "000068"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "E01" "As read"  
+		CodelistEntry "E02" "Normalised to zero degrees Celsius and 1013,25 mbar"  
+		CodelistEntry "E03" ""  
+		CodelistEntry "E04" "Normalised to zero degrees Celsius and 1013,25 mbar and corrected for caloric value to Groningen quality"  
+		CodelistEntry "E05" "Automatically repaired"  
+		CodelistEntry "E06" "Copied from previous period"  
+		CodelistEntry "E07" "Negotiated between parties"  
+	}
+	
+}

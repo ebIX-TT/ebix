@@ -1,0 +1,381 @@
+DocLibrary "Data::European Energy Market::Measure::Information::Measure for Imbalance Settlement::Response Request Validated Data for Settlement for Aggregator"
+{
+	businessTerm:      
+	copyright:         
+	owner:             
+	reference:         
+	uniqueIdentifier:  ""
+	versionIdentifier: "2012.A"
+	
+	baseURN:           "un:unece:260:data:EEM"
+	namespacePrefix:   "rsm"
+
+	BIE: Data::ebix:org::ABIE
+	BDT: Data::ebix:org::BDT
+	
+	InfEnvelope "Response Request Validated Data for Settlement for Aggregator"
+	{
+		MA ValidatedDataForSettlementForAggregator
+		{
+			     Header (0..1) Energy_Document
+			ASMA Process (0..1) Energy_Context
+			ASMA Payload (1..1) Energy_TimeSeries
+			
+			constraint
+			{ 
+			    context: Energy_TimeSeries
+			    kind: [payload, abie, document, invariant] 
+			    
+			    
+			    -- Structure Energy_TimeSeries
+			    -- Validated Data for Settlement for Aggregator
+			    
+			    inv: self.Identification->size()>=0
+			    inv: self.Function->size()=0
+			    inv: self.Registration_DateTime->size()>=0
+			    inv: self.MeterReadingOrigin_Type->size()=0
+			    inv: self.LatestUpdate_Date->size()=0
+			    inv: self.Currency->size()=0
+			    inv: self.Request_Reference->size()>=0
+			    inv: self.Observation_Period->size()=1
+			    inv: self.Observation_Period.Resolution_Duration->size()=1
+			    inv: self.Observation_Period.Start->size()=1
+			    inv: self.Observation_Period.End->size()=1
+			    inv: self.Observation_Period.Continuous->size()=0
+			    inv: self.BalanceResponsible_Involved->size()=0
+			    inv: self.BalanceResponsible_Involved.Role->size()=1
+			    inv: self.BalanceResponsible_Involved.Name->size()=1
+			    inv: self.TransportCapacityResponsible_Involved->size()=0
+			    inv: self.TransportCapacityResponsible_Involved.Role->size()=1
+			    inv: self.TransportCapacityResponsible_Involved.Name->size()=1
+			    inv: self.BalanceSupplier_Involved->size()=0
+			    inv: self.BalanceSupplier_Involved.Role->size()=1
+			    inv: self.BalanceSupplier_Involved.Name->size()=1
+			    inv: self.Product_Included->size()=1
+			    inv: self.Product_Included.Unit_Type->size()=1
+			    inv: self.MP_Detail->size()=1
+			    inv: self.MP_Detail.MeteringPoint_Type->size()=1
+			    inv: self.MP_Detail.MeteringMethod_Type->size()=0
+			    inv: self.MP_Detail.SettlementMethod_Type->size()=0
+			    inv: self.MP_Detail.VoltageLevel_Type->size()=0
+			    inv: self.MP_Detail.StandardLoadProfile_Type->size()=0
+			    inv: self.MP_Detail.ScheduledMeterReading_Date->size()=0
+			    inv: self.MP_Detail.MeterReadingFrequency_Duration->size()=0
+			    inv: self.MeteringPoint_Used->size()=1
+			    inv: self.MeteringGridArea_Used->size()=0
+			    inv: self.InArea_Used->size()=0
+			    inv: self.OutArea_Used->size()=0
+			    inv: self.BalanceGroup_Used->size()=0
+			    inv: self.Metering_Installation->isEmpty()
+			    inv: self.Metering_Installation->forAll (Meter_Identification->size()=1)
+			    inv: self.Metering_Installation->forAll (Register_Identification->notEmpty())
+			    inv: self.Generation_Installation->isEmpty()
+			    inv: self.Observation_Interval->notEmpty()
+			    inv: self.Observation_Interval->forAll (Sequence-> size()=1) 
+			    inv: self.Observation_Interval.Observation_Detail->size()=1
+			    inv: self.Observation_Interval.Observation_Detail->forAll (Energy_Quantity->size()=1)
+			    inv: self.Observation_Interval.Observation_Detail->forAll (Energy_Price->size()=0)
+			    inv: self.Observation_Interval.Observation_Detail->forAll (Quantity_Quality->size()>=0)
+			    inv: self.Observation_Interval.Observation_Detail->forAll (MeterReadingOrigin_Type->size()=0)
+			    inv: self.Observation_Interval.Observation_Detail->forAll (MeterTimeFrame_Type->size()=0)
+			    inv: self.Observation_Interval.Observation_Detail->forAll (Quantity_Missing->size()=0) 
+			    inv: self.Observation_Interval.Observation_Detail->forAll (Price_Missing->size()=0) 
+			    inv: self.Observation_Interval.Observation_Detail->forAll (Generated_Quantity->size()=0)		
+			 }    
+			constraint
+			{ 
+			    context: Energy_TimeSeries
+			    kind: [payload, bdt, document, invariant] 
+			    
+			    
+			    -- BDT Energy_TimeSeries
+			    -- Validated Data for Settlement for Aggregator
+			    
+			    inv: self.Registration_DateTime.timeZoneCode->size()=0
+			    
+			    inv: self.LatestUpdate_Date.timeZoneCode->size()=0
+			    
+			    inv: self.Observation_Period.Resolution_Duration.content="PT15M"
+			    inv: self.Observation_Period.Start.timeZoneCode->size()=0
+			    inv: self.Observation_Period.End.timeZoneCode->size()=0
+			    
+			    inv: self.Product_Included.Identification.content=EnergyProductIdentifier::8716867000030
+			    inv: self.Product_Included.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9
+			    inv: self.Product_Included.Unit_Type->size()=1
+			    inv: self.Product_Included.Unit_Type.content=MeasurementCommonCode::KWH
+			    inv: self.Product_Included.Unit_Type.listIdentifier->size()=0
+			    inv: self.Product_Included.Unit_Type.listAgencyIdentifier->size()=1
+			    inv: self.Product_Included.Unit_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			           
+			    inv: self.MP_Detail.MeteringPoint_Type.content=MeteringPointTypeCode::E17 or self.MP_Detail.MeteringPoint_Type.content=MeteringPointTypeCode::E18 or self.MP_Detail.MeteringPoint_Type.content=MeteringPointTypeCode::E19 or self.MP_Detail.MeteringPoint_Type.content=MeteringPointTypeCode::E20
+			    inv: self.MP_Detail.MeteringPoint_Type.listIdentifier->size()=0
+			    inv: self.MP_Detail.MeteringPoint_Type.listAgencyIdentifier->size()=1
+			    inv: self.MP_Detail.MeteringPoint_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.MeteringPoint_Used.Identification.schemeIdentifier->size()=0
+			    inv: self.MeteringPoint_Used.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9
+			    
+			    inv: self.Observation_Interval.Observation_Detail->forAll (Energy_Quantity.unitCode->size()=0)
+			    
+			    inv: self.Observation_Interval.Observation_Detail->forAll (Energy_Price.currencyCode->size()=0)
+			    
+			    inv: self.Observation_Interval.Observation_Detail->forAll (Quantity_Quality.content=QuantityQualityCode::21 or Quantity_Quality.content=QuantityQualityCode::56)
+			    inv: self.Observation_Interval.Observation_Detail->forAll (Quantity_Quality.listIdentifier->size()=0)
+			    inv: self.Observation_Interval.Observation_Detail->forAll (Quantity_Quality.listAgencyIdentifier->size()=1)
+			    inv: self.Observation_Interval.Observation_Detail->forAll (Quantity_Quality.listAgencyIdentifier=CodeListResponsibleAgencyCode::260)
+			 }    
+			constraint
+			{ 
+			    context: Energy_Document
+			    kind: [bdt, document, invariant] 
+			    
+			    
+			    -- BDT Energy_Document
+			    -- Validated Data for Settlement for Aggregator
+			    
+			    inv: self.Document_Type.content=DocumentNameCode::E66
+			    inv: self.Document_Type.listIdentifier->size()=0
+			    inv: self.Document_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Creation.timeZoneCode->size()=0
+			    
+			    inv: self.Recipient.Identification.schemeIdentifier->size()=0
+			    inv: self.Recipient.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9 or self.Recipient.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::305
+			    
+			    inv: self.Sender.Identification.schemeIdentifier->size()=0
+			    inv: self.Sender.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9 or self.Sender.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::305
+			 }    
+			constraint
+			{ 
+			    context: Energy_Context
+			    kind: [bdt, document, invariant] 
+			    
+			    
+			    -- BDT Energy_Context
+			    -- Validated Data for Settlement for Aggregator 
+			    
+			    inv: self.Energy_BusinessProcess.content=BusinessReasonCode::E44
+			    inv: self.Energy_BusinessProcess.listIdentifier->size()=0
+			    inv: self.Energy_BusinessProcess.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Energy_BusinessProcessRole.content=BusinessRoleCode::DEA
+			    inv: self.Energy_BusinessProcessRole.listIdentifier->size()=0
+			    inv: self.Energy_BusinessProcessRole.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Energy_IndustryClassification.content=SectorAreaIdentificationCode::23
+			    inv: self.Energy_IndustryClassification.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			 }    
+			constraint
+			{ 
+			    context: ValidatedDataForSettlementForAggregator
+			    kind: [document, invariant] 
+			    
+			    
+			    -- Structure Document
+			    -- Validated Data for Settlement for Aggregator
+			    
+			    inv: self.Header->size()=1
+			    inv: self.Process->size()=1
+			 }    
+			constraint
+			{ 
+			    context: ValidatedDataForSettlementForAggregator
+			    kind: [payload, invariant] 
+			    
+			    
+			    -- Structure Payload
+			    -- Validated Data for Settlement for Aggregator
+			    
+			    inv: self.Header->size()=0
+			    inv: self.Process->size()=0
+			 }    
+			constraint
+			{ 
+			    context: Energy_Document
+			    kind: [abie, document, invariant] 
+			    
+			    
+			    -- Structure Energy_Document
+			    -- Validated Data for Settlement for Aggregator
+			    
+			    inv: self.Document_Type->size()=1
+			    
+			    inv: self.Sender.Identification->size()=1
+			    inv: self.Sender.Role->size()=0
+			    inv: self.Sender.Name->size()=0
+			    
+			    inv: self.Recipient.Identification->size()=1
+			    inv: self.Recipient.Role->size()=0
+			    inv: self.Recipient.Name->size()=0
+			 }    
+			constraint
+			{ 
+			    context: Energy_Context
+			    kind: [abie, document, invariant] 
+			    
+			    
+			    -- Structure Energy_Context
+			    -- Validated Data for Settlement for Aggregator				 
+			    
+			    inv: self.Energy_BusinessProcess->size()=1
+			    inv: self.Energy_BusinessProcessRole->size()=1
+			    inv: self.Energy_IndustryClassification->size()=1
+			 }    
+		}
+		MA NegativeResponseRequestValidatedData
+		{
+			ASMA Header (0..1) Energy_Document
+			ASMA Process (0..1) Energy_Context
+			ASMA Payload (1..1) Response_Event
+			
+			constraint
+			{ 
+			    context: Response_Event
+			    kind: [payload, abie, document, invariant] 
+			    
+			    
+			    -- Structure Response_Event
+			    -- NegativeResponseRequestValidatedData
+			    
+			    inv: self.Identification->size()>=0   
+			    inv: self.StartOfOccurrence->size()=0
+			    inv: self.EndOfOccurrence->size()=0
+			    inv: self.Status_Type->size()=1
+			    inv: self.ResponseReason_Type->notEmpty()
+			    inv: self.OriginalBusinessDocument_Reference->size()>=0
+			    inv: self.BusinessProcess_Reference->size()=0   
+			    inv: self.MeteringPoint_Used->size()=0		
+			    inv: self.BalanceResponsible_Involved->size()=0
+			    inv: self.BalanceResponsible_Involved.Role->size()=1
+			    inv: self.BalanceResponsible_Involved.Name->size()=1
+			    inv: self.BalanceSupplier_Involved->size()=0
+			    inv: self.BalanceSupplier_Involved.Role->size()=1
+			    inv: self.BalanceSupplier_Involved.Name->size()=1
+			    inv: self.TransportCapacityResponsible_Involved->size()=0
+			    inv: self.TransportCapacityResponsible_Involved.Role->size()=1
+			    inv: self.TransportCapacityResponsible_Involved.Name->size()=1
+			    inv: self.Consumer_Involved->size()=0
+			    inv: self.Consumer_Involved.Role->size()=1
+			    inv: self.Consumer_Involved.Name->size()=1	
+			 }    
+			constraint
+			{ 
+			    context: Response_Event
+			    kind: [payload, bdt, document, invariant] 
+			    
+			    
+			    -- BDT Response_Event
+			    -- NegativeResponseRequestValidatedData		 
+			    	 
+			    inv: self.StartOfOccurrence.timeZoneCode->size()=0
+			    
+			    inv: self.EndOfOccurrence.timeZoneCode->size()=0   
+			    
+			    inv: self.Status_Type.content=ResponseConditionCode::41
+			    inv: self.Status_Type.listIdentifier->size()=0
+			    inv: self.Status_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.ResponseReason_Type->forAll (content=ResponseReasonDescriptionCode::E10 or
+			    content=ResponseReasonDescriptionCode::E29 or content=ResponseReasonDescriptionCode::E49 or
+			    content=ResponseReasonDescriptionCode::E50 or content=ResponseReasonDescriptionCode::E73)
+			    inv: self.ResponseReason_Type-> forAll (listIdentifier->size()=0)
+			    inv: self.ResponseReason_Type->forAll (listAgencyIdentifier=CodeListResponsibleAgencyCode::260)	
+			 }    
+			constraint
+			{ 
+			    context: Energy_Document
+			    kind: [bdt, document, invariant] 
+			    
+			    
+			    -- BDT Energy_Document
+			    -- NegativeResponseRequestValidatedData
+			    
+			    inv: self.Document_Type.content=DocumentNameCode::ERR 
+			    inv: self.Document_Type.listIdentifier->size()=0
+			    inv: self.Document_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Creation.timeZoneCode->size()=0
+			    
+			    inv: self.Sender.Identification.schemeIdentifier->size()=0
+			    inv: self.Sender.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9 or self.Sender.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::305
+			    
+			    inv: self.Recipient.Identification.schemeIdentifier->size()=0
+			    inv: self.Recipient.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9 or self.Recipient.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::305
+			 }    
+			constraint
+			{ 
+			    context: Energy_Context
+			    kind: [bdt, document, invariant] 
+			    
+			    
+			    -- BDT Energy_Context
+			    -- NegativeResponseRequestValidatedData 
+			    
+			    inv: self.Energy_BusinessProcess.content=BusinessReasonCode::E43 or self.Energy_BusinessProcess.content=BusinessReasonCode::E44
+			    inv: self.Energy_BusinessProcess.listIdentifier->size()=0
+			    inv: self.Energy_BusinessProcess.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Energy_BusinessProcessRole.content=BusinessRoleCode::DDK or self.Energy_BusinessProcessRole.content=BusinessRoleCode::DEA or self.Energy_BusinessProcessRole.content=BusinessRoleCode::Z06
+			    inv: self.Energy_BusinessProcessRole.listIdentifier->size()=0
+			    inv: self.Energy_BusinessProcessRole.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Energy_IndustryClassification.content=SectorAreaIdentificationCode::23
+			    inv: self.Energy_IndustryClassification.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			 }    
+			constraint
+			{ 
+			    context: Energy_Document
+			    kind: [abie, document, invariant] 
+			    
+			    
+			    -- Structure Energy_Document
+			    -- NegativeResponseRequestValidatedData
+			    
+			    inv: self.Document_Type->size()=1
+			    inv: self.Sender.Identification->size()=1
+			    inv: self.Sender.Role->size()=0
+			    inv: self.Sender.Name->size()=0
+			    inv: self.Recipient.Identification->size()=1
+			    inv: self.Recipient.Role->size()=0
+			    inv: self.Recipient.Name->size()=0
+			 }    
+			constraint
+			{ 
+			    context: NegativeResponseRequestValidatedData
+			    kind: [payload, invariant] 
+			    
+			    
+			    -- Structure Payload
+			    -- NegativeResponseRequestValidatedData
+			    
+			    inv: self.Header->size()=0
+			    inv: self.Process->size()=0
+			 }    
+			constraint
+			{ 
+			    context: NegativeResponseRequestValidatedData
+			    kind: [document, invariant] 
+			    
+			    
+			    -- Structure Document
+			    -- NegativeResponseRequestValidatedData
+			    
+			    inv: self.Header->size()=1
+			    inv: self.Process->size()=1
+			 }    
+			constraint
+			{ 
+			    context: Energy_Context
+			    kind: [abie, document, invariant] 
+			    
+			    
+			    -- Structure Energy_Context
+			    -- NegativeResponseRequestValidatedData			  
+			    
+			    inv: self.Energy_BusinessProcess->size()=1
+			    inv: self.Energy_BusinessProcessRole->size()=1
+			    inv: self.Energy_IndustryClassification->size()=1
+			 }    
+		}
+	}
+}

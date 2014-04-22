@@ -1,0 +1,509 @@
+grammar org.ebix.umm.Umm with org.eclipse.xtext.common.Terminals hidden(OCL_COMMENT, WS, ML_COMMENT, SL_COMMENT)
+
+generate umm "http://www.ebix.org/umm/Umm"
+
+Library:
+	DocLibrary | BIELibrary | BDTLibrary | ENUMLibrary | CCLibrary | CDTLibrary | PrimitiveLibrary;
+	
+DocLibrary:
+	'DocLibrary' name=STRING '{'
+	
+		'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+		'copyright:'        (copyright+=STRING (',' copyright+=STRING)* )?
+		'owner:'            (owner+=STRING (',' owner+=STRING)* )?
+		'reference:'        (reference+=STRING (',' reference+=STRING)* )?
+		'uniqueIdentifier:'  uniqueIdentifier=STRING
+		'versionIdentifier:' versionIdentifier=STRING
+		
+		'baseURN:' baseURN=STRING
+		'namespacePrefix:' namespacePrefix=STRING
+		
+		'BIE:' bieLibrary=[BIELibrary] 
+		'BDT:' bdtLibrary=[BDTLibrary] 
+		
+		(envelopes+=InfEnvelope)*
+	'}';
+
+InfEnvelope:
+	'InfEnvelope' name=STRING '{'
+		(assemblies+=MA)*
+	'}';
+			
+MA:
+	'MA' name=ID '{'
+		(properties+=MAProperty)*
+		(constraints+=Constraint)*
+	'}';
+	
+MAProperty:
+	ASMA | ASNONE;
+	
+ASMA:
+	'ASMA' name=ID multiplicity=MultiplicityKind type=[ABIE]; 	
+
+ASNONE:	
+	name=ID multiplicity=MultiplicityKind type=[ABIE]; 	
+
+Constraint:
+	'constraint' '{'
+		'context:' context=[ContextRef]
+		'kind:' (type+=TC_Constraint (',' type+=TC_Constraint )* )?
+		(invariants+=OclInvariant)*
+	'}';
+
+ContextRef:
+	MA | ABIE | BDT;
+	
+	
+TC_Constraint: 
+	kind=ConstraintKind 
+	'(' 'List Identifier' '=' listIdentifier=STRING ','
+	    'Responsible Agency' '=' responsibleAgency=STRING ')' 
+;
+	
+enum ConstraintKind:
+	invariant = 'invariant' |
+	abie = 'abie' |
+	bdt = 'bdt' |
+	dependency = 'dependency' |
+	facet = 'facet' |
+	payload = 'payload' |
+    document = 'document';
+
+BIELibrary:
+	'BIELibrary' name=ID '{'
+	
+		'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+		'copyright:'        (copyright+=STRING (',' copyright+=STRING)* )?
+		'owner:'            (owner+=STRING (',' owner+=STRING)* )?
+		'reference:'        (reference+=STRING (',' reference+=STRING)* )?
+		'uniqueIdentifier:'  uniqueIdentifier=STRING
+		'versionIdentifier:' versionIdentifier=STRING
+	
+		'baseURN:' baseURN=STRING
+		'namespacePrefix:' namespacePrefix=STRING
+		
+		'BDT:' bdtLibrary=[BDTLibrary] 
+		
+		(abies+=ABIE)*
+	'}';
+
+ABIE:
+	'ABIE' name=ID '{'
+		'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+		'definition:'        definition=STRING
+		'dictionary:'        dictionary=STRING
+		'uniqueIdentifier:'  uniqueIdentifier=STRING
+		'versionIdentifier:' versionIdentifier=STRING
+
+		(properties+=ABIEProperty)*
+		(constraints+=Constraint)*
+	'}';
+	
+ABIEProperty:
+	ASBIE | BBIE;
+
+ASBIE:
+	'ASBIE' multiplicity=MultiplicityKind name=ID ':' type=[ABIE]	
+		( 'or:' or+=[ABIEProperty] (',' or+=[ABIEProperty] )*  )?
+	'{'
+		'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+		'definition:'        definition=STRING
+		'dictionary:'        dictionary=STRING
+		'uniqueIdentifier:'  uniqueIdentifier=STRING
+		'versionIdentifier:' versionIdentifier=STRING
+		'sequencingKey:'     sequencingKey=STRING
+	'}'
+	;
+
+BBIE:
+	'BBIE' multiplicity=MultiplicityKind name=ID ':' type=[BDT]
+		( 'restriction:' restriction+=STRING (',' restriction+=STRING )*  )?	
+		( 'fixedValue:' fixedValue=STRING )?
+		( 'or:' or+=[ABIEProperty] (',' or+=[ABIEProperty] )*  )?
+	'{'
+		'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+		'definition:'        definition=STRING
+		'dictionary:'        dictionary=STRING
+		'uniqueIdentifier:'  uniqueIdentifier=STRING
+		'versionIdentifier:' versionIdentifier=STRING
+		'sequencingKey:'     sequencingKey=STRING
+	'}'
+	;
+
+BDTLibrary:
+	'BDTLibrary' name=ID '{'
+	
+		'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+		'copyright:'        (copyright+=STRING (',' copyright+=STRING)* )?
+		'owner:'            (owner+=STRING (',' owner+=STRING)* )?
+		'reference:'        (reference+=STRING (',' reference+=STRING)* )?
+		'uniqueIdentifier:'  uniqueIdentifier=STRING
+		'versionIdentifier:' versionIdentifier=STRING
+	
+		'baseURN:' baseURN=STRING
+		'namespacePrefix:' namespacePrefix=STRING
+		
+		(bdts+=BDT)*
+	'}';
+
+BDT:
+	'BDT' name=ID '{'
+		'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+		'definition:'        definition=STRING
+		'dictionary:'        dictionary=STRING
+		'uniqueIdentifier:'  uniqueIdentifier=STRING
+		'versionIdentifier:' versionIdentifier=STRING
+		
+		(properties+=BDTProperty)*
+	'}';
+
+BDTProperty:
+	Content | Supplement;
+		
+Content:
+	'CON' multiplicity=MultiplicityKind name=ID ':' type=[AssembledBase]
+		('pattern:' pattern=STRING)?	
+		('minLength:' minLength=INT)?	
+		('maxLength:' maxLength=INT)?	
+		('length:' length=INT)?	
+	'{'
+		'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+		'definition:'        definition=STRING
+		'dictionary:'        dictionary=STRING
+		'uniqueIdentifier:'  uniqueIdentifier=STRING
+		'versionIdentifier:' versionIdentifier=STRING
+	'}'
+	;
+	
+Supplement:
+	'SUP' multiplicity=MultiplicityKind name=ID ':' type=[AssembledBase]
+		('pattern:' pattern=STRING)?	
+		('minLength:' minLength=INT)?	
+		('maxLength:' maxLength=INT)?	
+		('length:' length=INT)?	
+		('defaultValue:' defaultValue=STRING)?	
+		( 'restriction:' restriction+=STRING (',' restriction+=STRING )*  )?	
+		( 'fixedValue:' fixedValue=STRING )?	
+	'{'
+		'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+		'definition:'        definition=STRING
+		'dictionary:'        dictionary=STRING
+		'uniqueIdentifier:'  uniqueIdentifier=STRING
+		'versionIdentifier:' versionIdentifier=STRING
+	'}'
+	;
+
+
+ENUMLibrary:
+	'ENUMLibrary' name=STRING '{'
+	
+		'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+		'copyright:'        (copyright+=STRING (',' copyright+=STRING)* )?
+		'owner:'            (owner+=STRING (',' owner+=STRING)* )?
+		'reference:'        (reference+=STRING (',' reference+=STRING)* )?
+		'uniqueIdentifier:'  uniqueIdentifier=STRING
+		'versionIdentifier:' versionIdentifier=STRING
+
+		'baseURN:' baseURN=STRING
+		'namespacePrefix:' namespacePrefix=STRING
+		
+		(enums+=ENUM)*
+	'}';
+
+ENUM:
+	AssembledBase | Subset | Original;
+
+AssembledBase:
+	Primitive | Assembled;
+
+Primitive:
+	'primitive' name=ID ('{'
+	
+	'businessTerm:'             (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+	'definition:'                definition=STRING
+	'codeListAgencyIdentifier:'  codeListAgencyIdentifier=STRING
+	'codeListName:'              codeListName=STRING
+	'codeListIdentifier:'	     codeListIdentifier=STRING
+	'dictionary:'                dictionary=STRING
+	'uniqueIdentifier:'          uniqueIdentifier=STRING
+	'versionIdentifier:'         versionIdentifier=STRING
+	'}'	)?;
+
+Assembled:
+	'Assembled' name=ID '{'
+	
+	'businessTerm:'             (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+	'definition:'                definition=STRING
+	'codeListAgencyIdentifier:'  codeListAgencyIdentifier=STRING
+	'codeListName:'              codeListName=STRING
+	'codeListIdentifier:'	     codeListIdentifier=STRING
+	'dictionary:'                dictionary=STRING
+	'uniqueIdentifier:'          uniqueIdentifier=STRING
+	'versionIdentifier:'         versionIdentifier=STRING
+	
+		('originals:' originals+=[Original] (',' originals+=[Original])*)? 
+		('subsets:'   subsets+=[Subset] (',' subsets+=[Subset])*)? 
+	'}';
+
+Original:
+	'Original' name=ID '{'
+	
+	'businessTerm:'             (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+	'definition:'                definition=STRING
+	'codeListAgencyIdentifier:'  codeListAgencyIdentifier=STRING
+	'codeListName:'              codeListName=STRING
+	'codeListIdentifier:'	     codeListIdentifier=STRING
+	'dictionary:'                dictionary=STRING
+	'uniqueIdentifier:'          uniqueIdentifier=STRING
+	'versionIdentifier:'         versionIdentifier=STRING
+
+		(codes+=CodelistEntry)*
+	'}';
+
+Subset:
+	'Subset' name=ID '{'
+
+	'businessTerm:'             (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+	'definition:'                definition=STRING
+	'codeListAgencyIdentifier:'  codeListAgencyIdentifier=STRING
+	'codeListName:'              codeListName=STRING
+	'codeListIdentifier:'	     codeListIdentifier=STRING
+	'dictionary:'                dictionary=STRING
+	'uniqueIdentifier:'          uniqueIdentifier=STRING
+	'versionIdentifier:'         versionIdentifier=STRING
+	
+		(codes+=CodelistEntry)*
+	'}';
+	
+CodelistEntry:
+	'CodelistEntry' name=STRING description=STRING;
+
+
+
+CCLibrary:
+    'CCLibrary' name=STRING '{'
+    
+        'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+        'copyright:'        (copyright+=STRING (',' copyright+=STRING)* )?
+        'owner:'            (owner+=STRING (',' owner+=STRING)* )?
+        'reference:'        (reference+=STRING (',' reference+=STRING)* )?
+        'uniqueIdentifier:'  uniqueIdentifier=STRING
+        'versionIdentifier:' versionIdentifier=STRING
+    
+        'baseURN:' baseURN=STRING
+        'namespacePrefix:' namespacePrefix=STRING
+        
+        (accs+=ACC)*
+    '}';
+
+ACC:
+    'ACC' name=ID '{'
+        'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+        'definition:'        definition=STRING
+        'dictionary:'        dictionary=STRING
+        'uniqueIdentifier:'  uniqueIdentifier=STRING
+        'versionIdentifier:' versionIdentifier=STRING
+
+        (properties+=ACCProperty)*
+        (constraints+=Constraint)*
+    '}';
+    
+ACCProperty:
+    ASCC | BCC;
+
+ASCC:
+    'ASCC' multiplicity=MultiplicityKind name=ID ':' type=[ACC]   
+    '{'
+        'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+        'definition:'        definition=STRING
+        'dictionary:'        dictionary=STRING
+        'uniqueIdentifier:'  uniqueIdentifier=STRING
+        'versionIdentifier:' versionIdentifier=STRING
+        'sequencingKey:'     sequencingKey=STRING
+    '}'
+    ;
+
+BCC:
+    'BCC' multiplicity=MultiplicityKind name=ID ':' type=[CDT]
+        ( 'restriction:' restriction+=STRING (',' restriction+=STRING )*  )?    
+        ( 'fixedValue:' fixedValue=STRING )?
+    '{'
+        'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+        'definition:'        definition=STRING
+        'dictionary:'        dictionary=STRING
+        'uniqueIdentifier:'  uniqueIdentifier=STRING
+        'versionIdentifier:' versionIdentifier=STRING
+        'sequencingKey:'     sequencingKey=STRING
+    '}'
+    ;
+
+CDTLibrary:
+    'CDTLibrary' name=STRING '{'
+    
+        'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+        'copyright:'        (copyright+=STRING (',' copyright+=STRING)* )?
+        'owner:'            (owner+=STRING (',' owner+=STRING)* )?
+        'reference:'        (reference+=STRING (',' reference+=STRING)* )?
+        'uniqueIdentifier:'  uniqueIdentifier=STRING
+        'versionIdentifier:' versionIdentifier=STRING
+    
+        'baseURN:' baseURN=STRING
+        'namespacePrefix:' namespacePrefix=STRING
+        
+        (cdts+=CDT)*
+    '}';
+
+CDT:
+    'CDT' name=ID '{'
+        'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+        'definition:'        definition=STRING
+        'dictionary:'        dictionary=STRING
+        'uniqueIdentifier:'  uniqueIdentifier=STRING
+        'versionIdentifier:' versionIdentifier=STRING
+        
+        (properties+=CDTProperty)*
+    '}';
+
+CDTProperty:
+    CDT_Content | CDT_Supplement;
+        
+CDT_Content:
+    'CON' multiplicity=MultiplicityKind name=ID ':' type=[Primitive]
+    '{'
+        'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+        'definition:'        definition=STRING
+        'dictionary:'        dictionary=STRING
+        'uniqueIdentifier:'  uniqueIdentifier=STRING
+        'versionIdentifier:' versionIdentifier=STRING
+    '}'
+    ;
+    
+CDT_Supplement:
+    'SUP' multiplicity=MultiplicityKind name=ID ':' type=[Primitive]
+        ('defaultValue:' defaultValue=STRING)?  
+        ( 'restriction:' restriction+=STRING (',' restriction+=STRING )*  )?    
+        ( 'fixedValue:' fixedValue=STRING )?    
+    '{'
+        'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
+        'definition:'        definition=STRING
+        'dictionary:'        dictionary=STRING
+        'uniqueIdentifier:'  uniqueIdentifier=STRING
+        'versionIdentifier:' versionIdentifier=STRING
+    '}'
+    ;
+	
+	
+enum MultiplicityKind :
+	Optional = '(0..1)'  | 
+	One = '(1..1)'       | 
+	OneOrMore = '(1..*)' | 
+	ZeroOrMore = '(0..*)';	
+
+
+PrimitiveLibrary:
+	'PRIMLibrary' name=STRING '{'
+			types+=Primitive*
+	'}';
+
+
+/*
+ * OCL Part
+ */
+
+OclInvariant:
+	'inv:' expression=OclExpression;
+
+OclExpression:
+	OclOperationImplies;
+
+OclOperationImplies returns OclExpression:
+	OclOperationLogicAnd ({OclImplies.left=current} 'implies'  right=OclOperationLogicAnd)*;
+
+OclOperationLogicAnd returns OclExpression:
+	OclOperationLogicOr ({OclAnd.left=current} 'and'  right=OclOperationLogicOr)*;
+	
+OclOperationLogicOr returns OclExpression:
+	OclOperationLogicXor ({OclOr.left=current} 'or'  right=OclOperationLogicXor)*;
+
+OclOperationLogicXor returns OclExpression:
+	OclOperationLogicEqual ({OclXor.left=current} 'xor'  right=OclOperationLogicEqual)*;
+
+OclOperationLogicEqual returns OclExpression:
+	OclOperationLogicCompare ({OclEqual.left=current} '=' right=OclOperationLogicCompare)*;	
+
+OclOperationLogicCompare returns OclExpression:
+	OclOperationArrow (({OclLess.left=current} '<' | {OclLessOrEqual.left=current} '<=' | {OclMore.left=current} '>' | {OclMoreOrEqual.left=current} '>=') right=OclOperationArrow)*;	
+
+OclOperationArrow returns OclExpression:
+	OclValue ({OclArrow.left=current} '->' right=OclFunctionCall)?;
+	
+	
+/*
+	From the OCL specification:
+		"The value of a property on an object is specified by a dot followed by the name of the property."
+		Note: Attributes, and AssociationEnds are properties.
+		"A property of the collection itself is accessed by using an arrow '->' followed by the name of the property."
+*/
+
+OclValue:
+	OclLiteral | OclReference; 	
+
+
+OclReference:
+	OclPathSelfHead | OclPathFeatureHead;
+
+OclPathSelfHead:
+	'self' path=OclPathTail;
+
+OclPathFeatureHead:
+	feature=[OclRef] ( tail=OclPathTail )?;
+
+OclPathTail:
+	'.' feature=[OclRef] ( tail=OclPathTail )?;
+
+OclRef:
+	MAProperty | ABIEProperty | BDTProperty;	
+
+
+OclFunctionCall:
+	OclForAll | OclIsEmpty | OclNotEmpty | OclSize;
+
+OclForAll: 
+	'forAll' '(' body=OclExpression ')';
+
+OclIsEmpty: 
+	{OclIsEmpty} 'isEmpty' '('  ')';
+
+OclNotEmpty: 
+	{OclNotEmpty} 'notEmpty' '('  ')';
+
+OclSize: 
+	{OclSize} 'size' '('  ')';
+		
+		
+OclLiteral:
+	OclBooleanLiteral | OclIntegerLiteral | OclStringLiteral | OclEnumerationLiteral;
+	
+OclEnumerationLiteral:
+	value=ENUMLIT;
+
+OclIntegerLiteral:
+	value=INT;
+	
+OclStringLiteral:
+	value=STRING;
+
+OclBooleanLiteral:
+	OclBooleanFalse | OclBooleanTrue;
+	
+OclBooleanFalse:
+	{OclBooleanFalse} 'false';
+
+OclBooleanTrue returns OclBooleanLiteral:
+	{OclBooleanTrue} 'true';
+
+terminal ENUMLIT  		: ('a'..'z'|'A'..'Z'|'0'..'9')*'::'('a'..'z'|'A'..'Z'|'0'..'9')*;
+terminal OCL_COMMENT 	: '--' !('\n'|'\r')* ('\r'? '\n')?;
+
+terminal ID  		: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|':'|'0'..'9')*;

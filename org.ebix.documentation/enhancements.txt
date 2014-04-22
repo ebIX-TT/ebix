@@ -1,0 +1,104 @@
+TODO:
+- copy also pattern to XSD
+- skip comment when replacing first invariant
+- sort restrictions --> ASBIE and BBIE
+- TODO: moeten de or properties bij ASBIE en BBIE niet de orginele volgorde aanhouden?
+- check when choice is optional! Now adds minOccurs = 0 when even one element has a minOccurs = 0.  
+	(http://stackoverflow.com/questions/5214555/understanding-xsdchoice-and-minoccurs)
+- add mapping in choice for: Maybe we need mapping for both singular cardinality (like ->size()=1) and for multiple cardinality (like ->notEmpty())
+
+
+Choices resulting from OCL statements in constraints
+====================================================
+Belgian observation and request: We should be able to specify values of choice’s multiplicity.
+Actually it is based on attributes (and is not always correct)
+
+Present situation with TT:
+Example 1: (this happens now)
+(remark: VAR stands for element or attribute)
+VAR1     1   VAR1
+VAR2     1   VAR2
+choice 1 or 1
+                                                         
+But if:
+Example 2: (remark: I did not check this yet, KSp)
+VAR1 [1]     VAR1
+VAR2 [0..1]  VAR2
+choice 0..1 or 0..1
+                                                        
+The multiplicity of the choice doesn’t take into account the multiplicity of chosen VAR.
+
+New
+---
+During the meeting we decided, that only when all elements in the choice are
+optional, the choice itself will be optional. In all other cases the choice
+itself is required.
+
+The first example is then already OK, but
+This is what we want for the second example:
+
+VAR1 [1]      VAR1
+VAR2 [0..1]   VAR2
+choice 1 or 0..1
+
+Remark: we need to cover XOR as well as OR (in case of two optional choice elements
+leading to a required choice (XOR) or an optional choice (OR))
+
+TT handling facets
+==================
+Decision by ebIX ETC:
+TT shall be able to transform tagged values for length, maxlength and pattern (if
+possible, because how to specify a pattern OCL?) into facets (length and maxlength)
+or pattern in XML. Practically for now: from stereotypes <<CON>> and <<SUP>> for
+<<BDT>> the tagged values for length and maxlength must be included in XML schema
+(also length and maxlength)
+
+Bug
+===
+comments
+--------
+Bug within TT: if an OCL statement that begins with “self.” has been placed into a
+remark (beginning with “--")  it is still treated by TT and generates an error.
+Normally, as the line is placed as remark, it should not be taken into account by the TT.
+
+Imply statements
+----------------
+The creation of choices does not work always as intended.
+The mapping of statements to resulting XML works when specified as below
+OCL
+XML
+inv: self.Energy_Quantity->notEmpty() implies Quantity_Missing->size()=0
+inv: self. Quantity_Missing->size()=1 implies Energy_Quantity->isEmpty()
+inv: self.Quantity_Missing->size()=1 implies Quantity_Missing = true
+<xsd:choice minOccurs="0">
+<xsd:element name="EnergyQuantity" type="bie:IntegerQuantityType_000119" minOccurs="0"/>
+<xsd:element name="QuantityMissing" type="bie:IndicatorType_000099" fixed="true" minOccurs="0"/>
+</xsd:choice>
+
+But it does not seem to work with simple “or” statements. (but will probably be fixed
+at the same time we introduce the choices based on either “or” or “xor”). Maybe we need
+mapping for both singular cardinality (like ->size()=1) and for multiple
+cardinality (like ->notEmpty())
+
+Request from Denmark:
+=====================
+Sort literals in restrictions in XML schema.
+
+Documentation:
+--------------
+Remarks/request from Belgium:
+Does an User Guide for the TT  exist? On ebIX website we find a document that describe
+“how to install TT” but what we are looking for is to know how it works. Which OCL
+statements are taken into account (and how we have to code them). We noticed that there
+were some limitations on what the TT takes from the OCL (for example, the “implies”).
+We are now losing some time because we have to do a “try-error” coding as there is no
+explanation on what is taken by the TT.
+
+We also noticed that the “choice” (X=1 implies Y=2) does not work in the TT.
+Would it be possible to develop the “implies”-variants within the next TT release?
+Would it be possible to receive the TT limitations? (for example, “size<2” does not work)
+
+Planning
+Would it be possible to receive the planning of coming release with the developments foreseen? 
+Developments are made based on which input? How to request a development?
+

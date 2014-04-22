@@ -1,0 +1,351 @@
+DocLibrary "Data::European Energy Market::Structure::Information::ebIX::Response Change Of Supplier"
+{
+	businessTerm:      
+	copyright:         
+	owner:             
+	reference:         
+	uniqueIdentifier:  ""
+	versionIdentifier: "2011.A"
+	
+	baseURN:           "un:unece:260:data:EEM"
+	namespacePrefix:   "rsm"
+
+	BIE: Data::ebix:org::ABIE
+	BDT: Data::ebix:org::BDT
+	
+	InfEnvelope "Response Change Of Supplier"
+	{
+		MA RejectChangeOfSupplier
+		{
+			ASMA Header (0..1) Energy_Document
+			ASMA Process (0..1) Energy_Context
+			ASMA Payload (1..1) Response_Event
+			
+			constraint
+			{ 
+			    context: Response_Event
+			    kind: [payload, abie, document, invariant] 
+			    
+			    
+			    --Structure Response_Event 
+			    --Reject change of Supplier	
+			    
+			    inv: self.EndOfOccurrence->size()=0
+			    --self.Identification->size()=1
+			    inv: self.Status_Type->size()=1
+			    inv: self.ResponseReason_Type->size()=1
+			    
+			    --inv: self.OriginalBusinessDocument->size()=1
+			    inv: self.BusinessProcess->size()=0
+			    --inv: self.MeteringPoint_Used->size()=0
+			    inv: self.BalanceResponsible_Involved->size()=0
+			    inv: self.TransportCapacityResponsible_Involved->size()=0
+			    inv: self.BalanceSupplier_Involved->size()=0
+			    inv: self.Consumer_Involved->size()=0
+			 }    
+			constraint
+			{ 
+			    context: Response_Event
+			    kind: [payload, bdt, document, invariant] 
+			    
+			    
+			    -- BDT Response_Event
+			    -- Reject change of Supplier
+			    
+			    inv: self.Status_Type.content=ResponseConditionCode::41
+			    inv: self.Status_Type.listIdentifier->size()=0
+			    inv: self.Status_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.ResponseReason_Type.content=ResponseReasonDescriptionCode::E10 
+			    or ResponseReason_Type.content=ResponseReasonDescriptionCode::E16
+			    or ResponseReason_Type.content=ResponseReasonDescriptionCode::E17
+			    or ResponseReason_Type.content=ResponseReasonDescriptionCode::E18
+			    or ResponseReason_Type.content=ResponseReasonDescriptionCode::E22
+			    or ResponseReason_Type.content=ResponseReasonDescriptionCode::E37
+			    or ResponseReason_Type.content=ResponseReasonDescriptionCode::E54
+			    or ResponseReason_Type.content=ResponseReasonDescriptionCode::E59
+			    inv: self.ResponseReason_Type.listIdentifier->size()=0
+			    inv: self.ResponseReason_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			 }    
+			constraint
+			{ 
+			    context: Energy_Document
+			    kind: [bdt, document, invariant] 
+			    
+			    
+			    -- BDT Energy_Document
+			    -- Reject change of supplier
+			    
+			    inv: self.Document_Type.content=DocumentNameCode::414 
+			    inv: self.Document_Type.listIdentifier->size()=0
+			    inv: self.Document_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Creation.timeZoneCode->size()=0
+			    
+			    inv: self.Sender.Identification.schemeIdentifier->size()=0
+			    inv: self.Sender.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9 
+			    or self.Sender.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::305
+			    
+			    inv: self.Sender.Role.content=BusinessRoleCode::MDR
+			    inv: self.Sender.Role.listIdentifier->size()=0
+			    inv: self.Sender.Role.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Sender.Name.languageCode->size()=0
+			    inv: self.Sender.Name.languageCode->size()=0
+			    
+			    inv: self.Recipient.Identification.schemeIdentifier->size()=0
+			    inv: self.Recipient.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9 
+			    or self.Recipient.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::305
+			    
+			    inv: self.Recipient.Role.content=BusinessRoleCode::DDQ
+			    inv: self.Recipient.Role.listIdentifier->size()=0
+			    inv: self.Recipient.Role.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			              
+			    inv: self.Recipient.Name.languageCode->size()=0
+			    inv: self.Recipient.Name.languageCode->size()=0
+			 }    
+			constraint
+			{ 
+			    context: Energy_Context
+			    kind: [bdt, document, invariant] 
+			    
+			    
+			    -- BDT Energy_Context
+			    -- Reject change of supplier
+			    
+			    inv: self.Energy_BusinessProcess.content=BusinessReasonCode::E03 
+			    inv: self.Energy_BusinessProcess.listIdentifier->size()=0
+			    inv: self.Energy_BusinessProcess.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Energy_BusinessProcessRole.content=BusinessRoleCode::DDQ
+			    inv: self.Energy_BusinessProcessRole.listIdentifier->size()=0
+			    inv: self.Energy_BusinessProcessRole.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Energy_IndustryClassification.content=SectorAreaIdentificationCode::23 
+			    or self.Energy_IndustryClassification.content=SectorAreaIdentificationCode::27
+			    inv: self.Energy_IndustryClassification.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			 }    
+			constraint
+			{ 
+			    context: RejectChangeOfSupplier
+			    kind: [abie, document, invariant] 
+			    
+			    
+			    -- Structure Document
+			    -- Reject change of supplier
+			    
+			    inv: self.Header->size()=1
+			    inv: self.Process->size()=1
+			 }    
+			constraint
+			{ 
+			    context: RejectChangeOfSupplier
+			    kind: [payload, abie, invariant] 
+			    
+			    
+			    -- Structure Payload
+			    -- Reject change of supplier
+			    
+			    inv: self.Header->size()=0
+			    inv: self.Process->size()=0
+			 }    
+			constraint
+			{ 
+			    context: Energy_Context
+			    kind: [abie, document, invariant] 
+			    
+			    
+			    -- Structure Energy_Context
+			    -- Reject change of supplier
+			    
+			    inv: self.Energy_BusinessProcess->size()=1
+			    inv: self.Energy_BusinessProcessRole->size()=1
+			    inv: self.Energy_IndustryClassification->size()=1
+			 }    
+			constraint
+			{ 
+			    context: Energy_Document
+			    kind: [abie, document, invariant] 
+			    
+			    
+			    -- Structure Energy_Document
+			    -- Reject change of supplier
+			    
+			    inv: self.Identification->size()=1	  
+			    inv: self.Creation->size()=1
+			    inv: self.Document_Type->size()=1
+			    inv: self.Sender.Identification->size()=1
+			    inv: self.Sender.Role->size()=0
+			    inv: self.Sender.Name->size()=0
+			    inv: self.Recipient.Identification->size()=1
+			    inv: self.Recipient.Role->size()=0
+			    inv: self.Recipient.Name->size()=0
+			 }    
+		}
+		MA ConfirmChangeOfSupplier
+		{
+			ASMA Header (0..1) Energy_Document
+			ASMA Process (0..1) Energy_Context
+			ASMA Payload (1..1) Response_Event
+			
+			constraint
+			{ 
+			    context: Response_Event
+			    kind: [payload, abie, document, invariant] 
+			    
+			    
+			    --Structure Response_Event 
+			    --Confirm change of supplier	
+			    
+			    inv: self.EndOfOccurrence->size()=0
+			    inv: self.Status_Type->size()=1
+			    inv: self.ResponseReason_Type->size()=0
+			    --self.Identification->size()=1
+			    --inv: self.Status_Type->size()=1
+			    
+			    inv: self.EndOfOccurrence->size()=0
+			    inv: self.EndOfOccurrence->size()=0
+			    inv: self.EndOfOccurrence->size()=0
+			    --self.Identification->size()=1
+			    --inv: self.Status_Type->size()=1
+			    --inv: self.ResponseReason_Type->notEmpty()
+			    --inv: self.OriginalBusinessDocument->size()=1
+			    --inv: self.BusinessProcess->size()=1
+			 }    
+			constraint
+			{ 
+			    context: Response_Event
+			    kind: [payload, bdt, document, invariant] 
+			    
+			    
+			    -- BDT Response_Event
+			    -- Confirm change of supplier
+			    
+			    inv: self.Status_Type.content=ResponseConditionCode::39
+			    inv: self.Status_Type.listIdentifier->size()=0
+			    inv: self.Status_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.MeteringPoint_Used.Identification.schemeIdentifier->size()=0
+			    inv: self.MeteringPoint_Used.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9
+			    
+			    --inv: self.ResponseReason_Type.content=ResponseReasonDescriptionCode::E09 or ResponseReason_Type.content=ResponseReasonDescriptionCode::E10
+			    --inv: self.ResponseReason_Type.listIdentifier->size()=0
+			    --inv: self.ResponseReason_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			 }    
+			constraint
+			{ 
+			    context: Energy_Document
+			    kind: [bdt, document, invariant] 
+			    
+			    
+			    -- BDT Energy_Document
+			    -- Confirm change of supplier
+			    
+			    inv: self.Document_Type.content=DocumentNameCode::414 
+			    inv: self.Document_Type.listIdentifier->size()=0
+			    inv: self.Document_Type.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Creation.timeZoneCode->size()=0
+			    
+			    inv: self.Sender.Identification.schemeIdentifier->size()=0
+			    inv: self.Sender.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9 
+			    or self.Sender.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::305
+			    
+			    inv: self.Sender.Role.content=BusinessRoleCode::MDR
+			    inv: self.Sender.Role.listIdentifier->size()=0
+			    inv: self.Sender.Role.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Sender.Name.languageCode->size()=0
+			    inv: self.Sender.Name.languageCode->size()=0
+			    
+			    inv: self.Recipient.Identification.schemeIdentifier->size()=0
+			    inv: self.Recipient.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::9 
+			    or self.Recipient.Identification.schemeAgencyIdentifier=CodeListResponsibleAgencyCode::305
+			    
+			    inv: self.Recipient.Role.content=BusinessRoleCode::DDQ
+			    inv: self.Recipient.Role.listIdentifier->size()=0
+			    inv: self.Recipient.Role.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			              
+			    inv: self.Recipient.Name.languageCode->size()=0
+			    inv: self.Recipient.Name.languageCode->size()=0
+			 }    
+			constraint
+			{ 
+			    context: Energy_Context
+			    kind: [bdt, document, invariant] 
+			    
+			    
+			    -- BDT Energy_Context
+			    -- Confirm change of supplier
+			    
+			    inv: self.Energy_BusinessProcess.content=BusinessReasonCode::E03 
+			    inv: self.Energy_BusinessProcess.listIdentifier->size()=0
+			    inv: self.Energy_BusinessProcess.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Energy_BusinessProcessRole.content=BusinessRoleCode::DDQ
+			    inv: self.Energy_BusinessProcessRole.listIdentifier->size()=0
+			    inv: self.Energy_BusinessProcessRole.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			    
+			    inv: self.Energy_IndustryClassification.content=SectorAreaIdentificationCode::23 
+			    or self.Energy_IndustryClassification.content=SectorAreaIdentificationCode::27
+			    inv: self.Energy_IndustryClassification.listAgencyIdentifier=CodeListResponsibleAgencyCode::260
+			 }    
+			constraint
+			{ 
+			    context: ConfirmChangeOfSupplier
+			    kind: [abie, document, invariant] 
+			    
+			    
+			    -- Structure Document
+			    -- Confirm change of supplier
+			    
+			    inv: self.Header->size()=1
+			    inv: self.Process->size()=1
+			 }    
+			constraint
+			{ 
+			    context: ConfirmChangeOfSupplier
+			    kind: [payload, abie, invariant] 
+			    
+			    
+			    -- Structure Payload
+			    -- Confirm change of supplier
+			    
+			    inv: self.Header->size()=0
+			    inv: self.Process->size()=0
+			 }    
+			constraint
+			{ 
+			    context: Energy_Context
+			    kind: [abie, document, invariant] 
+			    
+			    
+			    -- Structure Energy_Context
+			    -- Confirm change of supplier
+			    
+			    inv: self.Energy_BusinessProcess->size()=1
+			    inv: self.Energy_BusinessProcessRole->size()=1
+			    inv: self.Energy_IndustryClassification->size()=1
+			 }    
+			constraint
+			{ 
+			    context: Energy_Document
+			    kind: [abie, document, invariant] 
+			    
+			    
+			    -- Structure Energy_Document
+			    -- Confirm change of supplier
+			    
+			    inv: self.Identification->size()=1	  
+			    inv: self.Creation->size()=1
+			    inv: self.Document_Type->size()=1
+			    inv: self.Sender.Identification->size()=1
+			    inv: self.Sender.Role->size()=0
+			    inv: self.Sender.Name->size()=0
+			    inv: self.Recipient.Identification->size()=1
+			    inv: self.Recipient.Role->size()=0
+			    inv: self.Recipient.Name->size()=0
+			 }    
+		}
+	}
+}

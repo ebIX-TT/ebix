@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.ebix.umm/src-gen" editDirectory="/org.ebix.umm.edit/src"
+    editorDirectory="/org.ebix.umm.editor/src" modelPluginID="org.ebix.umm" forceOverwrite="true"
+    modelName="Umm" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.ebix.umm.edit"
+    editorPluginID="org.ebix.umm.editor" runtimeVersion="2.8">
+  <genPackages prefix="Umm" basePackage="org.ebix.umm" disposableProviderFactory="true"
+      fileExtensions="umm" ecorePackage="Umm.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Umm.ecore#//ConstraintKind">
+      <genEnumLiterals ecoreEnumLiteral="Umm.ecore#//ConstraintKind/invariant"/>
+      <genEnumLiterals ecoreEnumLiteral="Umm.ecore#//ConstraintKind/abie"/>
+      <genEnumLiterals ecoreEnumLiteral="Umm.ecore#//ConstraintKind/bdt"/>
+      <genEnumLiterals ecoreEnumLiteral="Umm.ecore#//ConstraintKind/dependency"/>
+      <genEnumLiterals ecoreEnumLiteral="Umm.ecore#//ConstraintKind/facet"/>
+      <genEnumLiterals ecoreEnumLiteral="Umm.ecore#//ConstraintKind/payload"/>
+      <genEnumLiterals ecoreEnumLiteral="Umm.ecore#//ConstraintKind/document"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Umm.ecore#//MultiplicityKind">
+      <genEnumLiterals ecoreEnumLiteral="Umm.ecore#//MultiplicityKind/Optional"/>
+      <genEnumLiterals ecoreEnumLiteral="Umm.ecore#//MultiplicityKind/One"/>
+      <genEnumLiterals ecoreEnumLiteral="Umm.ecore#//MultiplicityKind/OneOrMore"/>
+      <genEnumLiterals ecoreEnumLiteral="Umm.ecore#//MultiplicityKind/ZeroOrMore"/>
+    </genEnums>
+    <genClasses ecoreClass="Umm.ecore#//Library">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//Library/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//DocLibrary">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//DocLibrary/businessTerm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//DocLibrary/copyright"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//DocLibrary/owner"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//DocLibrary/reference"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//DocLibrary/uniqueIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//DocLibrary/versionIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//DocLibrary/baseURN"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//DocLibrary/namespacePrefix"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Umm.ecore#//DocLibrary/bieLibrary"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Umm.ecore#//DocLibrary/bdtLibrary"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//DocLibrary/envelopes"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//InfEnvelope">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//InfEnvelope/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//InfEnvelope/assemblies"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//MA">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//MA/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//MA/constraints"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//MAProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Umm.ecore#//MAProperty/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//ASMA"/>
+    <genClasses ecoreClass="Umm.ecore#//ASNONE"/>
+    <genClasses ecoreClass="Umm.ecore#//Constraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Umm.ecore#//Constraint/context"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//Constraint/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//Constraint/invariants"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//ContextRef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ContextRef/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//TC_Constraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//TC_Constraint/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//TC_Constraint/listIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//TC_Constraint/responsibleAgency"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//BIELibrary">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BIELibrary/businessTerm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BIELibrary/copyright"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BIELibrary/owner"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BIELibrary/reference"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BIELibrary/uniqueIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BIELibrary/versionIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BIELibrary/baseURN"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BIELibrary/namespacePrefix"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Umm.ecore#//BIELibrary/bdtLibrary"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//BIELibrary/abies"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//ABIE">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ABIE/businessTerm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ABIE/definition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ABIE/dictionary"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ABIE/uniqueIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ABIE/versionIdentifier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//ABIE/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//ABIE/constraints"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//ABIEProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Umm.ecore#//ABIEProperty/or"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ABIEProperty/businessTerm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ABIEProperty/definition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ABIEProperty/dictionary"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ABIEProperty/uniqueIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ABIEProperty/versionIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ABIEProperty/sequencingKey"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//ASBIE">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Umm.ecore#//ASBIE/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//BBIE">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Umm.ecore#//BBIE/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BBIE/restriction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BBIE/fixedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//BDTLibrary">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTLibrary/businessTerm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTLibrary/copyright"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTLibrary/owner"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTLibrary/reference"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTLibrary/uniqueIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTLibrary/versionIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTLibrary/baseURN"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTLibrary/namespacePrefix"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//BDTLibrary/bdts"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//BDT">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDT/businessTerm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDT/definition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDT/dictionary"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDT/uniqueIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDT/versionIdentifier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//BDT/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//BDTProperty">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Umm.ecore#//BDTProperty/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTProperty/pattern"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTProperty/minLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTProperty/maxLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTProperty/length"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTProperty/businessTerm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTProperty/definition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTProperty/dictionary"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTProperty/uniqueIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTProperty/versionIdentifier"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//Content"/>
+    <genClasses ecoreClass="Umm.ecore#//Supplement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//Supplement/defaultValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//Supplement/restriction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//Supplement/fixedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//ENUMLibrary">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ENUMLibrary/businessTerm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ENUMLibrary/copyright"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ENUMLibrary/owner"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ENUMLibrary/reference"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ENUMLibrary/uniqueIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ENUMLibrary/versionIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ENUMLibrary/baseURN"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ENUMLibrary/namespacePrefix"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//ENUMLibrary/enums"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//ENUM">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ENUM/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ENUM/businessTerm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ENUM/definition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ENUM/codeListAgencyIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ENUM/codeListName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ENUM/codeListIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ENUM/dictionary"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ENUM/uniqueIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ENUM/versionIdentifier"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//AssembledBase"/>
+    <genClasses ecoreClass="Umm.ecore#//Primitive"/>
+    <genClasses ecoreClass="Umm.ecore#//Assembled">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Umm.ecore#//Assembled/originals"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Umm.ecore#//Assembled/subsets"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//Original">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//Original/codes"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//Subset">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//Subset/codes"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//CodelistEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CodelistEntry/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CodelistEntry/description"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//CCLibrary">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CCLibrary/businessTerm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CCLibrary/copyright"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CCLibrary/owner"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CCLibrary/reference"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CCLibrary/uniqueIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CCLibrary/versionIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CCLibrary/baseURN"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CCLibrary/namespacePrefix"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//CCLibrary/accs"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//ACC">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ACC/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ACC/businessTerm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ACC/definition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ACC/dictionary"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ACC/uniqueIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ACC/versionIdentifier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//ACC/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//ACC/constraints"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//ACCProperty">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ACCProperty/multiplicity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ACCProperty/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ACCProperty/businessTerm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ACCProperty/definition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ACCProperty/dictionary"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ACCProperty/uniqueIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ACCProperty/versionIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//ACCProperty/sequencingKey"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//ASCC">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Umm.ecore#//ASCC/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//BCC">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Umm.ecore#//BCC/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BCC/restriction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BCC/fixedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//CDTLibrary">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDTLibrary/businessTerm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDTLibrary/copyright"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDTLibrary/owner"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDTLibrary/reference"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDTLibrary/uniqueIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDTLibrary/versionIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDTLibrary/baseURN"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDTLibrary/namespacePrefix"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//CDTLibrary/cdts"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//CDT">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDT/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDT/businessTerm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDT/definition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDT/dictionary"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDT/uniqueIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDT/versionIdentifier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//CDT/properties"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//CDTProperty">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDTProperty/multiplicity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDTProperty/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Umm.ecore#//CDTProperty/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDTProperty/businessTerm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDTProperty/definition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDTProperty/dictionary"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDTProperty/uniqueIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDTProperty/versionIdentifier"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//CDT_Content"/>
+    <genClasses ecoreClass="Umm.ecore#//CDT_Supplement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDT_Supplement/defaultValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDT_Supplement/restriction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//CDT_Supplement/fixedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//PrimitiveLibrary">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//PrimitiveLibrary/types"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclInvariant">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclInvariant/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclExpression"/>
+    <genClasses ecoreClass="Umm.ecore#//OclValue"/>
+    <genClasses ecoreClass="Umm.ecore#//OclReference"/>
+    <genClasses ecoreClass="Umm.ecore#//OclPathSelfHead">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclPathSelfHead/path"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclPathFeatureHead">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Umm.ecore#//OclPathFeatureHead/feature"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclPathFeatureHead/tail"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclPathTail">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Umm.ecore#//OclPathTail/feature"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclPathTail/tail"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclRef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//OclRef/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//OclRef/multiplicity"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclFunctionCall"/>
+    <genClasses ecoreClass="Umm.ecore#//OclForAll">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclForAll/body"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclIsEmpty"/>
+    <genClasses ecoreClass="Umm.ecore#//OclNotEmpty"/>
+    <genClasses ecoreClass="Umm.ecore#//OclSize"/>
+    <genClasses ecoreClass="Umm.ecore#//OclLiteral"/>
+    <genClasses ecoreClass="Umm.ecore#//OclEnumerationLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//OclEnumerationLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclIntegerLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//OclIntegerLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclStringLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//OclStringLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclBooleanLiteral"/>
+    <genClasses ecoreClass="Umm.ecore#//OclBooleanFalse"/>
+    <genClasses ecoreClass="Umm.ecore#//OclImplies">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclImplies/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclImplies/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclAnd">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclAnd/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclAnd/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclOr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclOr/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclOr/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclXor">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclXor/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclXor/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclEqual">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclEqual/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclEqual/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclLess">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclLess/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclLess/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclLessOrEqual">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclLessOrEqual/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclLessOrEqual/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclMore">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclMore/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclMore/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclMoreOrEqual">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclMoreOrEqual/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclMoreOrEqual/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclArrow">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclArrow/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Umm.ecore#//OclArrow/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Umm.ecore#//OclBooleanTrue"/>
+  </genPackages>
+</genmodel:GenModel>

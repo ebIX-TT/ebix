@@ -1,0 +1,42 @@
+ENUMLibrary "Data::ebix:org::Codes::ebIX External::ebIX National::CH::Codes"
+{
+	businessTerm:      
+	copyright:         
+	owner:             
+	reference:         
+	uniqueIdentifier:  ""
+	versionIdentifier: ""
+	
+	baseURN:           "un:unece:260:data:EEM"
+	namespacePrefix:   "bcl"
+
+	Original VSE_DocumentNameCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "DocumentNameCode"
+		codeListIdentifier:        "VSE"
+		dictionary:                ""
+		uniqueIdentifier:          "CH0002"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "C01" "Notification"  
+		CodelistEntry "C02" "Notification"  
+	}
+	
+	Original VSE_BusinessReasonCode
+	{
+		businessTerm:              
+		definition:                ""
+		codeListAgencyIdentifier:  "260"
+		codeListName:              "BusinessReasonCode"
+		codeListIdentifier:        "VSE"
+		dictionary:                ""
+		uniqueIdentifier:          "CH0001"
+		versionIdentifier:         "0.1.A"
+		CodelistEntry "C10" "Check Information"  
+		CodelistEntry "C11" "Kostenzuteilung (Systemdienstleistung)"  
+		CodelistEntry "C12" "Kostenwälzung"  
+	}
+	
+}

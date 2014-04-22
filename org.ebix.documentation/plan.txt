@@ -1,0 +1,42 @@
+
+Hoi Kees,
+
+Hieronder heb ik een korte schatting staan van de nog openstaande punten van de tool.
+De schatting is natuurlijk boterzacht; het meeste van het werk doe ik zeker niet dagelijks.
+Sommige punten, zoals met punt 2, en 4, ben ik al wel vorig jaar begonnen, maar is nog niet af.
+
+Met vriendelijke groet,
+Peter
+
+1) (6 days) Processing of UML file(s) need to be more independent from the UML project name, the structure, and the location of the stereotypes.
+    - tool must be able to work with a UML project with a different name
+    - package structure within the UML project must be free to choose.
+    - location, and names of the stereotypes must be configurable.
+
+2) (4 days) Intermediate output (the UMM text files) must be split in smaller pieces to support large model, and easy problem resolution.
+
+3) (4 days) Fixed text in generated XSD must be configurable.
+    - The text of the copyright statement must be configurable.
+    - The text of the version must be configurable.
+
+4) (6 days) Standalone application
+    - tool must be easy to distribute
+    - tool should minimize the number of unwanted menu items, etc.
+    - tool must include the XSD generator
+    - tool must include documentation generator (excel sheet)
+    - tool should include the UMM text editor
+    - tool should be based on a recent Eclipse version
+    - tool should be easy to build
+
+5) (8 days) Documentation
+    - The implementation of tool must have a documentation: Software Architecture Documentation.
+
+6) (?) Bugs, and feature enhancements
+    - None at the moment.
+
+    
+============
+- Check MA voor gebruikte ABIE, en zet die in generic, en niet langer de MA.
+- Check  abstract versus aliases in XSD.
+
+- 

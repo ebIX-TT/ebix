@@ -1,0 +1,6 @@
+.metadata
+bin/
+.antlr-generator-*.jar
+org.eclipse.uml2.uml.examples.standalone
+*._trace
+*.ods
