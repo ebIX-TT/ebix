@@ -1,3 +1,20 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.uml2text.ods;
 
 import com.google.common.base.Objects;
@@ -24,7 +41,6 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
@@ -43,12 +59,7 @@ public class BieContent {
   private BBIE bbieExtension;
   
   @Extension
-  private Multiplicity2Text multiplicity2Text = new Function0<Multiplicity2Text>() {
-    public Multiplicity2Text apply() {
-      Multiplicity2Text _multiplicity2Text = new Multiplicity2Text();
-      return _multiplicity2Text;
-    }
-  }.apply();
+  private Multiplicity2Text multiplicity2Text = new Multiplicity2Text();
   
   private UmmStereotypes ummStereotypes;
   
@@ -114,11 +125,11 @@ public class BieContent {
     _builder.newLine();
     _builder.append("\t");
     CharSequence _headerRow = this.headerRow();
-    _builder.append(_headerRow, "	");
+    _builder.append(_headerRow, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _content = this.content();
-    _builder.append(_content, "	");
+    _builder.append(_content, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("</table:table>");
     _builder.newLine();
@@ -133,7 +144,7 @@ public class BieContent {
     _builder.append("\t");
     CharSequence _headerCell = BasicFunctions.headerCell("#", "Library", "Type", "Name", "", "Cardinality", "Definition", "Business term", 
       "Sequencing key", "Version", "Language code", "Unique identifier", "Usage Rules");
-    _builder.append(_headerCell, "	");
+    _builder.append(_headerCell, "\t");
     _builder.newLineIfNotEmpty();
     CharSequence _closeHeaderRow = BasicFunctions.closeHeaderRow();
     _builder.append(_closeHeaderRow, "");
@@ -142,32 +153,28 @@ public class BieContent {
   }
   
   public CharSequence content() {
-    StringConcatenation _stringConcatenation = new StringConcatenation();
-    final StringConcatenation builder = _stringConcatenation;
+    final StringConcatenation builder = new StringConcatenation();
     int abieCount = 0;
     EList<Element> _allOwnedElements = this.umlModel.allOwnedElements();
     Iterable<org.eclipse.uml2.uml.Package> _filter = Iterables.<org.eclipse.uml2.uml.Package>filter(_allOwnedElements, org.eclipse.uml2.uml.Package.class);
     final Function1<org.eclipse.uml2.uml.Package,Boolean> _function = new Function1<org.eclipse.uml2.uml.Package,Boolean>() {
-        public Boolean apply(final org.eclipse.uml2.uml.Package p) {
-          boolean _isBieLibrary = BieContent.this.bielibraryExtension.isBieLibrary(p);
-          return Boolean.valueOf(_isBieLibrary);
-        }
-      };
+      public Boolean apply(final org.eclipse.uml2.uml.Package p) {
+        return Boolean.valueOf(BieContent.this.bielibraryExtension.isBieLibrary(p));
+      }
+    };
     Iterable<org.eclipse.uml2.uml.Package> _filter_1 = IterableExtensions.<org.eclipse.uml2.uml.Package>filter(_filter, _function);
     for (final org.eclipse.uml2.uml.Package umlPackage : _filter_1) {
       EList<NamedElement> _ownedMembers = umlPackage.getOwnedMembers();
       Iterable<org.eclipse.uml2.uml.Class> _filter_2 = Iterables.<org.eclipse.uml2.uml.Class>filter(_ownedMembers, org.eclipse.uml2.uml.Class.class);
       final Function1<org.eclipse.uml2.uml.Class,Boolean> _function_1 = new Function1<org.eclipse.uml2.uml.Class,Boolean>() {
-          public Boolean apply(final org.eclipse.uml2.uml.Class c) {
-            boolean _isStereotypeApplied = c.isStereotypeApplied(BieContent.this.ummStereotypes.ABIE.value);
-            return Boolean.valueOf(_isStereotypeApplied);
-          }
-        };
+        public Boolean apply(final org.eclipse.uml2.uml.Class c) {
+          return Boolean.valueOf(c.isStereotypeApplied(BieContent.this.ummStereotypes.ABIE.value));
+        }
+      };
       Iterable<org.eclipse.uml2.uml.Class> _filter_3 = IterableExtensions.<org.eclipse.uml2.uml.Class>filter(_filter_2, _function_1);
       for (final org.eclipse.uml2.uml.Class abie : _filter_3) {
         {
-          int _plus = (abieCount + 100);
-          abieCount = _plus;
+          abieCount = (abieCount + 100);
           CharSequence _abieContent = this.abieContent(Integer.valueOf(abieCount), abie);
           builder.append(_abieContent);
         }
@@ -241,14 +248,12 @@ public class BieContent {
   }
   
   public CharSequence attributeContent(final int count, final org.eclipse.uml2.uml.Class abie) {
-    StringConcatenation _stringConcatenation = new StringConcatenation();
-    final StringConcatenation builder = _stringConcatenation;
+    final StringConcatenation builder = new StringConcatenation();
     int attrCount = count;
     EList<Property> _attributes = abie.getAttributes();
     for (final Property attr : _attributes) {
       {
-        int _plus = (attrCount + 1);
-        attrCount = _plus;
+        attrCount = (attrCount + 1);
         Association _association = attr.getAssociation();
         boolean _notEquals = (!Objects.equal(_association, null));
         if (_notEquals) {

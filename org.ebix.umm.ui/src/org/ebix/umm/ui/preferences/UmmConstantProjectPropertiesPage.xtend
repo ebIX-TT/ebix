@@ -3,14 +3,12 @@ package org.ebix.umm.ui.preferences
 import org.eclipse.ui.dialogs.PropertyPage
 import org.eclipse.swt.widgets.Composite
 import org.eclipse.swt.widgets.Control
-import org.eclipse.jface.preference.StringFieldEditor
 import org.eclipse.core.resources.IProject
 import org.ebix.umm.templates.Constant
 import org.eclipse.core.resources.ProjectScope
 import java.util.HashMap
 import java.util.Map
 import org.ebix.umm.templates.Constants
-import org.eclipse.jface.preference.FieldEditor
 
 class UmmConstantProjectPropertiesPage extends PropertyPage {
 	

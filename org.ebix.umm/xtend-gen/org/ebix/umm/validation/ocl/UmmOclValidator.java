@@ -1,3 +1,20 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.validation.ocl;
 
 import com.google.common.base.Objects;
@@ -23,7 +40,6 @@ import org.ebix.umm.umm.OclRef;
 import org.ebix.umm.umm.OclReference;
 import org.ebix.umm.umm.OclSize;
 import org.ebix.umm.umm.OclStringLiteral;
-import org.ebix.umm.umm.OclValue;
 import org.ebix.umm.umm.OclXor;
 
 @SuppressWarnings("all")
@@ -41,43 +57,43 @@ public class UmmOclValidator {
       _or_6 = true;
     } else {
       boolean _matchMandatoryReference = this.matchMandatoryReference(oclInvariant);
-      _or_6 = (_matchRemoveReference || _matchMandatoryReference);
+      _or_6 = _matchMandatoryReference;
     }
     if (_or_6) {
       _or_5 = true;
     } else {
       boolean _matchSingleReference = this.matchSingleReference(oclInvariant);
-      _or_5 = (_or_6 || _matchSingleReference);
+      _or_5 = _matchSingleReference;
     }
     if (_or_5) {
       _or_4 = true;
     } else {
       boolean _matchReduceCodelistEntries = this.matchReduceCodelistEntries(oclInvariant);
-      _or_4 = (_or_5 || _matchReduceCodelistEntries);
+      _or_4 = _matchReduceCodelistEntries;
     }
     if (_or_4) {
       _or_3 = true;
     } else {
       boolean _matchFixedValue = this.matchFixedValue(oclInvariant);
-      _or_3 = (_or_4 || _matchFixedValue);
+      _or_3 = _matchFixedValue;
     }
     if (_or_3) {
       _or_2 = true;
     } else {
       boolean _matchChoice = this.matchChoice(oclInvariant);
-      _or_2 = (_or_3 || _matchChoice);
+      _or_2 = _matchChoice;
     }
     if (_or_2) {
       _or_1 = true;
     } else {
       boolean _matchChoiceFixedValue = this.matchChoiceFixedValue(oclInvariant);
-      _or_1 = (_or_2 || _matchChoiceFixedValue);
+      _or_1 = _matchChoiceFixedValue;
     }
     if (_or_1) {
       _or = true;
     } else {
       boolean _matchMandatoryChoice = this.matchMandatoryChoice(oclInvariant);
-      _or = (_or_1 || _matchMandatoryChoice);
+      _or = _matchMandatoryChoice;
     }
     return _or;
   }
@@ -121,9 +137,9 @@ public class UmmOclValidator {
         OclExpression _expression_2 = invariant.getExpression();
         OclExpression _forAllBody = this.forAllBody(_expression_2);
         boolean _matchRemoveReference_1 = this.matchRemoveReference(_forAllBody);
-        _and = (_matchForAll && _matchRemoveReference_1);
+        _and = _matchRemoveReference_1;
       }
-      _or = (_matchRemoveReference || _and);
+      _or = _and;
     }
     return _or;
   }
@@ -135,7 +151,7 @@ public class UmmOclValidator {
       _or = true;
     } else {
       boolean _matchIsEmpty = this.matchIsEmpty(expr);
-      _or = (_matchSizeEq || _matchIsEmpty);
+      _or = _matchIsEmpty;
     }
     return _or;
   }
@@ -178,9 +194,9 @@ public class UmmOclValidator {
         OclExpression _expression_2 = invariant.getExpression();
         OclExpression _forAllBody = this.forAllBody(_expression_2);
         boolean _matchMandatoryReference_1 = this.matchMandatoryReference(_forAllBody);
-        _and = (_matchForAll && _matchMandatoryReference_1);
+        _and = _matchMandatoryReference_1;
       }
-      _or = (_matchMandatoryReference || _and);
+      _or = _and;
     }
     return _or;
   }
@@ -219,9 +235,9 @@ public class UmmOclValidator {
         OclExpression _expression_2 = invariant.getExpression();
         OclExpression _forAllBody = this.forAllBody(_expression_2);
         boolean _matchSizeLE1_1 = this.matchSizeLE1(_forAllBody);
-        _and = (_matchForAll && _matchSizeLE1_1);
+        _and = _matchSizeLE1_1;
       }
-      _or = (_matchSizeLE1 || _and);
+      _or = _and;
     }
     return _or;
   }
@@ -294,16 +310,15 @@ public class UmmOclValidator {
         OclExpression _expression_2 = invariant.getExpression();
         OclExpression _forAllBody = this.forAllBody(_expression_2);
         boolean _matchReduceCodelistEntries_1 = this.matchReduceCodelistEntries(_forAllBody);
-        _and = (_matchForAll && _matchReduceCodelistEntries_1);
+        _and = _matchReduceCodelistEntries_1;
       }
-      _or = (_matchReduceCodelistEntries || _and);
+      _or = _and;
     }
     return _or;
   }
   
   public boolean matchReduceCodelistEntries(final OclExpression expr) {
-    boolean _matchOrWithRefEqEnum = this.matchOrWithRefEqEnum(expr);
-    return _matchOrWithRefEqEnum;
+    return this.matchOrWithRefEqEnum(expr);
   }
   
   public boolean matchOrWithRefEqEnum(final OclExpression expr) {
@@ -319,34 +334,27 @@ public class UmmOclValidator {
       } else {
         OclExpression _left = ((OclOr) expr).getLeft();
         boolean _matchOrWithRefEqEnum = this.matchOrWithRefEqEnum(_left);
-        _and_1 = ((expr instanceof OclOr) && _matchOrWithRefEqEnum);
+        _and_1 = _matchOrWithRefEqEnum;
       }
       if (!_and_1) {
         _and = false;
       } else {
         OclExpression _right = ((OclOr) expr).getRight();
         boolean _matchOrWithRefEqEnum_1 = this.matchOrWithRefEqEnum(_right);
-        _and = (_and_1 && _matchOrWithRefEqEnum_1);
+        _and = _matchOrWithRefEqEnum_1;
       }
-      _or = (_matchRefEqEnum || _and);
+      _or = _and;
     }
     return _or;
   }
   
   public boolean matchRefEqEnum(final OclExpression expr) {
     boolean _and = false;
-    boolean _and_1 = false;
-    if (!(expr instanceof OclEqual)) {
-      _and_1 = false;
-    } else {
-      OclExpression _left = ((OclEqual) expr).getLeft();
-      _and_1 = ((expr instanceof OclEqual) && (_left instanceof OclReference));
-    }
-    if (!_and_1) {
+    if (!((expr instanceof OclEqual) && (((OclEqual) expr).getLeft() instanceof OclReference))) {
       _and = false;
     } else {
       OclExpression _right = ((OclEqual) expr).getRight();
-      _and = (_and_1 && (_right instanceof OclEnumerationLiteral));
+      _and = (_right instanceof OclEnumerationLiteral);
     }
     return _and;
   }
@@ -354,65 +362,53 @@ public class UmmOclValidator {
   public boolean isSame(final OclReference tail, final OclReference otherTail) {
     boolean _or = false;
     boolean _and = false;
-    boolean _and_1 = false;
-    if (!(tail instanceof OclPathSelfHead)) {
-      _and_1 = false;
-    } else {
-      _and_1 = ((tail instanceof OclPathSelfHead) && 
-        (otherTail instanceof OclPathSelfHead));
-    }
-    if (!_and_1) {
+    if (!((tail instanceof OclPathSelfHead) && 
+      (otherTail instanceof OclPathSelfHead))) {
       _and = false;
     } else {
       OclPathTail _path = ((OclPathSelfHead) tail).getPath();
       OclPathTail _path_1 = ((OclPathSelfHead) otherTail).getPath();
       boolean _isSame = this.isSame(_path, _path_1);
-      _and = (_and_1 && _isSame);
+      _and = _isSame;
     }
     if (_and) {
       _or = true;
     } else {
+      boolean _and_1 = false;
       boolean _and_2 = false;
-      boolean _and_3 = false;
-      boolean _and_4 = false;
-      if (!(tail instanceof OclPathFeatureHead)) {
-        _and_4 = false;
-      } else {
-        _and_4 = ((tail instanceof OclPathFeatureHead) && 
-          (otherTail instanceof OclPathFeatureHead));
-      }
-      if (!_and_4) {
-        _and_3 = false;
+      if (!((tail instanceof OclPathFeatureHead) && 
+        (otherTail instanceof OclPathFeatureHead))) {
+        _and_2 = false;
       } else {
         OclRef _feature = ((OclPathFeatureHead) tail).getFeature();
         OclRef _feature_1 = ((OclPathFeatureHead) otherTail).getFeature();
         boolean _equals = Objects.equal(_feature, _feature_1);
-        _and_3 = (_and_4 && _equals);
+        _and_2 = _equals;
       }
-      if (!_and_3) {
-        _and_2 = false;
+      if (!_and_2) {
+        _and_1 = false;
       } else {
         boolean _or_1 = false;
-        boolean _and_5 = false;
+        boolean _and_3 = false;
         OclPathTail _tail = ((OclPathFeatureHead) tail).getTail();
         boolean _equals_1 = Objects.equal(_tail, null);
         if (!_equals_1) {
-          _and_5 = false;
+          _and_3 = false;
         } else {
           boolean _equals_2 = Objects.equal(((OclPathFeatureHead) otherTail), null);
-          _and_5 = (_equals_1 && _equals_2);
+          _and_3 = _equals_2;
         }
-        if (_and_5) {
+        if (_and_3) {
           _or_1 = true;
         } else {
           OclPathTail _tail_1 = ((OclPathFeatureHead) tail).getTail();
           OclPathTail _tail_2 = ((OclPathFeatureHead) otherTail).getTail();
           boolean _isSame_1 = this.isSame(_tail_1, _tail_2);
-          _or_1 = (_and_5 || _isSame_1);
+          _or_1 = _isSame_1;
         }
-        _and_2 = (_and_3 && _or_1);
+        _and_1 = _or_1;
       }
-      _or = (_and || _and_2);
+      _or = _and_1;
     }
     return _or;
   }
@@ -434,7 +430,7 @@ public class UmmOclValidator {
       } else {
         OclPathTail _tail_1 = otherTail.getTail();
         boolean _equals_2 = Objects.equal(_tail_1, null);
-        _and_1 = (_equals_1 && _equals_2);
+        _and_1 = _equals_2;
       }
       if (_and_1) {
         _or = true;
@@ -442,9 +438,9 @@ public class UmmOclValidator {
         OclPathTail _tail_2 = tail.getTail();
         OclPathTail _tail_3 = otherTail.getTail();
         boolean _isSame = this.isSame(_tail_2, _tail_3);
-        _or = (_and_1 || _isSame);
+        _or = _isSame;
       }
-      _and = (_equals && _or);
+      _and = _or;
     }
     return _and;
   }
@@ -477,9 +473,9 @@ public class UmmOclValidator {
         OclExpression _expression_2 = invariant.getExpression();
         OclExpression _forAllBody = this.forAllBody(_expression_2);
         boolean _matchOrWithFixedValue_1 = this.matchOrWithFixedValue(_forAllBody);
-        _and = (_matchForAll && _matchOrWithFixedValue_1);
+        _and = _matchOrWithFixedValue_1;
       }
-      _or = (_matchOrWithFixedValue || _and);
+      _or = _and;
     }
     return _or;
   }
@@ -497,50 +493,22 @@ public class UmmOclValidator {
       } else {
         OclExpression _left = ((OclOr) expr).getLeft();
         boolean _matchOrWithFixedValue = this.matchOrWithFixedValue(_left);
-        _and_1 = ((expr instanceof OclOr) && _matchOrWithFixedValue);
+        _and_1 = _matchOrWithFixedValue;
       }
       if (!_and_1) {
         _and = false;
       } else {
         OclExpression _right = ((OclOr) expr).getRight();
         boolean _matchOrWithFixedValue_1 = this.matchOrWithFixedValue(_right);
-        _and = (_and_1 && _matchOrWithFixedValue_1);
+        _and = _matchOrWithFixedValue_1;
       }
-      _or = (_matchFixedValue || _and);
+      _or = _and;
     }
     return _or;
   }
   
   public boolean matchFixedValue(final OclExpression expr) {
-    boolean _and = false;
-    boolean _and_1 = false;
-    if (!(expr instanceof OclEqual)) {
-      _and_1 = false;
-    } else {
-      OclExpression _left = ((OclEqual) expr).getLeft();
-      _and_1 = ((expr instanceof OclEqual) && (_left instanceof OclReference));
-    }
-    if (!_and_1) {
-      _and = false;
-    } else {
-      boolean _or = false;
-      boolean _or_1 = false;
-      OclExpression _right = ((OclEqual) expr).getRight();
-      if ((_right instanceof OclBooleanLiteral)) {
-        _or_1 = true;
-      } else {
-        OclExpression _right_1 = ((OclEqual) expr).getRight();
-        _or_1 = ((_right instanceof OclBooleanLiteral) || (_right_1 instanceof OclIntegerLiteral));
-      }
-      if (_or_1) {
-        _or = true;
-      } else {
-        OclExpression _right_2 = ((OclEqual) expr).getRight();
-        _or = (_or_1 || (_right_2 instanceof OclStringLiteral));
-      }
-      _and = (_and_1 && _or);
-    }
-    return _and;
+    return (((expr instanceof OclEqual) && (((OclEqual) expr).getLeft() instanceof OclReference)) && (((((OclEqual) expr).getRight() instanceof OclBooleanLiteral) || (((OclEqual) expr).getRight() instanceof OclIntegerLiteral)) || (((OclEqual) expr).getRight() instanceof OclStringLiteral)));
   }
   
   /**
@@ -606,7 +574,7 @@ public class UmmOclValidator {
       _or = true;
     } else {
       boolean _matchChoiceB = this.matchChoiceB(invariant);
-      _or = (_matchChoiceA || _matchChoiceB);
+      _or = _matchChoiceB;
     }
     return _or;
   }
@@ -627,9 +595,9 @@ public class UmmOclValidator {
         OclExpression _expression_2 = invariant.getExpression();
         OclExpression _forAllBody = this.forAllBody(_expression_2);
         boolean _matchChoiceA_1 = this.matchChoiceA(_forAllBody);
-        _and = (_matchForAll && _matchChoiceA_1);
+        _and = _matchChoiceA_1;
       }
-      _or = (_matchChoiceA || _and);
+      _or = _and;
     }
     return _or;
   }
@@ -642,14 +610,14 @@ public class UmmOclValidator {
     } else {
       OclExpression _left = ((OclImplies) expr).getLeft();
       boolean _matchEntries = this.matchEntries(_left);
-      _and_1 = ((expr instanceof OclImplies) && _matchEntries);
+      _and_1 = _matchEntries;
     }
     if (!_and_1) {
       _and = false;
     } else {
       OclExpression _right = ((OclImplies) expr).getRight();
       boolean _matchAndNoEntries = this.matchAndNoEntries(_right);
-      _and = (_and_1 && _matchAndNoEntries);
+      _and = _matchAndNoEntries;
     }
     return _and;
   }
@@ -661,7 +629,7 @@ public class UmmOclValidator {
       _or = true;
     } else {
       boolean _matchSizeEq = this.matchSizeEq(expr, 1);
-      _or = (_matchNotEmpty || _matchSizeEq);
+      _or = _matchSizeEq;
     }
     return _or;
   }
@@ -679,16 +647,16 @@ public class UmmOclValidator {
       } else {
         OclExpression _left = ((OclAnd) expr).getLeft();
         boolean _matchAndNoEntries = this.matchAndNoEntries(_left);
-        _and_1 = ((expr instanceof OclAnd) && _matchAndNoEntries);
+        _and_1 = _matchAndNoEntries;
       }
       if (!_and_1) {
         _and = false;
       } else {
         OclExpression _right = ((OclAnd) expr).getRight();
         boolean _matchAndNoEntries_1 = this.matchAndNoEntries(_right);
-        _and = (_and_1 && _matchAndNoEntries_1);
+        _and = _matchAndNoEntries_1;
       }
-      _or = (_matchNoEntries || _and);
+      _or = _and;
     }
     return _or;
   }
@@ -700,7 +668,7 @@ public class UmmOclValidator {
       _or = true;
     } else {
       boolean _matchIsEmpty = this.matchIsEmpty(expr);
-      _or = (_matchSizeEq || _matchIsEmpty);
+      _or = _matchIsEmpty;
     }
     return _or;
   }
@@ -715,7 +683,7 @@ public class UmmOclValidator {
       OclExpression _expression_1 = invariant.getExpression();
       OclExpression _left = ((OclImplies) _expression_1).getLeft();
       boolean _matchSizeEq = this.matchSizeEq(_left, 1);
-      _and_1 = ((_expression instanceof OclImplies) && _matchSizeEq);
+      _and_1 = _matchSizeEq;
     }
     if (!_and_1) {
       _and = false;
@@ -723,7 +691,7 @@ public class UmmOclValidator {
       OclExpression _expression_2 = invariant.getExpression();
       OclExpression _right = ((OclImplies) _expression_2).getRight();
       boolean _matchIsEmpty = this.matchIsEmpty(_right);
-      _and = (_and_1 && _matchIsEmpty);
+      _and = _matchIsEmpty;
     }
     return _and;
   }
@@ -757,7 +725,7 @@ public class UmmOclValidator {
       OclExpression _expression_1 = invariant.getExpression();
       OclExpression _left = ((OclImplies) _expression_1).getLeft();
       boolean _matchSizeEq = this.matchSizeEq(_left, 1);
-      _and_1 = ((_expression instanceof OclImplies) && _matchSizeEq);
+      _and_1 = _matchSizeEq;
     }
     if (!_and_1) {
       _and = false;
@@ -765,7 +733,7 @@ public class UmmOclValidator {
       OclExpression _expression_2 = invariant.getExpression();
       OclExpression _right = ((OclImplies) _expression_2).getRight();
       boolean _matchFixedValue = this.matchFixedValue(_right);
-      _and = (_and_1 && _matchFixedValue);
+      _and = _matchFixedValue;
     }
     return _and;
   }
@@ -815,9 +783,9 @@ public class UmmOclValidator {
         OclExpression _expression_2 = invariant.getExpression();
         OclExpression _forAllBody = this.forAllBody(_expression_2);
         boolean _matchMandatoryChoice_1 = this.matchMandatoryChoice(_forAllBody);
-        _and = (_matchForAll && _matchMandatoryChoice_1);
+        _and = _matchMandatoryChoice_1;
       }
-      _or = (_matchMandatoryChoice || _and);
+      _or = _and;
     }
     return _or;
   }
@@ -836,9 +804,9 @@ public class UmmOclValidator {
       } else {
         OclExpression _left_1 = ((OclXor) expr).getLeft();
         boolean _matchMandatoryReference = this.matchMandatoryReference(_left_1);
-        _or = (_matchMandatoryChoice || _matchMandatoryReference);
+        _or = _matchMandatoryReference;
       }
-      _and_1 = ((expr instanceof OclXor) && _or);
+      _and_1 = _or;
     }
     if (!_and_1) {
       _and = false;
@@ -851,9 +819,9 @@ public class UmmOclValidator {
       } else {
         OclExpression _right_1 = ((OclXor) expr).getRight();
         boolean _matchMandatoryReference_1 = this.matchMandatoryReference(_right_1);
-        _or_1 = (_matchMandatoryChoice_1 || _matchMandatoryReference_1);
+        _or_1 = _matchMandatoryReference_1;
       }
-      _and = (_and_1 && _or_1);
+      _and = _or_1;
     }
     return _and;
   }
@@ -865,7 +833,7 @@ public class UmmOclValidator {
       _or = true;
     } else {
       boolean _matchNotEmpty = this.matchNotEmpty(expr);
-      _or = (_matchSizeEq || _matchNotEmpty);
+      _or = _matchNotEmpty;
     }
     return _or;
   }
@@ -875,43 +843,13 @@ public class UmmOclValidator {
    */
   public boolean matchSizeLE1(final OclExpression expr) {
     boolean _and = false;
-    boolean _and_1 = false;
-    boolean _and_2 = false;
-    boolean _and_3 = false;
-    boolean _and_4 = false;
-    if (!(expr instanceof OclLessOrEqual)) {
-      _and_4 = false;
-    } else {
-      OclExpression _left = ((OclLessOrEqual) expr).getLeft();
-      _and_4 = ((expr instanceof OclLessOrEqual) && (_left instanceof OclArrow));
-    }
-    if (!_and_4) {
-      _and_3 = false;
-    } else {
-      OclExpression _left_1 = ((OclLessOrEqual) expr).getLeft();
-      OclValue _left_2 = ((OclArrow) _left_1).getLeft();
-      _and_3 = (_and_4 && (_left_2 instanceof OclReference));
-    }
-    if (!_and_3) {
-      _and_2 = false;
-    } else {
-      OclExpression _left_3 = ((OclLessOrEqual) expr).getLeft();
-      OclFunctionCall _right = ((OclArrow) _left_3).getRight();
-      _and_2 = (_and_3 && (_right instanceof OclSize));
-    }
-    if (!_and_2) {
-      _and_1 = false;
-    } else {
-      OclExpression _right_1 = ((OclLessOrEqual) expr).getRight();
-      _and_1 = (_and_2 && (_right_1 instanceof OclIntegerLiteral));
-    }
-    if (!_and_1) {
+    if (!(((((expr instanceof OclLessOrEqual) && (((OclLessOrEqual) expr).getLeft() instanceof OclArrow)) && (((OclArrow) ((OclLessOrEqual) expr).getLeft()).getLeft() instanceof OclReference)) && (((OclArrow) ((OclLessOrEqual) expr).getLeft()).getRight() instanceof OclSize)) && (((OclLessOrEqual) expr).getRight() instanceof OclIntegerLiteral))) {
       _and = false;
     } else {
-      OclExpression _right_2 = ((OclLessOrEqual) expr).getRight();
-      int _value = ((OclIntegerLiteral) _right_2).getValue();
+      OclExpression _right = ((OclLessOrEqual) expr).getRight();
+      int _value = ((OclIntegerLiteral) _right).getValue();
       boolean _equals = (_value == 1);
-      _and = (_and_1 && _equals);
+      _and = _equals;
     }
     return _and;
   }
@@ -921,43 +859,13 @@ public class UmmOclValidator {
    */
   public boolean matchSizeEq(final OclExpression expr, final int value) {
     boolean _and = false;
-    boolean _and_1 = false;
-    boolean _and_2 = false;
-    boolean _and_3 = false;
-    boolean _and_4 = false;
-    if (!(expr instanceof OclEqual)) {
-      _and_4 = false;
-    } else {
-      OclExpression _left = ((OclEqual) expr).getLeft();
-      _and_4 = ((expr instanceof OclEqual) && (_left instanceof OclArrow));
-    }
-    if (!_and_4) {
-      _and_3 = false;
-    } else {
-      OclExpression _left_1 = ((OclEqual) expr).getLeft();
-      OclValue _left_2 = ((OclArrow) _left_1).getLeft();
-      _and_3 = (_and_4 && (_left_2 instanceof OclReference));
-    }
-    if (!_and_3) {
-      _and_2 = false;
-    } else {
-      OclExpression _left_3 = ((OclEqual) expr).getLeft();
-      OclFunctionCall _right = ((OclArrow) _left_3).getRight();
-      _and_2 = (_and_3 && (_right instanceof OclSize));
-    }
-    if (!_and_2) {
-      _and_1 = false;
-    } else {
-      OclExpression _right_1 = ((OclEqual) expr).getRight();
-      _and_1 = (_and_2 && (_right_1 instanceof OclIntegerLiteral));
-    }
-    if (!_and_1) {
+    if (!(((((expr instanceof OclEqual) && (((OclEqual) expr).getLeft() instanceof OclArrow)) && (((OclArrow) ((OclEqual) expr).getLeft()).getLeft() instanceof OclReference)) && (((OclArrow) ((OclEqual) expr).getLeft()).getRight() instanceof OclSize)) && (((OclEqual) expr).getRight() instanceof OclIntegerLiteral))) {
       _and = false;
     } else {
-      OclExpression _right_2 = ((OclEqual) expr).getRight();
-      int _value = ((OclIntegerLiteral) _right_2).getValue();
+      OclExpression _right = ((OclEqual) expr).getRight();
+      int _value = ((OclIntegerLiteral) _right).getValue();
       boolean _equals = (_value == value);
-      _and = (_and_1 && _equals);
+      _and = _equals;
     }
     return _and;
   }
@@ -967,18 +875,11 @@ public class UmmOclValidator {
    */
   public boolean matchIsEmpty(final OclExpression expr) {
     boolean _and = false;
-    boolean _and_1 = false;
-    if (!(expr instanceof OclArrow)) {
-      _and_1 = false;
-    } else {
-      OclValue _left = ((OclArrow) expr).getLeft();
-      _and_1 = ((expr instanceof OclArrow) && (_left instanceof OclReference));
-    }
-    if (!_and_1) {
+    if (!((expr instanceof OclArrow) && (((OclArrow) expr).getLeft() instanceof OclReference))) {
       _and = false;
     } else {
       OclFunctionCall _right = ((OclArrow) expr).getRight();
-      _and = (_and_1 && (_right instanceof OclIsEmpty));
+      _and = (_right instanceof OclIsEmpty);
     }
     return _and;
   }
@@ -988,48 +889,32 @@ public class UmmOclValidator {
    */
   public boolean matchNotEmpty(final OclExpression expr) {
     boolean _and = false;
-    boolean _and_1 = false;
-    if (!(expr instanceof OclArrow)) {
-      _and_1 = false;
-    } else {
-      OclValue _left = ((OclArrow) expr).getLeft();
-      _and_1 = ((expr instanceof OclArrow) && (_left instanceof OclReference));
-    }
-    if (!_and_1) {
+    if (!((expr instanceof OclArrow) && (((OclArrow) expr).getLeft() instanceof OclReference))) {
       _and = false;
     } else {
       OclFunctionCall _right = ((OclArrow) expr).getRight();
-      _and = (_and_1 && (_right instanceof OclNotEmpty));
+      _and = (_right instanceof OclNotEmpty);
     }
     return _and;
   }
   
   public boolean matchForAll(final OclExpression expr) {
     boolean _and = false;
-    boolean _and_1 = false;
-    if (!(expr instanceof OclArrow)) {
-      _and_1 = false;
-    } else {
-      OclValue _left = ((OclArrow) expr).getLeft();
-      _and_1 = ((expr instanceof OclArrow) && (_left instanceof OclReference));
-    }
-    if (!_and_1) {
+    if (!((expr instanceof OclArrow) && (((OclArrow) expr).getLeft() instanceof OclReference))) {
       _and = false;
     } else {
       OclFunctionCall _right = ((OclArrow) expr).getRight();
-      _and = (_and_1 && (_right instanceof OclForAll));
+      _and = (_right instanceof OclForAll);
     }
     return _and;
   }
   
   public OclExpression forAllBody(final OclExpression expr) {
     OclFunctionCall _right = ((OclArrow) expr).getRight();
-    OclExpression _body = ((OclForAll) _right).getBody();
-    return _body;
+    return ((OclForAll) _right).getBody();
   }
   
   public OclExpression forAllContext(final OclExpression expr) {
-    OclValue _left = ((OclArrow) expr).getLeft();
-    return _left;
+    return ((OclArrow) expr).getLeft();
   }
 }

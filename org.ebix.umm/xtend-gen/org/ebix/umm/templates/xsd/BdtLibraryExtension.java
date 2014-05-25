@@ -1,10 +1,25 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.templates.xsd;
 
 import com.google.common.base.Objects;
 import com.google.inject.Inject;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import org.ebix.umm.templates.xsd.EnumExtension;
 import org.ebix.umm.umm.Assembled;
@@ -30,26 +45,23 @@ public class BdtLibraryExtension {
   }
   
   public String fileName(final BDTLibrary library, final String directory) {
-    String _plus = (directory + "/");
     String _fileName = this.fileName(library);
-    return (_plus + _fileName);
+    return ((directory + "/") + _fileName);
   }
   
   public String namespace(final BDTLibrary library, final MA ma) {
     String namespace = library.getBaseURN();
     boolean _notEquals = (!Objects.equal(ma, null));
     if (_notEquals) {
-      String _plus = (namespace + "-");
       String _name = ma.getName();
-      String _plus_1 = (_plus + _name);
-      namespace = _plus_1;
+      String _plus = ((namespace + "-") + _name);
+      namespace = _plus;
     }
     return namespace;
   }
   
   public List<Assembled> allReferencedCodelists(final BDTLibrary library) {
-    ArrayList<Assembled> _arrayList = new ArrayList<Assembled>();
-    List<Assembled> referenced = _arrayList;
+    List<Assembled> referenced = new ArrayList<Assembled>();
     EList<BDT> _bdts = library.getBdts();
     for (final BDT bdt : _bdts) {
       EList<BDTProperty> _properties = bdt.getProperties();
@@ -61,15 +73,6 @@ public class BdtLibraryExtension {
         }
       }
     }
-    final Comparator<Assembled> _function = new Comparator<Assembled>() {
-        public int compare(final Assembled a1, final Assembled a2) {
-          String _fileName = BdtLibraryExtension.this.enumExtension.fileName(a1);
-          String _fileName_1 = BdtLibraryExtension.this.enumExtension.fileName(a2);
-          int _compareTo = _fileName.compareTo(_fileName_1);
-          return _compareTo;
-        }
-      };
-    Collections.<Assembled>sort(referenced, _function);
     return referenced;
   }
 }

@@ -1,86 +1,51 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.templates;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableList.Builder;
+import com.google.common.collect.Lists;
+import java.util.Collections;
 import java.util.List;
 import org.ebix.umm.templates.Constant;
 import org.ebix.umm.templates.SchemaDate;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.xbase.lib.Functions.Function0;
 
 @SuppressWarnings("all")
 public class Constants {
-  private SchemaDate schemaDate = new Function0<SchemaDate>() {
-    public SchemaDate apply() {
-      SchemaDate _schemaDate = new SchemaDate();
-      return _schemaDate;
-    }
-  }.apply();
+  private SchemaDate schemaDate = new SchemaDate();
   
-  public final Constant schemaMajorVersion = new Function0<Constant>() {
-    public Constant apply() {
-      Constant _constant = new Constant("Major version", "0");
-      return _constant;
-    }
-  }.apply();
+  public final Constant schemaMajorVersion = new Constant("Major version", "0");
   
-  public final Constant schemaMinorVersion = new Function0<Constant>() {
-    public Constant apply() {
-      Constant _constant = new Constant("Minor version", "1");
-      return _constant;
-    }
-  }.apply();
+  public final Constant schemaMinorVersion = new Constant("Minor version", "1");
   
-  public final Constant schemaRevision = new Function0<Constant>() {
-    public Constant apply() {
-      Constant _constant = new Constant("Revision", "A");
-      return _constant;
-    }
-  }.apply();
+  public final Constant schemaRevision = new Constant("Revision", "A");
   
-  public final Constant schemaAgency = new Function0<Constant>() {
-    public Constant apply() {
-      Constant _constant = new Constant("Schema Agency", "ebIX");
-      return _constant;
-    }
-  }.apply();
+  public final Constant schemaAgency = new Constant("Schema Agency", "ebIX");
   
-  public final Constant copyright = new Function0<Constant>() {
-    public Constant apply() {
-      Constant _constant = new Constant("Copyright Notice", "Copyright (C) ebIX (2010). All Rights Reserved.");
-      return _constant;
-    }
-  }.apply();
+  public final Constant copyright = new Constant("Copyright Notice", "Copyright (C) ebIX (2010). All Rights Reserved.");
   
-  public final Constant disclaimer = new Function0<Constant>() {
-    public Constant apply() {
-      CharSequence _defaultDisclaimerText = Constants.this.defaultDisclaimerText();
-      String _string = _defaultDisclaimerText.toString();
-      Constant _constant = new Constant("Disclaimer", _string);
-      return _constant;
-    }
-  }.apply();
+  public final Constant disclaimer = new Constant("Disclaimer", this.defaultDisclaimerText().toString());
   
-  public final List<Constant> allConstants = new Function0<List<Constant>>() {
-    public List<Constant> apply() {
-      List<Constant> _xlistliteral = null;
-      Builder<Constant> _builder = ImmutableList.builder();
-      _builder.add(Constants.this.schemaAgency);
-      _builder.add(Constants.this.copyright);
-      _builder.add(Constants.this.disclaimer);
-      _xlistliteral = _builder.build();
-      return _xlistliteral;
-    }
-  }.apply();
+  public final List<Constant> allConstants = Collections.<Constant>unmodifiableList(Lists.<Constant>newArrayList(this.schemaAgency, this.copyright, this.disclaimer));
   
   private String schemaLocation;
   
   public String schemaVersion() {
-    String _plus = (this.schemaMajorVersion.value + ".");
-    String _plus_1 = (_plus + this.schemaMinorVersion.value);
-    String _plus_2 = (_plus_1 + ".");
-    String _plus_3 = (_plus_2 + this.schemaRevision.value);
-    return _plus_3;
+    return ((((this.schemaMajorVersion.value + ".") + this.schemaMinorVersion.value) + ".") + this.schemaRevision.value);
   }
   
   public String schemaDate() {
@@ -92,8 +57,7 @@ public class Constants {
   }
   
   public String setSchemaLocation(final String schemaLocation) {
-    String _schemaLocation = this.schemaLocation = schemaLocation;
-    return _schemaLocation;
+    return this.schemaLocation = schemaLocation;
   }
   
   private final CharSequence defaultDisclaimerText() {

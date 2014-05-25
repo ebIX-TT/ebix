@@ -9,8 +9,7 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 @SuppressWarnings("all")
 public class UmmOutputConfigurationProvider implements IOutputConfigurationProvider {
   public Set<OutputConfiguration> getOutputConfigurations() {
-    OutputConfiguration _outputConfiguration = new OutputConfiguration(IFileSystemAccess.DEFAULT_OUTPUT);
-    final OutputConfiguration defaultOutput = _outputConfiguration;
+    final OutputConfiguration defaultOutput = new OutputConfiguration(IFileSystemAccess.DEFAULT_OUTPUT);
     defaultOutput.setDescription("Output Folder");
     defaultOutput.setOutputDirectory("./schemas");
     defaultOutput.setOverrideExistingResources(true);

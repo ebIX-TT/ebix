@@ -31,7 +31,7 @@ public class UmmFactoryImpl extends EFactoryImpl implements UmmFactory
   {
     try
     {
-      UmmFactory theUmmFactory = (UmmFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.ebix.org/umm/Umm"); 
+      UmmFactory theUmmFactory = (UmmFactory)EPackage.Registry.INSTANCE.getEFactory(UmmPackage.eNS_URI);
       if (theUmmFactory != null)
       {
         return theUmmFactory;

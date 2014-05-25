@@ -1,3 +1,20 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.uml2text.file;
 
 import java.io.ByteArrayInputStream;
@@ -43,19 +60,17 @@ public class FileWriterEclipseImpl implements FileWriter {
       List<String> _subList = ((List<String>)Conversions.doWrapArray(segments)).subList(1, _minus);
       for (final String segment : _subList) {
         {
-          String _plus = (name + "/");
-          String _plus_1 = (_plus + segment);
-          name = _plus_1;
+          name = ((name + "/") + segment);
           final IFolder folder = project.getFolder(name);
           String _string = folder.toString();
-          String _plus_2 = ("checking: " + _string);
-          InputOutput.<String>println(_plus_2);
+          String _plus = ("checking: " + _string);
+          InputOutput.<String>println(_plus);
           boolean _exists = folder.exists();
           boolean _not = (!_exists);
           if (_not) {
             String _string_1 = folder.toString();
-            String _plus_3 = ("creating: " + _string_1);
-            InputOutput.<String>println(_plus_3);
+            String _plus_1 = ("creating: " + _string_1);
+            InputOutput.<String>println(_plus_1);
             folder.create(IResource.DERIVED, true, null);
           }
         }
@@ -69,8 +84,7 @@ public class FileWriterEclipseImpl implements FileWriter {
     try {
       final IFile file = this.project.getFile(fileName);
       this.makeDirectories(this.project, file);
-      ByteArrayInputStream _byteArrayInputStream = new ByteArrayInputStream(contents);
-      final ByteArrayInputStream inputStream = _byteArrayInputStream;
+      final ByteArrayInputStream inputStream = new ByteArrayInputStream(contents);
       file.create(inputStream, IResource.DERIVED, null);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);

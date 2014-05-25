@@ -4,7 +4,7 @@
     editorDirectory="/org.ebix.umm.editor/src" modelPluginID="org.ebix.umm" forceOverwrite="true"
     modelName="Umm" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.ebix.umm.edit"
-    editorPluginID="org.ebix.umm.editor" runtimeVersion="2.8">
+    editorPluginID="org.ebix.umm.editor" runtimeVersion="2.9">
   <genPackages prefix="Umm" basePackage="org.ebix.umm" disposableProviderFactory="true"
       fileExtensions="umm" ecorePackage="Umm.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Umm.ecore#//ConstraintKind">

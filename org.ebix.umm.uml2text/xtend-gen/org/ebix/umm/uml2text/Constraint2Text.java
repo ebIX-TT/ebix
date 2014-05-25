@@ -1,3 +1,20 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.uml2text;
 
 import com.google.common.base.Objects;
@@ -62,60 +79,53 @@ public class Constraint2Text {
   }
   
   private List<ConstraintKind> kinds(final Constraint umlConstraint, final UmmStereotypes ummStereotypes) {
-    ArrayList<ConstraintKind> _arrayList = new ArrayList<ConstraintKind>();
-    final List<ConstraintKind> kinds = _arrayList;
+    final List<ConstraintKind> kinds = new ArrayList<ConstraintKind>();
     boolean _hasStereotype = ummStereotypes.TC_Document.hasStereotype(umlConstraint);
     if (_hasStereotype) {
       String _listIdentifier = this.listIdentifier(ummStereotypes.TC_Document, umlConstraint);
       String _responsibleAgency = this.responsibleAgency(ummStereotypes.TC_Document, umlConstraint);
-      ConstraintKind _constraintKind = new ConstraintKind(
+      final ConstraintKind ck = new ConstraintKind(
         "document", _listIdentifier, _responsibleAgency);
-      final ConstraintKind ck = _constraintKind;
       kinds.add(ck);
     }
     boolean _hasStereotype_1 = ummStereotypes.TC_Payload.hasStereotype(umlConstraint);
     if (_hasStereotype_1) {
       String _listIdentifier_1 = this.listIdentifier(ummStereotypes.TC_Payload, umlConstraint);
       String _responsibleAgency_1 = this.responsibleAgency(ummStereotypes.TC_Payload, umlConstraint);
-      ConstraintKind _constraintKind_1 = new ConstraintKind(
+      final ConstraintKind ck_1 = new ConstraintKind(
         "payload", _listIdentifier_1, _responsibleAgency_1);
-      final ConstraintKind ck_1 = _constraintKind_1;
       kinds.add(ck_1);
     }
     boolean _hasStereotype_2 = ummStereotypes.TC_ABIE.hasStereotype(umlConstraint);
     if (_hasStereotype_2) {
       String _listIdentifier_2 = this.listIdentifier(ummStereotypes.TC_ABIE, umlConstraint);
       String _responsibleAgency_2 = this.responsibleAgency(ummStereotypes.TC_ABIE, umlConstraint);
-      ConstraintKind _constraintKind_2 = new ConstraintKind(
+      final ConstraintKind ck_2 = new ConstraintKind(
         "abie", _listIdentifier_2, _responsibleAgency_2);
-      final ConstraintKind ck_2 = _constraintKind_2;
       kinds.add(ck_2);
     }
     boolean _hasStereotype_3 = ummStereotypes.TC_BDT.hasStereotype(umlConstraint);
     if (_hasStereotype_3) {
       String _listIdentifier_3 = this.listIdentifier(ummStereotypes.TC_BDT, umlConstraint);
       String _responsibleAgency_3 = this.responsibleAgency(ummStereotypes.TC_BDT, umlConstraint);
-      ConstraintKind _constraintKind_3 = new ConstraintKind(
+      final ConstraintKind ck_3 = new ConstraintKind(
         "bdt", _listIdentifier_3, _responsibleAgency_3);
-      final ConstraintKind ck_3 = _constraintKind_3;
       kinds.add(ck_3);
     }
     boolean _hasStereotype_4 = ummStereotypes.TC_Dependency.hasStereotype(umlConstraint);
     if (_hasStereotype_4) {
       String _listIdentifier_4 = this.listIdentifier(ummStereotypes.TC_Dependency, umlConstraint);
       String _responsibleAgency_4 = this.responsibleAgency(ummStereotypes.TC_Dependency, umlConstraint);
-      ConstraintKind _constraintKind_4 = new ConstraintKind(
+      final ConstraintKind ck_4 = new ConstraintKind(
         "dependency", _listIdentifier_4, _responsibleAgency_4);
-      final ConstraintKind ck_4 = _constraintKind_4;
       kinds.add(ck_4);
     }
     boolean _hasStereotype_5 = ummStereotypes.TC_Facet.hasStereotype(umlConstraint);
     if (_hasStereotype_5) {
       String _listIdentifier_5 = this.listIdentifier(ummStereotypes.TC_Facet, umlConstraint);
       String _responsibleAgency_5 = this.responsibleAgency(ummStereotypes.TC_Facet, umlConstraint);
-      ConstraintKind _constraintKind_5 = new ConstraintKind(
+      final ConstraintKind ck_5 = new ConstraintKind(
         "facet", _listIdentifier_5, _responsibleAgency_5);
-      final ConstraintKind ck_5 = _constraintKind_5;
       kinds.add(ck_5);
     }
     return kinds;
@@ -155,27 +165,20 @@ public class Constraint2Text {
     String out = "";
     for (final String line : lines) {
       if (replaced) {
-        String _plus = (out + "\n");
-        String _plus_1 = (_plus + line);
-        out = _plus_1;
+        out = ((out + "\n") + line);
       } else {
         boolean _matches = line.matches("\\s*--.*");
         if (_matches) {
-          String _plus_2 = (out + "\n");
-          String _plus_3 = (_plus_2 + line);
-          out = _plus_3;
+          out = ((out + "\n") + line);
         } else {
           boolean _contains = line.contains("self");
           if (_contains) {
             replaced = true;
-            String _plus_4 = (out + "\n");
             String _replaceFirst = line.replaceFirst("self", "inv: self");
-            String _plus_5 = (_plus_4 + _replaceFirst);
-            out = _plus_5;
+            String _plus = ((out + "\n") + _replaceFirst);
+            out = _plus;
           } else {
-            String _plus_6 = (out + "\n");
-            String _plus_7 = (_plus_6 + line);
-            out = _plus_7;
+            out = ((out + "\n") + line);
           }
         }
       }

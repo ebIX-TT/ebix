@@ -1,3 +1,20 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.uml2text;
 
 import com.google.common.collect.Iterables;
@@ -17,7 +34,6 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -28,20 +44,10 @@ public class EnumLibrary2Text {
   private EnumLibrary enumlibraryExtension;
   
   @Extension
-  private Comment2Text comment2Text = new Function0<Comment2Text>() {
-    public Comment2Text apply() {
-      Comment2Text _comment2Text = new Comment2Text();
-      return _comment2Text;
-    }
-  }.apply();
+  private Comment2Text comment2Text = new Comment2Text();
   
   @Extension
-  private Name2Text name2Text = new Function0<Name2Text>() {
-    public Name2Text apply() {
-      Name2Text _name2Text = new Name2Text();
-      return _name2Text;
-    }
-  }.apply();
+  private Name2Text name2Text = new Name2Text();
   
   private UmmStereotypes ummStereotypes;
   
@@ -73,11 +79,10 @@ public class EnumLibrary2Text {
       EList<Element> _allOwnedElements = umlModel.allOwnedElements();
       Iterable<org.eclipse.uml2.uml.Package> _filter = Iterables.<org.eclipse.uml2.uml.Package>filter(_allOwnedElements, org.eclipse.uml2.uml.Package.class);
       final Function1<org.eclipse.uml2.uml.Package,Boolean> _function = new Function1<org.eclipse.uml2.uml.Package,Boolean>() {
-          public Boolean apply(final org.eclipse.uml2.uml.Package p) {
-            boolean _isEnumLibrary = EnumLibrary2Text.this.enumlibraryExtension.isEnumLibrary(p);
-            return Boolean.valueOf(_isEnumLibrary);
-          }
-        };
+        public Boolean apply(final org.eclipse.uml2.uml.Package p) {
+          return Boolean.valueOf(EnumLibrary2Text.this.enumlibraryExtension.isEnumLibrary(p));
+        }
+      };
       Iterable<org.eclipse.uml2.uml.Package> _filter_1 = IterableExtensions.<org.eclipse.uml2.uml.Package>filter(_filter, _function);
       for (final org.eclipse.uml2.uml.Package umlPackage : _filter_1) {
         {
@@ -90,8 +95,7 @@ public class EnumLibrary2Text {
           fw.writeFile(_fileName, _generateEnumLibrary);
         }
       }
-      String _println = InputOutput.<String>println("Done.");
-      _xblockexpression = (_println);
+      _xblockexpression = InputOutput.<String>println("Done.");
     }
     return _xblockexpression;
   }
@@ -114,10 +118,10 @@ public class EnumLibrary2Text {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         _builder.append("\"");
-        _builder.append(term, "	");
+        _builder.append(term, "\t");
         _builder.append("\"");
       }
     }
@@ -131,10 +135,10 @@ public class EnumLibrary2Text {
         if (!_hasElements_1) {
           _hasElements_1 = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         _builder.append("\"");
-        _builder.append(copyright, "	");
+        _builder.append(copyright, "\t");
         _builder.append("\"");
       }
     }
@@ -148,10 +152,10 @@ public class EnumLibrary2Text {
         if (!_hasElements_2) {
           _hasElements_2 = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         _builder.append("\"");
-        _builder.append(owner, "	");
+        _builder.append(owner, "\t");
         _builder.append("\"");
       }
     }
@@ -165,10 +169,10 @@ public class EnumLibrary2Text {
         if (!_hasElements_3) {
           _hasElements_3 = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         _builder.append("\"");
-        _builder.append(reference, "	");
+        _builder.append(reference, "\t");
         _builder.append("\"");
       }
     }
@@ -176,13 +180,13 @@ public class EnumLibrary2Text {
     _builder.append("\t");
     _builder.append("uniqueIdentifier:  \"");
     String _uniqueIdentifier = this.enumlibraryExtension.uniqueIdentifier(umlPackage);
-    _builder.append(_uniqueIdentifier, "	");
+    _builder.append(_uniqueIdentifier, "\t");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("versionIdentifier: \"");
     String _versionIdentifier = this.enumlibraryExtension.versionIdentifier(umlPackage);
-    _builder.append(_versionIdentifier, "	");
+    _builder.append(_versionIdentifier, "\t");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -190,13 +194,13 @@ public class EnumLibrary2Text {
     _builder.append("\t");
     _builder.append("baseURN:           \"");
     String _baseURN = this.enumlibraryExtension.baseURN(umlPackage);
-    _builder.append(_baseURN, "	");
+    _builder.append(_baseURN, "\t");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("namespacePrefix:   \"");
     String _namespacePrefix = this.enumlibraryExtension.namespacePrefix(umlPackage);
-    _builder.append(_namespacePrefix, "	");
+    _builder.append(_namespacePrefix, "\t");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
@@ -204,16 +208,15 @@ public class EnumLibrary2Text {
       EList<Element> _allOwnedElements = umlPackage.allOwnedElements();
       Iterable<Enumeration> _filter = Iterables.<Enumeration>filter(_allOwnedElements, Enumeration.class);
       final Function1<Enumeration,Boolean> _function = new Function1<Enumeration,Boolean>() {
-          public Boolean apply(final Enumeration e) {
-            boolean _isStereotypeApplied = e.isStereotypeApplied(EnumLibrary2Text.this.ENUM);
-            return Boolean.valueOf(_isStereotypeApplied);
-          }
-        };
+        public Boolean apply(final Enumeration e) {
+          return Boolean.valueOf(e.isStereotypeApplied(EnumLibrary2Text.this.ENUM));
+        }
+      };
       Iterable<Enumeration> _filter_1 = IterableExtensions.<Enumeration>filter(_filter, _function);
       for(final Enumeration e : _filter_1) {
         _builder.append("\t");
         CharSequence _generateEnum = this.generateEnum(e);
-        _builder.append(_generateEnum, "	");
+        _builder.append(_generateEnum, "\t");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.newLine();
@@ -237,7 +240,7 @@ public class EnumLibrary2Text {
         _builder.newLine();
         _builder.append("\t");
         CharSequence _enumTags = this.enumTags(e);
-        _builder.append(_enumTags, "	");
+        _builder.append(_enumTags, "\t");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.newLine();
@@ -246,22 +249,21 @@ public class EnumLibrary2Text {
           EList<Classifier> _generals = e.getGenerals();
           Iterable<Enumeration> _filter = Iterables.<Enumeration>filter(_generals, Enumeration.class);
           final Function1<Enumeration,Boolean> _function = new Function1<Enumeration,Boolean>() {
-              public Boolean apply(final Enumeration g) {
-                boolean _isStereotypeApplied = g.isStereotypeApplied(EnumLibrary2Text.this.Original);
-                return Boolean.valueOf(_isStereotypeApplied);
-              }
-            };
+            public Boolean apply(final Enumeration g) {
+              return Boolean.valueOf(g.isStereotypeApplied(EnumLibrary2Text.this.Original));
+            }
+          };
           Iterable<Enumeration> _filter_1 = IterableExtensions.<Enumeration>filter(_filter, _function);
           boolean _hasElements = false;
           for(final Enumeration o : _filter_1) {
             if (!_hasElements) {
               _hasElements = true;
-              _builder.append("originals: ", "	");
+              _builder.append("originals: ", "\t");
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             String _enumName = this.enumName(o);
-            _builder.append(_enumName, "	");
+            _builder.append(_enumName, "\t");
           }
         }
         _builder.newLineIfNotEmpty();
@@ -270,28 +272,27 @@ public class EnumLibrary2Text {
           EList<Classifier> _generals_1 = e.getGenerals();
           Iterable<Enumeration> _filter_2 = Iterables.<Enumeration>filter(_generals_1, Enumeration.class);
           final Function1<Enumeration,Boolean> _function_1 = new Function1<Enumeration,Boolean>() {
-              public Boolean apply(final Enumeration g) {
-                boolean _isStereotypeApplied = g.isStereotypeApplied(EnumLibrary2Text.this.Subset);
-                return Boolean.valueOf(_isStereotypeApplied);
-              }
-            };
+            public Boolean apply(final Enumeration g) {
+              return Boolean.valueOf(g.isStereotypeApplied(EnumLibrary2Text.this.Subset));
+            }
+          };
           Iterable<Enumeration> _filter_3 = IterableExtensions.<Enumeration>filter(_filter_2, _function_1);
           boolean _hasElements_1 = false;
           for(final Enumeration o_1 : _filter_3) {
             if (!_hasElements_1) {
               _hasElements_1 = true;
-              _builder.append("subsets: ", "	");
+              _builder.append("subsets: ", "\t");
             } else {
-              _builder.appendImmediate(", ", "	");
+              _builder.appendImmediate(", ", "\t");
             }
             String _enumName_1 = this.enumName(o_1);
-            _builder.append(_enumName_1, "	");
+            _builder.append(_enumName_1, "\t");
           }
         }
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         CharSequence _enumMembers = this.enumMembers(e);
-        _builder.append(_enumMembers, "	");
+        _builder.append(_enumMembers, "\t");
         _builder.newLineIfNotEmpty();
         _builder.append("}");
         _builder.newLine();
@@ -306,11 +307,11 @@ public class EnumLibrary2Text {
           _builder.newLine();
           _builder.append("\t");
           CharSequence _enumTags_1 = this.enumTags(e);
-          _builder.append(_enumTags_1, "	");
+          _builder.append(_enumTags_1, "\t");
           _builder.newLineIfNotEmpty();
           _builder.append("\t");
           CharSequence _enumMembers_1 = this.enumMembers(e);
-          _builder.append(_enumMembers_1, "	");
+          _builder.append(_enumMembers_1, "\t");
           _builder.newLineIfNotEmpty();
           _builder.append("}");
           _builder.newLine();
@@ -325,11 +326,11 @@ public class EnumLibrary2Text {
             _builder.newLine();
             _builder.append("\t");
             CharSequence _enumTags_2 = this.enumTags(e);
-            _builder.append(_enumTags_2, "	");
+            _builder.append(_enumTags_2, "\t");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
             CharSequence _enumMembers_2 = this.enumMembers(e);
-            _builder.append(_enumMembers_2, "	");
+            _builder.append(_enumMembers_2, "\t");
             _builder.newLineIfNotEmpty();
             _builder.append("}");
             _builder.newLine();
@@ -348,9 +349,8 @@ public class EnumLibrary2Text {
       int _length = idValue.length();
       boolean _greaterThan = (_length > 0);
       if (_greaterThan) {
-        String _plus = (idValue + "_");
         String _name = e.getName();
-        return (_plus + _name);
+        return ((idValue + "_") + _name);
       }
     }
     return e.getName();
@@ -417,11 +417,10 @@ public class EnumLibrary2Text {
     {
       EList<EnumerationLiteral> _ownedLiterals = e.getOwnedLiterals();
       final Function1<EnumerationLiteral,Boolean> _function = new Function1<EnumerationLiteral,Boolean>() {
-          public Boolean apply(final EnumerationLiteral l) {
-            boolean _isStereotypeApplied = l.isStereotypeApplied(EnumLibrary2Text.this.CodelistEntry);
-            return Boolean.valueOf(_isStereotypeApplied);
-          }
-        };
+        public Boolean apply(final EnumerationLiteral l) {
+          return Boolean.valueOf(l.isStereotypeApplied(EnumLibrary2Text.this.CodelistEntry));
+        }
+      };
       Iterable<EnumerationLiteral> _filter = IterableExtensions.<EnumerationLiteral>filter(_ownedLiterals, _function);
       for(final EnumerationLiteral codelistEntry : _filter) {
         _builder.append("CodelistEntry \"");

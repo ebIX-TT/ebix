@@ -329,7 +329,7 @@ public class BdtLibrarySchema {
               } else {
                 boolean _isExtraRestricted_1 = this.bdtExtension.isExtraRestricted(sup);
                 boolean _not_1 = (!_isExtraRestricted_1);
-                _and = (_equals_1 && _not_1);
+                _and = _not_1;
               }
               if (_and) {
                 _builder.append("            ");

@@ -347,13 +347,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.ecf.provider.filetransfer.httpclient"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.emf.common"
          download-size="0"
          install-size="0"
@@ -407,14 +400,6 @@
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.ecf.provider.filetransfer.httpclient.ssl"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
          unpack="false"/>
 
    <plugin
@@ -1358,13 +1343,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.rcp.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.uml2.uml.editor.source"
          download-size="0"
          install-size="0"
@@ -2082,13 +2060,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.equinox.launcher.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.uml2.uml.profile.l3.source"
          download-size="0"
          install-size="0"
@@ -2517,13 +2488,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.apache.commons.httpclient.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.wst.sse.doc.user"
          download-size="0"
          install-size="0"
@@ -2789,13 +2753,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.apache.lucene.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.search.source"
          download-size="0"
          install-size="0"
@@ -2901,13 +2858,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.ecf.provider.filetransfer.httpclient.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.apache.felix.gogo.command.source"
          download-size="0"
          install-size="0"
@@ -2944,13 +2894,6 @@
 
    <plugin
          id="org.objectweb.asm.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.ecf.provider.filetransfer.httpclient.ssl.source"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -3260,13 +3203,6 @@
 
    <plugin
          id="org.eclipse.update.configurator.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.cvs.source"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -4058,13 +3994,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.apache.commons.httpclient"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.emf.ecore"
          download-size="0"
          install-size="0"
@@ -4112,13 +4041,6 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
-   <plugin
-         id="org.eclipse.equinox.launcher.gtk.linux.x86"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"/>
 
    <plugin
          id="org.eclipse.xtext.ui.codetemplates.source"
@@ -4192,13 +4114,6 @@
 
    <plugin
          id="org.eclipse.help.base.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.kohsuke.args4j"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -4459,13 +4374,6 @@
 
    <plugin
          id="org.eclipse.jdt.doc.user"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.jdt.source"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -1,38 +1,47 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.templates.xsd;
 
-import com.google.common.base.Objects;
 import org.ebix.umm.umm.MultiplicityKind;
 
 @SuppressWarnings("all")
 public class MultiplicityKindExtension {
   public String use(final MultiplicityKind m) {
     String _switchResult = null;
-    boolean _matched = false;
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.ONE)) {
-        _matched=true;
-        _switchResult = "required";
+    if (m != null) {
+      switch (m) {
+        case ONE:
+          _switchResult = "required";
+          break;
+        case OPTIONAL:
+          _switchResult = "optional";
+          break;
+        case ZERO_OR_MORE:
+          _switchResult = "???";
+          break;
+        case ONE_OR_MORE:
+          _switchResult = "???";
+          break;
+        default:
+          _switchResult = "ERROR: unknown multiplicity kind";
+          break;
       }
-    }
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.OPTIONAL)) {
-        _matched=true;
-        _switchResult = "optional";
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.ZERO_OR_MORE)) {
-        _matched=true;
-        _switchResult = "???";
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.ONE_OR_MORE)) {
-        _matched=true;
-        _switchResult = "???";
-      }
-    }
-    if (!_matched) {
+    } else {
       _switchResult = "ERROR: unknown multiplicity kind";
     }
     return _switchResult;
@@ -40,32 +49,25 @@ public class MultiplicityKindExtension {
   
   public String minOccurs(final MultiplicityKind m) {
     String _switchResult = null;
-    boolean _matched = false;
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.ONE)) {
-        _matched=true;
-        _switchResult = "1";
+    if (m != null) {
+      switch (m) {
+        case ONE:
+          _switchResult = "1";
+          break;
+        case OPTIONAL:
+          _switchResult = "0";
+          break;
+        case ZERO_OR_MORE:
+          _switchResult = "0";
+          break;
+        case ONE_OR_MORE:
+          _switchResult = "1";
+          break;
+        default:
+          _switchResult = "ERROR: unknown multiplicity kind";
+          break;
       }
-    }
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.OPTIONAL)) {
-        _matched=true;
-        _switchResult = "0";
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.ZERO_OR_MORE)) {
-        _matched=true;
-        _switchResult = "0";
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.ONE_OR_MORE)) {
-        _matched=true;
-        _switchResult = "1";
-      }
-    }
-    if (!_matched) {
+    } else {
       _switchResult = "ERROR: unknown multiplicity kind";
     }
     return _switchResult;
@@ -73,64 +75,53 @@ public class MultiplicityKindExtension {
   
   public String maxOccurs(final MultiplicityKind m) {
     String _switchResult = null;
-    boolean _matched = false;
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.ONE)) {
-        _matched=true;
-        _switchResult = "1";
+    if (m != null) {
+      switch (m) {
+        case ONE:
+          _switchResult = "1";
+          break;
+        case OPTIONAL:
+          _switchResult = "1";
+          break;
+        case ZERO_OR_MORE:
+          _switchResult = "unbounded";
+          break;
+        case ONE_OR_MORE:
+          _switchResult = "unbounded";
+          break;
+        default:
+          _switchResult = "ERROR: unknown multiplicity kind";
+          break;
       }
-    }
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.OPTIONAL)) {
-        _matched=true;
-        _switchResult = "1";
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.ZERO_OR_MORE)) {
-        _matched=true;
-        _switchResult = "unbounded";
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.ONE_OR_MORE)) {
-        _matched=true;
-        _switchResult = "unbounded";
-      }
-    }
-    if (!_matched) {
+    } else {
       _switchResult = "ERROR: unknown multiplicity kind";
     }
     return _switchResult;
   }
   
   public boolean lowerBoundZero(final MultiplicityKind m) {
-    Boolean _switchResult = null;
-    boolean _matched = false;
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.ONE)) {
-        _matched=true;
-        _switchResult = Boolean.valueOf(false);
+    boolean _switchResult = false;
+    if (m != null) {
+      switch (m) {
+        case ONE:
+          _switchResult = false;
+          break;
+        case OPTIONAL:
+          _switchResult = true;
+          break;
+        case ZERO_OR_MORE:
+          _switchResult = true;
+          break;
+        case ONE_OR_MORE:
+          _switchResult = false;
+          break;
+        default:
+          _switchResult = false;
+          break;
       }
+    } else {
+      _switchResult = false;
     }
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.OPTIONAL)) {
-        _matched=true;
-        _switchResult = Boolean.valueOf(true);
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.ZERO_OR_MORE)) {
-        _matched=true;
-        _switchResult = Boolean.valueOf(true);
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.ONE_OR_MORE)) {
-        _matched=true;
-        _switchResult = Boolean.valueOf(false);
-      }
-    }
-    return (_switchResult).booleanValue();
+    return _switchResult;
   }
 }

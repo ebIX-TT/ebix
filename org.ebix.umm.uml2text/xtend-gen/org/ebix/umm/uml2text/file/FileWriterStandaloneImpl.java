@@ -1,3 +1,20 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.uml2text.file;
 
 import java.io.File;
@@ -11,8 +28,7 @@ public class FileWriterStandaloneImpl implements FileWriter {
   public void writeFile(final String fileName, final CharSequence contents) {
     try {
       this.makeDirectories(fileName);
-      PrintWriter _printWriter = new PrintWriter(fileName);
-      final PrintWriter printWriter = _printWriter;
+      final PrintWriter printWriter = new PrintWriter(fileName);
       String _string = contents.toString();
       printWriter.write(_string);
       printWriter.close();
@@ -24,11 +40,9 @@ public class FileWriterStandaloneImpl implements FileWriter {
   private boolean makeDirectories(final String fileName) {
     boolean _xblockexpression = false;
     {
-      File _file = new File(fileName);
-      final File file = _file;
+      final File file = new File(fileName);
       File _parentFile = file.getParentFile();
-      boolean _mkdirs = _parentFile.mkdirs();
-      _xblockexpression = (_mkdirs);
+      _xblockexpression = _parentFile.mkdirs();
     }
     return _xblockexpression;
   }
@@ -36,8 +50,7 @@ public class FileWriterStandaloneImpl implements FileWriter {
   public void writeFile(final String fileName, final byte[] contents) {
     try {
       this.makeDirectories(fileName);
-      FileOutputStream _fileOutputStream = new FileOutputStream(fileName);
-      final FileOutputStream fileOutputStream = _fileOutputStream;
+      final FileOutputStream fileOutputStream = new FileOutputStream(fileName);
       fileOutputStream.write(contents);
       fileOutputStream.close();
     } catch (Throwable _e) {

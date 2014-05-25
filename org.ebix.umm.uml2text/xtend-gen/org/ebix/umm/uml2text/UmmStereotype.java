@@ -1,8 +1,25 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.uml2text;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableList.Builder;
+import com.google.common.collect.Lists;
+import java.util.Collections;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -42,11 +59,9 @@ public class UmmStereotype {
       Object _value = namedElement.getValue(this.value, tagName);
       return ((String) _value);
     } else {
-      String _plus = ("Missing " + tagName);
-      String _plus_1 = (_plus + " for ");
       String _qualifiedName = namedElement.getQualifiedName();
-      String _plus_2 = (_plus_1 + _qualifiedName);
-      InputOutput.<String>println(_plus_2);
+      String _plus = ((("Missing " + tagName) + " for ") + _qualifiedName);
+      InputOutput.<String>println(_plus);
       return "";
     }
   }
@@ -57,15 +72,10 @@ public class UmmStereotype {
       Object _value = namedElement.getValue(this.value, tagName);
       return ((List<String>) _value);
     } else {
-      String _plus = ("Missing " + tagName);
-      String _plus_1 = (_plus + " for ");
       String _qualifiedName = namedElement.getQualifiedName();
-      String _plus_2 = (_plus_1 + _qualifiedName);
-      InputOutput.<String>println(_plus_2);
-      List<String> _xlistliteral = null;
-      Builder<String> _builder = ImmutableList.builder();
-      _xlistliteral = _builder.build();
-      return _xlistliteral;
+      String _plus = ((("Missing " + tagName) + " for ") + _qualifiedName);
+      InputOutput.<String>println(_plus);
+      return Collections.<String>unmodifiableList(Lists.<String>newArrayList());
     }
   }
   
@@ -75,11 +85,9 @@ public class UmmStereotype {
       Object _value = namedElement.getValue(this.value, tagName);
       return this.getDynamicValue(_value);
     } else {
-      String _plus = ("Missing " + tagName);
-      String _plus_1 = (_plus + " for ");
       String _qualifiedName = namedElement.getQualifiedName();
-      String _plus_2 = (_plus_1 + _qualifiedName);
-      InputOutput.<String>println(_plus_2);
+      String _plus = ((("Missing " + tagName) + " for ") + _qualifiedName);
+      InputOutput.<String>println(_plus);
       return null;
     }
   }
@@ -104,14 +112,16 @@ public class UmmStereotype {
   public String getDefaultValue(final String tagName) {
     EList<Property> _allAttributes = this.value.getAllAttributes();
     final Function1<Property,Boolean> _function = new Function1<Property,Boolean>() {
-        public Boolean apply(final Property p) {
-          String _name = p.getName();
-          boolean _equals = Objects.equal(_name, tagName);
-          return Boolean.valueOf(_equals);
-        }
-      };
+      public Boolean apply(final Property p) {
+        String _name = p.getName();
+        return Boolean.valueOf(Objects.equal(_name, tagName));
+      }
+    };
     Property _findFirst = IterableExtensions.<Property>findFirst(_allAttributes, _function);
-    String _default = _findFirst==null?(String)null:_findFirst.getDefault();
+    String _default = null;
+    if (_findFirst!=null) {
+      _default=_findFirst.getDefault();
+    }
     return _default;
   }
 }

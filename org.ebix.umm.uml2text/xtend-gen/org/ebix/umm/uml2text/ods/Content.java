@@ -1,3 +1,20 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.uml2text.ods;
 
 import org.ebix.umm.uml2text.UmmStereotypes;
@@ -359,27 +376,27 @@ public class Content extends OdsPart {
     _builder.newLine();
     _builder.append("\t\t\t");
     CharSequence _sheet = this.ccContent.sheet();
-    _builder.append(_sheet, "			");
+    _builder.append(_sheet, "\t\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t\t");
     CharSequence _sheet_1 = this.bieContent.sheet();
-    _builder.append(_sheet_1, "			");
+    _builder.append(_sheet_1, "\t\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t\t");
     CharSequence _sheet_2 = this.bdtContent.sheet();
-    _builder.append(_sheet_2, "			");
+    _builder.append(_sheet_2, "\t\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t\t");
     CharSequence _usageRulesSheet = this.usageRulesSheet();
-    _builder.append(_usageRulesSheet, "			");
+    _builder.append(_usageRulesSheet, "\t\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t\t");
     CharSequence _constraintTypeCodeSheet = this.constraintTypeCodeSheet();
-    _builder.append(_constraintTypeCodeSheet, "			");
+    _builder.append(_constraintTypeCodeSheet, "\t\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t\t");
     CharSequence _conditionTypeCodeSheet = this.conditionTypeCodeSheet();
-    _builder.append(_conditionTypeCodeSheet, "			");
+    _builder.append(_conditionTypeCodeSheet, "\t\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("</office:spreadsheet>");
@@ -413,72 +430,72 @@ public class Content extends OdsPart {
     _builder.newLine();
     _builder.append("\t");
     CharSequence _openHeaderRow = BasicFunctions.openHeaderRow();
-    _builder.append(_openHeaderRow, "	");
+    _builder.append(_openHeaderRow, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     CharSequence _headerCell = BasicFunctions.headerCell("Unique ID", "Constraint", "Constraint Type Code", 
       "Constraint Language Code", "Condition Type (pre, post, or invariant)");
-    _builder.append(_headerCell, "		");
+    _builder.append(_headerCell, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _closeHeaderRow = BasicFunctions.closeHeaderRow();
-    _builder.append(_closeHeaderRow, "	");
+    _builder.append(_closeHeaderRow, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _openRow = BasicFunctions.openRow("rdef");
-    _builder.append(_openRow, "	");
+    _builder.append(_openRow, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     CharSequence _cell = BasicFunctions.cell("cdef", "");
-    _builder.append(_cell, "		");
+    _builder.append(_cell, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     CharSequence _cell_1 = BasicFunctions.cell("cdef", "");
-    _builder.append(_cell_1, "		");
+    _builder.append(_cell_1, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     CharSequence _cell_2 = BasicFunctions.cell("cdef", "UNS, OCL, SBVR, XSRE, ECL, CHIP, CAT, BON, NCL, PERL, SCR");
-    _builder.append(_cell_2, "		");
+    _builder.append(_cell_2, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     CharSequence _cell_3 = BasicFunctions.cell("cdef", "");
-    _builder.append(_cell_3, "		");
+    _builder.append(_cell_3, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     CharSequence _cell_4 = BasicFunctions.cell("cdef", "PRE, POST, INV");
-    _builder.append(_cell_4, "		");
+    _builder.append(_cell_4, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _closeRow = BasicFunctions.closeRow();
-    _builder.append(_closeRow, "	");
+    _builder.append(_closeRow, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _openRow_1 = BasicFunctions.openRow("rdef");
-    _builder.append(_openRow_1, "	");
+    _builder.append(_openRow_1, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     CharSequence _cell_5 = BasicFunctions.cell("cdef", "");
-    _builder.append(_cell_5, "		");
+    _builder.append(_cell_5, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     CharSequence _cell_6 = BasicFunctions.cell("cdef", "");
-    _builder.append(_cell_6, "		");
+    _builder.append(_cell_6, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     CharSequence _cell_7 = BasicFunctions.cell("cdef", "OCL");
-    _builder.append(_cell_7, "		");
+    _builder.append(_cell_7, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     CharSequence _cell_8 = BasicFunctions.cell("cdef", "EN");
-    _builder.append(_cell_8, "		");
+    _builder.append(_cell_8, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     CharSequence _cell_9 = BasicFunctions.cell("cdef", "INV");
-    _builder.append(_cell_9, "		");
+    _builder.append(_cell_9, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _closeRow_1 = BasicFunctions.closeRow();
-    _builder.append(_closeRow_1, "	");
+    _builder.append(_closeRow_1, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("</table:table>");
     _builder.newLine();
@@ -500,51 +517,51 @@ public class Content extends OdsPart {
     _builder.newLine();
     _builder.append("\t");
     CharSequence _header = this.header();
-    _builder.append(_header, "	");
+    _builder.append(_header, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _row = this.row("UNS", "Unstructured", "An unstructured constraint is expressed in plain text without any formalism other than the grammar of the language in which it is expressed");
-    _builder.append(_row, "	");
+    _builder.append(_row, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _row_1 = this.row("OCL", "OCL", "The Object Constraint Language is a declarative language for describing rules that apply to Unified Modeling Language (UML) models");
-    _builder.append(_row_1, "	");
+    _builder.append(_row_1, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _row_2 = this.row("SBVR", "Semantics of Business Vocabulary and Business Rules", "The Semantics of Business Vocabulary and Business Rules (SBVR) is a formal and detailed natural language declarative description of a complex entity that is an integral part of the OMG Model Driven Architecture (MDA)");
-    _builder.append(_row_2, "	");
+    _builder.append(_row_2, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _row_3 = this.row("XSRE", "XML Schema Regular Expression", "XML Schema Regular Expression is used to formally define the pattern facet in a W3C XML Schema Definition Language Schema");
-    _builder.append(_row_3, "	");
+    _builder.append(_row_3, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _row_4 = this.row("ECL", "Eclipse", "The Eclipse language is a constraint logic programming system that implements an open source programming language");
-    _builder.append(_row_4, "	");
+    _builder.append(_row_4, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _row_5 = this.row("CHIP", "Constraint Handling in Prolog", "The Constraint Handling in Prolog (CHIP) language is used to tell an object what to do");
-    _builder.append(_row_5, "	");
+    _builder.append(_row_5, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _row_6 = this.row("CAT", "Catalysis", "Catalysis is an approach for the systematic business-driven development of component-based systems based on the Unified Modeling Language");
-    _builder.append(_row_6, "	");
+    _builder.append(_row_6, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _row_7 = this.row("BON", "Business Object Notation", "Business Object Notation is a method and graphical notation for high-level object oriented analysis and design");
-    _builder.append(_row_7, "	");
+    _builder.append(_row_7, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _row_8 = this.row("NCL", "Natural Constraint Language", "The Natural Constraint Language is a description language with mathematical logic as syntax");
-    _builder.append(_row_8, "	");
+    _builder.append(_row_8, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _row_9 = this.row("PERL", "Perl", "Scripting program language");
-    _builder.append(_row_9, "	");
+    _builder.append(_row_9, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _row_10 = this.row("SCR", "Schematron", "XML Schematron");
-    _builder.append(_row_10, "	");
+    _builder.append(_row_10, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("</table:table>");
     _builder.newLine();
@@ -566,19 +583,19 @@ public class Content extends OdsPart {
     _builder.newLine();
     _builder.append("\t");
     CharSequence _header = this.header();
-    _builder.append(_header, "	");
+    _builder.append(_header, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _row = this.row("PRE", "Precondition", "A precondition to an operation is a restriction that must be true at the moment that the operation is going to be executed");
-    _builder.append(_row, "	");
+    _builder.append(_row, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _row_1 = this.row("POST", "Postcondition", "A postcondition to an operation is a restriction that must be true at the moment that the operation has just ended its execution");
-    _builder.append(_row_1, "	");
+    _builder.append(_row_1, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _row_2 = this.row("INV", "Invariant", "An invariant is a constraint that states a condition that must always be met by all instances of the class, type, or interface. An invariant is described using an expression that evaluates to true if the invariant is met. Invariants must be true all the time.");
-    _builder.append(_row_2, "	");
+    _builder.append(_row_2, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("</table:table>");
     _builder.newLine();
@@ -592,7 +609,7 @@ public class Content extends OdsPart {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _headerCell = BasicFunctions.headerCell("Code", "Name", "Description");
-    _builder.append(_headerCell, "	");
+    _builder.append(_headerCell, "\t");
     _builder.newLineIfNotEmpty();
     CharSequence _closeHeaderRow = BasicFunctions.closeHeaderRow();
     _builder.append(_closeHeaderRow, "");
@@ -607,15 +624,15 @@ public class Content extends OdsPart {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _cell = BasicFunctions.cell("cdef", code);
-    _builder.append(_cell, "	");
+    _builder.append(_cell, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _cell_1 = BasicFunctions.cell("cdef", name);
-    _builder.append(_cell_1, "	");
+    _builder.append(_cell_1, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _cell_2 = BasicFunctions.cell("cdef", description);
-    _builder.append(_cell_2, "	");
+    _builder.append(_cell_2, "\t");
     _builder.newLineIfNotEmpty();
     CharSequence _closeRow = BasicFunctions.closeRow();
     _builder.append(_closeRow, "");

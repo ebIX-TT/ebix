@@ -1,3 +1,20 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.templates.xsd;
 
 import com.google.common.base.Objects;
@@ -31,9 +48,8 @@ public class MaExtension {
   }
   
   public String fileName(final MA ma, final String directory) {
-    String _plus = (directory + "/");
     String _fileName = this.fileName(ma);
-    return (_plus + _fileName);
+    return ((directory + "/") + _fileName);
   }
   
   public DocLibrary library(final MA ma) {
@@ -47,10 +63,9 @@ public class MaExtension {
     String namespace = _library.getBaseURN();
     boolean _notEquals = (!Objects.equal(otherMa, null));
     if (_notEquals) {
-      String _plus = (namespace + "-");
       String _name = otherMa.getName();
-      String _plus_1 = (_plus + _name);
-      namespace = _plus_1;
+      String _plus = ((namespace + "-") + _name);
+      namespace = _plus;
     }
     return namespace;
   }

@@ -1,3 +1,20 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.uml2text;
 
 import com.google.common.base.Objects;
@@ -27,7 +44,6 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -47,28 +63,13 @@ public class CcLibrary2Text {
   private BCC bccExtension;
   
   @Extension
-  private Constraint2Text constraint2Text = new Function0<Constraint2Text>() {
-    public Constraint2Text apply() {
-      Constraint2Text _constraint2Text = new Constraint2Text();
-      return _constraint2Text;
-    }
-  }.apply();
+  private Constraint2Text constraint2Text = new Constraint2Text();
   
   @Extension
-  private Multiplicity2Text multiplicity2Text = new Function0<Multiplicity2Text>() {
-    public Multiplicity2Text apply() {
-      Multiplicity2Text _multiplicity2Text = new Multiplicity2Text();
-      return _multiplicity2Text;
-    }
-  }.apply();
+  private Multiplicity2Text multiplicity2Text = new Multiplicity2Text();
   
   @Extension
-  private Name2Text name2Text = new Function0<Name2Text>() {
-    public Name2Text apply() {
-      Name2Text _name2Text = new Name2Text();
-      return _name2Text;
-    }
-  }.apply();
+  private Name2Text name2Text = new Name2Text();
   
   private UmmStereotypes ummStereotypes;
   
@@ -91,11 +92,10 @@ public class CcLibrary2Text {
       EList<Element> _allOwnedElements = umlModel.allOwnedElements();
       Iterable<org.eclipse.uml2.uml.Package> _filter = Iterables.<org.eclipse.uml2.uml.Package>filter(_allOwnedElements, org.eclipse.uml2.uml.Package.class);
       final Function1<org.eclipse.uml2.uml.Package,Boolean> _function = new Function1<org.eclipse.uml2.uml.Package,Boolean>() {
-          public Boolean apply(final org.eclipse.uml2.uml.Package p) {
-            boolean _isCcLibrary = CcLibrary2Text.this.ccLibraryExtension.isCcLibrary(p);
-            return Boolean.valueOf(_isCcLibrary);
-          }
-        };
+        public Boolean apply(final org.eclipse.uml2.uml.Package p) {
+          return Boolean.valueOf(CcLibrary2Text.this.ccLibraryExtension.isCcLibrary(p));
+        }
+      };
       Iterable<org.eclipse.uml2.uml.Package> _filter_1 = IterableExtensions.<org.eclipse.uml2.uml.Package>filter(_filter, _function);
       for (final org.eclipse.uml2.uml.Package umlPackage : _filter_1) {
         {
@@ -108,8 +108,7 @@ public class CcLibrary2Text {
           fw.writeFile(_fileName, _generateCcLibrary);
         }
       }
-      String _println = InputOutput.<String>println("Done.");
-      _xblockexpression = (_println);
+      _xblockexpression = InputOutput.<String>println("Done.");
     }
     return _xblockexpression;
   }
@@ -132,10 +131,10 @@ public class CcLibrary2Text {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         _builder.append("\"");
-        _builder.append(term, "	");
+        _builder.append(term, "\t");
         _builder.append("\"");
       }
     }
@@ -149,10 +148,10 @@ public class CcLibrary2Text {
         if (!_hasElements_1) {
           _hasElements_1 = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         _builder.append("\"");
-        _builder.append(copyright, "	");
+        _builder.append(copyright, "\t");
         _builder.append("\"");
       }
     }
@@ -166,10 +165,10 @@ public class CcLibrary2Text {
         if (!_hasElements_2) {
           _hasElements_2 = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         _builder.append("\"");
-        _builder.append(owner, "	");
+        _builder.append(owner, "\t");
         _builder.append("\"");
       }
     }
@@ -183,10 +182,10 @@ public class CcLibrary2Text {
         if (!_hasElements_3) {
           _hasElements_3 = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         _builder.append("\"");
-        _builder.append(reference, "	");
+        _builder.append(reference, "\t");
         _builder.append("\"");
       }
     }
@@ -194,13 +193,13 @@ public class CcLibrary2Text {
     _builder.append("\t");
     _builder.append("uniqueIdentifier:  \"");
     String _uniqueIdentifier = this.ccLibraryExtension.uniqueIdentifier(umlPackage);
-    _builder.append(_uniqueIdentifier, "	");
+    _builder.append(_uniqueIdentifier, "\t");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("versionIdentifier: \"");
     String _versionIdentifier = this.ccLibraryExtension.versionIdentifier(umlPackage);
-    _builder.append(_versionIdentifier, "	");
+    _builder.append(_versionIdentifier, "\t");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -208,13 +207,13 @@ public class CcLibrary2Text {
     _builder.append("\t");
     _builder.append("baseURN:           \"");
     String _baseURN = this.ccLibraryExtension.baseURN(umlPackage);
-    _builder.append(_baseURN, "	");
+    _builder.append(_baseURN, "\t");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("namespacePrefix:   \"");
     String _namespacePrefix = this.ccLibraryExtension.namespacePrefix(umlPackage);
-    _builder.append(_namespacePrefix, "	");
+    _builder.append(_namespacePrefix, "\t");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
@@ -224,16 +223,15 @@ public class CcLibrary2Text {
       EList<NamedElement> _ownedMembers = umlPackage.getOwnedMembers();
       Iterable<org.eclipse.uml2.uml.Class> _filter = Iterables.<org.eclipse.uml2.uml.Class>filter(_ownedMembers, org.eclipse.uml2.uml.Class.class);
       final Function1<org.eclipse.uml2.uml.Class,Boolean> _function = new Function1<org.eclipse.uml2.uml.Class,Boolean>() {
-          public Boolean apply(final org.eclipse.uml2.uml.Class c) {
-            boolean _isStereotypeApplied = c.isStereotypeApplied(CcLibrary2Text.this.ummStereotypes.ACC.value);
-            return Boolean.valueOf(_isStereotypeApplied);
-          }
-        };
+        public Boolean apply(final org.eclipse.uml2.uml.Class c) {
+          return Boolean.valueOf(c.isStereotypeApplied(CcLibrary2Text.this.ummStereotypes.ACC.value));
+        }
+      };
       Iterable<org.eclipse.uml2.uml.Class> _filter_1 = IterableExtensions.<org.eclipse.uml2.uml.Class>filter(_filter, _function);
       for(final org.eclipse.uml2.uml.Class acc : _filter_1) {
         _builder.append("\t");
         CharSequence _generateACC = this.generateACC(acc);
-        _builder.append(_generateACC, "	");
+        _builder.append(_generateACC, "\t");
         _builder.newLineIfNotEmpty();
         _builder.append("\t");
         _builder.newLine();
@@ -261,10 +259,10 @@ public class CcLibrary2Text {
         if (!_hasElements) {
           _hasElements = true;
         } else {
-          _builder.appendImmediate(", ", "	");
+          _builder.appendImmediate(", ", "\t");
         }
         _builder.append("\"");
-        _builder.append(term, "	");
+        _builder.append(term, "\t");
         _builder.append("\"");
       }
     }
@@ -272,25 +270,25 @@ public class CcLibrary2Text {
     _builder.append("\t");
     _builder.append("definition:        \"");
     String _definition = this.accExtension.definition(acc);
-    _builder.append(_definition, "	");
+    _builder.append(_definition, "\t");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("dictionary:        \"");
     String _dictionaryEntryName = this.accExtension.dictionaryEntryName(acc);
-    _builder.append(_dictionaryEntryName, "	");
+    _builder.append(_dictionaryEntryName, "\t");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("uniqueIdentifier:  \"");
     String _uniqueIdentifier = this.accExtension.uniqueIdentifier(acc);
-    _builder.append(_uniqueIdentifier, "	");
+    _builder.append(_uniqueIdentifier, "\t");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("versionIdentifier: \"");
     String _versionIdentifier = this.accExtension.versionIdentifier(acc);
-    _builder.append(_versionIdentifier, "	");
+    _builder.append(_versionIdentifier, "\t");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -305,14 +303,17 @@ public class CcLibrary2Text {
             _builder.append("\t");
             _builder.append("ASCC ");
             String _multiplicity = this.multiplicity2Text.multiplicity(attr);
-            _builder.append(_multiplicity, "	");
+            _builder.append(_multiplicity, "\t");
             _builder.append(" ");
             String _name_1 = attr.getName();
-            _builder.append(_name_1, "	");
+            _builder.append(_name_1, "\t");
             _builder.append(" : ");
             Type _type = attr.getType();
-            String _name_2 = _type==null?(String)null:_type.getName();
-            _builder.append(_name_2, "	");
+            String _name_2 = null;
+            if (_type!=null) {
+              _name_2=_type.getName();
+            }
+            _builder.append(_name_2, "\t");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
             _builder.append("{");
@@ -328,10 +329,10 @@ public class CcLibrary2Text {
                 if (!_hasElements_1) {
                   _hasElements_1 = true;
                 } else {
-                  _builder.appendImmediate(", ", "		");
+                  _builder.appendImmediate(", ", "\t\t");
                 }
                 _builder.append("\"");
-                _builder.append(term_1, "		");
+                _builder.append(term_1, "\t\t");
                 _builder.append("\"");
               }
             }
@@ -341,7 +342,7 @@ public class CcLibrary2Text {
             _builder.append("definition:        \"");
             Association _association_2 = attr.getAssociation();
             String _definition_1 = this.asccExtension.definition(_association_2);
-            _builder.append(_definition_1, "		");
+            _builder.append(_definition_1, "\t\t");
             _builder.append("\"");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
@@ -349,7 +350,7 @@ public class CcLibrary2Text {
             _builder.append("dictionary:        \"");
             Association _association_3 = attr.getAssociation();
             String _dictionaryEntryName_1 = this.asccExtension.dictionaryEntryName(_association_3);
-            _builder.append(_dictionaryEntryName_1, "		");
+            _builder.append(_dictionaryEntryName_1, "\t\t");
             _builder.append("\"");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
@@ -357,7 +358,7 @@ public class CcLibrary2Text {
             _builder.append("uniqueIdentifier:  \"");
             Association _association_4 = attr.getAssociation();
             String _uniqueIdentifier_1 = this.asccExtension.uniqueIdentifier(_association_4);
-            _builder.append(_uniqueIdentifier_1, "		");
+            _builder.append(_uniqueIdentifier_1, "\t\t");
             _builder.append("\"");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
@@ -365,7 +366,7 @@ public class CcLibrary2Text {
             _builder.append("versionIdentifier: \"");
             Association _association_5 = attr.getAssociation();
             String _versionIdentifier_1 = this.asccExtension.versionIdentifier(_association_5);
-            _builder.append(_versionIdentifier_1, "		");
+            _builder.append(_versionIdentifier_1, "\t\t");
             _builder.append("\"");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
@@ -373,7 +374,7 @@ public class CcLibrary2Text {
             _builder.append("sequencingKey:     \"");
             Association _association_6 = attr.getAssociation();
             String _sequencingKey = this.asccExtension.sequencingKey(_association_6);
-            _builder.append(_sequencingKey, "		");
+            _builder.append(_sequencingKey, "\t\t");
             _builder.append("\"");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
@@ -383,14 +384,17 @@ public class CcLibrary2Text {
             _builder.append("\t");
             _builder.append("BCC ");
             String _multiplicity_1 = this.multiplicity2Text.multiplicity(attr);
-            _builder.append(_multiplicity_1, "	");
+            _builder.append(_multiplicity_1, "\t");
             _builder.append(" ");
             String _name_3 = attr.getName();
-            _builder.append(_name_3, "	");
+            _builder.append(_name_3, "\t");
             _builder.append(" : ");
             Type _type_1 = attr.getType();
-            String _name_4 = _type_1==null?(String)null:_type_1.getName();
-            _builder.append(_name_4, "	");
+            String _name_4 = null;
+            if (_type_1!=null) {
+              _name_4=_type_1.getName();
+            }
+            _builder.append(_name_4, "\t");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
             _builder.append("{");
@@ -405,10 +409,10 @@ public class CcLibrary2Text {
                 if (!_hasElements_2) {
                   _hasElements_2 = true;
                 } else {
-                  _builder.appendImmediate(", ", "		");
+                  _builder.appendImmediate(", ", "\t\t");
                 }
                 _builder.append("\"");
-                _builder.append(term_2, "		");
+                _builder.append(term_2, "\t\t");
                 _builder.append("\"");
               }
             }
@@ -417,35 +421,35 @@ public class CcLibrary2Text {
             _builder.append("\t");
             _builder.append("definition:        \"");
             String _definition_2 = this.bccExtension.definition(attr);
-            _builder.append(_definition_2, "		");
+            _builder.append(_definition_2, "\t\t");
             _builder.append("\"");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
             _builder.append("\t");
             _builder.append("dictionary:        \"");
             String _dictionaryEntryName_2 = this.bccExtension.dictionaryEntryName(attr);
-            _builder.append(_dictionaryEntryName_2, "		");
+            _builder.append(_dictionaryEntryName_2, "\t\t");
             _builder.append("\"");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
             _builder.append("\t");
             _builder.append("uniqueIdentifier:  \"");
             String _uniqueIdentifier_2 = this.bccExtension.uniqueIdentifier(attr);
-            _builder.append(_uniqueIdentifier_2, "		");
+            _builder.append(_uniqueIdentifier_2, "\t\t");
             _builder.append("\"");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
             _builder.append("\t");
             _builder.append("versionIdentifier: \"");
             String _versionIdentifier_2 = this.bccExtension.versionIdentifier(attr);
-            _builder.append(_versionIdentifier_2, "		");
+            _builder.append(_versionIdentifier_2, "\t\t");
             _builder.append("\"");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
             _builder.append("\t");
             _builder.append("sequencingKey:     \"");
             String _sequencingKey_1 = this.bccExtension.sequencingKey(attr);
-            _builder.append(_sequencingKey_1, "		");
+            _builder.append(_sequencingKey_1, "\t\t");
             _builder.append("\"");
             _builder.newLineIfNotEmpty();
             _builder.append("\t");
@@ -462,7 +466,7 @@ public class CcLibrary2Text {
         _builder.append("\t");
         Namespace _context = constraint.getContext();
         CharSequence _generatConstraint = this.constraint2Text.generatConstraint(constraint, this.ummStereotypes, _context);
-        _builder.append(_generatConstraint, "	");
+        _builder.append(_generatConstraint, "\t");
         _builder.newLineIfNotEmpty();
       }
     }

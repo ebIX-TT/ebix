@@ -1,3 +1,20 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.generator;
 
 import com.google.common.base.Objects;
@@ -175,9 +192,7 @@ public class GenerateXsd {
     int _length = listIdentifier.length();
     boolean _greaterThan = (_length > 0);
     if (_greaterThan) {
-      String _plus_1 = (listIdentifier + "/");
-      String _plus_2 = (_plus_1 + location);
-      location = _plus_2;
+      location = ((listIdentifier + "/") + location);
     }
     MA clonedMa = this.prune.clone(ma);
     DocLibrary _library = this.maExtension.library(clonedMa);
@@ -212,8 +227,7 @@ public class GenerateXsd {
   private Constants projectConstants(final IFileSystemAccess fsa) {
     try {
       InputOutput.<String>println("Getting settings");
-      Constants _constants = new Constants();
-      final Constants constants = _constants;
+      final Constants constants = new Constants();
       if ((fsa instanceof EclipseResourceFileSystemAccess2)) {
         final EclipseResourceFileSystemAccess2 er = ((EclipseResourceFileSystemAccess2) fsa);
         Class<? extends EclipseResourceFileSystemAccess2> _class = er.getClass();
@@ -223,8 +237,7 @@ public class GenerateXsd {
         final IProject project = ((IProject) _get);
         boolean _notEquals = (!Objects.equal(project, null));
         if (_notEquals) {
-          ProjectScope _projectScope = new ProjectScope(project);
-          final ProjectScope projectScope = _projectScope;
+          final ProjectScope projectScope = new ProjectScope(project);
           final IEclipsePreferences projectNode = projectScope.getNode("org.ebix.umm");
           boolean _notEquals_1 = (!Objects.equal(projectNode, null));
           if (_notEquals_1) {
@@ -244,8 +257,7 @@ public class GenerateXsd {
   }
   
   private ArrayList<String> listIdentifiers(final MA ma) {
-    ArrayList<String> _arrayList = new ArrayList<String>();
-    final ArrayList<String> listIdentifiers = _arrayList;
+    final ArrayList<String> listIdentifiers = new ArrayList<String>();
     EList<Constraint> _constraints = ma.getConstraints();
     for (final Constraint c : _constraints) {
       EList<TC_Constraint> _type = c.getType();
@@ -260,7 +272,7 @@ public class GenerateXsd {
           String _listIdentifier_1 = tc.getListIdentifier();
           boolean _contains = listIdentifiers.contains(_listIdentifier_1);
           boolean _not = (!_contains);
-          _and = (_greaterThan && _not);
+          _and = _not;
         }
         if (_and) {
           String _listIdentifier_2 = tc.getListIdentifier();

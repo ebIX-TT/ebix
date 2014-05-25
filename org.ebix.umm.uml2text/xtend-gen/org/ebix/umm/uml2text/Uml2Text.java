@@ -1,3 +1,20 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.uml2text;
 
 import java.io.IOException;
@@ -19,24 +36,16 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class Uml2Text {
-  public UmmStereotypes ummStereotypes = new Function0<UmmStereotypes>() {
-    public UmmStereotypes apply() {
-      UmmStereotypes _ummStereotypes = new UmmStereotypes();
-      return _ummStereotypes;
-    }
-  }.apply();
+  public UmmStereotypes ummStereotypes = new UmmStereotypes();
   
   public static void main(final String[] args) {
     final URI fileURI = URI.createFileURI("/home/peter/Development/ws-uml/uml-2012A2/model/European_Energy_Market.uml");
-    FileWriterStandaloneImpl _fileWriterStandaloneImpl = new FileWriterStandaloneImpl();
-    final FileWriterStandaloneImpl fw = _fileWriterStandaloneImpl;
-    ResourceSetImpl _resourceSetImpl = new ResourceSetImpl();
-    final ResourceSetImpl resourceSet = _resourceSetImpl;
+    final FileWriterStandaloneImpl fw = new FileWriterStandaloneImpl();
+    final ResourceSetImpl resourceSet = new ResourceSetImpl();
     UMLResourcesUtil.init(resourceSet);
     Uml2Text _uml2Text = new Uml2Text();
     _uml2Text.processFile(fileURI, resourceSet, fw);
@@ -65,23 +74,17 @@ public class Uml2Text {
     String _plus_3 = (_plus_2 + "\'.");
     InputOutput.<String>println(_plus_3);
     this.ummStereotypes.resolveAll(resourceSet);
-    DocLibrary2Text _docLibrary2Text = new DocLibrary2Text(this.ummStereotypes);
-    final DocLibrary2Text docLibrary2Text = _docLibrary2Text;
+    final DocLibrary2Text docLibrary2Text = new DocLibrary2Text(this.ummStereotypes);
     docLibrary2Text.generate(umlModel, fw);
-    BieLibrary2Text _bieLibrary2Text = new BieLibrary2Text(this.ummStereotypes);
-    final BieLibrary2Text bieLibrary2Text = _bieLibrary2Text;
+    final BieLibrary2Text bieLibrary2Text = new BieLibrary2Text(this.ummStereotypes);
     bieLibrary2Text.generate(umlModel, fw);
-    BdtLibrary2Text _bdtLibrary2Text = new BdtLibrary2Text(this.ummStereotypes);
-    final BdtLibrary2Text bdtLibrary2Text = _bdtLibrary2Text;
+    final BdtLibrary2Text bdtLibrary2Text = new BdtLibrary2Text(this.ummStereotypes);
     bdtLibrary2Text.generate(umlModel, fw);
-    EnumLibrary2Text _enumLibrary2Text = new EnumLibrary2Text(this.ummStereotypes);
-    final EnumLibrary2Text enumLibrary2Text = _enumLibrary2Text;
+    final EnumLibrary2Text enumLibrary2Text = new EnumLibrary2Text(this.ummStereotypes);
     enumLibrary2Text.generate(umlModel, fw);
-    PrimLibrary2Text _primLibrary2Text = new PrimLibrary2Text(this.ummStereotypes);
-    final PrimLibrary2Text primLibrary2Text = _primLibrary2Text;
+    final PrimLibrary2Text primLibrary2Text = new PrimLibrary2Text(this.ummStereotypes);
     primLibrary2Text.generate(resourceSet, fw);
-    Uml2Ods _uml2Ods = new Uml2Ods(this.ummStereotypes, umlModel, fw);
-    final Uml2Ods uml2ods = _uml2Ods;
+    final Uml2Ods uml2ods = new Uml2Ods(this.ummStereotypes, umlModel, fw);
     uml2ods.generate(file);
   }
 }

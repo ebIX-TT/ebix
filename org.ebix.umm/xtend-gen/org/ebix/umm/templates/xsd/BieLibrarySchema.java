@@ -1,3 +1,20 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.templates.xsd;
 
 import com.google.inject.Inject;
@@ -223,14 +240,13 @@ public class BieLibrarySchema {
               } else {
                 EList<ABIEProperty> _or_2 = property.getOr();
                 final Function1<ABIEProperty,Boolean> _function = new Function1<ABIEProperty,Boolean>() {
-                    public Boolean apply(final ABIEProperty p) {
-                      MultiplicityKind _multiplicity = p.getMultiplicity();
-                      boolean _lowerBoundZero = BieLibrarySchema.this.multiplicityExtension.lowerBoundZero(_multiplicity);
-                      return Boolean.valueOf(_lowerBoundZero);
-                    }
-                  };
+                  public Boolean apply(final ABIEProperty p) {
+                    MultiplicityKind _multiplicity = p.getMultiplicity();
+                    return Boolean.valueOf(BieLibrarySchema.this.multiplicityExtension.lowerBoundZero(_multiplicity));
+                  }
+                };
                 boolean _exists = IterableExtensions.<ABIEProperty>exists(_or_2, _function);
-                _or_1 = (_lowerBoundZero || _exists);
+                _or_1 = _exists;
               }
               if (_or_1) {
                 _builder.append(" minOccurs=\"0\"");
@@ -338,11 +354,11 @@ public class BieLibrarySchema {
             _builder.newLine();
             _builder.append("\t");
             _builder.append("<xsd:restriction base=\"");
-            _builder.append(prefix, "	");
+            _builder.append(prefix, "\t");
             _builder.append(":");
             BDT _type_2 = property.getType();
             String _xsdType_1 = this.bdtExtension.xsdType(_type_2);
-            _builder.append(_xsdType_1, "	");
+            _builder.append(_xsdType_1, "\t");
             _builder.append("\">");
             _builder.newLineIfNotEmpty();
             {

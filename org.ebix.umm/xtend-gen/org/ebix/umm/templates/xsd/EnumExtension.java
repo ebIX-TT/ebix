@@ -1,3 +1,20 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.templates.xsd;
 
 import com.google.common.base.Objects;
@@ -38,8 +55,7 @@ public class EnumExtension {
   
   public String namespace(final ENUM e) {
     ENUMLibrary _library = this.library(e);
-    String _baseURN = _library.getBaseURN();
-    return _baseURN;
+    return _library.getBaseURN();
   }
   
   public String xsdType(final ENUM e) {
@@ -89,9 +105,8 @@ public class EnumExtension {
   }
   
   public String fileName(final ENUM e, final String directory) {
-    String _plus = (directory + "/");
     String _fileName = this.fileName(e);
-    return (_plus + _fileName);
+    return ((directory + "/") + _fileName);
   }
   
   public String fileName(final ENUM e, final String directory, final MA ma) {
@@ -105,8 +120,7 @@ public class EnumExtension {
     boolean _greaterThan = (_length > 0);
     if (_greaterThan) {
       String _versionIdentifier_1 = e.getVersionIdentifier();
-      String _substring = _versionIdentifier_1.substring(0, 1);
-      _xifexpression = _substring;
+      _xifexpression = _versionIdentifier_1.substring(0, 1);
     } else {
       _xifexpression = "";
     }
@@ -120,8 +134,7 @@ public class EnumExtension {
     boolean _greaterThan = (_length > 2);
     if (_greaterThan) {
       String _versionIdentifier_1 = e.getVersionIdentifier();
-      String _substring = _versionIdentifier_1.substring(2, 3);
-      _xifexpression = _substring;
+      _xifexpression = _versionIdentifier_1.substring(2, 3);
     } else {
       _xifexpression = "";
     }
@@ -135,8 +148,7 @@ public class EnumExtension {
     boolean _greaterThan = (_length > 4);
     if (_greaterThan) {
       String _versionIdentifier_1 = e.getVersionIdentifier();
-      String _substring = _versionIdentifier_1.substring(4, 5);
-      _xifexpression = _substring;
+      _xifexpression = _versionIdentifier_1.substring(4, 5);
     } else {
       _xifexpression = "";
     }
@@ -146,40 +158,39 @@ public class EnumExtension {
   public String codeListAgency(final ENUM e) {
     String _switchResult = null;
     String _codeListAgencyIdentifier = e.getCodeListAgencyIdentifier();
-    final String _switchValue = _codeListAgencyIdentifier;
     boolean _matched = false;
     if (!_matched) {
-      if (Objects.equal(_switchValue,"260")) {
+      if (Objects.equal(_codeListAgencyIdentifier,"260")) {
         _matched=true;
         _switchResult = "ebix";
       }
     }
     if (!_matched) {
-      if (Objects.equal(_switchValue,"305")) {
+      if (Objects.equal(_codeListAgencyIdentifier,"305")) {
         _matched=true;
         _switchResult = "etso";
       }
     }
     if (!_matched) {
-      if (Objects.equal(_switchValue,"6")) {
+      if (Objects.equal(_codeListAgencyIdentifier,"6")) {
         _matched=true;
         _switchResult = "UNECE";
       }
     }
     if (!_matched) {
-      if (Objects.equal(_switchValue,"5")) {
+      if (Objects.equal(_codeListAgencyIdentifier,"5")) {
         _matched=true;
         _switchResult = "ISO";
       }
     }
     if (!_matched) {
-      if (Objects.equal(_switchValue,"293")) {
+      if (Objects.equal(_codeListAgencyIdentifier,"293")) {
         _matched=true;
         _switchResult = "BDEW";
       }
     }
     if (!_matched) {
-      if (Objects.equal(_switchValue,"9")) {
+      if (Objects.equal(_codeListAgencyIdentifier,"9")) {
         _matched=true;
         _switchResult = "GS1";
       }

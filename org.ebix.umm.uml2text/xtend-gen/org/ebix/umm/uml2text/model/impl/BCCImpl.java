@@ -1,3 +1,20 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.uml2text.model.impl;
 
 import java.util.List;
@@ -14,32 +31,26 @@ public class BCCImpl implements BCC {
   }
   
   public List<String> businessTerm(final Property umlProperty) {
-    List<String> _listOfStringValue = this.ummStereotype.getListOfStringValue(umlProperty, "businessTerm");
-    return _listOfStringValue;
+    return this.ummStereotype.getListOfStringValue(umlProperty, "businessTerm");
   }
   
   public String uniqueIdentifier(final Property umlProperty) {
-    String _stringValue = this.ummStereotype.getStringValue(umlProperty, "uniqueIdentifier");
-    return _stringValue;
+    return this.ummStereotype.getStringValue(umlProperty, "uniqueIdentifier");
   }
   
   public String versionIdentifier(final Property umlProperty) {
-    String _stringValue = this.ummStereotype.getStringValue(umlProperty, "versionIdentifier");
-    return _stringValue;
+    return this.ummStereotype.getStringValue(umlProperty, "versionIdentifier");
   }
   
   public String definition(final Property umlProperty) {
-    String _stringValue = this.ummStereotype.getStringValue(umlProperty, "definition");
-    return _stringValue;
+    return this.ummStereotype.getStringValue(umlProperty, "definition");
   }
   
   public String dictionaryEntryName(final Property umlProperty) {
-    String _stringValue = this.ummStereotype.getStringValue(umlProperty, "dictionaryEntryName");
-    return _stringValue;
+    return this.ummStereotype.getStringValue(umlProperty, "dictionaryEntryName");
   }
   
   public String sequencingKey(final Property umlProperty) {
-    String _stringValue = this.ummStereotype.getStringValue(umlProperty, "sequencingKey");
-    return _stringValue;
+    return this.ummStereotype.getStringValue(umlProperty, "sequencingKey");
   }
 }

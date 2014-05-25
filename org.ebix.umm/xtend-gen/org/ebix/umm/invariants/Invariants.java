@@ -1,3 +1,20 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.invariants;
 
 import com.google.common.base.Objects;
@@ -58,19 +75,17 @@ public class Invariants {
   public void applyInvariants(final ABIE abie) {
     EList<Constraint> _constraints = abie.getConstraints();
     final Function1<Constraint,Boolean> _function = new Function1<Constraint,Boolean>() {
-        public Boolean apply(final Constraint c) {
-          EList<TC_Constraint> _type = c.getType();
-          final Function1<TC_Constraint,Boolean> _function = new Function1<TC_Constraint,Boolean>() {
-              public Boolean apply(final TC_Constraint t) {
-                ConstraintKind _kind = t.getKind();
-                boolean _equals = Objects.equal(_kind, ConstraintKind.DEPENDENCY);
-                return Boolean.valueOf(_equals);
-              }
-            };
-          boolean _exists = IterableExtensions.<TC_Constraint>exists(_type, _function);
-          return Boolean.valueOf(_exists);
-        }
-      };
+      public Boolean apply(final Constraint c) {
+        EList<TC_Constraint> _type = c.getType();
+        final Function1<TC_Constraint,Boolean> _function = new Function1<TC_Constraint,Boolean>() {
+          public Boolean apply(final TC_Constraint t) {
+            ConstraintKind _kind = t.getKind();
+            return Boolean.valueOf(Objects.equal(_kind, ConstraintKind.DEPENDENCY));
+          }
+        };
+        return Boolean.valueOf(IterableExtensions.<TC_Constraint>exists(_type, _function));
+      }
+    };
     Iterable<Constraint> _filter = IterableExtensions.<Constraint>filter(_constraints, _function);
     for (final Constraint constraint : _filter) {
       EList<OclInvariant> _invariants = constraint.getInvariants();
@@ -83,27 +98,26 @@ public class Invariants {
   public void applyInvariantsFor(final MA ma, final ConstraintKind kind, final String listIdentifier) {
     EList<Constraint> _constraints = ma.getConstraints();
     final Function1<Constraint,Boolean> _function = new Function1<Constraint,Boolean>() {
-        public Boolean apply(final Constraint c) {
-          EList<TC_Constraint> _type = c.getType();
-          final Function1<TC_Constraint,Boolean> _function = new Function1<TC_Constraint,Boolean>() {
-              public Boolean apply(final TC_Constraint t) {
-                boolean _and = false;
-                ConstraintKind _kind = t.getKind();
-                boolean _equals = Objects.equal(_kind, kind);
-                if (!_equals) {
-                  _and = false;
-                } else {
-                  String _listIdentifier = t.getListIdentifier();
-                  boolean _equals_1 = Objects.equal(_listIdentifier, listIdentifier);
-                  _and = (_equals && _equals_1);
-                }
-                return Boolean.valueOf(_and);
-              }
-            };
-          boolean _exists = IterableExtensions.<TC_Constraint>exists(_type, _function);
-          return Boolean.valueOf(_exists);
-        }
-      };
+      public Boolean apply(final Constraint c) {
+        EList<TC_Constraint> _type = c.getType();
+        final Function1<TC_Constraint,Boolean> _function = new Function1<TC_Constraint,Boolean>() {
+          public Boolean apply(final TC_Constraint t) {
+            boolean _and = false;
+            ConstraintKind _kind = t.getKind();
+            boolean _equals = Objects.equal(_kind, kind);
+            if (!_equals) {
+              _and = false;
+            } else {
+              String _listIdentifier = t.getListIdentifier();
+              boolean _equals_1 = Objects.equal(_listIdentifier, listIdentifier);
+              _and = _equals_1;
+            }
+            return Boolean.valueOf(_and);
+          }
+        };
+        return Boolean.valueOf(IterableExtensions.<TC_Constraint>exists(_type, _function));
+      }
+    };
     Iterable<Constraint> _filter = IterableExtensions.<Constraint>filter(_constraints, _function);
     for (final Constraint c : _filter) {
       EList<OclInvariant> _invariants = c.getInvariants();
@@ -117,27 +131,26 @@ public class Invariants {
     }
     EList<Constraint> _constraints_1 = ma.getConstraints();
     final Function1<Constraint,Boolean> _function_1 = new Function1<Constraint,Boolean>() {
-        public Boolean apply(final Constraint c) {
-          EList<TC_Constraint> _type = c.getType();
-          final Function1<TC_Constraint,Boolean> _function = new Function1<TC_Constraint,Boolean>() {
-              public Boolean apply(final TC_Constraint t) {
-                boolean _and = false;
-                ConstraintKind _kind = t.getKind();
-                boolean _equals = Objects.equal(_kind, kind);
-                if (!_equals) {
-                  _and = false;
-                } else {
-                  String _listIdentifier = t.getListIdentifier();
-                  boolean _equals_1 = Objects.equal(_listIdentifier, listIdentifier);
-                  _and = (_equals && _equals_1);
-                }
-                return Boolean.valueOf(_and);
-              }
-            };
-          boolean _exists = IterableExtensions.<TC_Constraint>exists(_type, _function);
-          return Boolean.valueOf(_exists);
-        }
-      };
+      public Boolean apply(final Constraint c) {
+        EList<TC_Constraint> _type = c.getType();
+        final Function1<TC_Constraint,Boolean> _function = new Function1<TC_Constraint,Boolean>() {
+          public Boolean apply(final TC_Constraint t) {
+            boolean _and = false;
+            ConstraintKind _kind = t.getKind();
+            boolean _equals = Objects.equal(_kind, kind);
+            if (!_equals) {
+              _and = false;
+            } else {
+              String _listIdentifier = t.getListIdentifier();
+              boolean _equals_1 = Objects.equal(_listIdentifier, listIdentifier);
+              _and = _equals_1;
+            }
+            return Boolean.valueOf(_and);
+          }
+        };
+        return Boolean.valueOf(IterableExtensions.<TC_Constraint>exists(_type, _function));
+      }
+    };
     Iterable<Constraint> _filter_1 = IterableExtensions.<Constraint>filter(_constraints_1, _function_1);
     for (final Constraint c_1 : _filter_1) {
       EList<OclInvariant> _invariants_1 = c_1.getInvariants();
@@ -188,29 +201,22 @@ public class Invariants {
   
   public MultiplicityKind newKind(final MultiplicityKind m) {
     MultiplicityKind _switchResult = null;
-    boolean _matched = false;
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.ONE)) {
-        _matched=true;
-        _switchResult = MultiplicityKind.ONE;
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.OPTIONAL)) {
-        _matched=true;
-        _switchResult = MultiplicityKind.ONE;
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.ZERO_OR_MORE)) {
-        _matched=true;
-        _switchResult = MultiplicityKind.ONE_OR_MORE;
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.ONE_OR_MORE)) {
-        _matched=true;
-        _switchResult = MultiplicityKind.ONE_OR_MORE;
+    if (m != null) {
+      switch (m) {
+        case ONE:
+          _switchResult = MultiplicityKind.ONE;
+          break;
+        case OPTIONAL:
+          _switchResult = MultiplicityKind.ONE;
+          break;
+        case ZERO_OR_MORE:
+          _switchResult = MultiplicityKind.ONE_OR_MORE;
+          break;
+        case ONE_OR_MORE:
+          _switchResult = MultiplicityKind.ONE_OR_MORE;
+          break;
+        default:
+          break;
       }
     }
     return _switchResult;
@@ -226,29 +232,22 @@ public class Invariants {
   
   public MultiplicityKind newKind2(final MultiplicityKind m) {
     MultiplicityKind _switchResult = null;
-    boolean _matched = false;
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.ONE)) {
-        _matched=true;
-        _switchResult = MultiplicityKind.ONE;
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.OPTIONAL)) {
-        _matched=true;
-        _switchResult = MultiplicityKind.OPTIONAL;
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.ZERO_OR_MORE)) {
-        _matched=true;
-        _switchResult = MultiplicityKind.OPTIONAL;
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(m,MultiplicityKind.ONE_OR_MORE)) {
-        _matched=true;
-        _switchResult = MultiplicityKind.ONE;
+    if (m != null) {
+      switch (m) {
+        case ONE:
+          _switchResult = MultiplicityKind.ONE;
+          break;
+        case OPTIONAL:
+          _switchResult = MultiplicityKind.OPTIONAL;
+          break;
+        case ZERO_OR_MORE:
+          _switchResult = MultiplicityKind.OPTIONAL;
+          break;
+        case ONE_OR_MORE:
+          _switchResult = MultiplicityKind.ONE;
+          break;
+        default:
+          break;
       }
     }
     return _switchResult;
@@ -281,8 +280,7 @@ public class Invariants {
   }
   
   public List<String> getLiteralNames(final OclInvariant invariant) {
-    ArrayList<String> _arrayList = new ArrayList<String>();
-    List<String> names = _arrayList;
+    List<String> names = new ArrayList<String>();
     OclExpression _expression = invariant.getExpression();
     TreeIterator<EObject> _eAllContents = _expression.eAllContents();
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_eAllContents);
@@ -298,8 +296,7 @@ public class Invariants {
   public String getLiteralName(final OclEnumerationLiteral literal) {
     String _value = literal.getValue();
     String[] _split = _value.split("::");
-    String _get = _split[1];
-    return _get;
+    return _split[1];
   }
   
   public void performFixedValue(final OclInvariant invariant) {
@@ -350,8 +347,7 @@ public class Invariants {
     TreeIterator<EObject> _eAllContents = _expression.eAllContents();
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_eAllContents);
     Iterable<OclLiteral> _filter = Iterables.<OclLiteral>filter(_iterable, OclLiteral.class);
-    List<OclLiteral> _list = IterableExtensions.<OclLiteral>toList(_filter);
-    return _list;
+    return IterableExtensions.<OclLiteral>toList(_filter);
   }
   
   protected String _getValue(final OclLiteral literal) {
@@ -360,14 +356,12 @@ public class Invariants {
   
   protected String _getValue(final OclIntegerLiteral literal) {
     int _value = literal.getValue();
-    String _string = Integer.valueOf(_value).toString();
-    return _string;
+    return Integer.valueOf(_value).toString();
   }
   
   protected String _getValue(final OclStringLiteral literal) {
     String _value = literal.getValue();
-    String _string = _value.toString();
-    return _string;
+    return _value.toString();
   }
   
   protected String _getValue(final OclBooleanFalse literal) {
@@ -383,13 +377,12 @@ public class Invariants {
     ABIE _abie = this.abie(_selfImplies);
     EList<ABIEProperty> _properties = _abie.getProperties();
     final Function1<ABIEProperty,Boolean> _function = new Function1<ABIEProperty,Boolean>() {
-        public Boolean apply(final ABIEProperty p) {
-          EList<ABIEProperty> _or = p.getOr();
-          ABIEProperty _selfImplies = Invariants.this.selfImplies(invariant);
-          boolean _contains = _or.contains(_selfImplies);
-          return Boolean.valueOf(_contains);
-        }
-      };
+      public Boolean apply(final ABIEProperty p) {
+        EList<ABIEProperty> _or = p.getOr();
+        ABIEProperty _selfImplies = Invariants.this.selfImplies(invariant);
+        return Boolean.valueOf(_or.contains(_selfImplies));
+      }
+    };
     boolean _exists = IterableExtensions.<ABIEProperty>exists(_properties, _function);
     boolean _not = (!_exists);
     if (_not) {
@@ -469,8 +462,7 @@ public class Invariants {
   }
   
   public List<ABIEProperty> abieProperties(final List<OclReference> oclReferences) {
-    ArrayList<ABIEProperty> _arrayList = new ArrayList<ABIEProperty>();
-    ArrayList<ABIEProperty> list = _arrayList;
+    ArrayList<ABIEProperty> list = new ArrayList<ABIEProperty>();
     for (final OclReference r : oclReferences) {
       OclRef _ref = this.ref(r);
       list.add(((ABIEProperty) _ref));
@@ -499,12 +491,10 @@ public class Invariants {
     if (_matchForAll) {
       OclExpression _expression_1 = invariant.getExpression();
       OclExpression _forAllBody = this.oclValidator.forAllBody(_expression_1);
-      OclRef _firstRef = this.firstRef(_forAllBody);
-      _xifexpression = _firstRef;
+      _xifexpression = this.firstRef(_forAllBody);
     } else {
       OclExpression _expression_2 = invariant.getExpression();
-      OclRef _firstRef_1 = this.firstRef(_expression_2);
-      _xifexpression = _firstRef_1;
+      _xifexpression = this.firstRef(_expression_2);
     }
     return _xifexpression;
   }
@@ -512,15 +502,13 @@ public class Invariants {
   public OclRef firstRef(final OclExpression expr) {
     OclRef _xifexpression = null;
     if ((expr instanceof OclReference)) {
-      OclRef _ref = this.ref(((OclReference) expr));
-      _xifexpression = _ref;
+      _xifexpression = this.ref(((OclReference) expr));
     } else {
       TreeIterator<EObject> _eAllContents = expr.eAllContents();
       Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_eAllContents);
       Iterable<OclReference> _filter = Iterables.<OclReference>filter(_iterable, OclReference.class);
       OclReference _head = IterableExtensions.<OclReference>head(_filter);
-      OclRef _ref_1 = this.ref(_head);
-      _xifexpression = _ref_1;
+      _xifexpression = this.ref(_head);
     }
     return _xifexpression;
   }
@@ -528,8 +516,7 @@ public class Invariants {
   protected OclRef _ref(final OclPathSelfHead sh) {
     OclPathTail _path = sh.getPath();
     OclPathTail _last = this.last(_path);
-    OclRef _feature = _last.getFeature();
-    return _feature;
+    return _last.getFeature();
   }
   
   protected OclRef _ref(final OclPathFeatureHead fh) {
@@ -539,11 +526,9 @@ public class Invariants {
     if (_notEquals) {
       OclPathTail _tail_1 = fh.getTail();
       OclPathTail _last = this.last(_tail_1);
-      OclRef _feature = _last.getFeature();
-      _xifexpression = _feature;
+      _xifexpression = _last.getFeature();
     } else {
-      OclRef _feature_1 = fh.getFeature();
-      _xifexpression = _feature_1;
+      _xifexpression = fh.getFeature();
     }
     return _xifexpression;
   }
@@ -556,8 +541,7 @@ public class Invariants {
       _xifexpression = t;
     } else {
       OclPathTail _tail_1 = t.getTail();
-      OclPathTail _last = this.last(_tail_1);
-      _xifexpression = _last;
+      _xifexpression = this.last(_tail_1);
     }
     return _xifexpression;
   }
@@ -580,8 +564,7 @@ public class Invariants {
       if (_equals) {
         OclExpression _expression_2 = invariant.getExpression();
         OclExpression _forAllContext = this.oclValidator.forAllContext(_expression_2);
-        OclRef _firstRef = this.firstRef(_forAllContext);
-        _xifexpression_1 = _firstRef;
+        _xifexpression_1 = this.firstRef(_forAllContext);
       } else {
         OclExpression _expression_3 = invariant.getExpression();
         OclExpression _forAllBody_1 = this.oclValidator.forAllBody(_expression_3);
@@ -590,8 +573,7 @@ public class Invariants {
         Iterable<OclReference> _filter_1 = Iterables.<OclReference>filter(_iterable_1, OclReference.class);
         OclReference _head_1 = IterableExtensions.<OclReference>head(_filter_1);
         List<OclRef> _refToList_1 = this.refToList(_head_1);
-        OclRef _lastButOne = this.lastButOne(_refToList_1);
-        _xifexpression_1 = _lastButOne;
+        _xifexpression_1 = this.lastButOne(_refToList_1);
       }
       _xifexpression = _xifexpression_1;
     } else {
@@ -601,8 +583,7 @@ public class Invariants {
       Iterable<OclReference> _filter_2 = Iterables.<OclReference>filter(_iterable_2, OclReference.class);
       OclReference _head_2 = IterableExtensions.<OclReference>head(_filter_2);
       List<OclRef> _refToList_2 = this.refToList(_head_2);
-      OclRef _lastButOne_1 = this.lastButOne(_refToList_2);
-      _xifexpression = _lastButOne_1;
+      _xifexpression = this.lastButOne(_refToList_2);
     }
     return _xifexpression;
   }
@@ -610,19 +591,16 @@ public class Invariants {
   public OclRef lastButOne(final List<OclRef> list) {
     int _size = list.size();
     int _minus = (_size - 2);
-    OclRef _get = list.get(_minus);
-    return _get;
+    return list.get(_minus);
   }
   
   protected List<OclRef> _refToList(final OclPathSelfHead sh) {
     OclPathTail _path = sh.getPath();
-    List<OclRef> _refToList = this.refToList(_path);
-    return _refToList;
+    return this.refToList(_path);
   }
   
   protected List<OclRef> _refToList(final OclPathFeatureHead fh) {
-    ArrayList<OclRef> _arrayList = new ArrayList<OclRef>();
-    ArrayList<OclRef> list = _arrayList;
+    ArrayList<OclRef> list = new ArrayList<OclRef>();
     OclRef _feature = fh.getFeature();
     list.add(_feature);
     OclPathTail _tail = fh.getTail();
@@ -636,8 +614,7 @@ public class Invariants {
   }
   
   protected List<OclRef> _refToList(final OclPathTail t) {
-    ArrayList<OclRef> _arrayList = new ArrayList<OclRef>();
-    ArrayList<OclRef> list = _arrayList;
+    ArrayList<OclRef> list = new ArrayList<OclRef>();
     OclRef _feature = t.getFeature();
     list.add(_feature);
     OclPathTail _tail = t.getTail();

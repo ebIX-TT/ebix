@@ -1,3 +1,20 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.invariants;
 
 import com.google.common.base.Objects;
@@ -43,13 +60,12 @@ public class Prune {
     Iterable<MA> _filter = Iterables.<MA>filter(_iterable, MA.class);
     Set<MA> allClonedMa = IterableExtensions.<MA>toSet(_filter);
     final Function1<MA,Boolean> _function = new Function1<MA,Boolean>() {
-        public Boolean apply(final MA m) {
-          String _name = m.getName();
-          String _name_1 = ma.getName();
-          boolean _equals = Objects.equal(_name, _name_1);
-          return Boolean.valueOf(_equals);
-        }
-      };
+      public Boolean apply(final MA m) {
+        String _name = m.getName();
+        String _name_1 = ma.getName();
+        return Boolean.valueOf(Objects.equal(_name, _name_1));
+      }
+    };
     MA clonedMa = IterableExtensions.<MA>findFirst(allClonedMa, _function);
     allClonedMa.remove(clonedMa);
     for (final MA m : allClonedMa) {
@@ -59,8 +75,7 @@ public class Prune {
   }
   
   public DocLibrary clone(final DocLibrary docLibrary) {
-    ArrayList<Library> _arrayList = new ArrayList<Library>();
-    List<Library> model = _arrayList;
+    List<Library> model = new ArrayList<Library>();
     model.add(docLibrary);
     BIELibrary _bieLibrary = docLibrary.getBieLibrary();
     model.add(_bieLibrary);
@@ -101,8 +116,7 @@ public class Prune {
   }
   
   public List<ABIE> allReferedABIE(final MA ma) {
-    ArrayList<ABIE> _arrayList = new ArrayList<ABIE>();
-    List<ABIE> collected = _arrayList;
+    List<ABIE> collected = new ArrayList<ABIE>();
     Set<ABIE> _abies = this.abies(ma);
     for (final ABIE abie : _abies) {
       this.allReferedABIE(collected, abie);
@@ -123,8 +137,7 @@ public class Prune {
   }
   
   public Set<ABIE> abies(final MA ma) {
-    HashSet<ABIE> _hashSet = new HashSet<ABIE>();
-    Set<ABIE> abies = _hashSet;
+    Set<ABIE> abies = new HashSet<ABIE>();
     EList<MAProperty> _properties = ma.getProperties();
     for (final MAProperty p : _properties) {
       ABIE _type = p.getType();
@@ -134,8 +147,7 @@ public class Prune {
   }
   
   public Set<ABIE> abies(final ABIE abie) {
-    HashSet<ABIE> _hashSet = new HashSet<ABIE>();
-    Set<ABIE> abies = _hashSet;
+    Set<ABIE> abies = new HashSet<ABIE>();
     EList<ABIEProperty> _properties = abie.getProperties();
     Iterable<ASBIE> _filter = Iterables.<ASBIE>filter(_properties, ASBIE.class);
     for (final ASBIE asbie : _filter) {
@@ -146,8 +158,7 @@ public class Prune {
   }
   
   public Set<BDT> allReferedBDT(final MA ma) {
-    HashSet<BDT> _hashSet = new HashSet<BDT>();
-    Set<BDT> bdts = _hashSet;
+    Set<BDT> bdts = new HashSet<BDT>();
     DocLibrary _library = this.maExtension.library(ma);
     BIELibrary _bieLibrary = _library.getBieLibrary();
     EList<ABIE> _abies = _bieLibrary.getAbies();

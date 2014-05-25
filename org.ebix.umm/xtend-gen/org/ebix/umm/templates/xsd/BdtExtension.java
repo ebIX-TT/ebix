@@ -1,3 +1,20 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.templates.xsd;
 
 import com.google.common.base.Objects;
@@ -52,8 +69,7 @@ public class BdtExtension {
     EList<BDTProperty> _properties = bdt.getProperties();
     Iterable<Supplement> _filter = Iterables.<Supplement>filter(_properties, Supplement.class);
     int _size = IterableExtensions.size(_filter);
-    boolean _equals = (_size == 0);
-    return _equals;
+    return (_size == 0);
   }
   
   public Content content(final BDT bdt) {
@@ -89,23 +105,23 @@ public class BdtExtension {
       } else {
         int _length = property.getLength();
         boolean _notEquals = (_length != 0);
-        _or_2 = (_hasPattern || _notEquals);
+        _or_2 = _notEquals;
       }
       if (_or_2) {
         _or_1 = true;
       } else {
         int _minLength = property.getMinLength();
         boolean _notEquals_1 = (_minLength != 0);
-        _or_1 = (_or_2 || _notEquals_1);
+        _or_1 = _notEquals_1;
       }
       if (_or_1) {
         _or = true;
       } else {
         int _maxLength = property.getMaxLength();
         boolean _notEquals_2 = (_maxLength != 0);
-        _or = (_or_1 || _notEquals_2);
+        _or = _notEquals_2;
       }
-      _and = ((_type instanceof Primitive) && _or);
+      _and = _or;
     }
     return _and;
   }
@@ -120,7 +136,7 @@ public class BdtExtension {
       String _pattern_1 = property.getPattern();
       int _length = _pattern_1.length();
       boolean _notEquals_1 = (_length != 0);
-      _and = (_notEquals && _notEquals_1);
+      _and = _notEquals_1;
     }
     return _and;
   }
@@ -135,7 +151,7 @@ public class BdtExtension {
       String _defaultValue_1 = sup.getDefaultValue();
       int _length = _defaultValue_1.length();
       boolean _greaterThan = (_length > 0);
-      _and = (_notEquals && _greaterThan);
+      _and = _greaterThan;
     }
     return _and;
   }
@@ -150,7 +166,7 @@ public class BdtExtension {
       String _fixedValue_1 = sup.getFixedValue();
       int _length = _fixedValue_1.length();
       boolean _greaterThan = (_length > 0);
-      _and = (_notEquals && _greaterThan);
+      _and = _greaterThan;
     }
     return _and;
   }

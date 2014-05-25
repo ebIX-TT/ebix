@@ -1,3 +1,20 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.templates.xsd;
 
 import com.google.common.base.Objects;
@@ -38,8 +55,7 @@ public class AbieExtension {
   }
   
   public List<ASBIE> allReferingRoles(final ABIE abie) {
-    ArrayList<ASBIE> _arrayList = new ArrayList<ASBIE>();
-    List<ASBIE> referingRoles = _arrayList;
+    List<ASBIE> referingRoles = new ArrayList<ASBIE>();
     BIELibrary _library = this.library(abie);
     EList<ABIE> _abies = _library.getAbies();
     for (final ABIE abie2 : _abies) {
@@ -57,10 +73,8 @@ public class AbieExtension {
   }
   
   public List<ASBIE> allReferingRolesUniqueByName(final ABIE abie) {
-    HashSet<String> _hashSet = new HashSet<String>();
-    Set<String> roleNames = _hashSet;
-    ArrayList<ASBIE> _arrayList = new ArrayList<ASBIE>();
-    List<ASBIE> referingRolesUniqueByName = _arrayList;
+    Set<String> roleNames = new HashSet<String>();
+    List<ASBIE> referingRolesUniqueByName = new ArrayList<ASBIE>();
     List<ASBIE> referingRoles = this.allReferingRoles(abie);
     for (final ASBIE asbie : referingRoles) {
       String _name = asbie.getName();
@@ -71,13 +85,12 @@ public class AbieExtension {
         boolean found = false;
         for (final ASBIE role : referingRoles) {
           boolean _and = false;
-          boolean _not = (!found);
-          if (!_not) {
+          if (!(!found)) {
             _and = false;
           } else {
             String _name_1 = role.getName();
             boolean _equals = name.equals(_name_1);
-            _and = (_not && _equals);
+            _and = _equals;
           }
           if (_and) {
             referingRolesUniqueByName.add(role);
@@ -122,7 +135,7 @@ public class AbieExtension {
       String _fixedValue_1 = bbie.getFixedValue();
       int _length = _fixedValue_1.length();
       boolean _greaterThan = (_length > 0);
-      _and = (_notEquals && _greaterThan);
+      _and = _greaterThan;
     }
     return _and;
   }

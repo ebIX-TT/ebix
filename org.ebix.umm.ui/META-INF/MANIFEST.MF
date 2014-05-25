@@ -22,7 +22,7 @@ Require-Bundle: org.ebix.umm;visibility:=reexport,
  org.eclipse.compare
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.ebix.umm.ui.quickfix,
  org.ebix.umm.ui.contentassist,
  org.ebix.umm.ui.contentassist.antlr,

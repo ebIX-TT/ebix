@@ -1,9 +1,27 @@
+/**
+ * UMM Schema Generator
+ *  Copyright (C) 2014  ebIX, the European forum for energy Business Information eXchange.
+ * 
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package org.ebix.umm.uml2text.ods;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableList.Builder;
+import com.google.common.collect.Lists;
 import java.io.ByteArrayOutputStream;
+import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.zip.ZipOutputStream;
 import org.ebix.umm.uml2text.Name2Text;
 import org.ebix.umm.uml2text.UmmStereotypes;
@@ -18,20 +36,12 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
 @SuppressWarnings("all")
 public class Uml2Ods {
   @Extension
-  private Name2Text name2Text = new Function0<Name2Text>() {
-    public Name2Text apply() {
-      Name2Text _name2Text = new Name2Text();
-      return _name2Text;
-    }
-  }.apply();
+  private Name2Text name2Text = new Name2Text();
   
   private UmmStereotypes ummStereotypes;
   
@@ -58,31 +68,20 @@ public class Uml2Ods {
         Meta _meta = new Meta();
         Styles _styles = new Styles();
         Content _content = new Content(this.ummStereotypes, this.umlModel);
-        List<? extends OdsPart> _xlistliteral = null;
-        Builder<OdsPart> _builder = ImmutableList.builder();
-        _builder.add(_manifest);
-        _builder.add(_mimetype);
-        _builder.add(_meta);
-        _builder.add(_styles);
-        _builder.add(_content);
-        _xlistliteral = _builder.build();
-        final List<? extends OdsPart> parts = _xlistliteral;
-        ByteArrayOutputStream _byteArrayOutputStream = new ByteArrayOutputStream();
-        final ByteArrayOutputStream bout = _byteArrayOutputStream;
-        ZipOutputStream _zipOutputStream = new ZipOutputStream(bout);
-        final ZipOutputStream zout = _zipOutputStream;
-        final Procedure1<OdsPart> _function = new Procedure1<OdsPart>() {
-            public void apply(final OdsPart it) {
-              it.add(zout);
-            }
-          };
-        IterableExtensions.forEach(parts, _function);
+        final List<? extends OdsPart> parts = Collections.<OdsPart>unmodifiableList(Lists.<OdsPart>newArrayList(_manifest, _mimetype, _meta, _styles, _content));
+        final ByteArrayOutputStream bout = new ByteArrayOutputStream();
+        final ZipOutputStream zout = new ZipOutputStream(bout);
+        final Consumer<OdsPart> _function = new Consumer<OdsPart>() {
+          public void accept(final OdsPart it) {
+            it.add(zout);
+          }
+        };
+        parts.forEach(_function);
         zout.close();
         String _fileName_1 = this.name2Text.fileName(file);
         byte[] _byteArray = bout.toByteArray();
         this.fw.writeFile(_fileName_1, _byteArray);
-        String _println = InputOutput.<String>println("Done.");
-        _xblockexpression = (_println);
+        _xblockexpression = InputOutput.<String>println("Done.");
       }
       return _xblockexpression;
     } catch (Throwable _e) {
