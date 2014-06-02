@@ -154,21 +154,6 @@ class GenerateXsd {
     	
     }	
 
-//    def private listIdentifiers(Resource resource) {
-//    	val listIdentifiers = new ArrayList<String>()
-//        for(ma: resource.allContents.toIterable.filter(typeof(MA))) {
-//			for (c: ma.constraints) {
-//				for(tc: c.type) {
-//					if (tc.listIdentifier.length > 0 &&  !listIdentifiers.contains(tc.listIdentifier)) {
-//						listIdentifiers.add(tc.listIdentifier)
-//					}
-//				}
-//			}
-//        }
-//        
-//        return listIdentifiers
-//    }
-
     def private listIdentifiers(MA ma) {
     	val listIdentifiers = new ArrayList<String>()
 		for (c: ma.constraints) {

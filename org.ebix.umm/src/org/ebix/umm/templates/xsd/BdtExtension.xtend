@@ -57,11 +57,6 @@ class BdtExtension {
         return bdt.properties.filter(typeof(Content)).head
     }
 	
-    // Content
-    //def dispatch String xsdType(Content property) {
-    //    return property.type.xsdType
-    //}
-    
     def String xsdQualifiedType(BDTProperty property) {
         if (property.type instanceof Assembled) {
             return "bdt:" + (property.type as Assembled).xsdType
@@ -70,19 +65,6 @@ class BdtExtension {
         }
     }
     
-    // Supplement
-    //def dispatch String xsdType(Supplement property) {
-    //    return property.type.xsdType
-    //}
-    
-    //def dispatch String xsdQualifiedType(Supplement property) {
-    //    if (property.type instanceof Assembled) {
-    //        return "bdt:" + xsdType(property)
-    //    } else {
-    //        return property.type.xsdQualifiedType
-    //    }
-    //}
-        
     def boolean isExtraRestricted(BDTProperty property) {
         return property.type instanceof Primitive &&
             (property.hasPattern || property.length != 0 || property.minLength != 0 || property.maxLength != 0)

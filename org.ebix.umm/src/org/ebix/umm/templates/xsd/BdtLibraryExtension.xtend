@@ -54,7 +54,7 @@ class BdtLibraryExtension {
             for (property: bdt.properties)
                 if (property.type instanceof Assembled)
                     referenced.add(property.type as Assembled)
-        // TODO: Collections::sort(referenced, [ a1, a2 |  a1.fileName.compareTo( a2.fileName ) ] )
+        Collections::sort(referenced, [ a1, a2 |  a1.fileName.compareTo( a2.fileName ) ] )
         return referenced
     }
 	

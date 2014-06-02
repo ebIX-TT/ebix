@@ -20,6 +20,8 @@ package org.ebix.umm.templates.xsd;
 import com.google.common.base.Objects;
 import com.google.inject.Inject;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import org.ebix.umm.templates.xsd.EnumExtension;
 import org.ebix.umm.umm.Assembled;
@@ -73,6 +75,14 @@ public class BdtLibraryExtension {
         }
       }
     }
+    final Comparator<Assembled> _function = new Comparator<Assembled>() {
+      public int compare(final Assembled a1, final Assembled a2) {
+        String _fileName = BdtLibraryExtension.this.enumExtension.fileName(a1);
+        String _fileName_1 = BdtLibraryExtension.this.enumExtension.fileName(a2);
+        return _fileName.compareTo(_fileName_1);
+      }
+    };
+    Collections.<Assembled>sort(referenced, _function);
     return referenced;
   }
 }
