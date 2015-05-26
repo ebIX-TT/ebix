@@ -24,7 +24,7 @@ public class Uml2TextParserTest extends BaseTestCase {
 	    UMLResourcesUtil.init(resourceSet);
 	    Uml2Text _uml2Text = new Uml2Text();
 	    _uml2Text.processFile(fileURI, resourceSet, fw);
-	    File generatedFile = new File("model-text/European_Energy_Market.ods");
+	    File generatedFile = new File("model-text/test.ods");
 	    assertTrue(generatedFile.exists());
 	}
 	

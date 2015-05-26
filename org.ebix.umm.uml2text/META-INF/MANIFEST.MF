@@ -3,7 +3,9 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Uml2text
 Bundle-SymbolicName: org.ebix.umm.uml2text;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Export-Package: org.ebix.umm.uml2text
+Export-Package: org.ebix.umm.uml2text,
+ org.ebix.umm.uml2text.builder,
+ org.ebix.umm.uml2text.file
 Require-Bundle: org.eclipse.uml2.uml;bundle-version="4.0.2",
  org.eclipse.uml2.uml.resources;bundle-version="4.0.2",
  org.eclipse.core.resources;bundle-version="3.8.1",
