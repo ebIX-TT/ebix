@@ -124,8 +124,8 @@ class GenerateXsd {
         }
         clonedMa.purge
         fsa.generateFile(clonedMa.fileName(location), clonedMa.compile(constants, clonedMa))
-        fsa.generateFile(clonedMa.library.bieLibrary.fileName(location), clonedMa.library.bieLibrary.compile(constants, clonedMa))
-        fsa.generateFile(clonedMa.library.bdtLibrary.fileName(location), clonedMa.library.bdtLibrary.compile(constants, clonedMa))
+        fsa.generateFile(clonedMa.library.bieLibrary.fileName(location, clonedMa), clonedMa.library.bieLibrary.compile(constants, clonedMa))
+        fsa.generateFile(clonedMa.library.bdtLibrary.fileName(location, clonedMa), clonedMa.library.bdtLibrary.compile(constants, clonedMa))
     }
     
     def private Constants projectConstants(IFileSystemAccess fsa) {

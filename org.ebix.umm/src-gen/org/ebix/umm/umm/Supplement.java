@@ -11,12 +11,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.Supplement#getDefaultValue <em>Default Value</em>}</li>
  *   <li>{@link org.ebix.umm.umm.Supplement#getRestriction <em>Restriction</em>}</li>
  *   <li>{@link org.ebix.umm.umm.Supplement#getFixedValue <em>Fixed Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.ebix.umm.umm.UmmPackage#getSupplement()
  * @model

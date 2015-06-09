@@ -27,6 +27,7 @@ public class EnumLibraryImpl extends LibraryImpl implements EnumLibrary {
     super(ummStereotype);
   }
   
+  @Override
   public boolean isEnumLibrary(final org.eclipse.uml2.uml.Package umlPackage) {
     return this.ummStereotype.hasStereotype(umlPackage);
   }

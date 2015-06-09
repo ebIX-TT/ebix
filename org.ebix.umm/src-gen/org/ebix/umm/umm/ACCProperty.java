@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.ACCProperty#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.ebix.umm.umm.ACCProperty#getName <em>Name</em>}</li>
@@ -23,7 +24,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.ebix.umm.umm.ACCProperty#getVersionIdentifier <em>Version Identifier</em>}</li>
  *   <li>{@link org.ebix.umm.umm.ACCProperty#getSequencingKey <em>Sequencing Key</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.ebix.umm.umm.UmmPackage#getACCProperty()
  * @model

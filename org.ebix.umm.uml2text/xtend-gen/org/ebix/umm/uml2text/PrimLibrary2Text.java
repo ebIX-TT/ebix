@@ -55,9 +55,7 @@ public class PrimLibrary2Text {
       for (final Resource resource : _resources) {
         {
           final TreeIterator<EObject> iterator = resource.getAllContents();
-          boolean _hasNext = iterator.hasNext();
-          boolean _while = _hasNext;
-          while (_while) {
+          while (iterator.hasNext()) {
             {
               final EObject object = iterator.next();
               if ((object instanceof org.eclipse.uml2.uml.Package)) {
@@ -74,8 +72,6 @@ public class PrimLibrary2Text {
                 }
               }
             }
-            boolean _hasNext_1 = iterator.hasNext();
-            _while = _hasNext_1;
           }
         }
       }

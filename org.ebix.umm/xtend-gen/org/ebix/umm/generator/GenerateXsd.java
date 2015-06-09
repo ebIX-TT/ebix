@@ -210,14 +210,14 @@ public class GenerateXsd {
     fsa.generateFile(_fileName, _compile);
     DocLibrary _library_1 = this.maExtension.library(clonedMa);
     BIELibrary _bieLibrary_1 = _library_1.getBieLibrary();
-    String _fileName_1 = this.bieLibraryExtension.fileName(_bieLibrary_1, location);
+    String _fileName_1 = this.bieLibraryExtension.fileName(_bieLibrary_1, location, clonedMa);
     DocLibrary _library_2 = this.maExtension.library(clonedMa);
     BIELibrary _bieLibrary_2 = _library_2.getBieLibrary();
     CharSequence _compile_1 = this.bieLibrarySchema.compile(_bieLibrary_2, constants, clonedMa);
     fsa.generateFile(_fileName_1, _compile_1);
     DocLibrary _library_3 = this.maExtension.library(clonedMa);
     BDTLibrary _bdtLibrary = _library_3.getBdtLibrary();
-    String _fileName_2 = this.bdtLibraryExtension.fileName(_bdtLibrary, location);
+    String _fileName_2 = this.bdtLibraryExtension.fileName(_bdtLibrary, location, clonedMa);
     DocLibrary _library_4 = this.maExtension.library(clonedMa);
     BDTLibrary _bdtLibrary_1 = _library_4.getBdtLibrary();
     CharSequence _compile_2 = this.bdtLibrarySchema.compile(_bdtLibrary_1, constants, clonedMa);

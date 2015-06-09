@@ -80,7 +80,7 @@ public class BdtLibrarySchema {
     _builder.newLine();
     _builder.append("    ");
     _builder.append("xmlns:bdt=\"");
-    String _namespace = this.bdtLibraryExtension.namespace(library, null);
+    String _namespace = this.bdtLibraryExtension.namespace(library, ma);
     _builder.append(_namespace, "    ");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();

@@ -154,19 +154,15 @@ public class CcContent {
     int accCount = 0;
     EList<Element> _allOwnedElements = this.umlModel.allOwnedElements();
     Iterable<org.eclipse.uml2.uml.Package> _filter = Iterables.<org.eclipse.uml2.uml.Package>filter(_allOwnedElements, org.eclipse.uml2.uml.Package.class);
-    final Function1<org.eclipse.uml2.uml.Package,Boolean> _function = new Function1<org.eclipse.uml2.uml.Package,Boolean>() {
-      public Boolean apply(final org.eclipse.uml2.uml.Package p) {
-        return Boolean.valueOf(CcContent.this.cclibraryExtension.isCcLibrary(p));
-      }
+    final Function1<org.eclipse.uml2.uml.Package, Boolean> _function = (org.eclipse.uml2.uml.Package p) -> {
+      return Boolean.valueOf(this.cclibraryExtension.isCcLibrary(p));
     };
     Iterable<org.eclipse.uml2.uml.Package> _filter_1 = IterableExtensions.<org.eclipse.uml2.uml.Package>filter(_filter, _function);
     for (final org.eclipse.uml2.uml.Package umlPackage : _filter_1) {
       EList<NamedElement> _ownedMembers = umlPackage.getOwnedMembers();
       Iterable<org.eclipse.uml2.uml.Class> _filter_2 = Iterables.<org.eclipse.uml2.uml.Class>filter(_ownedMembers, org.eclipse.uml2.uml.Class.class);
-      final Function1<org.eclipse.uml2.uml.Class,Boolean> _function_1 = new Function1<org.eclipse.uml2.uml.Class,Boolean>() {
-        public Boolean apply(final org.eclipse.uml2.uml.Class c) {
-          return Boolean.valueOf(c.isStereotypeApplied(CcContent.this.ummStereotypes.ACC.value));
-        }
+      final Function1<org.eclipse.uml2.uml.Class, Boolean> _function_1 = (org.eclipse.uml2.uml.Class c) -> {
+        return Boolean.valueOf(c.isStereotypeApplied(this.ummStereotypes.ACC.value));
       };
       Iterable<org.eclipse.uml2.uml.Class> _filter_3 = IterableExtensions.<org.eclipse.uml2.uml.Class>filter(_filter_2, _function_1);
       for (final org.eclipse.uml2.uml.Class acc : _filter_3) {

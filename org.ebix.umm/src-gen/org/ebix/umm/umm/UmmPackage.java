@@ -1572,13 +1572,67 @@ public interface UmmPackage extends EPackage
   int CONTENT__VERSION_IDENTIFIER = BDT_PROPERTY__VERSION_IDENTIFIER;
 
   /**
+   * The feature id for the '<em><b>Max Inclusive</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTENT__MAX_INCLUSIVE = BDT_PROPERTY_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Max Exclusive</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTENT__MAX_EXCLUSIVE = BDT_PROPERTY_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Min Inclusive</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTENT__MIN_INCLUSIVE = BDT_PROPERTY_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Min Exclusive</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTENT__MIN_EXCLUSIVE = BDT_PROPERTY_FEATURE_COUNT + 3;
+
+  /**
+   * The feature id for the '<em><b>Fractional Digits</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTENT__FRACTIONAL_DIGITS = BDT_PROPERTY_FEATURE_COUNT + 4;
+
+  /**
+   * The feature id for the '<em><b>Total Digits</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTENT__TOTAL_DIGITS = BDT_PROPERTY_FEATURE_COUNT + 5;
+
+  /**
    * The number of structural features of the '<em>Content</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTENT_FEATURE_COUNT = BDT_PROPERTY_FEATURE_COUNT + 0;
+  int CONTENT_FEATURE_COUNT = BDT_PROPERTY_FEATURE_COUNT + 6;
 
   /**
    * The meta object id for the '{@link org.ebix.umm.umm.impl.SupplementImpl <em>Supplement</em>}' class.
@@ -5433,6 +5487,72 @@ public interface UmmPackage extends EPackage
   EClass getContent();
 
   /**
+   * Returns the meta object for the attribute '{@link org.ebix.umm.umm.Content#getMaxInclusive <em>Max Inclusive</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Max Inclusive</em>'.
+   * @see org.ebix.umm.umm.Content#getMaxInclusive()
+   * @see #getContent()
+   * @generated
+   */
+  EAttribute getContent_MaxInclusive();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.ebix.umm.umm.Content#getMaxExclusive <em>Max Exclusive</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Max Exclusive</em>'.
+   * @see org.ebix.umm.umm.Content#getMaxExclusive()
+   * @see #getContent()
+   * @generated
+   */
+  EAttribute getContent_MaxExclusive();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.ebix.umm.umm.Content#getMinInclusive <em>Min Inclusive</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Min Inclusive</em>'.
+   * @see org.ebix.umm.umm.Content#getMinInclusive()
+   * @see #getContent()
+   * @generated
+   */
+  EAttribute getContent_MinInclusive();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.ebix.umm.umm.Content#getMinExclusive <em>Min Exclusive</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Min Exclusive</em>'.
+   * @see org.ebix.umm.umm.Content#getMinExclusive()
+   * @see #getContent()
+   * @generated
+   */
+  EAttribute getContent_MinExclusive();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.ebix.umm.umm.Content#getFractionalDigits <em>Fractional Digits</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Fractional Digits</em>'.
+   * @see org.ebix.umm.umm.Content#getFractionalDigits()
+   * @see #getContent()
+   * @generated
+   */
+  EAttribute getContent_FractionalDigits();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.ebix.umm.umm.Content#getTotalDigits <em>Total Digits</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Total Digits</em>'.
+   * @see org.ebix.umm.umm.Content#getTotalDigits()
+   * @see #getContent()
+   * @generated
+   */
+  EAttribute getContent_TotalDigits();
+
+  /**
    * Returns the meta object for class '{@link org.ebix.umm.umm.Supplement <em>Supplement</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -8056,6 +8176,54 @@ public interface UmmPackage extends EPackage
      * @generated
      */
     EClass CONTENT = eINSTANCE.getContent();
+
+    /**
+     * The meta object literal for the '<em><b>Max Inclusive</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTENT__MAX_INCLUSIVE = eINSTANCE.getContent_MaxInclusive();
+
+    /**
+     * The meta object literal for the '<em><b>Max Exclusive</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTENT__MAX_EXCLUSIVE = eINSTANCE.getContent_MaxExclusive();
+
+    /**
+     * The meta object literal for the '<em><b>Min Inclusive</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTENT__MIN_INCLUSIVE = eINSTANCE.getContent_MinInclusive();
+
+    /**
+     * The meta object literal for the '<em><b>Min Exclusive</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTENT__MIN_EXCLUSIVE = eINSTANCE.getContent_MinExclusive();
+
+    /**
+     * The meta object literal for the '<em><b>Fractional Digits</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTENT__FRACTIONAL_DIGITS = eINSTANCE.getContent_FractionalDigits();
+
+    /**
+     * The meta object literal for the '<em><b>Total Digits</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTENT__TOTAL_DIGITS = eINSTANCE.getContent_TotalDigits();
 
     /**
      * The meta object literal for the '{@link org.ebix.umm.umm.impl.SupplementImpl <em>Supplement</em>}' class.

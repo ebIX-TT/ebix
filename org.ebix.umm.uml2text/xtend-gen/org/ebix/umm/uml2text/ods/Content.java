@@ -49,10 +49,12 @@ public class Content extends OdsPart {
     this.bdtContent = _bdtContent;
   }
   
+  @Override
   public String fileName() {
     return "content.xml";
   }
   
+  @Override
   public String content() {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");

@@ -20,12 +20,13 @@ import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class UmmConstantProjectPropertiesPage extends PropertyPage {
-  private Map<Constant,MultiLineFieldEditor> editors = new HashMap<Constant, MultiLineFieldEditor>();
+  private Map<Constant, MultiLineFieldEditor> editors = new HashMap<Constant, MultiLineFieldEditor>();
   
   public UmmConstantProjectPropertiesPage() {
     InputOutput.<String>println("start of UmmStereotypeProjectPropertiesPage");
   }
   
+  @Override
   public Control createContents(final Composite parent) {
     IAdaptable _element = this.getElement();
     final IProject project = ((IProject) _element);
@@ -47,6 +48,7 @@ public class UmmConstantProjectPropertiesPage extends PropertyPage {
     return parent;
   }
   
+  @Override
   public boolean performOk() {
     try {
       IAdaptable _element = this.getElement();
@@ -70,11 +72,10 @@ public class UmmConstantProjectPropertiesPage extends PropertyPage {
     }
   }
   
+  @Override
   public void performDefaults() {
-    final BiConsumer<Constant,MultiLineFieldEditor> _function = new BiConsumer<Constant,MultiLineFieldEditor>() {
-      public void accept(final Constant constant, final MultiLineFieldEditor constant_editor) {
-        constant_editor.setStringValue(constant.defaultValue);
-      }
+    final BiConsumer<Constant, MultiLineFieldEditor> _function = (Constant constant, MultiLineFieldEditor constant_editor) -> {
+      constant_editor.setStringValue(constant.defaultValue);
     };
     this.editors.forEach(_function);
   }

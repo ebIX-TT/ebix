@@ -26,12 +26,34 @@ public class BieLibraryExtension {
   public String fileName(final BIELibrary library) {
     String _versionIdentifier = library.getVersionIdentifier();
     String _replaceAll = _versionIdentifier.replaceAll("\\.", "p");
-    String _plus = ("ebIX_AggregatedBusinessInformationEntities_" + _replaceAll);
+    String _plus = ("ebIX_MessageBusinessInformationEntities_" + _replaceAll);
     return (_plus + ".xsd");
   }
   
   public String fileName(final BIELibrary library, final String directory) {
     String _fileName = this.fileName(library);
+    return ((directory + "/") + _fileName);
+  }
+  
+  public String fileName(final BIELibrary library, final MA ma) {
+    boolean _notEquals = (!Objects.equal(ma, null));
+    if (_notEquals) {
+      String _name = ma.getName();
+      String _plus = ("ebIX_MessageBusinessInformationEntities_" + _name);
+      String _plus_1 = (_plus + "_");
+      String _versionIdentifier = library.getVersionIdentifier();
+      String _replaceAll = _versionIdentifier.replaceAll("\\.", "p");
+      String _plus_2 = (_plus_1 + _replaceAll);
+      return (_plus_2 + ".xsd");
+    }
+    String _versionIdentifier_1 = library.getVersionIdentifier();
+    String _replaceAll_1 = _versionIdentifier_1.replaceAll("\\.", "p");
+    String _plus_3 = ("ebIX_MessageBusinessInformationEntities_" + _replaceAll_1);
+    return (_plus_3 + ".xsd");
+  }
+  
+  public String fileName(final BIELibrary library, final String directory, final MA ma) {
+    String _fileName = this.fileName(library, ma);
     return ((directory + "/") + _fileName);
   }
   

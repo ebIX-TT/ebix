@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.impl.BDTPropertyImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.BDTPropertyImpl#getPattern <em>Pattern</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  *   <li>{@link org.ebix.umm.umm.impl.BDTPropertyImpl#getUniqueIdentifier <em>Unique Identifier</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.BDTPropertyImpl#getVersionIdentifier <em>Version Identifier</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

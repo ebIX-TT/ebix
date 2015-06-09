@@ -27,6 +27,7 @@ public class CdtLibraryImpl extends LibraryImpl implements CdtLibrary {
     super(ummStereotype);
   }
   
+  @Override
   public boolean isCdtLibrary(final org.eclipse.uml2.uml.Package umlPackage) {
     return this.ummStereotype.hasStereotype(umlPackage);
   }

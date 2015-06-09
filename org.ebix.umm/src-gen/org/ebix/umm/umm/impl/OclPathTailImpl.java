@@ -21,11 +21,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.impl.OclPathTailImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.OclPathTailImpl#getTail <em>Tail</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

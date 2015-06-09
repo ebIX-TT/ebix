@@ -52,6 +52,7 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
  */
 @SuppressWarnings("all")
 public class UmmScopeProvider extends AbstractDeclarativeScopeProvider {
+  @Override
   public IScope getScope(final EObject context, final EReference reference) {
     return super.getScope(context, reference);
   }
@@ -98,11 +99,9 @@ public class UmmScopeProvider extends AbstractDeclarativeScopeProvider {
     } else {
       if ((container instanceof OclPathSelfHead)) {
         EObject container2 = ((OclPathSelfHead)container).eContainer();
-        boolean _while = (!(container2 instanceof Constraint));
-        while (_while) {
+        while ((!(container2 instanceof Constraint))) {
           EObject _eContainer = container2.eContainer();
           container2 = _eContainer;
-          _while = (!(container2 instanceof Constraint));
         }
         final Constraint constraint = ((Constraint) container2);
         ContextRef _context = constraint.getContext();
@@ -149,15 +148,9 @@ public class UmmScopeProvider extends AbstractDeclarativeScopeProvider {
    */
   public ContextRef resultType(final OclPathTail pathTail) {
     OclPathTail pathEnd = pathTail;
-    OclPathTail _tail = pathEnd.getTail();
-    boolean _notEquals = (!Objects.equal(_tail, null));
-    boolean _while = _notEquals;
-    while (_while) {
-      OclPathTail _tail_1 = pathEnd.getTail();
-      pathEnd = _tail_1;
-      OclPathTail _tail_2 = pathEnd.getTail();
-      boolean _notEquals_1 = (!Objects.equal(_tail_2, null));
-      _while = _notEquals_1;
+    while ((!Objects.equal(pathEnd.getTail(), null))) {
+      OclPathTail _tail = pathEnd.getTail();
+      pathEnd = _tail;
     }
     OclRef _feature = pathEnd.getFeature();
     return this.getReferedType(_feature);

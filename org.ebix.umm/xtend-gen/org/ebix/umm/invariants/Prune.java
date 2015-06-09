@@ -59,12 +59,10 @@ public class Prune {
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_eAllContents);
     Iterable<MA> _filter = Iterables.<MA>filter(_iterable, MA.class);
     Set<MA> allClonedMa = IterableExtensions.<MA>toSet(_filter);
-    final Function1<MA,Boolean> _function = new Function1<MA,Boolean>() {
-      public Boolean apply(final MA m) {
-        String _name = m.getName();
-        String _name_1 = ma.getName();
-        return Boolean.valueOf(Objects.equal(_name, _name_1));
-      }
+    final Function1<MA, Boolean> _function = (MA m) -> {
+      String _name = m.getName();
+      String _name_1 = ma.getName();
+      return Boolean.valueOf(Objects.equal(_name, _name_1));
     };
     MA clonedMa = IterableExtensions.<MA>findFirst(allClonedMa, _function);
     allClonedMa.remove(clonedMa);

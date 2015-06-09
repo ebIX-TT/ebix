@@ -27,15 +27,18 @@ public class DocLibraryImpl extends LibraryImpl implements DocLibrary {
     super(ummStereotype);
   }
   
+  @Override
   public boolean isDocLibrary(final org.eclipse.uml2.uml.Package umlPackage) {
     return this.ummStereotype.hasStereotype(umlPackage);
   }
   
+  @Override
   public org.eclipse.uml2.uml.Package bdtVersion(final org.eclipse.uml2.uml.Package umlPackage) {
     Object _value = this.ummStereotype.getValue(umlPackage, "eBDTversion");
     return ((org.eclipse.uml2.uml.Package) _value);
   }
   
+  @Override
   public org.eclipse.uml2.uml.Package bieVersion(final org.eclipse.uml2.uml.Package umlPackage) {
     Object _value = this.ummStereotype.getValue(umlPackage, "eBIEversion");
     return ((org.eclipse.uml2.uml.Package) _value);

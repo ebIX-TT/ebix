@@ -23,12 +23,12 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.impl.SupplementImpl#getDefaultValue <em>Default Value</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.SupplementImpl#getRestriction <em>Restriction</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.SupplementImpl#getFixedValue <em>Fixed Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

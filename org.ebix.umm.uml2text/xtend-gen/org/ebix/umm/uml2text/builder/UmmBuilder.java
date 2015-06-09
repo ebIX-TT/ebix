@@ -18,11 +18,13 @@
 package org.ebix.umm.uml2text.builder;
 
 import com.google.common.base.Objects;
+import java.util.Date;
 import java.util.Map;
 import org.ebix.umm.uml2text.Uml2Text;
 import org.ebix.umm.uml2text.UmmStereotype;
 import org.ebix.umm.uml2text.UmmStereotypes;
 import org.ebix.umm.uml2text.file.FileWriterEclipseImpl;
+import org.ebix.umm.uml2text.file.Utf8ToAsciiConverter;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -38,47 +40,56 @@ import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class UmmBuilder extends IncrementalProjectBuilder {
-  protected IProject[] build(final int kind, final Map<String,String> args, final IProgressMonitor monitor) throws CoreException {
+  @Override
+  protected IProject[] build(final int kind, final Map<String, String> args, final IProgressMonitor monitor) throws CoreException {
     InputOutput.<String>println(("Umm building, kind = " + Integer.valueOf(kind)));
     if ((kind == IncrementalProjectBuilder.FULL_BUILD)) {
       IProject _project = this.getProject();
       final IFolder modelFolder = _project.getFolder("uml");
+      final Utf8ToAsciiConverter asciiConverter = new Utf8ToAsciiConverter();
+      final Date backUpDate = new Date();
       IResource[] _members = modelFolder.members();
       for (final IResource resource : _members) {
-        boolean _and = false;
-        String _fileExtension = resource.getFileExtension();
-        boolean _equals = _fileExtension.equals("uml");
-        if (!_equals) {
-          _and = false;
-        } else {
-          IPath _fullPath = resource.getFullPath();
-          String _portableString = _fullPath.toPortableString();
-          boolean _endsWith = _portableString.endsWith("profile.uml");
-          boolean _not = (!_endsWith);
-          _and = _not;
-        }
-        if (_and) {
-          IPath _fullPath_1 = resource.getFullPath();
-          IPath _makeAbsolute = _fullPath_1.makeAbsolute();
-          String _portableString_1 = _makeAbsolute.toPortableString();
-          String _plus = ("UML resource: " + _portableString_1);
-          InputOutput.<String>println(_plus);
-          IPath _fullPath_2 = resource.getFullPath();
-          String _string = _fullPath_2.toString();
-          final URI uri = URI.createPlatformResourceURI(_string, true);
-          final Uml2Text uml2text = new Uml2Text();
-          IProject _project_1 = this.getProject();
-          this.applyStereotypeSettings(_project_1, uml2text.ummStereotypes);
-          IProject _project_2 = this.getProject();
-          final FileWriterEclipseImpl fw = new FileWriterEclipseImpl(_project_2);
-          final ResourceSetImpl rs = new ResourceSetImpl();
-          uml2text.processFile(uri, rs, fw);
+        {
+          IPath _location = resource.getLocation();
+          String _string = _location.toString();
+          asciiConverter.escapeUtf8CharactersFromFile(_string, backUpDate);
+          boolean _and = false;
+          String _fileExtension = resource.getFileExtension();
+          boolean _equals = _fileExtension.equals("uml");
+          if (!_equals) {
+            _and = false;
+          } else {
+            IPath _fullPath = resource.getFullPath();
+            String _portableString = _fullPath.toPortableString();
+            boolean _endsWith = _portableString.endsWith("profile.uml");
+            boolean _not = (!_endsWith);
+            _and = _not;
+          }
+          if (_and) {
+            IPath _fullPath_1 = resource.getFullPath();
+            IPath _makeAbsolute = _fullPath_1.makeAbsolute();
+            String _portableString_1 = _makeAbsolute.toPortableString();
+            String _plus = ("UML resource: " + _portableString_1);
+            InputOutput.<String>println(_plus);
+            IPath _fullPath_2 = resource.getFullPath();
+            String _string_1 = _fullPath_2.toString();
+            final URI uri = URI.createPlatformResourceURI(_string_1, true);
+            final Uml2Text uml2text = new Uml2Text();
+            IProject _project_1 = this.getProject();
+            this.applyStereotypeSettings(_project_1, uml2text.ummStereotypes);
+            IProject _project_2 = this.getProject();
+            final FileWriterEclipseImpl fw = new FileWriterEclipseImpl(_project_2);
+            final ResourceSetImpl rs = new ResourceSetImpl();
+            uml2text.processFile(uri, rs, fw);
+          }
         }
       }
     }
     return null;
   }
   
+  @Override
   protected void clean(final IProgressMonitor monitor) throws CoreException {
     InputOutput.<String>println("Umm cleaning");
     IProject _project = this.getProject();

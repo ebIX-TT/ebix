@@ -3,8 +3,8 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.ebix.umm/src-gen" editDirectory="/org.ebix.umm.edit/src"
     editorDirectory="/org.ebix.umm.editor/src" modelPluginID="org.ebix.umm" forceOverwrite="true"
     modelName="Umm" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    complianceLevel="5.0" copyrightFields="false" editPluginID="org.ebix.umm.edit"
-    editorPluginID="org.ebix.umm.editor" runtimeVersion="2.9">
+    complianceLevel="6.0" copyrightFields="false" editPluginID="org.ebix.umm.edit"
+    editorPluginID="org.ebix.umm.editor" runtimeVersion="2.10">
   <genPackages prefix="Umm" basePackage="org.ebix.umm" disposableProviderFactory="true"
       fileExtensions="umm" ecorePackage="Umm.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Umm.ecore#//ConstraintKind">
@@ -133,7 +133,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTProperty/uniqueIdentifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//BDTProperty/versionIdentifier"/>
     </genClasses>
-    <genClasses ecoreClass="Umm.ecore#//Content"/>
+    <genClasses ecoreClass="Umm.ecore#//Content">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//Content/maxInclusive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//Content/maxExclusive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//Content/minInclusive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//Content/minExclusive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//Content/fractionalDigits"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//Content/totalDigits"/>
+    </genClasses>
     <genClasses ecoreClass="Umm.ecore#//Supplement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//Supplement/defaultValue"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Umm.ecore#//Supplement/restriction"/>

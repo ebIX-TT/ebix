@@ -18,7 +18,6 @@
 package org.ebix.umm.uml2text;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.Lists;
 import java.util.Collections;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
@@ -28,6 +27,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -75,7 +75,7 @@ public class UmmStereotype {
       String _qualifiedName = namedElement.getQualifiedName();
       String _plus = ((("Missing " + tagName) + " for ") + _qualifiedName);
       InputOutput.<String>println(_plus);
-      return Collections.<String>unmodifiableList(Lists.<String>newArrayList());
+      return Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList());
     }
   }
   
@@ -110,12 +110,10 @@ public class UmmStereotype {
   }
   
   public String getDefaultValue(final String tagName) {
-    EList<Property> _allAttributes = this.value.getAllAttributes();
-    final Function1<Property,Boolean> _function = new Function1<Property,Boolean>() {
-      public Boolean apply(final Property p) {
-        String _name = p.getName();
-        return Boolean.valueOf(Objects.equal(_name, tagName));
-      }
+    EList<Property> _allAttributes = this.value.allAttributes();
+    final Function1<Property, Boolean> _function = (Property p) -> {
+      String _name = p.getName();
+      return Boolean.valueOf(Objects.equal(_name, tagName));
     };
     Property _findFirst = IterableExtensions.<Property>findFirst(_allAttributes, _function);
     String _default = null;

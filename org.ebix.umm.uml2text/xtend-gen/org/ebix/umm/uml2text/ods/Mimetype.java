@@ -22,10 +22,12 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class Mimetype extends OdsPart {
+  @Override
   public String fileName() {
     return "mimetype";
   }
   
+  @Override
   public String content() {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("application/vnd.oasis.opendocument.spreadsheet");

@@ -10,10 +10,10 @@ package org.ebix.umm.umm;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.OclStringLiteral#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.ebix.umm.umm.UmmPackage#getOclStringLiteral()
  * @model

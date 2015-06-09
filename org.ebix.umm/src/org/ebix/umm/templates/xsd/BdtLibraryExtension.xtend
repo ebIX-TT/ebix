@@ -27,17 +27,29 @@ import java.util.Collections
 import org.ebix.umm.umm.Assembled
 import org.ebix.umm.umm.BDTLibrary
 import org.ebix.umm.umm.MA
+import java.util.LinkedList
 
 class BdtLibraryExtension {
 
     @Inject extension EnumExtension enumExtension
     
     def String fileName(BDTLibrary library) {
-        return "ebIX_BusinessDataType_" + library.versionIdentifier.replaceAll("\\.", "p") + ".xsd"
+        return "ebIX_MessageDataType_" + library.versionIdentifier.replaceAll("\\.", "p") + ".xsd"
     }
 
     def String fileName(BDTLibrary library, String directory) {
         return directory + "/" + fileName(library)
+    }
+    
+    def String fileName(BDTLibrary library, MA ma) {
+    	if(ma!=null){
+    		return "ebIX_MessageDataType_" + ma.name +"_"+ library.versionIdentifier.replaceAll("\\.", "p") + ".xsd"
+    	}
+        return "ebIX_MessageDataType_" + library.versionIdentifier.replaceAll("\\.", "p") + ".xsd"
+    }
+
+    def String fileName(BDTLibrary library, String directory, MA ma) {
+        return directory + "/" + fileName(library, ma)
     }
 
     def String namespace(BDTLibrary library, MA ma) {
@@ -49,11 +61,12 @@ class BdtLibraryExtension {
     }
 
     def List<Assembled> allReferencedCodelists(BDTLibrary library) {
-        var List<Assembled> referenced = new ArrayList<Assembled>()
+        var List<Assembled> referenced = new LinkedList<Assembled>()
         for (bdt: library.bdts)
             for (property: bdt.properties)
                 if (property.type instanceof Assembled)
-                    referenced.add(property.type as Assembled)
+                	if(!referenced.contains(property.type as Assembled))
+                    	referenced.add(property.type as Assembled)
         Collections::sort(referenced, [ a1, a2 |  a1.fileName.compareTo( a2.fileName ) ] )
         return referenced
     }

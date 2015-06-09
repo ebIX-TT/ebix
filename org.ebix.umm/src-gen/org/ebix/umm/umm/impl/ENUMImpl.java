@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.impl.ENUMImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.ENUMImpl#getBusinessTerm <em>Business Term</em>}</li>
@@ -35,7 +36,6 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  *   <li>{@link org.ebix.umm.umm.impl.ENUMImpl#getUniqueIdentifier <em>Unique Identifier</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.ENUMImpl#getVersionIdentifier <em>Version Identifier</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

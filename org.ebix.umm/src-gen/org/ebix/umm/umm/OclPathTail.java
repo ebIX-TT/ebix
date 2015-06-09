@@ -11,11 +11,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.OclPathTail#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.ebix.umm.umm.OclPathTail#getTail <em>Tail</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.ebix.umm.umm.UmmPackage#getOclPathTail()
  * @model

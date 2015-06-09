@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.impl.ACCImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.ACCImpl#getBusinessTerm <em>Business Term</em>}</li>
@@ -40,7 +41,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.ebix.umm.umm.impl.ACCImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.ACCImpl#getConstraints <em>Constraints</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -57,10 +57,10 @@ class MaSchema {
             version="«ma.library.versionIdentifier»">
             «"Imports".comment»
             «"Inclusions".comment»
-            «"Inclusion of Aggregated Business Information Entities".comment»
-            <xsd:include schemaLocation="«ma.library.bieLibrary.fileName»"/>
-            «"Inclusion of Business Data Types".comment»
-            <xsd:include schemaLocation="«ma.library.bdtLibrary.fileName»"/>
+            «"Inclusion of Message Business Information Entities".comment»
+            <xsd:include schemaLocation="«ma.library.bieLibrary.fileName(otherMa)»"/>
+            «"Inclusion of Message Data Types".comment»
+            <xsd:include schemaLocation="«ma.library.bdtLibrary.fileName(otherMa)»"/>
             «"Element Declarations".comment»
             «"Root Element Declarations".comment»
             «ma.name.comment»

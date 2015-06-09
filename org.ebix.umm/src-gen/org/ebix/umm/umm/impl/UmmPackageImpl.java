@@ -1605,6 +1605,66 @@ public class UmmPackageImpl extends EPackageImpl implements UmmPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getContent_MaxInclusive()
+  {
+    return (EAttribute)contentEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getContent_MaxExclusive()
+  {
+    return (EAttribute)contentEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getContent_MinInclusive()
+  {
+    return (EAttribute)contentEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getContent_MinExclusive()
+  {
+    return (EAttribute)contentEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getContent_FractionalDigits()
+  {
+    return (EAttribute)contentEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getContent_TotalDigits()
+  {
+    return (EAttribute)contentEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getSupplement()
   {
     return supplementEClass;
@@ -3424,6 +3484,12 @@ public class UmmPackageImpl extends EPackageImpl implements UmmPackage
     createEAttribute(bdtPropertyEClass, BDT_PROPERTY__VERSION_IDENTIFIER);
 
     contentEClass = createEClass(CONTENT);
+    createEAttribute(contentEClass, CONTENT__MAX_INCLUSIVE);
+    createEAttribute(contentEClass, CONTENT__MAX_EXCLUSIVE);
+    createEAttribute(contentEClass, CONTENT__MIN_INCLUSIVE);
+    createEAttribute(contentEClass, CONTENT__MIN_EXCLUSIVE);
+    createEAttribute(contentEClass, CONTENT__FRACTIONAL_DIGITS);
+    createEAttribute(contentEClass, CONTENT__TOTAL_DIGITS);
 
     supplementEClass = createEClass(SUPPLEMENT);
     createEAttribute(supplementEClass, SUPPLEMENT__DEFAULT_VALUE);
@@ -3844,6 +3910,12 @@ public class UmmPackageImpl extends EPackageImpl implements UmmPackage
     initEAttribute(getBDTProperty_VersionIdentifier(), ecorePackage.getEString(), "versionIdentifier", null, 0, 1, BDTProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(contentEClass, Content.class, "Content", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getContent_MaxInclusive(), ecorePackage.getEInt(), "maxInclusive", null, 0, 1, Content.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getContent_MaxExclusive(), ecorePackage.getEInt(), "maxExclusive", null, 0, 1, Content.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getContent_MinInclusive(), ecorePackage.getEInt(), "minInclusive", null, 0, 1, Content.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getContent_MinExclusive(), ecorePackage.getEInt(), "minExclusive", null, 0, 1, Content.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getContent_FractionalDigits(), ecorePackage.getEInt(), "fractionalDigits", null, 0, 1, Content.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getContent_TotalDigits(), ecorePackage.getEInt(), "totalDigits", null, 0, 1, Content.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(supplementEClass, Supplement.class, "Supplement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getSupplement_DefaultValue(), ecorePackage.getEString(), "defaultValue", null, 0, 1, Supplement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

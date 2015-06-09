@@ -41,7 +41,7 @@ class BieLibrarySchema {
 
     def compile(BIELibrary library, Constants constants, MA ma) '''
         <?xml version="1.0" encoding="UTF-8"?>
-        «"Aggregated Business Information Entities XML Schema Module".comment»
+        «"Message Business Information Entities XML Schema Module".comment»
         <!--
         Schema agency:     «constants.schemaAgency.value»
         Schema version:    «library.versionIdentifier»
@@ -62,9 +62,9 @@ class BieLibrarySchema {
             version="«library.versionIdentifier»">
             «"Imports".comment»
             «"Inclusions".comment»
-            «"Inclusion of Business Data Types".comment»
-            <xsd:include schemaLocation="«library.bdtLibrary.fileName()»"/>
-            «"Aggregated Business Information Entities Definitions".comment»
+            «"Inclusion of Message Data Types".comment»
+            <xsd:include schemaLocation="«library.bdtLibrary.fileName(ma)»"/>
+            «"Message Business Information Entities Definitions".comment»
             «FOR abie: library.abies»
             «abie.ABIEType(library.namespacePrefix)»
             «ENDFOR»
@@ -107,16 +107,48 @@ class BieLibrarySchema {
 
 
     def dispatch AProperty(BBIE property, String prefix) '''
-        «IF (property.restriction.size == 0)»
+        «IF (property.restriction.size == 0 && (property.type.content==null||(!property.type.content.hasPattern && property.type.content.minLength == 0 && property.type.content.maxLength == 0 && property.type.content.length == 0 && property.type.content.minExclusive == 0 && property.type.content.minInclusive == 0 && property.type.content.maxExclusive == 0 && property.type.content.maxInclusive == 0 && property.type.content.fractionalDigits == 0 && property.type.content.totalDigits == 0)))»
         <xsd:element name="«property.xsdName»" type="«prefix»:«property.type.xsdType»"«IF(property.hasFixedValue)» fixed="«property.fixedValue»"«ENDIF» minOccurs="«property.multiplicity.minOccurs»" maxOccurs="«property.multiplicity.maxOccurs»"/>
         «ELSE»
         <xsd:element name="«property.xsdName»" minOccurs="«property.multiplicity.minOccurs»" maxOccurs="«property.multiplicity.maxOccurs()»">
         «IF (property.type.isSimpleType())»
             <xsd:simpleType>
             	<xsd:restriction base="«prefix»:«property.type.xsdType»">
-                    «FOR restriction: property.restriction.sort»
-                    <xsd:enumeration value="«restriction»"/>
-                    «ENDFOR»   
+	                «FOR restriction: property.restriction.sort»
+	                <xsd:enumeration value="«restriction»"/>
+	                «ENDFOR» 
+	                «IF (property.restriction.size == 0)»
+	                    «IF (property.type.content.hasPattern)»
+	                    <xsd:pattern value="«property.type.content.pattern»"/>
+	                    «ENDIF»
+	                    «IF (property.type.content.minLength != 0)»
+	                    <xsd:minLength value="«property.type.content.minLength»"/>
+	                    «ENDIF»
+	                    «IF (property.type.content.maxLength != 0)»
+	                    <xsd:maxLength value="«property.type.content.maxLength»"/>
+	                    «ENDIF»
+	                    «IF (property.type.content.length != 0)»
+	                    <xsd:length value="«property.type.content.length»"/>
+	                    «ENDIF»
+	                    «IF (property.type.content.minExclusive != 0)»
+	                    <xsd:minExclusive value="«property.type.content.minExclusive»"/>
+	                    «ENDIF»
+	                    «IF (property.type.content.minInclusive != 0)»
+	                    <xsd:minInclusive value="«property.type.content.minInclusive»"/>
+	                    «ENDIF»
+	                    «IF (property.type.content.maxExclusive != 0)»
+	                    <xsd:maxExclusive value="«property.type.content.maxExclusive»"/>
+	                    «ENDIF»
+	                    «IF (property.type.content.maxInclusive != 0)»
+	                    <xsd:maxInclusive value="«property.type.content.maxInclusive»"/>
+	                    «ENDIF»
+	                    «IF (property.type.content.fractionalDigits != 0)»
+	                    <xsd:fractionalDigits value="«property.type.content.fractionalDigits»"/>
+	                    «ENDIF»
+	                    «IF (property.type.content.totalDigits != 0)»
+	                    <xsd:totalDigits value="«property.type.content.totalDigits»"/>
+	                	«ENDIF»
+	            	«ENDIF»
                 </xsd:restriction>
             </xsd:simpleType>
         «ELSE»
@@ -125,7 +157,39 @@ class BieLibrarySchema {
                     <xsd:restriction base="«prefix»:«property.type.xsdType»">
                         «FOR restriction: property.restriction.sort»
                         <xsd:enumeration value="«restriction»"/>
-                        «ENDFOR»   
+                        «ENDFOR»  
+                        «IF (property.restriction.size == 0)»
+                            «IF (property.type.content.hasPattern)»
+                            <xsd:pattern value="«property.type.content.pattern»"/>
+                            «ENDIF»
+                            «IF (property.type.content.minLength != 0)»
+                            <xsd:minLength value="«property.type.content.minLength»"/>
+                            «ENDIF»
+                            «IF (property.type.content.maxLength != 0)»
+                            <xsd:maxLength value="«property.type.content.maxLength»"/>
+                            «ENDIF»
+                            «IF (property.type.content.length != 0)»
+                            <xsd:length value="«property.type.content.length»"/>
+                            «ENDIF»
+                            «IF (property.type.content.minExclusive != 0)»
+                            <xsd:minExclusive value="«property.type.content.minExclusive»"/>
+                            «ENDIF»
+                            «IF (property.type.content.minInclusive != 0)»
+                            <xsd:minInclusive value="«property.type.content.minInclusive»"/>
+                            «ENDIF»
+                            «IF (property.type.content.maxExclusive != 0)»
+                            <xsd:maxExclusive value="«property.type.content.maxExclusive»"/>
+                            «ENDIF»
+                            «IF (property.type.content.maxInclusive != 0)»
+                            <xsd:maxInclusive value="«property.type.content.maxInclusive»"/>
+                            «ENDIF»
+                            «IF (property.type.content.fractionalDigits != 0)»
+                            <xsd:fractionalDigits value="«property.type.content.fractionalDigits»"/>
+                            «ENDIF»
+                            «IF (property.type.content.totalDigits != 0)»
+                            <xsd:totalDigits value="«property.type.content.totalDigits»"/>
+                            «ENDIF»
+                        «ENDIF»
                     </xsd:restriction>
                 </xsd:simpleContent>
             </xsd:complexType>

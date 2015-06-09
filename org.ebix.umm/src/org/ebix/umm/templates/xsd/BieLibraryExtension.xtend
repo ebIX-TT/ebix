@@ -24,11 +24,22 @@ import org.ebix.umm.umm.MA
 class BieLibraryExtension {
     
     def String fileName(BIELibrary library) {
-        return "ebIX_AggregatedBusinessInformationEntities_" + library.versionIdentifier.replaceAll("\\.", "p") + ".xsd"
+        return "ebIX_MessageBusinessInformationEntities_" + library.versionIdentifier.replaceAll("\\.", "p") + ".xsd"
     }
 
     def String fileName(BIELibrary library, String directory) {
         directory + "/" + fileName(library)
+    }
+    
+    def String fileName(BIELibrary library, MA ma) {
+    	if(ma !=null){
+    		return "ebIX_MessageBusinessInformationEntities_" + ma.name +"_"+ library.versionIdentifier.replaceAll("\\.", "p") + ".xsd"
+    	}
+    	return "ebIX_MessageBusinessInformationEntities_" + library.versionIdentifier.replaceAll("\\.", "p") + ".xsd"
+    }
+
+    def String fileName(BIELibrary library, String directory, MA ma) {
+        directory + "/" + fileName(library, ma)
     }
 
     def String namespace(BIELibrary library, MA ma) {

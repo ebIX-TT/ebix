@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.BDT#getBusinessTerm <em>Business Term</em>}</li>
  *   <li>{@link org.ebix.umm.umm.BDT#getDefinition <em>Definition</em>}</li>
@@ -19,7 +20,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.ebix.umm.umm.BDT#getVersionIdentifier <em>Version Identifier</em>}</li>
  *   <li>{@link org.ebix.umm.umm.BDT#getProperties <em>Properties</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.ebix.umm.umm.UmmPackage#getBDT()
  * @model

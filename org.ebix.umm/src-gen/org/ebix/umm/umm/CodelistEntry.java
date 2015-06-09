@@ -11,11 +11,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.CodelistEntry#getName <em>Name</em>}</li>
  *   <li>{@link org.ebix.umm.umm.CodelistEntry#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.ebix.umm.umm.UmmPackage#getCodelistEntry()
  * @model

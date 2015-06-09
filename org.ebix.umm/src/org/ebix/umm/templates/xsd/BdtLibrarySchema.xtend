@@ -31,7 +31,7 @@ class BdtLibrarySchema {
         -->
         <xsd:schema
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-            xmlns:bdt="«library.namespace(null)»"
+            xmlns:bdt="«library.namespace(ma)»"
             xmlns:ccts="urn:un:unece:uncefact:documentation:common:3:standard:CoreComponentsTechnicalSpecification:3"
             xmlns:xbt="urn:un:unece:uncefact:data:common:1:draft"
             targetNamespace="«library.namespace(ma)»"

@@ -78,10 +78,8 @@ public class EnumLibrary2Text {
       InputOutput.<String>println("Generating ENUMLibraries ...");
       EList<Element> _allOwnedElements = umlModel.allOwnedElements();
       Iterable<org.eclipse.uml2.uml.Package> _filter = Iterables.<org.eclipse.uml2.uml.Package>filter(_allOwnedElements, org.eclipse.uml2.uml.Package.class);
-      final Function1<org.eclipse.uml2.uml.Package,Boolean> _function = new Function1<org.eclipse.uml2.uml.Package,Boolean>() {
-        public Boolean apply(final org.eclipse.uml2.uml.Package p) {
-          return Boolean.valueOf(EnumLibrary2Text.this.enumlibraryExtension.isEnumLibrary(p));
-        }
+      final Function1<org.eclipse.uml2.uml.Package, Boolean> _function = (org.eclipse.uml2.uml.Package p) -> {
+        return Boolean.valueOf(this.enumlibraryExtension.isEnumLibrary(p));
       };
       Iterable<org.eclipse.uml2.uml.Package> _filter_1 = IterableExtensions.<org.eclipse.uml2.uml.Package>filter(_filter, _function);
       for (final org.eclipse.uml2.uml.Package umlPackage : _filter_1) {
@@ -207,10 +205,8 @@ public class EnumLibrary2Text {
     {
       EList<Element> _allOwnedElements = umlPackage.allOwnedElements();
       Iterable<Enumeration> _filter = Iterables.<Enumeration>filter(_allOwnedElements, Enumeration.class);
-      final Function1<Enumeration,Boolean> _function = new Function1<Enumeration,Boolean>() {
-        public Boolean apply(final Enumeration e) {
-          return Boolean.valueOf(e.isStereotypeApplied(EnumLibrary2Text.this.ENUM));
-        }
+      final Function1<Enumeration, Boolean> _function = (Enumeration e) -> {
+        return Boolean.valueOf(e.isStereotypeApplied(this.ENUM));
       };
       Iterable<Enumeration> _filter_1 = IterableExtensions.<Enumeration>filter(_filter, _function);
       for(final Enumeration e : _filter_1) {
@@ -248,10 +244,8 @@ public class EnumLibrary2Text {
         {
           EList<Classifier> _generals = e.getGenerals();
           Iterable<Enumeration> _filter = Iterables.<Enumeration>filter(_generals, Enumeration.class);
-          final Function1<Enumeration,Boolean> _function = new Function1<Enumeration,Boolean>() {
-            public Boolean apply(final Enumeration g) {
-              return Boolean.valueOf(g.isStereotypeApplied(EnumLibrary2Text.this.Original));
-            }
+          final Function1<Enumeration, Boolean> _function = (Enumeration g) -> {
+            return Boolean.valueOf(g.isStereotypeApplied(this.Original));
           };
           Iterable<Enumeration> _filter_1 = IterableExtensions.<Enumeration>filter(_filter, _function);
           boolean _hasElements = false;
@@ -271,10 +265,8 @@ public class EnumLibrary2Text {
         {
           EList<Classifier> _generals_1 = e.getGenerals();
           Iterable<Enumeration> _filter_2 = Iterables.<Enumeration>filter(_generals_1, Enumeration.class);
-          final Function1<Enumeration,Boolean> _function_1 = new Function1<Enumeration,Boolean>() {
-            public Boolean apply(final Enumeration g) {
-              return Boolean.valueOf(g.isStereotypeApplied(EnumLibrary2Text.this.Subset));
-            }
+          final Function1<Enumeration, Boolean> _function_1 = (Enumeration g) -> {
+            return Boolean.valueOf(g.isStereotypeApplied(this.Subset));
           };
           Iterable<Enumeration> _filter_3 = IterableExtensions.<Enumeration>filter(_filter_2, _function_1);
           boolean _hasElements_1 = false;
@@ -416,10 +408,8 @@ public class EnumLibrary2Text {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EnumerationLiteral> _ownedLiterals = e.getOwnedLiterals();
-      final Function1<EnumerationLiteral,Boolean> _function = new Function1<EnumerationLiteral,Boolean>() {
-        public Boolean apply(final EnumerationLiteral l) {
-          return Boolean.valueOf(l.isStereotypeApplied(EnumLibrary2Text.this.CodelistEntry));
-        }
+      final Function1<EnumerationLiteral, Boolean> _function = (EnumerationLiteral l) -> {
+        return Boolean.valueOf(l.isStereotypeApplied(this.CodelistEntry));
       };
       Iterable<EnumerationLiteral> _filter = IterableExtensions.<EnumerationLiteral>filter(_ownedLiterals, _function);
       for(final EnumerationLiteral codelistEntry : _filter) {

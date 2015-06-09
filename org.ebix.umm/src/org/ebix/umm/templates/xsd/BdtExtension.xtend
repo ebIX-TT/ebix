@@ -54,6 +54,9 @@ class BdtExtension {
     }
 
     def Content content(BDT bdt) {
+    	if(bdt==null || bdt.properties==null || bdt.properties.filter(typeof(Content))==null){
+    		return null
+    	}
         return bdt.properties.filter(typeof(Content)).head
     }
 	

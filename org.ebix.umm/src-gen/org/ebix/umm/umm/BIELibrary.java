@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.BIELibrary#getBusinessTerm <em>Business Term</em>}</li>
  *   <li>{@link org.ebix.umm.umm.BIELibrary#getCopyright <em>Copyright</em>}</li>
@@ -23,7 +24,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.ebix.umm.umm.BIELibrary#getBdtLibrary <em>Bdt Library</em>}</li>
  *   <li>{@link org.ebix.umm.umm.BIELibrary#getAbies <em>Abies</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.ebix.umm.umm.UmmPackage#getBIELibrary()
  * @model

@@ -25,11 +25,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.impl.MAImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.MAImpl#getConstraints <em>Constraints</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

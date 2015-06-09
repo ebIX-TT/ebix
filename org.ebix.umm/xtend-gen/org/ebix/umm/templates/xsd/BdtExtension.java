@@ -73,9 +73,30 @@ public class BdtExtension {
   }
   
   public Content content(final BDT bdt) {
-    EList<BDTProperty> _properties = bdt.getProperties();
-    Iterable<Content> _filter = Iterables.<Content>filter(_properties, Content.class);
-    return IterableExtensions.<Content>head(_filter);
+    boolean _or = false;
+    boolean _or_1 = false;
+    boolean _equals = Objects.equal(bdt, null);
+    if (_equals) {
+      _or_1 = true;
+    } else {
+      EList<BDTProperty> _properties = bdt.getProperties();
+      boolean _equals_1 = Objects.equal(_properties, null);
+      _or_1 = _equals_1;
+    }
+    if (_or_1) {
+      _or = true;
+    } else {
+      EList<BDTProperty> _properties_1 = bdt.getProperties();
+      Iterable<Content> _filter = Iterables.<Content>filter(_properties_1, Content.class);
+      boolean _equals_2 = Objects.equal(_filter, null);
+      _or = _equals_2;
+    }
+    if (_or) {
+      return null;
+    }
+    EList<BDTProperty> _properties_2 = bdt.getProperties();
+    Iterable<Content> _filter_1 = Iterables.<Content>filter(_properties_2, Content.class);
+    return IterableExtensions.<Content>head(_filter_1);
   }
   
   public String xsdQualifiedType(final BDTProperty property) {

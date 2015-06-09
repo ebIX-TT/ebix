@@ -11,11 +11,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.Assembled#getOriginals <em>Originals</em>}</li>
  *   <li>{@link org.ebix.umm.umm.Assembled#getSubsets <em>Subsets</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.ebix.umm.umm.UmmPackage#getAssembled()
  * @model

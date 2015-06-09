@@ -184,6 +184,12 @@ Content:
 		('minLength:' minLength=INT)?	
 		('maxLength:' maxLength=INT)?	
 		('length:' length=INT)?	
+		('maxInclusive:' maxInclusive=INT)?	
+		('maxExclusive:' maxExclusive=INT)?	
+		('minInclusive:' minInclusive=INT)?	
+		('minExclusive:' minExclusive=INT)?	
+		('fractionalDigits:' fractionalDigits=INT)?	
+		('totalDigits:' totalDigits=INT)?
 	'{'
 		'businessTerm:'     (businessTerm+=STRING (',' businessTerm+=STRING)* )?
 		'definition:'        definition=STRING

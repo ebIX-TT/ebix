@@ -10,11 +10,11 @@ package org.ebix.umm.umm;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.OclPathFeatureHead#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.ebix.umm.umm.OclPathFeatureHead#getTail <em>Tail</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.ebix.umm.umm.UmmPackage#getOclPathFeatureHead()
  * @model

@@ -17,12 +17,12 @@
  */
 package org.ebix.umm.templates;
 
-import com.google.common.collect.Lists;
 import java.util.Collections;
 import java.util.List;
 import org.ebix.umm.templates.Constant;
 import org.ebix.umm.templates.SchemaDate;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 
 @SuppressWarnings("all")
 public class Constants {
@@ -40,7 +40,7 @@ public class Constants {
   
   public final Constant disclaimer = new Constant("Disclaimer", this.defaultDisclaimerText().toString());
   
-  public final List<Constant> allConstants = Collections.<Constant>unmodifiableList(Lists.<Constant>newArrayList(this.schemaAgency, this.copyright, this.disclaimer));
+  public final List<Constant> allConstants = Collections.<Constant>unmodifiableList(CollectionLiterals.<Constant>newArrayList(this.schemaAgency, this.copyright, this.disclaimer));
   
   private String schemaLocation;
   

@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.BDTProperty#getType <em>Type</em>}</li>
  *   <li>{@link org.ebix.umm.umm.BDTProperty#getPattern <em>Pattern</em>}</li>
@@ -23,7 +24,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.ebix.umm.umm.BDTProperty#getUniqueIdentifier <em>Unique Identifier</em>}</li>
  *   <li>{@link org.ebix.umm.umm.BDTProperty#getVersionIdentifier <em>Version Identifier</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.ebix.umm.umm.UmmPackage#getBDTProperty()
  * @model
