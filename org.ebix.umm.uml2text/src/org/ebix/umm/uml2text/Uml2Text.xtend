@@ -33,7 +33,7 @@ class Uml2Text {
 	public UmmStereotypes ummStereotypes = new UmmStereotypes
 	
 	def static void main(String[] args) {
-        val fileURI = "/home/peter/Development/ws-uml/uml-2012A2/model/European_Energy_Market.uml".createFileURI
+        val fileURI = "/home/xrdj6c/workspace/new/runtime-Umm.product/Test3/uml/European_Energy_Market.uml".createFileURI
 		val fw = new FileWriterStandaloneImpl
     	val resourceSet = new ResourceSetImpl();
     	resourceSet.init   // standalone UML2 initialization

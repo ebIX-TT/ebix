@@ -38,11 +38,44 @@ class BdtExtension {
     @Inject extension PrimitiveExtension primitiveExtension
     
 	def String xsdName(BDT bdt) {
+		if(bdt == null) return "undefined";
 	    return bdt.name.typeNameRule
 	}
 	
 	def String xsdType(BDT bdt) {
+		if(bdt == null) return "undefined";
+		if(bdt.xsdName.containsString("DateTimeType")){
+			return "xsd:datetime"
+		} else if(bdt.xsdName.containsString("DateType")){
+			bdt.properties.get(0).pattern = "[0-9]{4}-[0-1][0-9]-[0-3][0-9]"
+			return "xsd:date"
+		} else if(bdt.xsdName.containsString("TimeType")){
+			bdt.properties.get(0).pattern = "[0-2][0-9]:[0-5][0-9]:[0-5][0-9]";
+			return "xsd:time"
+		} else if(bdt.xsdName.containsString("UTCOffsetDateTimeType")){
+			bdt.properties.get(0).pattern = "[0-9]{4}-[0-1][0-9]-[0-3][0-9]T[0-2][0-9]:[0-5][0-9]:[0-5][0-9].[0-9]*[\\+|-][0-2][0-9]:[0-6][0-9]";
+			return "xsd:datetime"
+		} else if(bdt.xsdName.containsString("UTCDateTimeType")){
+			bdt.properties.get(0).pattern = "[0-9]{4}-[0-1][0-9]-[0-3][0-9]T[0-2][0-9]:[0-5][0-9]:[0-5][0-9].[0-9]*Z";
+			return "xsd:datetime"
+		} else if(bdt.xsdName.containsString("DayDateType")){
+			bdt.properties.get(0).pattern = "---[0-3][0-9]";
+			return "xsd:gDay"
+		} else if(bdt.xsdName.containsString("YearDateType")){
+			bdt.properties.get(0).pattern = "[0-9]{4}";
+			return "xsd:gYear"
+		} else if(bdt.xsdName.containsString("MonthDateType")){
+			bdt.properties.get(0).pattern = "--[0-1][0-9]--";
+			return "xsd:gMonth"
+		} else if(bdt.xsdName.containsString("MonthDayDateType")){
+			bdt.properties.get(0).pattern = "--[0-1][0-9]-[0-3][0-9]";
+			return "xsd:date"
+		} else
 	    return bdt.xsdName + "_" + bdt.uniqueIdentifier; 
+	}
+
+	def boolean containsString(String searchIn, String searchFor){
+		return searchIn.toLowerCase.contains(searchFor.toLowerCase);
 	}
 
     def String conQualifiedType(BDT bdt) {
@@ -63,9 +96,16 @@ class BdtExtension {
     def String xsdQualifiedType(BDTProperty property) {
         if (property.type instanceof Assembled) {
             return "bdt:" + (property.type as Assembled).xsdType
-        } else {
-            return (property.type as Primitive).xsdQualifiedType
+        } else if(property.type.name.equals("DateTimeType")){
+        	return "xsd:dateTime"
+        } else if(property.type.name.equals("DateType")){
+        	return "xsd:date"
+        } else if(property.type.name.equals("TimeType")){
+        	return "xsd:time"
         }
+         else { 
+        	return (property.type as Primitive).xsdQualifiedType
+        } 
     }
     
     def boolean isExtraRestricted(BDTProperty property) {

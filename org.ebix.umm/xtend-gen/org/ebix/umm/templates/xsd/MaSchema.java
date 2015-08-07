@@ -22,6 +22,7 @@ import org.ebix.umm.templates.Constants;
 import org.ebix.umm.templates.xsd.AbieExtension;
 import org.ebix.umm.templates.xsd.BdtLibraryExtension;
 import org.ebix.umm.templates.xsd.BieLibraryExtension;
+import org.ebix.umm.templates.xsd.DateTypesSchema;
 import org.ebix.umm.templates.xsd.MaExtension;
 import org.ebix.umm.templates.xsd.MultiplicityKindExtension;
 import org.ebix.umm.templates.xsd.Xml;
@@ -61,6 +62,10 @@ public class MaSchema {
   @Inject
   @Extension
   private MultiplicityKindExtension multiplicityExtension;
+  
+  @Inject
+  @Extension
+  private DateTypesSchema dateTypesSchema;
   
   public CharSequence compile(final MA ma, final Constants constants, final MA otherMa) {
     StringConcatenation _builder = new StringConcatenation();
@@ -157,6 +162,12 @@ public class MaSchema {
     BDTLibrary _bdtLibrary = _library_3.getBdtLibrary();
     String _fileName_1 = this.bdtLibraryExtension.fileName(_bdtLibrary, otherMa);
     _builder.append(_fileName_1, "    ");
+    _builder.append("\"/>");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("<xsd:include schemaLocation=\"");
+    String _fileName_2 = this.dateTypesSchema.getFileName();
+    _builder.append(_fileName_2, "    ");
     _builder.append("\"/>");
     _builder.newLineIfNotEmpty();
     _builder.append("    ");

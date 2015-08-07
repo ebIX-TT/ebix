@@ -43,7 +43,7 @@ public class Uml2Text {
   public UmmStereotypes ummStereotypes = new UmmStereotypes();
   
   public static void main(final String[] args) {
-    final URI fileURI = URI.createFileURI("/home/peter/Development/ws-uml/uml-2012A2/model/European_Energy_Market.uml");
+    final URI fileURI = URI.createFileURI("/home/xrdj6c/workspace/new/runtime-Umm.product/Test3/uml/European_Energy_Market.uml");
     final FileWriterStandaloneImpl fw = new FileWriterStandaloneImpl();
     final ResourceSetImpl resourceSet = new ResourceSetImpl();
     UMLResourcesUtil.init(resourceSet);

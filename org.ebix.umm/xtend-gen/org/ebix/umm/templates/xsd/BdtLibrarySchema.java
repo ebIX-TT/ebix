@@ -7,6 +7,7 @@ import java.util.List;
 import org.ebix.umm.templates.Constants;
 import org.ebix.umm.templates.xsd.BdtExtension;
 import org.ebix.umm.templates.xsd.BdtLibraryExtension;
+import org.ebix.umm.templates.xsd.DateTypesSchema;
 import org.ebix.umm.templates.xsd.EnumExtension;
 import org.ebix.umm.templates.xsd.MultiplicityKindExtension;
 import org.ebix.umm.templates.xsd.Xml;
@@ -44,6 +45,10 @@ public class BdtLibrarySchema {
   @Inject
   @Extension
   private MultiplicityKindExtension multiplicityExtension;
+  
+  @Inject
+  @Extension
+  private DateTypesSchema dateTypesSchema;
   
   public CharSequence compile(final BDTLibrary library, final Constants constants, final MA ma) {
     StringConcatenation _builder = new StringConcatenation();
@@ -135,6 +140,12 @@ public class BdtLibrarySchema {
             _builder.newLineIfNotEmpty();
           }
         }
+        _builder.append("    ");
+        _builder.append("<xsd:include schemaLocation=\"");
+        String _fileName_1 = this.dateTypesSchema.getFileName();
+        _builder.append(_fileName_1, "    ");
+        _builder.append("\"/>");
+        _builder.newLineIfNotEmpty();
       } else {
         _builder.append("    ");
         CharSequence _comment_3 = this.xmlExtension.comment("Import of Code Lists");
@@ -158,8 +169,8 @@ public class BdtLibrarySchema {
           for(final Assembled codelist_1 : _allReferencedCodelists_1) {
             _builder.append("    ");
             _builder.append("<xsd:include schemaLocation=\"");
-            String _fileName_1 = this.enumExtension.fileName(codelist_1);
-            _builder.append(_fileName_1, "    ");
+            String _fileName_2 = this.enumExtension.fileName(codelist_1);
+            _builder.append(_fileName_2, "    ");
             _builder.append("\"/>");
             _builder.newLineIfNotEmpty();
           }

@@ -34,6 +34,7 @@ import org.ebix.umm.templates.xsd.EnumExtension
 import org.ebix.umm.templates.xsd.EnumSchema
 import org.ebix.umm.templates.xsd.MaExtension
 import org.ebix.umm.templates.xsd.MaSchema
+import org.ebix.umm.templates.xsd.DateTypesSchema
 import org.ebix.umm.invariants.Invariants
 import org.ebix.umm.invariants.Prune
 
@@ -59,6 +60,7 @@ class GenerateXsd {
     @Inject extension EnumExtension        enumExtension
     @Inject extension MaExtension          maExtension
     @Inject extension MaSchema             maSchema
+    @Inject extension DateTypesSchema	   dateTypesSchema	
     @Inject extension Invariants           invariants
     @Inject extension Prune                prune
     
@@ -76,6 +78,7 @@ class GenerateXsd {
                 fsa.generateFile(e.fileName(location), e.compile(constants))
             }
         }
+        fsa.generateFile(dateTypesSchema.fileName(location), dateTypesSchema.compile())
     	constants.setSchemaLocation("../../generic/")
         for(bdtLibrary: resource.allContents.toIterable.filter(typeof(BDTLibrary))) {
             fsa.generateFile(bdtLibrary.fileName(location), bdtLibrary.compile(constants, null))

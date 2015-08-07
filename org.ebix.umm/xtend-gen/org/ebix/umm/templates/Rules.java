@@ -20,6 +20,7 @@ package org.ebix.umm.templates;
 @SuppressWarnings("all")
 public class Rules {
   public String typeNameRule(final String name) {
-    return name.replaceAll("_", "");
+    String _replaceAll = name.replaceAll("_", "");
+    return _replaceAll.replaceAll("\\s+", "");
   }
 }

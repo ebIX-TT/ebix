@@ -33,6 +33,7 @@ class MaSchema {
     @Inject extension BieLibraryExtension bieLibraryExtension
     @Inject extension MaExtension maExtension
     @Inject extension MultiplicityKindExtension multiplicityExtension
+    @Inject extension DateTypesSchema dateTypesSchema
 
     def compile(MA ma, Constants constants, MA otherMa) '''
         <?xml version="1.0" encoding="UTF-8"?>
@@ -61,6 +62,7 @@ class MaSchema {
             <xsd:include schemaLocation="«ma.library.bieLibrary.fileName(otherMa)»"/>
             «"Inclusion of Message Data Types".comment»
             <xsd:include schemaLocation="«ma.library.bdtLibrary.fileName(otherMa)»"/>
+            <xsd:include schemaLocation="«dateTypesSchema.getFileName()»"/>
             «"Element Declarations".comment»
             «"Root Element Declarations".comment»
             «ma.name.comment»

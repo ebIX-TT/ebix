@@ -16,6 +16,7 @@ class BdtLibrarySchema {
     @Inject extension BdtExtension bdtExtension
     @Inject extension EnumExtension enumExtension
     @Inject extension MultiplicityKindExtension multiplicityExtension
+    @Inject extension DateTypesSchema dateTypesSchema
 
     def compile(BDTLibrary library, Constants constants, MA ma) '''
         <?xml version="1.0" encoding="UTF-8"?>
@@ -44,6 +45,7 @@ class BdtLibrarySchema {
             «FOR codelist: library.allReferencedCodelists()»
             <xsd:import namespace="«library.namespace(null)»" schemaLocation="«constants.schemaLocation»«codelist.fileName»"/>
             «ENDFOR»
+            <xsd:include schemaLocation="«dateTypesSchema.getFileName()»"/>
             «ELSE»
             «"Import of Code Lists".comment»
             «ENDIF»

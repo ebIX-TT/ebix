@@ -29,22 +29,26 @@ import org.eclipse.emf.ecore.EObject;
 @SuppressWarnings("all")
 public class EnumExtension {
   protected String _xsdName(final ENUM e) {
-    return e.getName();
+    String _name = e.getName();
+    return _name.replaceAll("\\s+", "");
   }
   
   protected String _xsdName(final Original original) {
     String _name = original.getName();
-    return ("Original" + _name);
+    String _replaceAll = _name.replaceAll("\\s+", "");
+    return ("Original" + _replaceAll);
   }
   
   protected String _xsdName(final Subset subset) {
     String _name = subset.getName();
-    return ("Subset" + _name);
+    String _replaceAll = _name.replaceAll("\\s+", "");
+    return ("Subset" + _replaceAll);
   }
   
   protected String _xsdName(final Assembled assembled) {
     String _name = assembled.getName();
-    return ("Assembled" + _name);
+    String _replaceAll = _name.replaceAll("\\s+", "");
+    return ("Assembled" + _replaceAll);
   }
   
   public ENUMLibrary library(final ENUM e) {

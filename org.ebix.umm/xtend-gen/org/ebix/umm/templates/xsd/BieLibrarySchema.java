@@ -26,6 +26,7 @@ import org.ebix.umm.templates.xsd.AbieExtension;
 import org.ebix.umm.templates.xsd.BdtExtension;
 import org.ebix.umm.templates.xsd.BdtLibraryExtension;
 import org.ebix.umm.templates.xsd.BieLibraryExtension;
+import org.ebix.umm.templates.xsd.DateTypesSchema;
 import org.ebix.umm.templates.xsd.MultiplicityKindExtension;
 import org.ebix.umm.templates.xsd.Xml;
 import org.ebix.umm.umm.ABIE;
@@ -70,6 +71,10 @@ public class BieLibrarySchema {
   @Extension
   private MultiplicityKindExtension multiplicityExtension;
   
+  @Inject
+  @Extension
+  private DateTypesSchema dateTypesSchema;
+  
   public CharSequence compile(final BIELibrary library, final Constants constants, final MA ma) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
@@ -98,7 +103,7 @@ public class BieLibrarySchema {
     _builder.newLineIfNotEmpty();
     _builder.append("-->");
     _builder.newLine();
-    _builder.append("<xsd:schema");
+    _builder.append("<xsd:schemau");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"");
@@ -152,6 +157,14 @@ public class BieLibrarySchema {
     _builder.append(_fileName, "    ");
     _builder.append("\"/>");
     _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("<xsd:include schemaLocation=\"");
+    String _fileName_1 = this.dateTypesSchema.getFileName();
+    _builder.append(_fileName_1, "    ");
+    _builder.append("\"/>");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.newLine();
     _builder.append("    ");
     CharSequence _comment_4 = this.xmlExtension.comment("Message Business Information Entities Definitions");
     _builder.append(_comment_4, "    ");

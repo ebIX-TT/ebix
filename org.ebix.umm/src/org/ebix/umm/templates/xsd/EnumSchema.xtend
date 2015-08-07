@@ -33,6 +33,7 @@ class EnumSchema {
     @Inject extension Xml xmlExtension
     @Inject extension AssembledExtension assembledExtension
     @Inject extension EnumExtension enumExtension
+    @Inject extension DateTypesSchema dateTypesSchema
 
     
     def compile(ENUM e, Constants constants) '''
@@ -64,6 +65,7 @@ class EnumSchema {
             «"Imports".comment»
             «imports(e)»
             «includes(e)»
+«««            <xsd:include schemaLocation="«dateTypesSchema.getFileName()»"/>
             «"Root element for this code list".comment»
             <xsd:element name="«e.xsdName»" 
                 type="«e.xsdQualifiedType»"/>

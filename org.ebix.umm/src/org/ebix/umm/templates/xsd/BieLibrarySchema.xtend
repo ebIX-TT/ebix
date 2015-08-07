@@ -37,6 +37,7 @@ class BieLibrarySchema {
     @Inject extension BdtLibraryExtension bdtLibraryExtension
     @Inject extension BieLibraryExtension bieLibraryExtension
     @Inject extension MultiplicityKindExtension multiplicityExtension
+    @Inject extension DateTypesSchema dateTypesSchema
 
 
     def compile(BIELibrary library, Constants constants, MA ma) '''
@@ -51,7 +52,7 @@ class BieLibrarySchema {
         
         «constants.disclaimer.value»
         -->
-        <xsd:schema
+        <xsd:schemau
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             xmlns:bie="«library.namespace(ma)»"
             xmlns:ccts="urn:un:unece:uncefact:documentation:common:3:standard:CoreComponentsTechnicalSpecification:3"
@@ -64,6 +65,8 @@ class BieLibrarySchema {
             «"Inclusions".comment»
             «"Inclusion of Message Data Types".comment»
             <xsd:include schemaLocation="«library.bdtLibrary.fileName(ma)»"/>
+            <xsd:include schemaLocation="«dateTypesSchema.getFileName()»"/>
+            
             «"Message Business Information Entities Definitions".comment»
             «FOR abie: library.abies»
             «abie.ABIEType(library.namespacePrefix)»

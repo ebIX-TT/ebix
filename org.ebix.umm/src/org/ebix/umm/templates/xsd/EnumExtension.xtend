@@ -27,19 +27,19 @@ import org.ebix.umm.umm.Subset
 class EnumExtension {
     
     def dispatch String xsdName(ENUM e) {
-        return e.name
+        return e.name.replaceAll("\\s+","")
     }
     
     def dispatch String xsdName(Original original) {
-        return "Original" + original.name
+        return "Original" + original.name.replaceAll("\\s+","")
     }
     
     def dispatch String xsdName(Subset subset) {
-        return "Subset" + subset.name
+        return "Subset" + subset.name.replaceAll("\\s+","")
     }
     
     def dispatch String xsdName(Assembled assembled) {
-        return "Assembled" + assembled.name
+        return "Assembled" + assembled.name.replaceAll("\\s+","")
     }
 
     def ENUMLibrary library(ENUM e) {
