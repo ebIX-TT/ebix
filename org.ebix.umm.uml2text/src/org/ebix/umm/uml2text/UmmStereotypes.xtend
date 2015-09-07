@@ -29,12 +29,12 @@ class UmmStereotypes {
 	public final UmmStereotype ASMA =             new UmmStereotype("ASMA",             "Business Document Library::ASMA")
 
 	// Constraint  
-	public final UmmStereotype TC_Document =      new UmmStereotype("document",         "Transformation XML::document")
-	public final UmmStereotype TC_Payload =       new UmmStereotype("payload",          "Transformation XML::payload")
-	public final UmmStereotype TC_ABIE =          new UmmStereotype("abie",             "Transformation XML::abie")
-	public final UmmStereotype TC_BDT =           new UmmStereotype("bdt",              "Transformation XML::bdt")
-	public final UmmStereotype TC_Dependency =    new UmmStereotype("dependency",       "Transformation XML::dependency")
-	public final UmmStereotype TC_Facet =         new UmmStereotype("facet",            "Transformation XML::facet")
+	public final UmmStereotype TC_Document =      new UmmStereotype("document",         "TransformationXML::document")
+	public final UmmStereotype TC_Payload =       new UmmStereotype("payload",          "TransformationXML::payload")
+	public final UmmStereotype TC_ABIE =          new UmmStereotype("abie",             "TransformationXML::abie")
+	public final UmmStereotype TC_BDT =           new UmmStereotype("bdt",              "TransformationXML::bdt")
+	public final UmmStereotype TC_Dependency =    new UmmStereotype("dependency",       "TransformationXML::dependency")
+	public final UmmStereotype TC_Facet =         new UmmStereotype("facet",            "TransformationXML::facet")
 
 	// BIE library contains ABIE's
 	public final UmmStereotype BIELibrary =       new UmmStereotype("BIELibrary",       "ebIX stereotypes::e-BIELibrary")
