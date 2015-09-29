@@ -44,38 +44,38 @@ class BdtExtension {
 	
 	def String xsdType(BDT bdt) {
 		if(bdt == null) return "undefined";
-		if(bdt.xsdName.containsString("DateTimeType")){
+		if(bdt.xsdName.equals("DateTimeType")){
 			return "xsd:datetime"
-		} else if(bdt.xsdName.containsString("DateType")){
+		} else if(bdt.xsdName.equals("DateType")){
 			bdt.properties.get(0).pattern = "[0-9]{4}-[0-1][0-9]-[0-3][0-9]"
 			return "xsd:date"
-		} else if(bdt.xsdName.containsString("TimeType")){
+		} else if(bdt.xsdName.equals("TimeType")){
 			bdt.properties.get(0).pattern = "[0-2][0-9]:[0-5][0-9]:[0-5][0-9]";
 			return "xsd:time"
-		} else if(bdt.xsdName.containsString("UTCOffsetDateTimeType")){
+		} else if(bdt.xsdName.equals("UTCOffsetDateTimeType")){
 			bdt.properties.get(0).pattern = "[0-9]{4}-[0-1][0-9]-[0-3][0-9]T[0-2][0-9]:[0-5][0-9]:[0-5][0-9].[0-9]*[\\+|-][0-2][0-9]:[0-6][0-9]";
 			return "xsd:datetime"
-		} else if(bdt.xsdName.containsString("UTCDateTimeType")){
+		} else if(bdt.xsdName.equals("UTCDateTimeType")){
 			bdt.properties.get(0).pattern = "[0-9]{4}-[0-1][0-9]-[0-3][0-9]T[0-2][0-9]:[0-5][0-9]:[0-5][0-9].[0-9]*Z";
 			return "xsd:datetime"
-		} else if(bdt.xsdName.containsString("DayDateType")){
+		} else if(bdt.xsdName.equals("DayDateType")){
 			bdt.properties.get(0).pattern = "---[0-3][0-9]";
 			return "xsd:gDay"
-		} else if(bdt.xsdName.containsString("YearDateType")){
+		} else if(bdt.xsdName.equals("YearDateType")){
 			bdt.properties.get(0).pattern = "[0-9]{4}";
 			return "xsd:gYear"
-		} else if(bdt.xsdName.containsString("MonthDateType")){
+		} else if(bdt.xsdName.equals("MonthDateType")){
 			bdt.properties.get(0).pattern = "--[0-1][0-9]--";
 			return "xsd:gMonth"
-		} else if(bdt.xsdName.containsString("MonthDayDateType")){
+		} else if(bdt.xsdName.equals("MonthDayDateType")){
 			bdt.properties.get(0).pattern = "--[0-1][0-9]-[0-3][0-9]";
-			return "xsd:date"
+			return "xsd:gMonthDay"
 		} else
 	    return bdt.xsdName + "_" + bdt.uniqueIdentifier; 
 	}
 
-	def boolean containsString(String searchIn, String searchFor){
-		return searchIn.toLowerCase.contains(searchFor.toLowerCase);
+	def boolean equalsString(String searchIn, String searchFor){
+		return searchIn.toLowerCase.equals(searchFor.toLowerCase);
 	}
 
     def String conQualifiedType(BDT bdt) {

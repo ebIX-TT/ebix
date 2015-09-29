@@ -49,6 +49,12 @@ import org.eclipse.xtext.builder.EclipseResourceFileSystemAccess2
 import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.ProjectScope
 import java.util.ArrayList
+import org.ebix.umm.umm.impl.OclEqualImpl
+import org.ebix.umm.umm.impl.OclArrowImpl
+import org.ebix.umm.umm.impl.OclSizeImpl
+import org.ebix.umm.umm.impl.OclIntegerLiteralImpl
+import org.ebix.umm.umm.impl.OclPathSelfHeadImpl
+import org.ebix.umm.templates.xsd.MultiplicityKindExtension
 
 class GenerateXsd {
     
@@ -63,6 +69,7 @@ class GenerateXsd {
     @Inject extension DateTypesSchema	   dateTypesSchema	
     @Inject extension Invariants           invariants
     @Inject extension Prune                prune
+    @Inject extension MultiplicityKindExtension multiplicityKindExtension
     
     def generateXsd(Resource resource, IFileSystemAccess fsa) {
     	val constants = projectConstants(fsa)
@@ -120,6 +127,23 @@ class GenerateXsd {
 	        location = listIdentifier + "/" + location
         }
         var clonedMa = ma.clone
+		val fieldSizeMap = newHashMap();
+        for(contraint : ma.constraints){
+        	for(invariant : contraint.invariants){
+        		if(invariant.expression instanceof OclEqualImpl){
+        		  val invEqual = invariant.expression as OclEqualImpl
+       			  if(invEqual.left instanceof OclArrowImpl){
+       			  	val invArrow = invEqual.left as OclArrowImpl;
+       			  	if(invArrow.right instanceof OclSizeImpl){
+       			  		val fieldName = (invArrow.left as OclPathSelfHeadImpl).path.feature.name;
+       			  		val sizeValue = (invEqual.right as OclIntegerLiteralImpl).value;
+       			  		fieldSizeMap.put(fieldName, sizeValue);
+       			  	} 
+       			  }
+        		}
+        	}
+        }
+        MultiplicityKindExtension.fieldSizeMap = fieldSizeMap;
         clonedMa.library.bieLibrary.applyInvariants
         clonedMa.applyInvariantsFor(kind, "")
         if (listIdentifier.length > 0) {

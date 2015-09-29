@@ -38,6 +38,7 @@ import org.ebix.umm.umm.OclReference
 import org.ebix.umm.umm.OclSize
 import org.ebix.umm.umm.OclStringLiteral
 import org.ebix.umm.umm.OclXor
+import com.ibm.icu.impl.OlsonTimeZone
 
 class UmmOclValidator {
 	
@@ -469,7 +470,6 @@ class UmmOclValidator {
 			&& (expr as OclEqual).right instanceof OclIntegerLiteral 
 			&& ((expr as OclEqual).right as OclIntegerLiteral).value == value;
 	}
-
 
 	/*
 	 * Matches ref->isEmpty()

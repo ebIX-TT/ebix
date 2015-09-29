@@ -55,6 +55,7 @@ class UmmBuilder extends IncrementalProjectBuilder {
 					uml2text.processFile(uri, rs, fw)
 				}
 			}
+			System.out.println("Finished");
 		}
 		
 		return null

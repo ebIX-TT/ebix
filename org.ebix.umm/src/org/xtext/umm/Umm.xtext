@@ -145,6 +145,7 @@ BBIE:
 		'uniqueIdentifier:'  uniqueIdentifier=STRING
 		'versionIdentifier:' versionIdentifier=STRING
 		'sequencingKey:'     sequencingKey=STRING
+		(properties+=Content)*
 	'}'
 	;
 
@@ -460,8 +461,7 @@ OclOperationLogicCompare returns OclExpression:
 
 OclOperationArrow returns OclExpression:
 	OclValue ({OclArrow.left=current} '->' right=OclFunctionCall)?;
-	
-	
+		
 /*
 	From the OCL specification:
 		"The value of a property on an object is specified by a dot followed by the name of the property."
@@ -490,7 +490,7 @@ OclRef:
 
 
 OclFunctionCall:
-	OclForAll | OclIsEmpty | OclNotEmpty | OclSize;
+	OclForAll | OclIsEmpty | OclNotEmpty | OclSize ;
 
 OclForAll: 
 	'forAll' '(' body=OclExpression ')';
@@ -503,8 +503,7 @@ OclNotEmpty:
 
 OclSize: 
 	{OclSize} 'size' '('  ')';
-		
-		
+
 OclLiteral:
 	OclBooleanLiteral | OclIntegerLiteral | OclStringLiteral | OclEnumerationLiteral;
 	

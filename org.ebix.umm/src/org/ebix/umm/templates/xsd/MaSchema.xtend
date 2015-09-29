@@ -72,7 +72,7 @@ class MaSchema {
             <xsd:complexType name="«ma.xsdType»">
                 <xsd:sequence>
                     «FOR property: ma.properties»
-                    <xsd:element ref="«ma.library.namespacePrefix»:«property.xsdRoleName»" minOccurs="«property.multiplicity.minOccurs»" maxOccurs="«property.multiplicity.maxOccurs»"/>
+                    <xsd:element ref="«ma.library.namespacePrefix»:«property.xsdRoleName»" «IF (MultiplicityKindExtension.hasSize(property.xsdRoleName))»minOccurs="«property.multiplicity.minOccurs(property.xsdRoleName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdRoleName)»«ENDIF»"/>
                     «ENDFOR»
                 </xsd:sequence>
             </xsd:complexType>
