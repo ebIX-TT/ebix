@@ -490,7 +490,7 @@ OclRef:
 
 
 OclFunctionCall:
-	OclForAll | OclIsEmpty | OclNotEmpty | OclSize ;
+	OclForAll | OclIsEmpty | OclNotEmpty | OclSize | OclLength  | OclMinExclusive | OclMaxExclusive | OclMinInclusive | OclMaxInclusive | OclMaxLength | OclMinLength | OclTotalDigits | OclFractionalDigits | OclPattern;
 
 OclForAll: 
 	'forAll' '(' body=OclExpression ')';
@@ -503,7 +503,37 @@ OclNotEmpty:
 
 OclSize: 
 	{OclSize} 'size' '('  ')';
+	
+OclLength: 
+	{OclLength} 'length' '('  ')';
 
+OclMinExclusive:
+	{OclMinExclusive} 'minExclusive' '('  ')';
+	
+OclMaxExclusive:
+	{OclMaxExclusive} 'maxExclusive' '('   ')';
+	
+OclMinInclusive:
+	{OclMinInclusive} 'minInclusive' '('   ')';
+	
+OclMaxInclusive:
+	{OclMaxInclusive} 'maxInclusive' '('   ')';
+	
+OclMaxLength:
+	{OclMaxLength} 'maxLength' '('   ')';
+	
+OclMinLength:
+	{OclMinLength} 'minLength' '('   ')';
+	
+OclTotalDigits:
+	{OclTotalDigits} 'totalDigits' '('   ')';
+	
+OclFractionalDigits:
+	{OclFractionalDigits} 'fractionalDigits' '('   ')';
+	
+OclPattern:
+	{OclPattern} 'pattern' '('   ')';
+	
 OclLiteral:
 	OclBooleanLiteral | OclIntegerLiteral | OclStringLiteral | OclEnumerationLiteral;
 	

@@ -27,10 +27,37 @@ import org.ebix.umm.uml2text.file.FileWriterStandaloneImpl
 import org.ebix.umm.uml2text.file.FileWriter
 import org.eclipse.emf.ecore.resource.ResourceSet
 import org.ebix.umm.uml2text.ods.Uml2Ods
+import java.io.BufferedReader
+import java.io.StringReader
 
 class Uml2Text {
 	
 	public UmmStereotypes ummStereotypes = new UmmStereotypes
+	
+	def static String replaceOcls(String content){
+		var buffReader = new BufferedReader(new StringReader(content));
+		var line = "";
+		var tmpContent="";
+		while( (line = buffReader.readLine()) != null){
+			if(line.contains(".content.pattern=")){
+				line = line.replaceFirst("\\s+$", "");
+				line += "\"";				
+			} 
+				
+			tmpContent+= line + "\n";
+		}
+		return tmpContent
+			.replaceAll(".content.length", "->length()")
+			.replaceAll(".content.pattern=", "->pattern()=\"")
+			.replaceAll(".content.maxLength", "->maxLength()")
+			.replaceAll(".content.minLength", "->minLength()")
+			.replaceAll(".content.maxInclusive", "->maxInclusive()")
+			.replaceAll(".content.minInclusive", "->minInclusive()")
+			.replaceAll(".content.fractionalDigits", "->fractionalDigits()")
+			.replaceAll(".content.maxExclusive", "->maxExclusive()")
+			.replaceAll(".content.minExclusive", "->minExclusive()")
+			.replaceAll(".content.totalDigits", "->totalDigits()");
+	}
 	
 	def static void main(String[] args) {
         val fileURI = "/home/xrdj6c/workspace/new/runtime-Umm.product/Test3/uml/European_Energy_Market.uml".createFileURI

@@ -39,6 +39,16 @@ import org.ebix.umm.umm.OclSize
 import org.ebix.umm.umm.OclStringLiteral
 import org.ebix.umm.umm.OclXor
 import com.ibm.icu.impl.OlsonTimeZone
+import org.ebix.umm.umm.OclLength
+import org.ebix.umm.umm.OclPattern
+import org.ebix.umm.umm.OclFractionalDigits
+import org.ebix.umm.umm.OclTotalDigits
+import org.ebix.umm.umm.OclMinLength
+import org.ebix.umm.umm.OclMaxLength
+import org.ebix.umm.umm.OclMaxInclusive
+import org.ebix.umm.umm.OclMinInclusive
+import org.ebix.umm.umm.OclMaxExclusive
+import org.ebix.umm.umm.OclMinExclusive
 
 class UmmOclValidator {
 	
@@ -50,7 +60,8 @@ class UmmOclValidator {
 		|| oclInvariant.matchFixedValue
 		|| oclInvariant.matchChoice
 		|| oclInvariant.matchChoiceFixedValue
-		|| oclInvariant.matchMandatoryChoice;
+		|| oclInvariant.matchMandatoryChoice
+		|| oclInvariant.matchOclRestrictions;
 	}
 	
 	/*
@@ -489,6 +500,93 @@ class UmmOclValidator {
 			&& (expr as OclArrow).right instanceof OclNotEmpty;
 	}
 
+    //
+    //Ocl section
+    //
+    def boolean matchOclRestrictions(OclInvariant invariant) {
+		invariant.expression.matchLengthOcl()
+		|| invariant.expression.matchMinExclusiveOcl()
+		|| invariant.expression.matchMaxExclusiveOcl()
+		|| invariant.expression.matchMinInclusiveOcl()
+		|| invariant.expression.matchMaxInclusiveOcl()
+		|| invariant.expression.matchMaxLengthOcl()
+		|| invariant.expression.matchMinLengthOcl()
+		|| invariant.expression.matchTotalDigitsOcl()
+		|| invariant.expression.matchFractionalDigitsOcl()
+		|| invariant.expression.matchPatternOcl() 
+	}	
+    
+    def boolean matchLengthOcl(OclExpression expr) {
+		 expr instanceof OclEqual  
+			&& (expr as OclEqual).left  instanceof OclArrow
+				&& (((expr as OclEqual).left) as OclArrow).left  instanceof OclReference
+				&& (((expr as OclEqual).left) as OclArrow).right instanceof OclLength
+			&& (expr as OclEqual).right instanceof OclIntegerLiteral 
+	}
+	    def boolean matchMinExclusiveOcl(OclExpression expr) {
+		 expr instanceof OclEqual  
+			&& (expr as OclEqual).left  instanceof OclArrow
+				&& (((expr as OclEqual).left) as OclArrow).left  instanceof OclReference
+				&& (((expr as OclEqual).left) as OclArrow).right instanceof OclMinExclusive
+			&& (expr as OclEqual).right instanceof OclIntegerLiteral 
+	}
+	def boolean matchMaxExclusiveOcl(OclExpression expr) {
+		 expr instanceof OclEqual  
+			&& (expr as OclEqual).left  instanceof OclArrow
+				&& (((expr as OclEqual).left) as OclArrow).left  instanceof OclReference
+				&& (((expr as OclEqual).left) as OclArrow).right instanceof OclMaxExclusive
+			&& (expr as OclEqual).right instanceof OclIntegerLiteral 
+	}
+	def boolean matchMinInclusiveOcl(OclExpression expr) {
+		 expr instanceof OclEqual  
+			&& (expr as OclEqual).left  instanceof OclArrow
+				&& (((expr as OclEqual).left) as OclArrow).left  instanceof OclReference
+				&& (((expr as OclEqual).left) as OclArrow).right instanceof OclMinInclusive
+			&& (expr as OclEqual).right instanceof OclIntegerLiteral 
+	}
+	def boolean matchMaxInclusiveOcl(OclExpression expr) {
+		 expr instanceof OclEqual  
+			&& (expr as OclEqual).left  instanceof OclArrow
+				&& (((expr as OclEqual).left) as OclArrow).left  instanceof OclReference
+				&& (((expr as OclEqual).left) as OclArrow).right instanceof OclMaxInclusive
+			&& (expr as OclEqual).right instanceof OclIntegerLiteral 
+	}
+	def boolean matchMaxLengthOcl(OclExpression expr) {
+		 expr instanceof OclEqual  
+			&& (expr as OclEqual).left  instanceof OclArrow
+				&& (((expr as OclEqual).left) as OclArrow).left  instanceof OclReference
+				&& (((expr as OclEqual).left) as OclArrow).right instanceof OclMaxLength
+			&& (expr as OclEqual).right instanceof OclIntegerLiteral 
+	}
+	def boolean matchMinLengthOcl(OclExpression expr) {
+		 expr instanceof OclEqual  
+			&& (expr as OclEqual).left  instanceof OclArrow
+				&& (((expr as OclEqual).left) as OclArrow).left  instanceof OclReference
+				&& (((expr as OclEqual).left) as OclArrow).right instanceof OclMinLength
+			&& (expr as OclEqual).right instanceof OclIntegerLiteral 
+	}
+	def boolean matchTotalDigitsOcl(OclExpression expr) {
+		 expr instanceof OclEqual  
+			&& (expr as OclEqual).left  instanceof OclArrow
+				&& (((expr as OclEqual).left) as OclArrow).left  instanceof OclReference
+				&& (((expr as OclEqual).left) as OclArrow).right instanceof OclTotalDigits
+			&& (expr as OclEqual).right instanceof OclIntegerLiteral 
+	}
+	def boolean matchFractionalDigitsOcl(OclExpression expr) {
+		 expr instanceof OclEqual  
+			&& (expr as OclEqual).left  instanceof OclArrow
+				&& (((expr as OclEqual).left) as OclArrow).left  instanceof OclReference
+				&& (((expr as OclEqual).left) as OclArrow).right instanceof OclFractionalDigits
+			&& (expr as OclEqual).right instanceof OclIntegerLiteral 
+	}
+	def boolean matchPatternOcl(OclExpression expr) {
+		 expr instanceof OclEqual  
+			&& (expr as OclEqual).left  instanceof OclArrow
+				&& (((expr as OclEqual).left) as OclArrow).left  instanceof OclReference
+				&& (((expr as OclEqual).left) as OclArrow).right instanceof OclPattern
+			&& (expr as OclEqual).right instanceof OclStringLiteral 
+	}
+    
 	//
 	// Utility functions
 	//
