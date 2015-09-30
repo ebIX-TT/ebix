@@ -31,6 +31,8 @@ import org.ebix.umm.umm.MA
 import java.util.HashMap
 
 class BieLibrarySchema {
+	
+	public static HashMap<String, Integer> fieldLengthMap;
     
     @Inject extension Xml xmlExtension
     @Inject extension AbieExtension abieExtension
@@ -187,6 +189,13 @@ class BieLibrarySchema {
                             «ENDIF»
                             «IF (property.type.content.length != 0)»
                             <xsd:length value="«property.type.content.length»"/>
+                            «ENDIF»
+                            «IF (property.name.equals("TestFacetLength_Description"))»
+                              <xsd:length testFacetFound="«fieldLengthMap.size()»"/>
+                            «ENDIF»
+
+                            «IF (fieldLengthMap != null && fieldLengthMap.containsKey(property.name))»
+                            <xsd:length value="«fieldLengthMap.get(property.name)»"/>
                             «ENDIF»
                             «IF (property.type.content.minExclusive != 0)»
                             <xsd:minExclusive value="«property.type.content.minExclusive»"/>

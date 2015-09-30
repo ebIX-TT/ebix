@@ -8,8 +8,12 @@ import org.ebix.umm.umm.BDT
 import org.ebix.umm.umm.BDTLibrary
 import org.ebix.umm.umm.MA
 import org.ebix.umm.umm.Supplement
+import java.util.HashMap
 
 class BdtLibrarySchema {
+	
+	public static HashMap<String, Integer> fieldLengthMap;
+	
 
     @Inject extension Xml xmlExtension
     @Inject extension BdtLibraryExtension bdtLibraryExtension
@@ -102,6 +106,14 @@ class BdtLibrarySchema {
                                 «FOR restriction: sup.restriction»
                                 <xsd:enumeration value="«restriction»"/>
                                 «ENDFOR»
+                                «IF (bdt.name.equals("TestFacetLength_Description"))»
+                                «if(fieldLengthMap != null) System.out.println(fieldLengthMap.size())»
+                              		<xsd:length testFacetFound="«fieldLengthMap.size()»"/>
+                            	«ENDIF»
+
+	                            «IF (fieldLengthMap != null && fieldLengthMap.containsKey(bdt.name))»
+	                            <xsd:length value="«fieldLengthMap.get(bdt.name)»"/>
+	                            «ENDIF»
                                 «IF (sup.restriction.size == 0)»
                                     «IF (sup.hasPattern)»
                                     <xsd:pattern value="«sup.pattern»"/>

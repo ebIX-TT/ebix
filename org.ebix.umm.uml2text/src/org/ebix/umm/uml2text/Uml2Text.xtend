@@ -35,6 +35,7 @@ class Uml2Text {
 	public UmmStereotypes ummStereotypes = new UmmStereotypes
 	
 	def static String replaceOcls(String content){
+		//TODO: Refactor this please, written in haste.
 		var buffReader = new BufferedReader(new StringReader(content));
 		var line = "";
 		var tmpContent="";

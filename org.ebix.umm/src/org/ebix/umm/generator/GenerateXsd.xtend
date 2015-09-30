@@ -54,6 +54,8 @@ import org.ebix.umm.umm.impl.OclSizeImpl
 import org.ebix.umm.umm.impl.OclIntegerLiteralImpl
 import org.ebix.umm.umm.impl.OclPathSelfHeadImpl
 import org.ebix.umm.templates.xsd.MultiplicityKindExtension
+import java.util.HashMap
+import org.ebix.umm.umm.impl.OclLengthImpl
 
 class GenerateXsd {
     
@@ -125,6 +127,7 @@ class GenerateXsd {
         }
         var clonedMa = ma.clone
 		ma.getSizeOclFromConstrains();
+		ma.getOclLengthFromConstrains();
         clonedMa.library.bieLibrary.applyInvariants
         clonedMa.applyInvariantsFor(kind, "")
         if (listIdentifier.length > 0) {
@@ -144,9 +147,9 @@ class GenerateXsd {
         		  val invEqual = invariant.expression as OclEqualImpl
        			  if(invEqual.left instanceof OclArrowImpl){
        			  	val invArrow = invEqual.left as OclArrowImpl;
-       			  	if(invArrow.right instanceof OclSizeImpl){
-       			  		val fieldName = (invArrow.left as OclPathSelfHeadImpl).path.feature.name;
-       			  		val sizeValue = (invEqual.right as OclIntegerLiteralImpl).value;
+       			  	if(invArrow.right instanceof OclSizeImpl){//<-- OclLength, OclMinExclusive...
+       			  		val fieldName = (invArrow.left as OclPathSelfHeadImpl).path.feature.name;//nazwa pola do ograniczenia
+       			  		val sizeValue = (invEqual.right as OclIntegerLiteralImpl).value;///wartość - w przypadku pattern musi byc OclStringLiteralImpl
        			  		fieldSizeMap.put(fieldName, sizeValue);
        			  	} 
        			  }
@@ -154,6 +157,27 @@ class GenerateXsd {
         	}
         }
         MultiplicityKindExtension.fieldSizeMap = fieldSizeMap;
+    }
+    
+        def void getOclLengthFromConstrains(MA ma){
+    	val fieldLengthMap = newHashMap();
+        for(contraint : ma.constraints){
+        	for(invariant : contraint.invariants){
+        		if(invariant.expression instanceof OclEqualImpl){
+        		  val invEqual = invariant.expression as OclEqualImpl
+       			  if(invEqual.left instanceof OclArrowImpl){
+       			  	val invArrow = invEqual.left as OclArrowImpl;
+       			  	if(invArrow.right instanceof OclLengthImpl){//<-- OclLength, OclMinExclusive...
+       			  		val fieldName = (invArrow.left as OclPathSelfHeadImpl).path.tail.tail.feature.name;//nazwa pola do ograniczenia
+       			  		val sizeValue = (invEqual.right as OclIntegerLiteralImpl).value;///wartość - w przypadku pattern musi byc OclStringLiteralImpl
+       			  		fieldLengthMap.put(fieldName, sizeValue);
+       			  	} 
+       			  }
+        		}
+        	}
+        }
+        BieLibrarySchema.fieldLengthMap = fieldLengthMap;
+        BdtLibrarySchema.fieldLengthMap = fieldLengthMap;
     }
     def private Constants projectConstants(IFileSystemAccess fsa) {
 		println("Getting settings")
