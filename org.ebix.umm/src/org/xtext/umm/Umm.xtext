@@ -525,7 +525,7 @@ OclBooleanFalse:
 OclBooleanTrue returns OclBooleanLiteral:
 	{OclBooleanTrue} 'true';
 
-terminal ENUMLIT  		: ('a'..'z'|'A'..'Z'|'0'..'9')*'::'('a'..'z'|'A'..'Z'|'0'..'9')*;
+terminal ENUMLIT  		: ('a'..'z'|'A'..'Z'|'0'..'9')*'::'('a'..'z'|'A'..'Z'|'0'..'9'|'-')*;
 terminal OCL_COMMENT 	: '--' !('\n'|'\r')* ('\r'? '\n')?;
 
 terminal ID  		: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|':'|'0'..'9')*;

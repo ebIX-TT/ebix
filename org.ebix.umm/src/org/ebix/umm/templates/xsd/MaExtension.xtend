@@ -63,7 +63,7 @@ class MaExtension {
     }
     
     def dispatch String xsdRoleName(ASNONE asnone) {
-        return asnone.name
+        return asnone.name.replaceAll("\"", "");
     }
     
 

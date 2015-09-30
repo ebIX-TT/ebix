@@ -33,7 +33,6 @@ class EnumSchema {
     @Inject extension Xml xmlExtension
     @Inject extension AssembledExtension assembledExtension
     @Inject extension EnumExtension enumExtension
-    @Inject extension DateTypesSchema dateTypesSchema
 
     
     def compile(ENUM e, Constants constants) '''

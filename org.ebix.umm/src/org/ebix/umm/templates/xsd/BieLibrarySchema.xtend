@@ -38,7 +38,6 @@ class BieLibrarySchema {
     @Inject extension BdtLibraryExtension bdtLibraryExtension
     @Inject extension BieLibraryExtension bieLibraryExtension
     @Inject extension MultiplicityKindExtension multiplicityExtension
-    @Inject extension DateTypesSchema dateTypesSchema
 
     def compile(BIELibrary library, Constants constants, MA ma)     '''
         <?xml version="1.0" encoding="UTF-8"?>
@@ -65,7 +64,6 @@ class BieLibrarySchema {
             «"Inclusions".comment»
             «"Inclusion of Message Data Types".comment»
             <xsd:include schemaLocation="«library.bdtLibrary.fileName(ma)»"/>
-            <xsd:include schemaLocation="«dateTypesSchema.getFileName()»"/>
             
             «"Message Business Information Entities Definitions".comment»
             «FOR abie: library.abies»
@@ -105,13 +103,13 @@ class BieLibrarySchema {
     '''
 
     def dispatch AProperty(ASBIE property, String prefix) '''
-        <xsd:element ref="«prefix»:«property.xsdRoleName»" «IF (MultiplicityKindExtension.hasSize(property.xsdRoleName))»minOccurs="«property.multiplicity.minOccurs(property.xsdRoleName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdRoleName)»«ENDIF»"/>
+        <xsd:element ref="«prefix»:«property.xsdRoleName»" «IF (MultiplicityKindExtension.hasSize(property.xsdRoleName))»minOccurs="«property.multiplicity.minOccurs(property.xsdRoleName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdRoleName)»"«ENDIF»/>
     '''
 
 
     def dispatch AProperty(BBIE property, String prefix) '''
         «IF (property.type.xsdName.equals("DateTimeType") || property.type.xsdName.equals("DateType") || property.type.xsdName.equals("TimeType") || property.type.xsdName.equals("UTCOffsetDateTimeType") || property.type.xsdName.equals("UTCDateTimeType"))»
-        	<xsd:element name="«property.xsdName»" «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»«ENDIF»">
+        	<xsd:element name="«property.xsdName»" «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»"«ENDIF»>
 	        «IF (property.type.isSimpleType())»
 	            <xsd:simpleType>
 	            	<xsd:restriction base="«property.type.xsdType»">
@@ -124,12 +122,12 @@ class BieLibrarySchema {
 	        </xsd:element>
 	    «ELSE»
 	    «IF (property.type.xsdName.equals("DayDateType") || property.type.xsdName.equals("YearDateType") || property.type.xsdName.equals("MonthDateType") || property.type.xsdName.equals("MonthDayDateType"))»        
-            <xsd:element name="«property.xsdName»" type="«property.type.xsdType»"«IF(property.hasFixedValue)» fixed="«property.fixedValue»"«ENDIF» «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»«ENDIF»"/>
+            <xsd:element name="«property.xsdName»" type="«property.type.xsdType»"«IF(property.hasFixedValue)» fixed="«property.fixedValue»"«ENDIF» «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»"«ENDIF»/>
         «ELSE»
         «IF (property.restriction.size == 0 && (property.type.content==null||(!property.type.content.hasPattern && property.type.content.minLength == 0 && property.type.content.maxLength == 0 && property.type.content.length == 0 && property.type.content.minExclusive == 0 && property.type.content.minInclusive == 0 && property.type.content.maxExclusive == 0 && property.type.content.maxInclusive == 0 && property.type.content.fractionalDigits == 0 && property.type.content.totalDigits == 0)))»
-        <xsd:element name="«property.xsdName»" type="«property.type.xsdType»"«IF(property.hasFixedValue)» fixed="«property.fixedValue»"«ENDIF» «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»«ENDIF»"/>
+        <xsd:element name="«property.xsdName»" type="«property.type.xsdType»"«IF(property.hasFixedValue)» fixed="«property.fixedValue»"«ENDIF» «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»"«ENDIF»/>
         «ELSE»
-        <xsd:element name="«property.xsdName»" «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»«ENDIF»">
+        <xsd:element name="«property.xsdName»" «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»"«ENDIF»>
         «IF (property.type.isSimpleType())»
             <xsd:simpleType>
             	<xsd:restriction base="«property.type.xsdType»">

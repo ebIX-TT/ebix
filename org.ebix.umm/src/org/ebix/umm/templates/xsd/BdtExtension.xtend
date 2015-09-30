@@ -73,6 +73,11 @@ class BdtExtension {
 		} else
 	    return bdt.xsdName + "_" + bdt.uniqueIdentifier; 
 	}
+	
+	def String xsdTypeName(BDT bdt) {
+		if(bdt == null) return "undefined";
+	    return bdt.xsdName + "_" + bdt.uniqueIdentifier; 
+	}
 
 	def boolean equalsString(String searchIn, String searchFor){
 		return searchIn.toLowerCase.equals(searchFor.toLowerCase);

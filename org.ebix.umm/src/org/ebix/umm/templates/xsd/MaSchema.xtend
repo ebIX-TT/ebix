@@ -33,7 +33,6 @@ class MaSchema {
     @Inject extension BieLibraryExtension bieLibraryExtension
     @Inject extension MaExtension maExtension
     @Inject extension MultiplicityKindExtension multiplicityExtension
-    @Inject extension DateTypesSchema dateTypesSchema
 
     def compile(MA ma, Constants constants, MA otherMa) '''
         <?xml version="1.0" encoding="UTF-8"?>
@@ -62,7 +61,6 @@ class MaSchema {
             <xsd:include schemaLocation="«ma.library.bieLibrary.fileName(otherMa)»"/>
             «"Inclusion of Message Data Types".comment»
             <xsd:include schemaLocation="«ma.library.bdtLibrary.fileName(otherMa)»"/>
-            <xsd:include schemaLocation="«dateTypesSchema.getFileName()»"/>
             «"Element Declarations".comment»
             «"Root Element Declarations".comment»
             «ma.name.comment»
@@ -72,7 +70,7 @@ class MaSchema {
             <xsd:complexType name="«ma.xsdType»">
                 <xsd:sequence>
                     «FOR property: ma.properties»
-                    <xsd:element ref="«ma.library.namespacePrefix»:«property.xsdRoleName»" «IF (MultiplicityKindExtension.hasSize(property.xsdRoleName))»minOccurs="«property.multiplicity.minOccurs(property.xsdRoleName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdRoleName)»«ENDIF»"/>
+                    <xsd:element ref="«ma.library.namespacePrefix»:«property.xsdRoleName»" «IF (MultiplicityKindExtension.hasSize(property.xsdRoleName))»minOccurs="«property.multiplicity.minOccurs(property.xsdRoleName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdRoleName)»"«ENDIF»/>
                     «ENDFOR»
                 </xsd:sequence>
             </xsd:complexType>

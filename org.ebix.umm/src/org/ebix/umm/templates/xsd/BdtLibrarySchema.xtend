@@ -16,7 +16,6 @@ class BdtLibrarySchema {
     @Inject extension BdtExtension bdtExtension
     @Inject extension EnumExtension enumExtension
     @Inject extension MultiplicityKindExtension multiplicityExtension
-    @Inject extension DateTypesSchema dateTypesSchema
 
     def compile(BDTLibrary library, Constants constants, MA ma) '''
         <?xml version="1.0" encoding="UTF-8"?>
@@ -45,7 +44,6 @@ class BdtLibrarySchema {
             «FOR codelist: library.allReferencedCodelists()»
             <xsd:import namespace="«library.namespace(null)»" schemaLocation="«constants.schemaLocation»«codelist.fileName»"/>
             «ENDFOR»
-            <xsd:include schemaLocation="«dateTypesSchema.getFileName()»"/>
             «ELSE»
             «"Import of Code Lists".comment»
             «ENDIF»
@@ -66,7 +64,7 @@ class BdtLibrarySchema {
     def BdtType(BDT bdt) '''
         «(bdt.xsdName + " Type").comment»
         «IF(bdt.isSimpleType)»
-        <xsd:simpleType name="«bdt.xsdType»">
+        <xsd:simpleType name="«bdt.xsdTypeName»">
             «IF (!bdt.content.isExtraRestricted)»
             <xsd:restriction base="«bdt.conQualifiedType()»"/>
             «ELSE»
@@ -91,7 +89,7 @@ class BdtLibrarySchema {
             «ENDIF»
         </xsd:simpleType>
         «ELSE»
-        <xsd:complexType name="«bdt.xsdType»">
+        <xsd:complexType name="«bdt.xsdTypeName»">
             <xsd:simpleContent>
                 <xsd:extension base="«bdt.conQualifiedType»">
                     «FOR sup: bdt.properties.filter(typeof(Supplement))»
