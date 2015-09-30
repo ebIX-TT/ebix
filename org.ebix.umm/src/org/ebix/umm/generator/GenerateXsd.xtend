@@ -124,7 +124,20 @@ class GenerateXsd {
 	        location = listIdentifier + "/" + location
         }
         var clonedMa = ma.clone
-		val fieldSizeMap = newHashMap();
+		ma.getSizeOclFromConstrains();
+        clonedMa.library.bieLibrary.applyInvariants
+        clonedMa.applyInvariantsFor(kind, "")
+        if (listIdentifier.length > 0) {
+	        clonedMa.applyInvariantsFor(kind, listIdentifier)
+        }
+        clonedMa.purge
+        fsa.generateFile(clonedMa.fileName(location), clonedMa.compile(constants, clonedMa))
+        fsa.generateFile(clonedMa.library.bieLibrary.fileName(location, clonedMa), clonedMa.library.bieLibrary.compile(constants, clonedMa))
+        fsa.generateFile(clonedMa.library.bdtLibrary.fileName(location, clonedMa), clonedMa.library.bdtLibrary.compile(constants, clonedMa))
+    }
+    
+    def void getSizeOclFromConstrains(MA ma){
+    	val fieldSizeMap = newHashMap();
         for(contraint : ma.constraints){
         	for(invariant : contraint.invariants){
         		if(invariant.expression instanceof OclEqualImpl){
@@ -141,17 +154,7 @@ class GenerateXsd {
         	}
         }
         MultiplicityKindExtension.fieldSizeMap = fieldSizeMap;
-        clonedMa.library.bieLibrary.applyInvariants
-        clonedMa.applyInvariantsFor(kind, "")
-        if (listIdentifier.length > 0) {
-	        clonedMa.applyInvariantsFor(kind, listIdentifier)
-        }
-        clonedMa.purge
-        fsa.generateFile(clonedMa.fileName(location), clonedMa.compile(constants, clonedMa))
-        fsa.generateFile(clonedMa.library.bieLibrary.fileName(location, clonedMa), clonedMa.library.bieLibrary.compile(constants, clonedMa))
-        fsa.generateFile(clonedMa.library.bdtLibrary.fileName(location, clonedMa), clonedMa.library.bdtLibrary.compile(constants, clonedMa))
     }
-    
     def private Constants projectConstants(IFileSystemAccess fsa) {
 		println("Getting settings")
 		val constants = new Constants()
