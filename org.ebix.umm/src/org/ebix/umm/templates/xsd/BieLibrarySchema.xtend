@@ -132,16 +132,16 @@ class BieLibrarySchema {
             <xsd:complexType>
                 <xsd:simpleContent>
                     <xsd:restriction base="«property.type.xsdType»">
-                        «IF (fieldOcls.get(property.name).minExclusive != null)»<xsd:minExclusive value="«fieldOcls.get(property.name).minExclusive»">«ENDIF»
-                        «IF (fieldOcls.get(property.name).maxExclusive != null)»<xsd:maxExclusive value="«fieldOcls.get(property.name).maxExclusive»">«ENDIF»
-                        «IF (fieldOcls.get(property.name).minInclusive != null)»<xsd:minInclusive value="«fieldOcls.get(property.name).minInclusive»">«ENDIF»
-                        «IF (fieldOcls.get(property.name).maxInclusive != null)»<xsd:maxInclusive value="«fieldOcls.get(property.name).maxInclusive»">«ENDIF»
-                        «IF (fieldOcls.get(property.name).maxLength != null)»<xsd:maxLength value="«fieldOcls.get(property.name).maxLength»">«ENDIF»
-                        «IF (fieldOcls.get(property.name).minLength != null)»<xsd:minLength value="«fieldOcls.get(property.name).minLength»">«ENDIF»
-                        «IF (fieldOcls.get(property.name).totalDigits != null)»<xsd:totalDigits value="«fieldOcls.get(property.name).totalDigits»">«ENDIF»
-                        «IF (fieldOcls.get(property.name).fractionalDigits != null)»<xsd:fractionalDigits value="«fieldOcls.get(property.name).fractionalDigits»">«ENDIF»
-                        «IF (fieldOcls.get(property.name).pattern != null)»<xsd:pattern value="«fieldOcls.get(property.name).pattern»">«ENDIF»
-                        «IF (fieldOcls.get(property.name).length != null)»<xsd:length value="«fieldOcls.get(property.name).length»">«ENDIF»
+                        «IF (fieldOcls.get(property.name).minExclusive != null)»<xsd:minExclusive value="«fieldOcls.get(property.name).minExclusive»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.name).maxExclusive != null)»<xsd:maxExclusive value="«fieldOcls.get(property.name).maxExclusive»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.name).minInclusive != null)»<xsd:minInclusive value="«fieldOcls.get(property.name).minInclusive»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.name).maxInclusive != null)»<xsd:maxInclusive value="«fieldOcls.get(property.name).maxInclusive»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.name).maxLength != null)»<xsd:maxLength value="«fieldOcls.get(property.name).maxLength»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.name).minLength != null)»<xsd:minLength value="«fieldOcls.get(property.name).minLength»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.name).totalDigits != null)»<xsd:totalDigits value="«fieldOcls.get(property.name).totalDigits»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.name).fractionalDigits != null)»<xsd:fractionDigits value="«fieldOcls.get(property.name).fractionalDigits»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.name).pattern != null)»<xsd:pattern value="«fieldOcls.get(property.name).pattern»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.name).length != null)»<xsd:length value="«fieldOcls.get(property.name).length»"/>«ENDIF»
                     </xsd:restriction>
                 </xsd:simpleContent>
             </xsd:complexType>
@@ -183,7 +183,7 @@ class BieLibrarySchema {
 	                    <xsd:maxInclusive value="«property.type.content.maxInclusive»"/>
 	                    «ENDIF»
 	                    «IF (property.type.content.fractionalDigits != 0)»
-	                    <xsd:fractionalDigits value="«property.type.content.fractionalDigits»"/>
+	                    <xsd:fractionDigits value="«property.type.content.fractionalDigits»"/>
 	                    «ENDIF»
 	                    «IF (property.type.content.totalDigits != 0)»
 	                    <xsd:totalDigits value="«property.type.content.totalDigits»"/>
@@ -224,7 +224,7 @@ class BieLibrarySchema {
                             <xsd:maxInclusive value="«property.type.content.maxInclusive»"/>
                             «ENDIF»
                             «IF (property.type.content.fractionalDigits != 0)»
-                            <xsd:fractionalDigits value="«property.type.content.fractionalDigits»"/>
+                            <xsd:fractionDigits value="«property.type.content.fractionalDigits»"/>
                             «ENDIF»
                             «IF (property.type.content.totalDigits != 0)»
                             <xsd:totalDigits value="«property.type.content.totalDigits»"/>
