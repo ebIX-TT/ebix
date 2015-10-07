@@ -56,6 +56,17 @@ import org.ebix.umm.umm.impl.OclPathSelfHeadImpl
 import org.ebix.umm.templates.xsd.MultiplicityKindExtension
 import java.util.HashMap
 import org.ebix.umm.umm.impl.OclLengthImpl
+import org.ebix.umm.umm.impl.OclStringLiteralImpl
+import org.ebix.umm.validation.ocl.FieldOcls
+import org.ebix.umm.umm.impl.OclMinExclusiveImpl
+import org.ebix.umm.umm.OclMaxExclusive
+import org.ebix.umm.umm.impl.OclMinInclusiveImpl
+import org.ebix.umm.umm.impl.OclMaxExclusiveImpl
+import org.ebix.umm.umm.impl.OclMaxLengthImpl
+import org.ebix.umm.umm.impl.OclMinLengthImpl
+import org.ebix.umm.umm.impl.OclTotalDigitsImpl
+import org.ebix.umm.umm.impl.OclFractionalDigitsImpl
+import org.ebix.umm.umm.impl.OclPatternImpl
 
 class GenerateXsd {
     
@@ -82,21 +93,34 @@ class GenerateXsd {
         var String location = "generic"
         for(enumLibrary: resource.allContents.toIterable.filter(typeof(ENUMLibrary))) {
             for(e: enumLibrary.enums) {
+            	if(e.compile(constants).toString().contains("TestFacet")){
+            		System.out.println("generic-enum")
+            	}
                 fsa.generateFile(e.fileName(location), e.compile(constants))
             }
         }
     	constants.setSchemaLocation("../../generic/")
         for(bdtLibrary: resource.allContents.toIterable.filter(typeof(BDTLibrary))) {
+        	if(bdtLibrary.compile(constants,null).toString().contains("TestFacet")){
+        		System.out.println("generic-bdt");
+        	}
             fsa.generateFile(bdtLibrary.fileName(location), bdtLibrary.compile(constants, null))
         }
         for(bieLibrary: resource.allContents.toIterable.filter(typeof(BIELibrary))) {
             var copyOfBieLibrary = copy(bieLibrary) as BIELibrary;
             copyOfBieLibrary.applyInvariants
+            if(copyOfBieLibrary.compile(constants,null).toString().contains("TestFacet")){
+            	val tmp = copyOfBieLibrary.compile(constants,null);
+            	System.out.println("generic-bie");
+            }
             fsa.generateFile(copyOfBieLibrary.fileName(location), copyOfBieLibrary.compile(constants, null))
         }
         for(docLibrary: resource.allContents.toIterable.filter(typeof(DocLibrary))) {
             for (envelope: docLibrary.envelopes) {
                 for (ma: envelope.assemblies) {
+                		if(ma.compile(constants,null).toString().contains("TestFacet")){
+                		System.out.println("generic-ma");
+                	}
                     fsa.generateFile(ma.fileName(location), ma.compile(constants, null))
                 }
             }
@@ -127,16 +151,28 @@ class GenerateXsd {
         }
         var clonedMa = ma.clone
 		ma.getSizeOclFromConstrains();
-		ma.getOclLengthFromConstrains();
+		ma.getAllOcls();
         clonedMa.library.bieLibrary.applyInvariants
         clonedMa.applyInvariantsFor(kind, "")
         if (listIdentifier.length > 0) {
 	        clonedMa.applyInvariantsFor(kind, listIdentifier)
         }
-        clonedMa.purge
-        fsa.generateFile(clonedMa.fileName(location), clonedMa.compile(constants, clonedMa))
-        fsa.generateFile(clonedMa.library.bieLibrary.fileName(location, clonedMa), clonedMa.library.bieLibrary.compile(constants, clonedMa))
-        fsa.generateFile(clonedMa.library.bdtLibrary.fileName(location, clonedMa), clonedMa.library.bdtLibrary.compile(constants, clonedMa))
+        clonedMa.purge//
+        val maCompile = clonedMa.compile(constants, clonedMa);
+        val bieCompile = clonedMa.library.bieLibrary.compile(constants, clonedMa);
+        val bdtCompile = clonedMa.library.bdtLibrary.compile(constants, clonedMa);
+        if(maCompile.toString().contains("TestFacet")) {
+        	System.out.println("Found in Ma");
+        }
+        if(bieCompile.toString().contains("TestFacet")) {
+        	System.out.println("Found in Bie");
+        }
+        if(bdtCompile.toString().contains("TestFacet")) {
+        	System.out.println("Found in Bdt");
+        }
+        fsa.generateFile(clonedMa.fileName(location), maCompile)
+        fsa.generateFile(clonedMa.library.bieLibrary.fileName(location, clonedMa), bieCompile)
+        fsa.generateFile(clonedMa.library.bdtLibrary.fileName(location, clonedMa), bdtCompile)
     }
     
     def void getSizeOclFromConstrains(MA ma){
@@ -159,25 +195,67 @@ class GenerateXsd {
         MultiplicityKindExtension.fieldSizeMap = fieldSizeMap;
     }
     
-        def void getOclLengthFromConstrains(MA ma){
-    	val fieldLengthMap = newHashMap();
+    	def void getAllOcls(MA ma){
+    		getOclFromConstrains(ma, OclMinExclusiveImpl);
+    		getOclFromConstrains(ma, OclMaxExclusiveImpl);
+    		getOclFromConstrains(ma, OclMinInclusiveImpl);
+    		getOclFromConstrains(ma, OclMaxExclusiveImpl);
+    		getOclFromConstrains(ma, OclMaxLengthImpl);
+    		getOclFromConstrains(ma, OclMinLengthImpl);
+    		getOclFromConstrains(ma, OclTotalDigitsImpl);
+    		getOclFromConstrains(ma, OclFractionalDigitsImpl);
+    		getOclFromConstrains(ma, OclPatternImpl);
+    		getOclFromConstrains(ma, OclLengthImpl);
+    	}
+    
+        def void getOclFromConstrains(MA ma, Class oclImplClass){
         for(contraint : ma.constraints){
         	for(invariant : contraint.invariants){
         		if(invariant.expression instanceof OclEqualImpl){
         		  val invEqual = invariant.expression as OclEqualImpl
        			  if(invEqual.left instanceof OclArrowImpl){
        			  	val invArrow = invEqual.left as OclArrowImpl;
-       			  	if(invArrow.right instanceof OclLengthImpl){//<-- OclLength, OclMinExclusive...
+       			  	if(invArrow.right.class.isAssignableFrom(oclImplClass)){
        			  		val fieldName = (invArrow.left as OclPathSelfHeadImpl).path.tail.tail.feature.name;//nazwa pola do ograniczenia
-       			  		val sizeValue = (invEqual.right as OclIntegerLiteralImpl).value;///wartość - w przypadku pattern musi byc OclStringLiteralImpl
-       			  		fieldLengthMap.put(fieldName, sizeValue);
+       			  		var oclValue = -1
+       			  		var oclStrValue = ""
+       			  		if(invEqual.right instanceof OclIntegerLiteralImpl){
+       			  			oclValue = (invEqual.right as OclIntegerLiteralImpl).value
+       			  		}
+       			  		else if(invEqual.right instanceof OclStringLiteralImpl){
+       			  			oclStrValue = (invEqual.right as OclStringLiteralImpl).value
+       			  		}
+       			  		val oclName = oclImplClass.simpleName.toLowerCase;
+       			  		if(BieLibrarySchema.fieldOcls.containsKey(fieldName)){
+							if(oclName.contains("minexclusive") && oclValue != -1) BieLibrarySchema.fieldOcls.get(fieldName).minExclusive = oclValue;
+							if(oclName.contains("maxexclusive") && oclValue != -1) BieLibrarySchema.fieldOcls.get(fieldName).maxExclusive = oclValue;
+							if(oclName.contains("mininclusive") && oclValue != -1) BieLibrarySchema.fieldOcls.get(fieldName).minInclusive = oclValue;
+							if(oclName.contains("maxinclusive") && oclValue != -1) BieLibrarySchema.fieldOcls.get(fieldName).maxInclusive = oclValue;
+							if(oclName.contains("maxlength") && oclValue != -1) BieLibrarySchema.fieldOcls.get(fieldName).maxLength = oclValue;
+							if(oclName.contains("minlength") && oclValue != -1) BieLibrarySchema.fieldOcls.get(fieldName).minLength = oclValue;
+							if(oclName.contains("totaldigits") && oclValue != -1) BieLibrarySchema.fieldOcls.get(fieldName).totalDigits = oclValue;
+							if(oclName.contains("fractionaldigits") && oclValue != -1) BieLibrarySchema.fieldOcls.get(fieldName).fractionalDigits = oclValue;
+							if(oclName.contains("pattern") && oclStrValue.length > 0) BieLibrarySchema.fieldOcls.get(fieldName).pattern = oclStrValue;
+							if(oclName.contains("ocllength") && oclValue != -1) BieLibrarySchema.fieldOcls.get(fieldName).length  = oclValue;
+       			  		} else{
+       			  			var ocls = new FieldOcls()
+       			  			if(oclName.contains("minexclusive") && oclValue != -1) ocls.minExclusive = oclValue;
+							if(oclName.contains("maxexclusive") && oclValue != -1) ocls.maxExclusive = oclValue;
+							if(oclName.contains("mininclusive") && oclValue != -1) ocls.minInclusive = oclValue;
+							if(oclName.contains("maxinclusive") && oclValue != -1) ocls.maxInclusive = oclValue;
+							if(oclName.contains("maxlength") && oclValue != -1) ocls.maxLength = oclValue;
+							if(oclName.contains("minlength") && oclValue != -1) ocls.minLength = oclValue;
+							if(oclName.contains("totaldigits") && oclValue != -1) ocls.totalDigits = oclValue;
+							if(oclName.contains("fractionaldigits") && oclValue != -1) ocls.fractionalDigits = oclValue;
+							if(oclName.contains("pattern") && oclStrValue.length > 0) ocls.pattern = oclStrValue;
+							if(oclName.contains("ocllength") && oclValue != -1) ocls.length  = oclValue;
+       			  			BieLibrarySchema.fieldOcls.put(fieldName,ocls);     			  		
+       			  		}
        			  	} 
        			  }
         		}
         	}
         }
-        BieLibrarySchema.fieldLengthMap = fieldLengthMap;
-        BdtLibrarySchema.fieldLengthMap = fieldLengthMap;
     }
     def private Constants projectConstants(IFileSystemAccess fsa) {
 		println("Getting settings")

@@ -29,10 +29,11 @@ import org.ebix.umm.umm.BBIE
 import org.ebix.umm.umm.BIELibrary
 import org.ebix.umm.umm.MA
 import java.util.HashMap
+import org.ebix.umm.validation.ocl.FieldOcls
 
 class BieLibrarySchema {
 	
-	public static HashMap<String, Integer> fieldLengthMap;
+	public static HashMap<String, FieldOcls> fieldOcls = new HashMap<String, FieldOcls>();
     
     @Inject extension Xml xmlExtension
     @Inject extension AbieExtension abieExtension
@@ -124,7 +125,27 @@ class BieLibrarySchema {
 	        </xsd:element>
 	    «ELSE»
 	    «IF (property.type.xsdName.equals("DayDateType") || property.type.xsdName.equals("YearDateType") || property.type.xsdName.equals("MonthDateType") || property.type.xsdName.equals("MonthDayDateType"))»        
-            <xsd:element name="«property.xsdName»" type="«property.type.xsdType»"«IF(property.hasFixedValue)» fixed="«property.fixedValue»"«ENDIF» «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»"«ENDIF»/>
+        <xsd:element name="«property.xsdName»" type="«property.type.xsdType»"«IF(property.hasFixedValue)» fixed="«property.fixedValue»"«ENDIF» «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»"«ENDIF»/>
+        «ELSE»
+        «IF (fieldOcls.containsKey(property.name))»
+        <xsd:element name="«property.xsdName»" «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»"«ENDIF»>
+            <xsd:complexType>
+                <xsd:simpleContent>
+                    <xsd:restriction base="«property.type.xsdType»">
+                        «IF (fieldOcls.get(property.name).minExclusive != null)»<xsd:minExclusive value="«fieldOcls.get(property.name).minExclusive»">«ENDIF»
+                        «IF (fieldOcls.get(property.name).maxExclusive != null)»<xsd:maxExclusive value="«fieldOcls.get(property.name).maxExclusive»">«ENDIF»
+                        «IF (fieldOcls.get(property.name).minInclusive != null)»<xsd:minInclusive value="«fieldOcls.get(property.name).minInclusive»">«ENDIF»
+                        «IF (fieldOcls.get(property.name).maxInclusive != null)»<xsd:maxInclusive value="«fieldOcls.get(property.name).maxInclusive»">«ENDIF»
+                        «IF (fieldOcls.get(property.name).maxLength != null)»<xsd:maxLength value="«fieldOcls.get(property.name).maxLength»">«ENDIF»
+                        «IF (fieldOcls.get(property.name).minLength != null)»<xsd:minLength value="«fieldOcls.get(property.name).minLength»">«ENDIF»
+                        «IF (fieldOcls.get(property.name).totalDigits != null)»<xsd:totalDigits value="«fieldOcls.get(property.name).totalDigits»">«ENDIF»
+                        «IF (fieldOcls.get(property.name).fractionalDigits != null)»<xsd:fractionalDigits value="«fieldOcls.get(property.name).fractionalDigits»">«ENDIF»
+                        «IF (fieldOcls.get(property.name).pattern != null)»<xsd:pattern value="«fieldOcls.get(property.name).pattern»">«ENDIF»
+                        «IF (fieldOcls.get(property.name).length != null)»<xsd:length value="«fieldOcls.get(property.name).length»">«ENDIF»
+                    </xsd:restriction>
+                </xsd:simpleContent>
+            </xsd:complexType>
+        </xsd:element>	
         «ELSE»
         «IF (property.restriction.size == 0 && (property.type.content==null||(!property.type.content.hasPattern && property.type.content.minLength == 0 && property.type.content.maxLength == 0 && property.type.content.length == 0 && property.type.content.minExclusive == 0 && property.type.content.minInclusive == 0 && property.type.content.maxExclusive == 0 && property.type.content.maxInclusive == 0 && property.type.content.fractionalDigits == 0 && property.type.content.totalDigits == 0)))»
         <xsd:element name="«property.xsdName»" type="«property.type.xsdType»"«IF(property.hasFixedValue)» fixed="«property.fixedValue»"«ENDIF» «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»"«ENDIF»/>
@@ -190,13 +211,6 @@ class BieLibrarySchema {
                             «IF (property.type.content.length != 0)»
                             <xsd:length value="«property.type.content.length»"/>
                             «ENDIF»
-                            «IF (property.name.equals("TestFacetLength_Description"))»
-                              <xsd:length testFacetFound="«fieldLengthMap.size()»"/>
-                            «ENDIF»
-
-                            «IF (fieldLengthMap != null && fieldLengthMap.containsKey(property.name))»
-                            <xsd:length value="«fieldLengthMap.get(property.name)»"/>
-                            «ENDIF»
                             «IF (property.type.content.minExclusive != 0)»
                             <xsd:minExclusive value="«property.type.content.minExclusive»"/>
                             «ENDIF»
@@ -221,6 +235,7 @@ class BieLibrarySchema {
             </xsd:complexType>
         «ENDIF»
         </xsd:element>
+        «ENDIF»
         «ENDIF»
         «ENDIF»
         «ENDIF»
