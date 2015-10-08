@@ -59,6 +59,7 @@ class BieLibrarySchema {
             xmlns:bie="«library.namespace(ma)»"
             xmlns:ccts="urn:un:unece:uncefact:documentation:common:3:standard:CoreComponentsTechnicalSpecification:3"
             xmlns:xbt="urn:un:unece:uncefact:data:common:1:draft"
+            xmlns:ns1="«library.baseURN»"
             targetNamespace="«library.namespace(ma)»"
             elementFormDefault="qualified"
             attributeFormDefault="unqualified"

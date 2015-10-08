@@ -157,19 +157,10 @@ class GenerateXsd {
         if (listIdentifier.length > 0) {
 	        clonedMa.applyInvariantsFor(kind, listIdentifier)
         }
-        clonedMa.purge//
+        clonedMa.purge
         val maCompile = clonedMa.compile(constants, clonedMa);
         val bieCompile = clonedMa.library.bieLibrary.compile(constants, clonedMa);
         val bdtCompile = clonedMa.library.bdtLibrary.compile(constants, clonedMa);
-        if(maCompile.toString().contains("TestFacet")) {
-        	System.out.println("Found in Ma");
-        }
-        if(bieCompile.toString().contains("TestFacet")) {
-        	System.out.println("Found in Bie");
-        }
-        if(bdtCompile.toString().contains("TestFacet")) {
-        	System.out.println("Found in Bdt");
-        }
         fsa.generateFile(clonedMa.fileName(location), maCompile)
         fsa.generateFile(clonedMa.library.bieLibrary.fileName(location, clonedMa), bieCompile)
         fsa.generateFile(clonedMa.library.bdtLibrary.fileName(location, clonedMa), bdtCompile)
