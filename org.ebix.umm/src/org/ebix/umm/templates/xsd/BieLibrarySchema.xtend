@@ -126,7 +126,7 @@ class BieLibrarySchema {
 	        </xsd:element>
 	    «ELSE»
 	    «IF (property.type.xsdName.equals("DayDateType") || property.type.xsdName.equals("YearDateType") || property.type.xsdName.equals("MonthDateType") || property.type.xsdName.equals("MonthDayDateType"))»        
-        <xsd:element name="«property.xsdName»" type="«property.type.xsdType»"«IF(property.hasFixedValue)» fixed="«property.fixedValue»"«ENDIF» «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»"«ENDIF»/>
+        <xsd:element name="«property.xsdName»" type="«prefix»:«property.type.xsdType»"«IF(property.hasFixedValue)» fixed="«property.fixedValue»"«ENDIF» «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»"«ENDIF»/>
         «ELSE»
         «IF (fieldOcls.containsKey(property.name))»
         <xsd:element name="«property.xsdName»" «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»"«ENDIF»>
@@ -149,7 +149,7 @@ class BieLibrarySchema {
         </xsd:element>	
         «ELSE»
         «IF (property.restriction.size == 0 && (property.type.content==null||(!property.type.content.hasPattern && property.type.content.minLength == 0 && property.type.content.maxLength == 0 && property.type.content.length == 0 && property.type.content.minExclusive == 0 && property.type.content.minInclusive == 0 && property.type.content.maxExclusive == 0 && property.type.content.maxInclusive == 0 && property.type.content.fractionalDigits == 0 && property.type.content.totalDigits == 0)))»
-        <xsd:element name="«property.xsdName»" type="«property.type.xsdType»"«IF(property.hasFixedValue)» fixed="«property.fixedValue»"«ENDIF» «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»"«ENDIF»/>
+        <xsd:element name="«property.xsdName»" type="«prefix»:«property.type.xsdType»"«IF(property.hasFixedValue)» fixed="«property.fixedValue»"«ENDIF» «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»"«ENDIF»/>
         «ELSE»
         <xsd:element name="«property.xsdName»" «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»"«ENDIF»>
         «IF (property.type.isSimpleType())»

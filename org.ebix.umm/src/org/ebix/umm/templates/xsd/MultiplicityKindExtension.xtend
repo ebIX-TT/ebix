@@ -23,7 +23,7 @@ import java.util.HashMap
 
 class MultiplicityKindExtension {
 	
-	public static HashMap<String, Integer> fieldSizeMap; 
+	public static HashMap<String, Integer> fieldSizeMap = new HashMap<String,Integer>(); 
     
     def String use(MultiplicityKind m) {
         switch (m) {
@@ -36,11 +36,13 @@ class MultiplicityKindExtension {
     }
 
 	def static boolean hasSize(String fieldName){
-		if(fieldSizeMap != null && fieldSizeMap.containsKey(fieldName)) true;
+//		if(fieldSizeMap != null && fieldSizeMap.containsKey(fieldName)) true;
+//TODO: Verify business reason if this should be checked in xsd gen. 
+return true;
 	}
 
     def String minOccurs(MultiplicityKind m, String fieldName) {
-    	if(hasSize(fieldName)){
+    	if(hasSize(fieldName) && fieldSizeMap.containsKey(fieldName)){
     		val size = fieldSizeMap.get(fieldName);
     		if(size == 0){
 	    		switch (m) {
@@ -81,7 +83,7 @@ class MultiplicityKindExtension {
     }
 
     def String maxOccurs(MultiplicityKind m, String fieldName) {
-    	if(hasSize(fieldName)){
+    	if(hasSize(fieldName) && fieldSizeMap.containsKey(fieldName)){
     		val size = fieldSizeMap.get(fieldName);
     		if(size == 0){
 	    		switch (m) {
