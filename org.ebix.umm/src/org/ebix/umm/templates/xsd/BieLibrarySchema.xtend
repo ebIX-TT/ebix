@@ -183,7 +183,8 @@ class BieLibrarySchema {
 	                    «IF (property.type.content.maxInclusive != 0)»
 	                    <xsd:maxInclusive value="«property.type.content.maxInclusive»"/>
 	                    «ENDIF»
-	                    «IF (property.type.content.fractionalDigits != 0)»
+	          Digits value="3"/>
+1276 <          «IF (property.type.content.fractionalDigits != 0)»
 	                    <xsd:fractionDigits value="«property.type.content.fractionalDigits»"/>
 	                    «ENDIF»
 	                    «IF (property.type.content.totalDigits != 0)»

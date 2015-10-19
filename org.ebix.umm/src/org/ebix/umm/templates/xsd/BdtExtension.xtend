@@ -100,7 +100,7 @@ class BdtExtension {
 	
     def String xsdQualifiedType(BDTProperty property) {
         if (property.type instanceof Assembled) {
-            return (property.type as Assembled).xsdType
+            return "ns1:" + (property.type as Assembled).xsdType
         } else if(property.type.name.equals("DateTimeType")){
         	return "xsd:dateTime"
         } else if(property.type.name.equals("DateType")){
