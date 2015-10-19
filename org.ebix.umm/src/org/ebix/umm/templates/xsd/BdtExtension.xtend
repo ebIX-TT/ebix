@@ -45,33 +45,33 @@ class BdtExtension {
 	def String xsdType(BDT bdt) {
 		if(bdt == null) return "undefined";
 		if(bdt.xsdName.equals("DateTimeType")){
-			return "datetime"
+			return "xsd:dateTime"
 		} else if(bdt.xsdName.equals("DateType")){
 			bdt.properties.get(0).pattern = "[0-9]{4}-[0-1][0-9]-[0-3][0-9]"
-			return "date"
+			return "xsd:date"
 		} else if(bdt.xsdName.equals("TimeType")){
 			bdt.properties.get(0).pattern = "[0-2][0-9]:[0-5][0-9]:[0-5][0-9]";
-			return "time"
+			return "xsd:time"
 		} else if(bdt.xsdName.equals("UTCOffsetDateTimeType")){
 			bdt.properties.get(0).pattern = "[0-9]{4}-[0-1][0-9]-[0-3][0-9]T[0-2][0-9]:[0-5][0-9]:[0-5][0-9].[0-9]*[\\+|-][0-2][0-9]:[0-6][0-9]";
-			return "datetime"
+			return "xsd:dateTime"
 		} else if(bdt.xsdName.equals("UTCDateTimeType")){
 			bdt.properties.get(0).pattern = "[0-9]{4}-[0-1][0-9]-[0-3][0-9]T[0-2][0-9]:[0-5][0-9]:[0-5][0-9].[0-9]*Z";
-			return "datetime"
+			return "xsd:dateTime"
 		} else if(bdt.xsdName.equals("DayDateType")){
 			bdt.properties.get(0).pattern = "---[0-3][0-9]";
-			return "gDay"
+			return "xsd:gDay"
 		} else if(bdt.xsdName.equals("YearDateType")){
 			bdt.properties.get(0).pattern = "[0-9]{4}";
-			return "gYear"
+			return "xsd:gYear"
 		} else if(bdt.xsdName.equals("MonthDateType")){
 			bdt.properties.get(0).pattern = "--[0-1][0-9]--";
-			return "gMonth"
+			return "xsd:gMonth"
 		} else if(bdt.xsdName.equals("MonthDayDateType")){
 			bdt.properties.get(0).pattern = "--[0-1][0-9]-[0-3][0-9]";
-			return "gMonthDay"
+			return "xsd:gMonthDay"
 		} else
-	    return bdt.xsdName + "_" + bdt.uniqueIdentifier; 
+	    return "bie:"+bdt.xsdName + "_" + bdt.uniqueIdentifier; 
 	}
 	
 	def String xsdTypeName(BDT bdt) {
@@ -100,13 +100,13 @@ class BdtExtension {
 	
     def String xsdQualifiedType(BDTProperty property) {
         if (property.type instanceof Assembled) {
-            return "bdt:" + (property.type as Assembled).xsdType
+            return (property.type as Assembled).xsdType
         } else if(property.type.name.equals("DateTimeType")){
-        	return "dateTime"
+        	return "xsd:dateTime"
         } else if(property.type.name.equals("DateType")){
-        	return "date"
+        	return "xsd:date"
         } else if(property.type.name.equals("TimeType")){
-        	return "time"
+        	return "xsd:time"
         }
          else { 
         	return (property.type as Primitive).xsdQualifiedType

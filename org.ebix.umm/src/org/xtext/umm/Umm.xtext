@@ -485,6 +485,10 @@ OclPathFeatureHead:
 OclPathTail:
 	'.' feature=[OclRef] ( tail=OclPathTail )?;
 
+//Pomysl na nowy ocl zgodnie ze specką. 
+//OclNewOcl:
+//	'.content.';	
+
 OclRef:
 	MAProperty | ABIEProperty | BDTProperty;	
 

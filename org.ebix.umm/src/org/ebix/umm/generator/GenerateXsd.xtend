@@ -84,8 +84,10 @@ class GenerateXsd {
     
     def generateXsd(Resource resource, IFileSystemAccess fsa) {
     	val constants = projectConstants(fsa)
-    	
-        generateGenericXsd(resource, fsa, constants)   
+    	//Paweł: Rozróżnienie jaki xsd jest generowany
+        generateGenericXsd(resource, fsa, constants)
+        
+        //Paweł: Tutaj generują się dwa rodzaje xsd: document i payload   
         generateConstrainedXsd(resource, fsa, constants)   
     }
     
