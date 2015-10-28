@@ -104,6 +104,7 @@ class EnumExtension {
             case "5":        "ISO"
             case "293":        "BDEW"
             case "9":        "GS1"
+            case "379":      "IANA"
             default:          "unk"
         }
     }
