@@ -67,6 +67,7 @@ import org.ebix.umm.umm.impl.OclMinLengthImpl
 import org.ebix.umm.umm.impl.OclTotalDigitsImpl
 import org.ebix.umm.umm.impl.OclFractionalDigitsImpl
 import org.ebix.umm.umm.impl.OclPatternImpl
+import org.ebix.umm.umm.impl.OclMaxInclusiveImpl
 
 class GenerateXsd {
     
@@ -192,7 +193,7 @@ class GenerateXsd {
     		getOclFromConstrains(ma, OclMinExclusiveImpl);
     		getOclFromConstrains(ma, OclMaxExclusiveImpl);
     		getOclFromConstrains(ma, OclMinInclusiveImpl);
-    		getOclFromConstrains(ma, OclMaxExclusiveImpl);
+    		getOclFromConstrains(ma, OclMaxInclusiveImpl);
     		getOclFromConstrains(ma, OclMaxLengthImpl);
     		getOclFromConstrains(ma, OclMinLengthImpl);
     		getOclFromConstrains(ma, OclTotalDigitsImpl);
