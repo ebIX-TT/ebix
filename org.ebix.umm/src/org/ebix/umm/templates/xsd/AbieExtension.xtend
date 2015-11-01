@@ -91,6 +91,12 @@ class AbieExtension {
                 return true
         return false
     }
+    
+        def String fullNameForMap(ABIEProperty property) {
+        //return property.abie.name+'.'+property.name
+        return property.name
+    }
+    
 
 
     // BBIE

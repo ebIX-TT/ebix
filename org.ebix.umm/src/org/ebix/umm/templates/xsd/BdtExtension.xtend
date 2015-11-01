@@ -130,4 +130,8 @@ class BdtExtension {
         return sup.fixedValue != null && sup.fixedValue.length > 0 
     }
     
+     def String fullName(BDTProperty property) {
+     	return property.name+property.name;
+     }
+    
 }

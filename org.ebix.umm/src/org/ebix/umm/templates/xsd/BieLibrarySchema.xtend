@@ -128,7 +128,7 @@ class BieLibrarySchema {
 	    «IF (property.type.xsdName.equals("DayDateType") || property.type.xsdName.equals("YearDateType") || property.type.xsdName.equals("MonthDateType") || property.type.xsdName.equals("MonthDayDateType"))»        
         <xsd:element name="«property.xsdName»" type="«property.type.xsdType»"«IF(property.hasFixedValue)» fixed="«property.fixedValue»"«ENDIF» «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»"«ENDIF»/>
         «ELSE»
-        «IF (fieldOcls.containsKey(property.name))»
+        «IF (fieldOcls.containsKey(property.fullNameForMap))»
         <xsd:element name="«property.xsdName»" «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»"«ENDIF»>
              «IF (property.type.isSimpleType())»
 	            <xsd:simpleType>
@@ -137,16 +137,16 @@ class BieLibrarySchema {
                 <xsd:simpleContent>
               «ENDIF»
                     <xsd:restriction base="«property.type.xsdType»">
-                        «IF (fieldOcls.get(property.name).minExclusive != null)»<xsd:minExclusive value="«fieldOcls.get(property.name).minExclusive»"/>«ENDIF»
-                        «IF (fieldOcls.get(property.name).maxExclusive != null)»<xsd:maxExclusive value="«fieldOcls.get(property.name).maxExclusive»"/>«ENDIF»
-                        «IF (fieldOcls.get(property.name).minInclusive != null)»<xsd:minInclusive value="«fieldOcls.get(property.name).minInclusive»"/>«ENDIF»
-                        «IF (fieldOcls.get(property.name).maxInclusive != null)»<xsd:maxInclusive value="«fieldOcls.get(property.name).maxInclusive»"/>«ENDIF»
-                        «IF (fieldOcls.get(property.name).maxLength != null)»<xsd:maxLength value="«fieldOcls.get(property.name).maxLength»"/>«ENDIF»
-                        «IF (fieldOcls.get(property.name).minLength != null)»<xsd:minLength value="«fieldOcls.get(property.name).minLength»"/>«ENDIF»
-                        «IF (fieldOcls.get(property.name).totalDigits != null)»<xsd:totalDigits value="«fieldOcls.get(property.name).totalDigits»"/>«ENDIF»
-                        «IF (fieldOcls.get(property.name).fractionalDigits != null)»<xsd:fractionDigits value="«fieldOcls.get(property.name).fractionalDigits»"/>«ENDIF»
-                        «IF (fieldOcls.get(property.name).pattern != null)»<xsd:pattern value="«fieldOcls.get(property.name).pattern»"/>«ENDIF»
-                        «IF (fieldOcls.get(property.name).length != null)»<xsd:length value="«fieldOcls.get(property.name).length»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.fullNameForMap).minExclusive != null)»<xsd:minExclusive value="«fieldOcls.get(property.fullNameForMap).minExclusive»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.fullNameForMap).maxExclusive != null)»<xsd:maxExclusive value="«fieldOcls.get(property.fullNameForMap).maxExclusive»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.fullNameForMap).minInclusive != null)»<xsd:minInclusive value="«fieldOcls.get(property.fullNameForMap).minInclusive»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.fullNameForMap).maxInclusive != null)»<xsd:maxInclusive value="«fieldOcls.get(property.fullNameForMap).maxInclusive»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.fullNameForMap).maxLength != null)»<xsd:maxLength value="«fieldOcls.get(property.fullNameForMap).maxLength»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.fullNameForMap).minLength != null)»<xsd:minLength value="«fieldOcls.get(property.fullNameForMap).minLength»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.fullNameForMap).totalDigits != null)»<xsd:totalDigits value="«fieldOcls.get(property.fullNameForMap).totalDigits»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.fullNameForMap).fractionalDigits != null)»<xsd:fractionDigits value="«fieldOcls.get(property.fullNameForMap).fractionalDigits»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.fullNameForMap).pattern != null)»<xsd:pattern value="«fieldOcls.get(property.fullNameForMap).pattern»"/>«ENDIF»
+                        «IF (fieldOcls.get(property.fullNameForMap).length != null)»<xsd:length value="«fieldOcls.get(property.fullNameForMap).length»"/>«ENDIF»
                     </xsd:restriction>
               «IF (property.type.isSimpleType())»
 	            </xsd:simpleType>

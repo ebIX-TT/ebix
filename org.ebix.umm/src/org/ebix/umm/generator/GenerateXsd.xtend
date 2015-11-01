@@ -153,6 +153,7 @@ class GenerateXsd {
 	        location = listIdentifier + "/" + location
         }
         var clonedMa = ma.clone
+        BieLibrarySchema.fieldOcls.clear;
 		ma.getSizeOclFromConstrains();
 		ma.getAllOcls();
         clonedMa.library.bieLibrary.applyInvariants
@@ -211,6 +212,8 @@ class GenerateXsd {
        			  	val invArrow = invEqual.left as OclArrowImpl;
        			  	if(invArrow.right.class.isAssignableFrom(oclImplClass)){
        			  		val fieldName = (invArrow.left as OclPathSelfHeadImpl).path.tail.tail.feature.name;//nazwa pola do ograniczenia
+       			  		//val fieldName = (invArrow.left as OclPathSelfHeadImpl).path.tail.feature.name+'.'+
+       			  		//(invArrow.left as OclPathSelfHeadImpl).path.tail.tail.feature.name;
        			  		var oclValue = -1
        			  		var oclStrValue = ""
        			  		if(invEqual.right instanceof OclIntegerLiteralImpl){
