@@ -114,7 +114,6 @@ class BieLibrarySchema {
     def dispatch AProperty(BBIE property, String prefix) '''
         «IF (property.type.xsdName.equals("DateTimeType") || property.type.xsdName.equals("DateType") || property.type.xsdName.equals("TimeType") || property.type.xsdName.equals("UTCOffsetDateTimeType") || property.type.xsdName.equals("UTCDateTimeType"))»
         	<xsd:element name="«property.xsdName»" «IF (MultiplicityKindExtension.hasSize(property.xsdName))»minOccurs="«property.multiplicity.minOccurs(property.xsdName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdName)»"«ENDIF»>
-	        «IF (property.type.isSimpleType())»
 	            <xsd:simpleType>
 	            	<xsd:restriction base="«property.type.xsdType»">
 		                    «IF (property.type.content.hasPattern)»
@@ -122,7 +121,6 @@ class BieLibrarySchema {
 		                    «ENDIF»
 	                </xsd:restriction>
 	            </xsd:simpleType>
-	        «ENDIF»
 	        </xsd:element>
 	    «ELSE»
 	    «IF (property.type.xsdName.equals("DayDateType") || property.type.xsdName.equals("YearDateType") || property.type.xsdName.equals("MonthDateType") || property.type.xsdName.equals("MonthDayDateType"))»        
