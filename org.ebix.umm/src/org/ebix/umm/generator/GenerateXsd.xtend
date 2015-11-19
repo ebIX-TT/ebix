@@ -68,6 +68,7 @@ import org.ebix.umm.umm.impl.OclTotalDigitsImpl
 import org.ebix.umm.umm.impl.OclFractionalDigitsImpl
 import org.ebix.umm.umm.impl.OclPatternImpl
 import org.ebix.umm.umm.impl.OclMaxInclusiveImpl
+import org.ebix.umm.umm.OclPathTail
 
 class GenerateXsd {
     
@@ -211,7 +212,8 @@ class GenerateXsd {
        			  if(invEqual.left instanceof OclArrowImpl){
        			  	val invArrow = invEqual.left as OclArrowImpl;
        			  	if(invArrow.right.class.isAssignableFrom(oclImplClass)){
-       			  		val fieldName = (invArrow.left as OclPathSelfHeadImpl).path.tail.tail.feature.name;//nazwa pola do ograniczenia
+       			  		//val fieldName = (invArrow.left as OclPathSelfHeadImpl).path.tail.tail.feature.name;//nazwa pola do ograniczenia
+       			  		val fieldName = getNameForMap((invArrow.left as OclPathSelfHeadImpl).path);
        			  		//val fieldName = (invArrow.left as OclPathSelfHeadImpl).path.tail.feature.name+'.'+
        			  		//(invArrow.left as OclPathSelfHeadImpl).path.tail.tail.feature.name;
        			  		var oclValue = -1
@@ -254,6 +256,16 @@ class GenerateXsd {
         	}
         }
     }
+    def private String getNameForMap(OclPathTail path){
+    	if (path.tail == null){
+    		return path.feature.name;
+    	}else if ("content".equals(path.tail.feature.name)){
+    		return path.feature.name;
+    	}else{
+    		return getNameForMap(path.tail);
+    	}
+    }
+    
     def private Constants projectConstants(IFileSystemAccess fsa) {
 		println("Getting settings")
 		val constants = new Constants()
