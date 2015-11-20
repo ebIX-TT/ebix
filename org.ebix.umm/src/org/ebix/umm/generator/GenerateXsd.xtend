@@ -69,6 +69,13 @@ import org.ebix.umm.umm.impl.OclFractionalDigitsImpl
 import org.ebix.umm.umm.impl.OclPatternImpl
 import org.ebix.umm.umm.impl.OclMaxInclusiveImpl
 import org.ebix.umm.umm.OclPathTail
+import org.ebix.umm.umm.MAProperty
+import org.ebix.umm.umm.ABIEProperty
+import org.ebix.umm.umm.BDTProperty
+import org.ebix.umm.umm.ASBIE
+import org.ebix.umm.umm.BBIE
+import org.ebix.umm.umm.Content
+import org.ebix.umm.umm.OclRef
 
 class GenerateXsd {
     
@@ -257,14 +264,55 @@ class GenerateXsd {
         }
     }
     def private String getNameForMap(OclPathTail path){
+    	if ("Sender".equals(path.feature.name)){
+    		print("");
+    	}
     	if (path.tail == null){
+    		println("feature + name: "+ path.feature.name);
+    		println("-------------------");
     		return path.feature.name;
     	}else if ("content".equals(path.tail.feature.name)){
+    		println("feature + name: "+ path.feature.name);
+    		println("-------------------");
     		return path.feature.name;
     	}else{
-    		return getNameForMap(path.tail);
+    		return getNameForMap(path.tail, path.feature);
     	}
     }
+    
+    def private String getNameForMap(OclPathTail path, OclRef parent){
+    	if (path.tail == null){
+    		var na = getNameForOclRef(parent)+"."+getNameForOclRef(path.feature);
+    		println("-------------------");
+    		return na;
+    	}else if ("content".equals(path.tail.feature.name)){
+    		var na = getNameForOclRef(parent)+"."+getNameForOclRef(path.feature);
+    		println("-------------------");
+    		return na;
+    	}else{    		
+    		return getNameForMap(path.tail, path.feature);
+    	}
+    }
+    
+        def private String getNameForOclRef( OclRef ref){
+        	var nam =ref.name
+    		if (ref instanceof MAProperty){
+    			var f1 = ref as MAProperty
+    			nam = f1.type.name;
+    		}else if (ref instanceof ASBIE){
+    			var f1 = ref as ASBIE
+    			nam = f1.type.name;
+    		}else if (ref instanceof BBIE){
+    			var f1 = ref as BBIE
+    			nam = f1.name;
+    		}else if (ref instanceof BDTProperty){
+    			var f1 = ref as BDTProperty //Content || Supplement
+    			nam = f1.name;
+    		}
+    		println("feature. name: "+ nam+"\t");	
+    		return nam;
+    }
+    
     
     def private Constants projectConstants(IFileSystemAccess fsa) {
 		println("Getting settings")
