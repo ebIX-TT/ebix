@@ -34,7 +34,7 @@ class BdtLibraryExtension {
     @Inject extension EnumExtension enumExtension
     
     def String fileName(BDTLibrary library) {
-        return "ebIX_MessageDataType_" + library.versionIdentifier.replaceAll("\\.", "p") + ".xsd"
+        return "ebIX_BusinessDataType_" + library.versionIdentifier.replaceAll("\\.", "p") + ".xsd"
     }
 
     def String fileName(BDTLibrary library, String directory) {
@@ -45,7 +45,7 @@ class BdtLibraryExtension {
     	if(ma!=null){
     		return "ebIX_MessageDataType_" + ma.name +"_"+ library.versionIdentifier.replaceAll("\\.", "p") + ".xsd"
     	}
-        return "ebIX_MessageDataType_" + library.versionIdentifier.replaceAll("\\.", "p") + ".xsd"
+        return "ebIX_BusinessDataType_" + library.versionIdentifier.replaceAll("\\.", "p") + ".xsd"
     }
 
     def String fileName(BDTLibrary library, String directory, MA ma) {

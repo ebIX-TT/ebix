@@ -24,7 +24,7 @@ import org.ebix.umm.umm.MA
 class BieLibraryExtension {
     
     def String fileName(BIELibrary library) {
-        return "ebIX_MessageBusinessInformationEntities_" + library.versionIdentifier.replaceAll("\\.", "p") + ".xsd"
+        return "ebIX_BusinessInformationEntities_" + library.versionIdentifier.replaceAll("\\.", "p") + ".xsd"
     }
 
     def String fileName(BIELibrary library, String directory) {
@@ -35,7 +35,7 @@ class BieLibraryExtension {
     	if(ma !=null){
     		return "ebIX_MessageBusinessInformationEntities_" + ma.name +"_"+ library.versionIdentifier.replaceAll("\\.", "p") + ".xsd"
     	}
-    	return "ebIX_MessageBusinessInformationEntities_" + library.versionIdentifier.replaceAll("\\.", "p") + ".xsd"
+    	return "ebIX_BusinessInformationEntities_" + library.versionIdentifier.replaceAll("\\.", "p") + ".xsd"
     }
 
     def String fileName(BIELibrary library, String directory, MA ma) {
