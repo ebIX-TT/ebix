@@ -71,7 +71,8 @@ class UmmBuilder extends IncrementalProjectBuilder {
 	}	
 	
 	def private applyStereotypeSettings(IProject project, UmmStereotypes ummStereotypes) {
-		println("Getting settings")
+		//2016-06-05 disabled
+		//println("Getting settings")
 		val projectScope = new ProjectScope(project);
 		val projectNode = projectScope.getNode("org.ebix.umm.uml2text");
 		if (projectNode != null) {

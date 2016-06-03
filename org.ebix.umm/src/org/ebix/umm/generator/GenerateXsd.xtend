@@ -115,7 +115,11 @@ class GenerateXsd {
         	if(bdtLibrary.compile(constants,null).toString().contains("TestFacet")){
         		System.out.println("generic-bdt");
         	}
-            fsa.generateFile(bdtLibrary.fileName(location), bdtLibrary.compile(constants, null))
+        	System.out.println("generating BDT");
+        	var String bdtStr = bdtLibrary.compile(constants, null).toString();
+        	bdtStr = bdtStr.replace("xmlns:ns1","xmlns:bcl");
+        	bdtStr = bdtStr.replace("\"ns1:","\"bcl:");
+            fsa.generateFile(bdtLibrary.fileName(location), bdtStr)
         }
         for(bieLibrary: resource.allContents.toIterable.filter(typeof(BIELibrary))) {
             var copyOfBieLibrary = copy(bieLibrary) as BIELibrary;
@@ -124,7 +128,11 @@ class GenerateXsd {
             	val tmp = copyOfBieLibrary.compile(constants,null);
             	System.out.println("generic-bie");
             }
-            fsa.generateFile(copyOfBieLibrary.fileName(location), copyOfBieLibrary.compile(constants, null))
+            System.out.println("generating BIE");
+            var String bieStr = copyOfBieLibrary.compile(constants, null).toString();
+            bieStr = bieStr.replace("xmlns:ns1","xmlns:bdt");
+        	bieStr = bieStr.replace("\"ns1:","\"bdt:");
+            fsa.generateFile(copyOfBieLibrary.fileName(location), bieStr)
         }
         for(docLibrary: resource.allContents.toIterable.filter(typeof(DocLibrary))) {
             for (envelope: docLibrary.envelopes) {
@@ -315,7 +323,8 @@ class GenerateXsd {
     
     
     def private Constants projectConstants(IFileSystemAccess fsa) {
-		println("Getting settings")
+    	//2016-06-05 disabled
+		//println("Getting settings")
 		val constants = new Constants()
     	if (fsa instanceof EclipseResourceFileSystemAccess2 ) {
     		// Ugly, but Xtext builder hides a bit much

@@ -93,8 +93,8 @@ class AbieExtension {
     }
     
         def String fullNameForMap(ABIEProperty property) {
-         
-        println("Labie+name: " +property.abie.name+'.'+property.name)
+        //2016-06-05 disabled 
+        //println("Labie+name: " +property.abie.name+'.'+property.name)
         //return property.name
          return property.abie.name+'.'+property.name
     }
