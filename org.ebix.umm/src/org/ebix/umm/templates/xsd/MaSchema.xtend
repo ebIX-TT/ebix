@@ -51,6 +51,8 @@ class MaSchema {
             xmlns:rsm="«ma.namespace(otherMa)»"
             xmlns:ccts="urn:un:unece:uncefact:documentation:common:3:standard:CoreComponentsTechnicalSpecification:3"
             xmlns:xbt="urn:un:unece:uncefact:data:common:1:draft"
+            xmlns:bdt="«ma.namespace(otherMa)»"
+            xmlns:bie="«ma.namespace(otherMa)»"
             targetNamespace="«ma.namespace(otherMa)»"
             elementFormDefault="qualified"
             attributeFormDefault="unqualified"

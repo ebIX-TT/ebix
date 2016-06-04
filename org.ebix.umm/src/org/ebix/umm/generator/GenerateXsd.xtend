@@ -181,9 +181,26 @@ class GenerateXsd {
         val maCompile = clonedMa.compile(constants, clonedMa);
         val bieCompile = clonedMa.library.bieLibrary.compile(constants, clonedMa);
         val bdtCompile = clonedMa.library.bdtLibrary.compile(constants, clonedMa);
-        fsa.generateFile(clonedMa.fileName(location), maCompile)
-        fsa.generateFile(clonedMa.library.bieLibrary.fileName(location, clonedMa), bieCompile)
-        fsa.generateFile(clonedMa.library.bdtLibrary.fileName(location, clonedMa), bdtCompile)
+        var String maStr = maCompile.toString();
+        maStr = maStr.replace("xmlns:bdt","xmlns:mdt");
+        maStr = maStr.replace("\"bdt:","\"mdt:");
+        maStr = maStr.replace("xmlns:bie","xmlns:mie");
+        maStr = maStr.replace("\"bie:","\"mie:");
+        maStr = maStr.replace("xmlns:rsm","xmlns:crs");
+        maStr = maStr.replace("\"rsm:","\"crs:");
+        fsa.generateFile(clonedMa.fileName(location), maStr)
+        var String bieStr = bieCompile.toString();
+        bieStr = bieStr.replace("xmlns:bie","xmlns:mie");
+        bieStr = bieStr.replace("\"bie:","\"mie:");
+        bieStr = bieStr.replace("xmlns:ns1","xmlns:bie");
+        bieStr = bieStr.replace("\"ns1:","\"bie:");
+        fsa.generateFile(clonedMa.library.bieLibrary.fileName(location, clonedMa), bieStr)
+        var String bdtStr = bdtCompile.toString();
+        bdtStr = bdtStr.replace("xmlns:ns1","xmlns:bcl");
+        bdtStr = bdtStr.replace("\"ns1:","\"bcl:");
+        bdtStr = bdtStr.replace("xmlns:bdt","xmlns:mdt");
+        bdtStr = bdtStr.replace("\"bdt:","\"mdt:");
+        fsa.generateFile(clonedMa.library.bdtLibrary.fileName(location, clonedMa), bdtStr)
     }
     
     def void getSizeOclFromConstrains(MA ma){
