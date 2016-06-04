@@ -132,6 +132,7 @@ class GenerateXsd {
             var String bieStr = copyOfBieLibrary.compile(constants, null).toString();
             bieStr = bieStr.replace("xmlns:ns1","xmlns:bdt");
         	bieStr = bieStr.replace("\"ns1:","\"bdt:");
+        	bieStr = bieStr.replaceFirst(".*xmlns:mdt.*",'');
             fsa.generateFile(copyOfBieLibrary.fileName(location), bieStr)
         }
         for(docLibrary: resource.allContents.toIterable.filter(typeof(DocLibrary))) {
@@ -140,7 +141,11 @@ class GenerateXsd {
                 		if(ma.compile(constants,null).toString().contains("TestFacet")){
                 		System.out.println("generic-ma");
                 	}
-                    fsa.generateFile(ma.fileName(location), ma.compile(constants, null))
+                	var String maStr = ma.compile(constants, null).toString();
+                	maStr = maStr.replaceFirst("(type=\")(rsm)(:.*\"/>)","$1xxxx$3");
+                	maStr = maStr.replaceAll("(type=\")(rsm)(:.*\"/>)","$1bie$3");
+                	maStr = maStr.replaceFirst("(type=\")(xxxx)(:.*\"/>)","$1rsm$3");
+                    fsa.generateFile(ma.fileName(location), maStr)
                 }
             }
         }
@@ -188,12 +193,17 @@ class GenerateXsd {
         maStr = maStr.replace("\"bie:","\"mie:");
         maStr = maStr.replace("xmlns:rsm","xmlns:crs");
         maStr = maStr.replace("\"rsm:","\"crs:");
+        maStr = maStr.replaceFirst("(type=\")(crs)(:.*\"/>)","$1xxxx$3");
+        maStr = maStr.replaceAll("(type=\")(crs)(:.*\"/>)","$1mie$3");
+        maStr = maStr.replaceFirst("(type=\")(xxxx)(:.*\"/>)","$1crs$3");
         fsa.generateFile(clonedMa.fileName(location), maStr)
         var String bieStr = bieCompile.toString();
         bieStr = bieStr.replace("xmlns:bie","xmlns:mie");
         bieStr = bieStr.replace("\"bie:","\"mie:");
         bieStr = bieStr.replace("xmlns:ns1","xmlns:bie");
         bieStr = bieStr.replace("\"ns1:","\"bie:");
+        bieStr = bieStr.replaceAll("(type=\")(mie)(:.*Type_.*\\d{6}\")","$1mdt$3");
+        bieStr = bieStr.replaceAll("(base=\")(mie)(:.*Type_.*\\d{6}\")","$1mdt$3");
         fsa.generateFile(clonedMa.library.bieLibrary.fileName(location, clonedMa), bieStr)
         var String bdtStr = bdtCompile.toString();
         bdtStr = bdtStr.replace("xmlns:ns1","xmlns:bcl");
