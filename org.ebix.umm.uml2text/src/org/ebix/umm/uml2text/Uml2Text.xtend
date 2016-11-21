@@ -40,6 +40,10 @@ class Uml2Text {
 		var line = "";
 		var tmpContent="";
 		while( (line = buffReader.readLine()) != null){
+			if (line.contains("pattern")){
+				line = line.replace("\\","\\\\");
+				println("replaced " + line);
+			}
 			if(line.contains(".content.pattern=")){
 				line = line.replaceFirst("\\s+$", "");
 				line += "\"";				
@@ -61,7 +65,7 @@ class Uml2Text {
 	}
 	
 	def static void main(String[] args) {
-        val fileURI = "/home/xrdj6c/workspace/new/runtime-Umm.product/Test3/uml/European_Energy_Market.uml".createFileURI
+        val fileURI = "/home/adminuser/runtime-Umm.product/newUml/uml/European_Energy_Market.uml".createFileURI
 		val fw = new FileWriterStandaloneImpl
     	val resourceSet = new ResourceSetImpl();
     	resourceSet.init   // standalone UML2 initialization
