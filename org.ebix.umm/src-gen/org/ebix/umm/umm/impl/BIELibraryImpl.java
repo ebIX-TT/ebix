@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.impl.BIELibraryImpl#getBusinessTerm <em>Business Term</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.BIELibraryImpl#getCopyright <em>Copyright</em>}</li>
@@ -41,7 +42,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.ebix.umm.umm.impl.BIELibraryImpl#getBdtLibrary <em>Bdt Library</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.BIELibraryImpl#getAbies <em>Abies</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

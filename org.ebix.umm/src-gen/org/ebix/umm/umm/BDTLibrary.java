@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.BDTLibrary#getBusinessTerm <em>Business Term</em>}</li>
  *   <li>{@link org.ebix.umm.umm.BDTLibrary#getCopyright <em>Copyright</em>}</li>
@@ -22,7 +23,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.ebix.umm.umm.BDTLibrary#getNamespacePrefix <em>Namespace Prefix</em>}</li>
  *   <li>{@link org.ebix.umm.umm.BDTLibrary#getBdts <em>Bdts</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.ebix.umm.umm.UmmPackage#getBDTLibrary()
  * @model

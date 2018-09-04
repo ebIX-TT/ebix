@@ -38,6 +38,7 @@ public class FileWriterEclipseImpl implements FileWriter {
     this.project = project;
   }
   
+  @Override
   public void writeFile(final String fileName, final CharSequence contents) {
     try {
       final IFile file = this.project.getFile(fileName);
@@ -80,6 +81,7 @@ public class FileWriterEclipseImpl implements FileWriter {
     }
   }
   
+  @Override
   public void writeFile(final String fileName, final byte[] contents) {
     try {
       final IFile file = this.project.getFile(fileName);

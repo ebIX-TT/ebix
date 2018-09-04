@@ -74,17 +74,13 @@ public class Invariants {
   
   public void applyInvariants(final ABIE abie) {
     EList<Constraint> _constraints = abie.getConstraints();
-    final Function1<Constraint,Boolean> _function = new Function1<Constraint,Boolean>() {
-      public Boolean apply(final Constraint c) {
-        EList<TC_Constraint> _type = c.getType();
-        final Function1<TC_Constraint,Boolean> _function = new Function1<TC_Constraint,Boolean>() {
-          public Boolean apply(final TC_Constraint t) {
-            ConstraintKind _kind = t.getKind();
-            return Boolean.valueOf(Objects.equal(_kind, ConstraintKind.DEPENDENCY));
-          }
-        };
-        return Boolean.valueOf(IterableExtensions.<TC_Constraint>exists(_type, _function));
-      }
+    final Function1<Constraint, Boolean> _function = (Constraint c) -> {
+      EList<TC_Constraint> _type = c.getType();
+      final Function1<TC_Constraint, Boolean> _function_1 = (TC_Constraint t) -> {
+        ConstraintKind _kind = t.getKind();
+        return Boolean.valueOf(Objects.equal(_kind, ConstraintKind.DEPENDENCY));
+      };
+      return Boolean.valueOf(IterableExtensions.<TC_Constraint>exists(_type, _function_1));
     };
     Iterable<Constraint> _filter = IterableExtensions.<Constraint>filter(_constraints, _function);
     for (final Constraint constraint : _filter) {
@@ -97,26 +93,22 @@ public class Invariants {
   
   public void applyInvariantsFor(final MA ma, final ConstraintKind kind, final String listIdentifier) {
     EList<Constraint> _constraints = ma.getConstraints();
-    final Function1<Constraint,Boolean> _function = new Function1<Constraint,Boolean>() {
-      public Boolean apply(final Constraint c) {
-        EList<TC_Constraint> _type = c.getType();
-        final Function1<TC_Constraint,Boolean> _function = new Function1<TC_Constraint,Boolean>() {
-          public Boolean apply(final TC_Constraint t) {
-            boolean _and = false;
-            ConstraintKind _kind = t.getKind();
-            boolean _equals = Objects.equal(_kind, kind);
-            if (!_equals) {
-              _and = false;
-            } else {
-              String _listIdentifier = t.getListIdentifier();
-              boolean _equals_1 = Objects.equal(_listIdentifier, listIdentifier);
-              _and = _equals_1;
-            }
-            return Boolean.valueOf(_and);
-          }
-        };
-        return Boolean.valueOf(IterableExtensions.<TC_Constraint>exists(_type, _function));
-      }
+    final Function1<Constraint, Boolean> _function = (Constraint c) -> {
+      EList<TC_Constraint> _type = c.getType();
+      final Function1<TC_Constraint, Boolean> _function_1 = (TC_Constraint t) -> {
+        boolean _and = false;
+        ConstraintKind _kind = t.getKind();
+        boolean _equals = Objects.equal(_kind, kind);
+        if (!_equals) {
+          _and = false;
+        } else {
+          String _listIdentifier = t.getListIdentifier();
+          boolean _equals_1 = Objects.equal(_listIdentifier, listIdentifier);
+          _and = _equals_1;
+        }
+        return Boolean.valueOf(_and);
+      };
+      return Boolean.valueOf(IterableExtensions.<TC_Constraint>exists(_type, _function_1));
     };
     Iterable<Constraint> _filter = IterableExtensions.<Constraint>filter(_constraints, _function);
     for (final Constraint c : _filter) {
@@ -130,26 +122,22 @@ public class Invariants {
       }
     }
     EList<Constraint> _constraints_1 = ma.getConstraints();
-    final Function1<Constraint,Boolean> _function_1 = new Function1<Constraint,Boolean>() {
-      public Boolean apply(final Constraint c) {
-        EList<TC_Constraint> _type = c.getType();
-        final Function1<TC_Constraint,Boolean> _function = new Function1<TC_Constraint,Boolean>() {
-          public Boolean apply(final TC_Constraint t) {
-            boolean _and = false;
-            ConstraintKind _kind = t.getKind();
-            boolean _equals = Objects.equal(_kind, kind);
-            if (!_equals) {
-              _and = false;
-            } else {
-              String _listIdentifier = t.getListIdentifier();
-              boolean _equals_1 = Objects.equal(_listIdentifier, listIdentifier);
-              _and = _equals_1;
-            }
-            return Boolean.valueOf(_and);
-          }
-        };
-        return Boolean.valueOf(IterableExtensions.<TC_Constraint>exists(_type, _function));
-      }
+    final Function1<Constraint, Boolean> _function_1 = (Constraint c_1) -> {
+      EList<TC_Constraint> _type = c_1.getType();
+      final Function1<TC_Constraint, Boolean> _function_2 = (TC_Constraint t) -> {
+        boolean _and = false;
+        ConstraintKind _kind = t.getKind();
+        boolean _equals = Objects.equal(_kind, kind);
+        if (!_equals) {
+          _and = false;
+        } else {
+          String _listIdentifier = t.getListIdentifier();
+          boolean _equals_1 = Objects.equal(_listIdentifier, listIdentifier);
+          _and = _equals_1;
+        }
+        return Boolean.valueOf(_and);
+      };
+      return Boolean.valueOf(IterableExtensions.<TC_Constraint>exists(_type, _function_2));
     };
     Iterable<Constraint> _filter_1 = IterableExtensions.<Constraint>filter(_constraints_1, _function_1);
     for (final Constraint c_1 : _filter_1) {
@@ -376,12 +364,10 @@ public class Invariants {
     ABIEProperty _selfImplies = this.selfImplies(invariant);
     ABIE _abie = this.abie(_selfImplies);
     EList<ABIEProperty> _properties = _abie.getProperties();
-    final Function1<ABIEProperty,Boolean> _function = new Function1<ABIEProperty,Boolean>() {
-      public Boolean apply(final ABIEProperty p) {
-        EList<ABIEProperty> _or = p.getOr();
-        ABIEProperty _selfImplies = Invariants.this.selfImplies(invariant);
-        return Boolean.valueOf(_or.contains(_selfImplies));
-      }
+    final Function1<ABIEProperty, Boolean> _function = (ABIEProperty p) -> {
+      EList<ABIEProperty> _or = p.getOr();
+      ABIEProperty _selfImplies_1 = this.selfImplies(invariant);
+      return Boolean.valueOf(_or.contains(_selfImplies_1));
     };
     boolean _exists = IterableExtensions.<ABIEProperty>exists(_properties, _function);
     boolean _not = (!_exists);

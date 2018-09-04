@@ -29,6 +29,11 @@ class PrimitiveExtension {
             case "String":          "xsd:string"
             case "TimeDuration":    "xsd:duration"
             case "TimePoint":       "xsd:dateTime"
+            case "Binary":          "xsd:base64Binary"
+            case "Double":          "xsd:decimal"
+            case "Float":          "xsd:decimal"
+            case "Token":          "xsd:string"
+            case "NormalizedString":          "xsd:string"
             default:                "unk"
         }
     }

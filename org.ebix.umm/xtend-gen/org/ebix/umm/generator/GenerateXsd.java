@@ -30,6 +30,7 @@ import org.ebix.umm.templates.xsd.BdtLibraryExtension;
 import org.ebix.umm.templates.xsd.BdtLibrarySchema;
 import org.ebix.umm.templates.xsd.BieLibraryExtension;
 import org.ebix.umm.templates.xsd.BieLibrarySchema;
+import org.ebix.umm.templates.xsd.DateTypesSchema;
 import org.ebix.umm.templates.xsd.EnumExtension;
 import org.ebix.umm.templates.xsd.EnumSchema;
 import org.ebix.umm.templates.xsd.MaExtension;
@@ -95,6 +96,10 @@ public class GenerateXsd {
   
   @Inject
   @Extension
+  private DateTypesSchema dateTypesSchema;
+  
+  @Inject
+  @Extension
   private Invariants invariants;
   
   @Inject
@@ -120,14 +125,17 @@ public class GenerateXsd {
         fsa.generateFile(_fileName, _compile);
       }
     }
+    String _fileName_1 = this.dateTypesSchema.fileName(location);
+    CharSequence _compile_1 = this.dateTypesSchema.compile();
+    fsa.generateFile(_fileName_1, _compile_1);
     constants.setSchemaLocation("../../generic/");
     TreeIterator<EObject> _allContents_1 = resource.getAllContents();
     Iterable<EObject> _iterable_1 = IteratorExtensions.<EObject>toIterable(_allContents_1);
     Iterable<BDTLibrary> _filter_1 = Iterables.<BDTLibrary>filter(_iterable_1, BDTLibrary.class);
     for (final BDTLibrary bdtLibrary : _filter_1) {
-      String _fileName_1 = this.bdtLibraryExtension.fileName(bdtLibrary, location);
-      CharSequence _compile_1 = this.bdtLibrarySchema.compile(bdtLibrary, constants, null);
-      fsa.generateFile(_fileName_1, _compile_1);
+      String _fileName_2 = this.bdtLibraryExtension.fileName(bdtLibrary, location);
+      CharSequence _compile_2 = this.bdtLibrarySchema.compile(bdtLibrary, constants, null);
+      fsa.generateFile(_fileName_2, _compile_2);
     }
     TreeIterator<EObject> _allContents_2 = resource.getAllContents();
     Iterable<EObject> _iterable_2 = IteratorExtensions.<EObject>toIterable(_allContents_2);
@@ -137,9 +145,9 @@ public class GenerateXsd {
         BIELibrary _copy = EcoreUtil.<BIELibrary>copy(bieLibrary);
         BIELibrary copyOfBieLibrary = ((BIELibrary) _copy);
         this.invariants.applyInvariants(copyOfBieLibrary);
-        String _fileName_2 = this.bieLibraryExtension.fileName(copyOfBieLibrary, location);
-        CharSequence _compile_2 = this.bieLibrarySchema.compile(copyOfBieLibrary, constants, null);
-        fsa.generateFile(_fileName_2, _compile_2);
+        String _fileName_3 = this.bieLibraryExtension.fileName(copyOfBieLibrary, location);
+        CharSequence _compile_3 = this.bieLibrarySchema.compile(copyOfBieLibrary, constants, null);
+        fsa.generateFile(_fileName_3, _compile_3);
       }
     }
     TreeIterator<EObject> _allContents_3 = resource.getAllContents();
@@ -150,9 +158,9 @@ public class GenerateXsd {
       for (final InfEnvelope envelope : _envelopes) {
         EList<MA> _assemblies = envelope.getAssemblies();
         for (final MA ma : _assemblies) {
-          String _fileName_2 = this.maExtension.fileName(ma, location);
-          CharSequence _compile_2 = this.maSchema.compile(ma, constants, null);
-          fsa.generateFile(_fileName_2, _compile_2);
+          String _fileName_3 = this.maExtension.fileName(ma, location);
+          CharSequence _compile_3 = this.maSchema.compile(ma, constants, null);
+          fsa.generateFile(_fileName_3, _compile_3);
         }
       }
     }
@@ -210,14 +218,14 @@ public class GenerateXsd {
     fsa.generateFile(_fileName, _compile);
     DocLibrary _library_1 = this.maExtension.library(clonedMa);
     BIELibrary _bieLibrary_1 = _library_1.getBieLibrary();
-    String _fileName_1 = this.bieLibraryExtension.fileName(_bieLibrary_1, location);
+    String _fileName_1 = this.bieLibraryExtension.fileName(_bieLibrary_1, location, clonedMa);
     DocLibrary _library_2 = this.maExtension.library(clonedMa);
     BIELibrary _bieLibrary_2 = _library_2.getBieLibrary();
     CharSequence _compile_1 = this.bieLibrarySchema.compile(_bieLibrary_2, constants, clonedMa);
     fsa.generateFile(_fileName_1, _compile_1);
     DocLibrary _library_3 = this.maExtension.library(clonedMa);
     BDTLibrary _bdtLibrary = _library_3.getBdtLibrary();
-    String _fileName_2 = this.bdtLibraryExtension.fileName(_bdtLibrary, location);
+    String _fileName_2 = this.bdtLibraryExtension.fileName(_bdtLibrary, location, clonedMa);
     DocLibrary _library_4 = this.maExtension.library(clonedMa);
     BDTLibrary _bdtLibrary_1 = _library_4.getBdtLibrary();
     CharSequence _compile_2 = this.bdtLibrarySchema.compile(_bdtLibrary_1, constants, clonedMa);

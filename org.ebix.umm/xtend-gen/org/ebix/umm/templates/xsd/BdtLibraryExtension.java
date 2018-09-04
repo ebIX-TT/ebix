@@ -19,9 +19,9 @@ package org.ebix.umm.templates.xsd;
 
 import com.google.common.base.Objects;
 import com.google.inject.Inject;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 import org.ebix.umm.templates.xsd.EnumExtension;
 import org.ebix.umm.umm.Assembled;
@@ -42,12 +42,34 @@ public class BdtLibraryExtension {
   public String fileName(final BDTLibrary library) {
     String _versionIdentifier = library.getVersionIdentifier();
     String _replaceAll = _versionIdentifier.replaceAll("\\.", "p");
-    String _plus = ("ebIX_BusinessDataType_" + _replaceAll);
+    String _plus = ("ebIX_MessageDataType_" + _replaceAll);
     return (_plus + ".xsd");
   }
   
   public String fileName(final BDTLibrary library, final String directory) {
     String _fileName = this.fileName(library);
+    return ((directory + "/") + _fileName);
+  }
+  
+  public String fileName(final BDTLibrary library, final MA ma) {
+    boolean _notEquals = (!Objects.equal(ma, null));
+    if (_notEquals) {
+      String _name = ma.getName();
+      String _plus = ("ebIX_MessageDataType_" + _name);
+      String _plus_1 = (_plus + "_");
+      String _versionIdentifier = library.getVersionIdentifier();
+      String _replaceAll = _versionIdentifier.replaceAll("\\.", "p");
+      String _plus_2 = (_plus_1 + _replaceAll);
+      return (_plus_2 + ".xsd");
+    }
+    String _versionIdentifier_1 = library.getVersionIdentifier();
+    String _replaceAll_1 = _versionIdentifier_1.replaceAll("\\.", "p");
+    String _plus_3 = ("ebIX_MessageDataType_" + _replaceAll_1);
+    return (_plus_3 + ".xsd");
+  }
+  
+  public String fileName(final BDTLibrary library, final String directory, final MA ma) {
+    String _fileName = this.fileName(library, ma);
     return ((directory + "/") + _fileName);
   }
   
@@ -63,7 +85,7 @@ public class BdtLibraryExtension {
   }
   
   public List<Assembled> allReferencedCodelists(final BDTLibrary library) {
-    List<Assembled> referenced = new ArrayList<Assembled>();
+    List<Assembled> referenced = new LinkedList<Assembled>();
     EList<BDT> _bdts = library.getBdts();
     for (final BDT bdt : _bdts) {
       EList<BDTProperty> _properties = bdt.getProperties();
@@ -71,16 +93,19 @@ public class BdtLibraryExtension {
         AssembledBase _type = property.getType();
         if ((_type instanceof Assembled)) {
           AssembledBase _type_1 = property.getType();
-          referenced.add(((Assembled) _type_1));
+          boolean _contains = referenced.contains(((Assembled) _type_1));
+          boolean _not = (!_contains);
+          if (_not) {
+            AssembledBase _type_2 = property.getType();
+            referenced.add(((Assembled) _type_2));
+          }
         }
       }
     }
-    final Comparator<Assembled> _function = new Comparator<Assembled>() {
-      public int compare(final Assembled a1, final Assembled a2) {
-        String _fileName = BdtLibraryExtension.this.enumExtension.fileName(a1);
-        String _fileName_1 = BdtLibraryExtension.this.enumExtension.fileName(a2);
-        return _fileName.compareTo(_fileName_1);
-      }
+    final Comparator<Assembled> _function = (Assembled a1, Assembled a2) -> {
+      String _fileName = this.enumExtension.fileName(a1);
+      String _fileName_1 = this.enumExtension.fileName(a2);
+      return _fileName.compareTo(_fileName_1);
     };
     Collections.<Assembled>sort(referenced, _function);
     return referenced;

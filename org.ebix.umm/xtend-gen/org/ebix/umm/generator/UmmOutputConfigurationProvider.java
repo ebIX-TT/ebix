@@ -8,6 +8,7 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 
 @SuppressWarnings("all")
 public class UmmOutputConfigurationProvider implements IOutputConfigurationProvider {
+  @Override
   public Set<OutputConfiguration> getOutputConfigurations() {
     final OutputConfiguration defaultOutput = new OutputConfiguration(IFileSystemAccess.DEFAULT_OUTPUT);
     defaultOutput.setDescription("Output Folder");

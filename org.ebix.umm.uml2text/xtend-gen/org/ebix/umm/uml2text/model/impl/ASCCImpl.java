@@ -30,26 +30,32 @@ public class ASCCImpl implements ASCC {
     this.ummStereotype = ummStereotype;
   }
   
+  @Override
   public List<String> businessTerm(final Association umlAssociation) {
     return this.ummStereotype.getListOfStringValue(umlAssociation, "businessTerm");
   }
   
+  @Override
   public String uniqueIdentifier(final Association umlAssociation) {
     return this.ummStereotype.getStringValue(umlAssociation, "uniqueIdentifier");
   }
   
+  @Override
   public String versionIdentifier(final Association umlAssociation) {
     return this.ummStereotype.getStringValue(umlAssociation, "versionIdentifier");
   }
   
+  @Override
   public String definition(final Association umlAssociation) {
     return this.ummStereotype.getStringValue(umlAssociation, "definition");
   }
   
+  @Override
   public String dictionaryEntryName(final Association umlAssociation) {
     return this.ummStereotype.getStringValue(umlAssociation, "dictionaryEntryName");
   }
   
+  @Override
   public String sequencingKey(final Association umlAssociation) {
     return this.ummStereotype.getStringValue(umlAssociation, "sequencingKey");
   }

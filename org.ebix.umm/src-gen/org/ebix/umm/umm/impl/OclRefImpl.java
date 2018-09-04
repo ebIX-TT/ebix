@@ -19,11 +19,11 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.impl.OclRefImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.OclRefImpl#getMultiplicity <em>Multiplicity</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

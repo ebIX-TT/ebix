@@ -64,6 +64,7 @@ class EnumSchema {
             «"Imports".comment»
             «imports(e)»
             «includes(e)»
+«««            <xsd:include schemaLocation="«dateTypesSchema.getFileName()»"/>
             «"Root element for this code list".comment»
             <xsd:element name="«e.xsdName»" 
                 type="«e.xsdQualifiedType»"/>

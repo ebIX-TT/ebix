@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.impl.CDTPropertyImpl#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.CDTPropertyImpl#getName <em>Name</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  *   <li>{@link org.ebix.umm.umm.impl.CDTPropertyImpl#getUniqueIdentifier <em>Unique Identifier</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.CDTPropertyImpl#getVersionIdentifier <em>Version Identifier</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

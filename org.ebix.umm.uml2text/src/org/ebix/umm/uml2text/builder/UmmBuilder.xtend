@@ -17,26 +17,34 @@
  */
 package org.ebix.umm.uml2text.builder
 
-import org.eclipse.core.resources.IncrementalProjectBuilder
+import java.nio.file.Paths
 import java.util.Map
-import org.eclipse.core.runtime.IProgressMonitor
-import org.eclipse.core.runtime.CoreException
 import org.ebix.umm.uml2text.Uml2Text
-import static org.eclipse.emf.common.util.URI.*
-import org.ebix.umm.uml2text.file.FileWriterEclipseImpl
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.core.resources.IProject
-import org.eclipse.core.resources.ProjectScope
 import org.ebix.umm.uml2text.UmmStereotypes
+import org.ebix.umm.uml2text.file.FileWriterEclipseImpl
+import org.eclipse.core.resources.IProject
 import org.eclipse.core.resources.IResource
+import org.eclipse.core.resources.IncrementalProjectBuilder
+import org.eclipse.core.resources.ProjectScope
+import org.eclipse.core.runtime.CoreException
+import org.eclipse.core.runtime.IProgressMonitor
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+
+import static org.eclipse.emf.common.util.URI.*
+import org.ebix.umm.uml2text.file.Utf8ToAsciiConverter
+import java.util.Date
 
 class UmmBuilder extends IncrementalProjectBuilder {
+	
 	
 	override protected build(int kind, Map<String,String> args, IProgressMonitor monitor) throws CoreException {
 		println("Umm building, kind = " + kind)
 		if (kind == FULL_BUILD) {
 			val modelFolder = project.getFolder("uml")
+			val asciiConverter = new Utf8ToAsciiConverter();
+			val backUpDate = new Date();
 			for (resource : modelFolder.members()) {
+				asciiConverter.escapeUtf8CharactersFromFile(resource.location.toString, backUpDate);
 				if (resource.fileExtension.equals("uml") && !resource.fullPath.toPortableString.endsWith("profile.uml")) {
 					println("UML resource: " + resource.fullPath.makeAbsolute.toPortableString)
 					val uri = createPlatformResourceURI(resource.fullPath.toString, true)
@@ -47,6 +55,7 @@ class UmmBuilder extends IncrementalProjectBuilder {
 					uml2text.processFile(uri, rs, fw)
 				}
 			}
+			System.out.println("Finished");
 		}
 		
 		return null
@@ -58,12 +67,12 @@ class UmmBuilder extends IncrementalProjectBuilder {
 		for (IResource resource : ummTextFolder.members()) {
 			resource.delete(IResource::KEEP_HISTORY, monitor);
 		}
-		
 		//ummTextFolder.delete(false, null)
 	}	
 	
 	def private applyStereotypeSettings(IProject project, UmmStereotypes ummStereotypes) {
-		println("Getting settings")
+		//2016-06-05 disabled
+		//println("Getting settings")
 		val projectScope = new ProjectScope(project);
 		val projectNode = projectScope.getNode("org.ebix.umm.uml2text");
 		if (projectNode != null) {
@@ -73,4 +82,7 @@ class UmmBuilder extends IncrementalProjectBuilder {
 			}
 		}
 	}
+	
+	
+	
 }

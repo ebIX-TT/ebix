@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.ebix.umm.templates.Constants;
 import org.ebix.umm.templates.xsd.AssembledExtension;
+import org.ebix.umm.templates.xsd.DateTypesSchema;
 import org.ebix.umm.templates.xsd.EnumExtension;
 import org.ebix.umm.templates.xsd.Xml;
 import org.ebix.umm.umm.Assembled;
@@ -47,6 +48,10 @@ public class EnumSchema {
   @Inject
   @Extension
   private EnumExtension enumExtension;
+  
+  @Inject
+  @Extension
+  private DateTypesSchema dateTypesSchema;
   
   public CharSequence compile(final ENUM e, final Constants constants) {
     StringConcatenation _builder = new StringConcatenation();

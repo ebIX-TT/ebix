@@ -91,6 +91,14 @@ class AbieExtension {
                 return true
         return false
     }
+    
+        def String fullNameForMap(ABIEProperty property) {
+        //2016-06-05 disabled 
+        //println("Labie+name: " +property.abie.name+'.'+property.name)
+        //return property.name
+         return property.abie.name+'.'+property.name
+    }
+    
 
 
     // BBIE

@@ -8,8 +8,12 @@ import org.ebix.umm.umm.BDT
 import org.ebix.umm.umm.BDTLibrary
 import org.ebix.umm.umm.MA
 import org.ebix.umm.umm.Supplement
+import java.util.HashMap
 
 class BdtLibrarySchema {
+	
+	public static HashMap<String, Integer> fieldLengthMap;
+	
 
     @Inject extension Xml xmlExtension
     @Inject extension BdtLibraryExtension bdtLibraryExtension
@@ -31,9 +35,10 @@ class BdtLibrarySchema {
         -->
         <xsd:schema
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-            xmlns:bdt="«library.namespace(null)»"
+            xmlns:bdt="«library.namespace(ma)»"
             xmlns:ccts="urn:un:unece:uncefact:documentation:common:3:standard:CoreComponentsTechnicalSpecification:3"
             xmlns:xbt="urn:un:unece:uncefact:data:common:1:draft"
+            xmlns:ns1="«library.baseURN»"
             targetNamespace="«library.namespace(ma)»"
             elementFormDefault="qualified"
             attributeFormDefault="unqualified"
@@ -64,7 +69,7 @@ class BdtLibrarySchema {
     def BdtType(BDT bdt) '''
         «(bdt.xsdName + " Type").comment»
         «IF(bdt.isSimpleType)»
-        <xsd:simpleType name="«bdt.xsdType»">
+        <xsd:simpleType name="«bdt.xsdTypeName»">
             «IF (!bdt.content.isExtraRestricted)»
             <xsd:restriction base="«bdt.conQualifiedType()»"/>
             «ELSE»
@@ -89,7 +94,7 @@ class BdtLibrarySchema {
             «ENDIF»
         </xsd:simpleType>
         «ELSE»
-        <xsd:complexType name="«bdt.xsdType»">
+        <xsd:complexType name="«bdt.xsdTypeName»">
             <xsd:simpleContent>
                 <xsd:extension base="«bdt.conQualifiedType»">
                     «FOR sup: bdt.properties.filter(typeof(Supplement))»
@@ -102,6 +107,14 @@ class BdtLibrarySchema {
                                 «FOR restriction: sup.restriction»
                                 <xsd:enumeration value="«restriction»"/>
                                 «ENDFOR»
+                                «IF (bdt.name.equals("TestFacetLength_Description"))»
+                                «if(fieldLengthMap != null) System.out.println(fieldLengthMap.size())»
+                              		<xsd:length testFacetFound="«fieldLengthMap.size()»"/>
+                            	«ENDIF»
+
+	                            «IF (fieldLengthMap != null && fieldLengthMap.containsKey(bdt.name))»
+	                            <xsd:length value="«fieldLengthMap.get(bdt.name)»"/>
+	                            «ENDIF»
                                 «IF (sup.restriction.size == 0)»
                                     «IF (sup.hasPattern)»
                                     <xsd:pattern value="«sup.pattern»"/>

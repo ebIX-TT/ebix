@@ -27,20 +27,24 @@ public class BieLibraryImpl extends LibraryImpl implements BieLibrary {
     super(ummStereotype);
   }
   
+  @Override
   public boolean isBieLibrary(final org.eclipse.uml2.uml.Package umlPackage) {
     return this.ummStereotype.hasStereotype(umlPackage);
   }
   
+  @Override
   public org.eclipse.uml2.uml.Package bdtVersion(final org.eclipse.uml2.uml.Package umlPackage) {
     Object _value = this.ummStereotype.getValue(umlPackage, "e-BDT version");
     return ((org.eclipse.uml2.uml.Package) _value);
   }
   
+  @Override
   public org.eclipse.uml2.uml.Package cefactVersion(final org.eclipse.uml2.uml.Package umlPackage) {
     Object _value = this.ummStereotype.getValue(umlPackage, "Cefact version");
     return ((org.eclipse.uml2.uml.Package) _value);
   }
   
+  @Override
   public String unsm(final org.eclipse.uml2.uml.Package umlPackage) {
     return this.ummStereotype.getStringValue(umlPackage, "UNSM");
   }

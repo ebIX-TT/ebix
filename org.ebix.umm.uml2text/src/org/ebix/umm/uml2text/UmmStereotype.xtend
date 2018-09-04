@@ -21,6 +21,7 @@ import org.eclipse.uml2.uml.Stereotype
 import org.eclipse.uml2.uml.NamedElement
 import java.util.List
 import org.eclipse.emf.ecore.EObject
+import java.util.Set
 
 class UmmStereotype {
 	public String shortName
@@ -84,7 +85,7 @@ class UmmStereotype {
 	}
 	
 	def getDefaultValue(String tagName) {
-		value.allAttributes.findFirst[p | p.name == tagName]?.^default
+		value.allAttributes().findFirst[p | p.name == tagName]?.^default
 	}
 
 

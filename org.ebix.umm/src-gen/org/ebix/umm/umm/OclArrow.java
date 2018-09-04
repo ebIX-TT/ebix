@@ -10,11 +10,11 @@ package org.ebix.umm.umm;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.OclArrow#getLeft <em>Left</em>}</li>
  *   <li>{@link org.ebix.umm.umm.OclArrow#getRight <em>Right</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.ebix.umm.umm.UmmPackage#getOclArrow()
  * @model

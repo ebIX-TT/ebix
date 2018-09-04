@@ -51,16 +51,18 @@ class MaSchema {
             xmlns:rsm="«ma.namespace(otherMa)»"
             xmlns:ccts="urn:un:unece:uncefact:documentation:common:3:standard:CoreComponentsTechnicalSpecification:3"
             xmlns:xbt="urn:un:unece:uncefact:data:common:1:draft"
+            xmlns:bdt="«ma.namespace(otherMa)»"
+            xmlns:bie="«ma.namespace(otherMa)»"
             targetNamespace="«ma.namespace(otherMa)»"
             elementFormDefault="qualified"
             attributeFormDefault="unqualified"
             version="«ma.library.versionIdentifier»">
             «"Imports".comment»
             «"Inclusions".comment»
-            «"Inclusion of Aggregated Business Information Entities".comment»
-            <xsd:include schemaLocation="«ma.library.bieLibrary.fileName»"/>
-            «"Inclusion of Business Data Types".comment»
-            <xsd:include schemaLocation="«ma.library.bdtLibrary.fileName»"/>
+            «"Inclusion of Message Business Information Entities".comment»
+            <xsd:include schemaLocation="«ma.library.bieLibrary.fileName(otherMa)»"/>
+            «"Inclusion of Message Data Types".comment»
+            <xsd:include schemaLocation="«ma.library.bdtLibrary.fileName(otherMa)»"/>
             «"Element Declarations".comment»
             «"Root Element Declarations".comment»
             «ma.name.comment»
@@ -70,7 +72,7 @@ class MaSchema {
             <xsd:complexType name="«ma.xsdType»">
                 <xsd:sequence>
                     «FOR property: ma.properties»
-                    <xsd:element ref="«ma.library.namespacePrefix»:«property.xsdRoleName»" minOccurs="«property.multiplicity.minOccurs»" maxOccurs="«property.multiplicity.maxOccurs»"/>
+                    <xsd:element ref="«ma.library.namespacePrefix»:«property.xsdRoleName»" «IF (MultiplicityKindExtension.hasSize(property.xsdRoleName))»minOccurs="«property.multiplicity.minOccurs(property.xsdRoleName)»" maxOccurs="«property.multiplicity.maxOccurs(property.xsdRoleName)»"«ENDIF»/>
                     «ENDFOR»
                 </xsd:sequence>
             </xsd:complexType>

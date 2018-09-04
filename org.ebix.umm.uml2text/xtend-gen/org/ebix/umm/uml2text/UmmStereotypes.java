@@ -18,7 +18,6 @@
 package org.ebix.umm.uml2text;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.Lists;
 import java.util.Collections;
 import java.util.List;
 import org.ebix.umm.uml2text.UmmStereotype;
@@ -28,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
@@ -100,7 +100,7 @@ public class UmmStereotypes {
   
   public final UmmStereotype PRIM = new UmmStereotype("PRIM", "Primitive Data Type Library::PRIM");
   
-  public final List<UmmStereotype> allStereotypes = Collections.<UmmStereotype>unmodifiableList(Lists.<UmmStereotype>newArrayList(this.DocLibrary, this.InfEnvelope, this.MA, this.ASMA, this.TC_Document, this.TC_Payload, this.TC_ABIE, this.TC_BDT, this.TC_Dependency, this.TC_Facet, this.BIELibrary, this.ABIE, this.BBIE, this.ASBIE, this.BDTLibrary, this.BDT, this.BDT_CON, this.BDT_SUP, this.CCLibrary, this.ACC, this.BCC, this.ASCC, this.CDTLibrary, this.CDT, this.CDT_CON, this.CDT_SUP, this.ENUMLibrary, this.ENUM, this.Original, this.Subset, this.Assembled, this.CodelistEntry, this.PRIMLibrary));
+  public final List<UmmStereotype> allStereotypes = Collections.<UmmStereotype>unmodifiableList(CollectionLiterals.<UmmStereotype>newArrayList(this.DocLibrary, this.InfEnvelope, this.MA, this.ASMA, this.TC_Document, this.TC_Payload, this.TC_ABIE, this.TC_BDT, this.TC_Dependency, this.TC_Facet, this.BIELibrary, this.ABIE, this.BBIE, this.ASBIE, this.BDTLibrary, this.BDT, this.BDT_CON, this.BDT_SUP, this.CCLibrary, this.ACC, this.BCC, this.ASCC, this.CDTLibrary, this.CDT, this.CDT_CON, this.CDT_SUP, this.ENUMLibrary, this.ENUM, this.Original, this.Subset, this.Assembled, this.CodelistEntry, this.PRIMLibrary));
   
   public void resolveAll(final ResourceSet resourceSet) {
     for (final UmmStereotype ummStereotype : this.allStereotypes) {
@@ -115,9 +115,7 @@ public class UmmStereotypes {
       for (final Resource resource : _resources) {
         {
           final TreeIterator<EObject> iterator = resource.getAllContents();
-          boolean _hasNext = iterator.hasNext();
-          boolean _while = _hasNext;
-          while (_while) {
+          while (iterator.hasNext()) {
             {
               final EObject obj = iterator.next();
               if ((obj instanceof Stereotype)) {
@@ -129,8 +127,6 @@ public class UmmStereotypes {
                 }
               }
             }
-            boolean _hasNext_1 = iterator.hasNext();
-            _while = _hasNext_1;
           }
         }
       }

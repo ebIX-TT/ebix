@@ -49,24 +49,20 @@ public class AssembledExtension {
   public List<ENUM> includes(final Assembled assembled) {
     ArrayList<ENUM> enums = new ArrayList<ENUM>();
     EList<Original> _originals = assembled.getOriginals();
-    final Function1<Original,Boolean> _function = new Function1<Original,Boolean>() {
-      public Boolean apply(final Original o) {
-        String _namespace = AssembledExtension.this.enumExtension.namespace(o);
-        String _namespace_1 = AssembledExtension.this.enumExtension.namespace(assembled);
-        return Boolean.valueOf(Objects.equal(_namespace, _namespace_1));
-      }
+    final Function1<Original, Boolean> _function = (Original o) -> {
+      String _namespace = this.enumExtension.namespace(o);
+      String _namespace_1 = this.enumExtension.namespace(assembled);
+      return Boolean.valueOf(Objects.equal(_namespace, _namespace_1));
     };
     Iterable<Original> _filter = IterableExtensions.<Original>filter(_originals, _function);
     for (final Original o : _filter) {
       enums.add(o);
     }
     EList<Subset> _subsets = assembled.getSubsets();
-    final Function1<Subset,Boolean> _function_1 = new Function1<Subset,Boolean>() {
-      public Boolean apply(final Subset s) {
-        String _namespace = AssembledExtension.this.enumExtension.namespace(s);
-        String _namespace_1 = AssembledExtension.this.enumExtension.namespace(assembled);
-        return Boolean.valueOf(Objects.equal(_namespace, _namespace_1));
-      }
+    final Function1<Subset, Boolean> _function_1 = (Subset s) -> {
+      String _namespace = this.enumExtension.namespace(s);
+      String _namespace_1 = this.enumExtension.namespace(assembled);
+      return Boolean.valueOf(Objects.equal(_namespace, _namespace_1));
     };
     Iterable<Subset> _filter_1 = IterableExtensions.<Subset>filter(_subsets, _function_1);
     for (final Subset s : _filter_1) {

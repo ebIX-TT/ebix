@@ -17,7 +17,6 @@
  */
 package org.ebix.umm.uml2text.ods;
 
-import com.google.common.collect.Lists;
 import java.io.ByteArrayOutputStream;
 import java.util.Collections;
 import java.util.List;
@@ -34,6 +33,7 @@ import org.ebix.umm.uml2text.ods.OdsPart;
 import org.ebix.umm.uml2text.ods.Styles;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.uml2.uml.Model;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.InputOutput;
@@ -68,13 +68,11 @@ public class Uml2Ods {
         Meta _meta = new Meta();
         Styles _styles = new Styles();
         Content _content = new Content(this.ummStereotypes, this.umlModel);
-        final List<? extends OdsPart> parts = Collections.<OdsPart>unmodifiableList(Lists.<OdsPart>newArrayList(_manifest, _mimetype, _meta, _styles, _content));
+        final List<? extends OdsPart> parts = Collections.<OdsPart>unmodifiableList(CollectionLiterals.<OdsPart>newArrayList(_manifest, _mimetype, _meta, _styles, _content));
         final ByteArrayOutputStream bout = new ByteArrayOutputStream();
         final ZipOutputStream zout = new ZipOutputStream(bout);
-        final Consumer<OdsPart> _function = new Consumer<OdsPart>() {
-          public void accept(final OdsPart it) {
-            it.add(zout);
-          }
+        final Consumer<OdsPart> _function = (OdsPart it) -> {
+          it.add(zout);
         };
         parts.forEach(_function);
         zout.close();

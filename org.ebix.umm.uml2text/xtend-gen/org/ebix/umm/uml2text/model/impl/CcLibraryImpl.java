@@ -27,6 +27,7 @@ public class CcLibraryImpl extends LibraryImpl implements CcLibrary {
     super(ummStereotype);
   }
   
+  @Override
   public boolean isCcLibrary(final org.eclipse.uml2.uml.Package umlPackage) {
     return this.ummStereotype.hasStereotype(umlPackage);
   }

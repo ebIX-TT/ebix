@@ -30,12 +30,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.impl.ConstraintImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.ConstraintImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.ConstraintImpl#getInvariants <em>Invariants</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

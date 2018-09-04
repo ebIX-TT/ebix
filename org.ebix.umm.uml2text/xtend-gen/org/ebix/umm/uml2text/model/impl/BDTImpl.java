@@ -29,30 +29,37 @@ public class BDTImpl implements BDT {
     this.ummStereotype = ummStereotype;
   }
   
+  @Override
   public List<String> businessTerm(final org.eclipse.uml2.uml.Class umlClass) {
     return this.ummStereotype.getListOfStringValue(umlClass, "businessTerm");
   }
   
+  @Override
   public String uniqueIdentifier(final org.eclipse.uml2.uml.Class umlClass) {
     return this.ummStereotype.getStringValue(umlClass, "uniqueIdentifier");
   }
   
+  @Override
   public String versionIdentifier(final org.eclipse.uml2.uml.Class umlClass) {
     return this.ummStereotype.getStringValue(umlClass, "versionIdentifier");
   }
   
+  @Override
   public String definition(final org.eclipse.uml2.uml.Class umlClass) {
     return this.ummStereotype.getStringValue(umlClass, "definition");
   }
   
+  @Override
   public String dictionaryEntryName(final org.eclipse.uml2.uml.Class umlClass) {
     return this.ummStereotype.getStringValue(umlClass, "dictionaryEntryName");
   }
   
+  @Override
   public String languageCode(final org.eclipse.uml2.uml.Class umlClass) {
     return this.ummStereotype.getStringValue(umlClass, "languageCode");
   }
   
+  @Override
   public List<String> usageRule(final org.eclipse.uml2.uml.Class umlClass) {
     return this.ummStereotype.getListOfStringValue(umlClass, "usageRule");
   }

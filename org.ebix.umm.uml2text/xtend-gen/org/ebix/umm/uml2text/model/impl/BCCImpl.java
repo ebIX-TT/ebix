@@ -30,26 +30,32 @@ public class BCCImpl implements BCC {
     this.ummStereotype = ummStereotype;
   }
   
+  @Override
   public List<String> businessTerm(final Property umlProperty) {
     return this.ummStereotype.getListOfStringValue(umlProperty, "businessTerm");
   }
   
+  @Override
   public String uniqueIdentifier(final Property umlProperty) {
     return this.ummStereotype.getStringValue(umlProperty, "uniqueIdentifier");
   }
   
+  @Override
   public String versionIdentifier(final Property umlProperty) {
     return this.ummStereotype.getStringValue(umlProperty, "versionIdentifier");
   }
   
+  @Override
   public String definition(final Property umlProperty) {
     return this.ummStereotype.getStringValue(umlProperty, "definition");
   }
   
+  @Override
   public String dictionaryEntryName(final Property umlProperty) {
     return this.ummStereotype.getStringValue(umlProperty, "dictionaryEntryName");
   }
   
+  @Override
   public String sequencingKey(final Property umlProperty) {
     return this.ummStereotype.getStringValue(umlProperty, "sequencingKey");
   }

@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.impl.ACCPropertyImpl#getMultiplicity <em>Multiplicity</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.ACCPropertyImpl#getName <em>Name</em>}</li>
@@ -35,7 +36,6 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  *   <li>{@link org.ebix.umm.umm.impl.ACCPropertyImpl#getVersionIdentifier <em>Version Identifier</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.ACCPropertyImpl#getSequencingKey <em>Sequencing Key</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

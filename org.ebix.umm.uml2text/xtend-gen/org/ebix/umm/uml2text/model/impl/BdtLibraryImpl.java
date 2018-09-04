@@ -27,10 +27,12 @@ public class BdtLibraryImpl extends LibraryImpl implements BdtLibrary {
     super(ummStereotype);
   }
   
+  @Override
   public boolean isBdtLibrary(final org.eclipse.uml2.uml.Package umlPackage) {
     return this.ummStereotype.hasStereotype(umlPackage);
   }
   
+  @Override
   public org.eclipse.uml2.uml.Package cefactVersion(final org.eclipse.uml2.uml.Package umlPackage) {
     Object _value = this.ummStereotype.getValue(umlPackage, "Cefact version");
     return ((org.eclipse.uml2.uml.Package) _value);

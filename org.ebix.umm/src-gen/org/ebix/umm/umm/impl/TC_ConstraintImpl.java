@@ -19,12 +19,12 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.impl.TC_ConstraintImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.TC_ConstraintImpl#getListIdentifier <em>List Identifier</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.TC_ConstraintImpl#getResponsibleAgency <em>Responsible Agency</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

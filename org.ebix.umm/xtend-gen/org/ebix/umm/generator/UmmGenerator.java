@@ -21,6 +21,7 @@ public class UmmGenerator implements IGenerator {
   @Extension
   private GenerateXsd generator;
   
+  @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
     this.generator.generateXsd(resource, fsa);
   }

@@ -25,6 +25,7 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 
 @SuppressWarnings("all")
 public class FileWriterStandaloneImpl implements FileWriter {
+  @Override
   public void writeFile(final String fileName, final CharSequence contents) {
     try {
       this.makeDirectories(fileName);
@@ -47,6 +48,7 @@ public class FileWriterStandaloneImpl implements FileWriter {
     return _xblockexpression;
   }
   
+  @Override
   public void writeFile(final String fileName, final byte[] contents) {
     try {
       this.makeDirectories(fileName);

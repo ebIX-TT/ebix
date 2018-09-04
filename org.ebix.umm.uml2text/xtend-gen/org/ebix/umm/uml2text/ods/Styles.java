@@ -22,10 +22,12 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class Styles extends OdsPart {
+  @Override
   public String fileName() {
     return "styles.xml";
   }
   
+  @Override
   public String content() {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");

@@ -11,12 +11,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.TC_Constraint#getKind <em>Kind</em>}</li>
  *   <li>{@link org.ebix.umm.umm.TC_Constraint#getListIdentifier <em>List Identifier</em>}</li>
  *   <li>{@link org.ebix.umm.umm.TC_Constraint#getResponsibleAgency <em>Responsible Agency</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.ebix.umm.umm.UmmPackage#getTC_Constraint()
  * @model

@@ -44,7 +44,7 @@ class DocLibrary2Text {
 		println("Generating DOCLibraries ...")
 		for (umlPackage : umlModel.allOwnedElements.filter(typeof(Package)).filter(p | p.docLibrary) ) {
 			println("DOCLibrary " + umlPackage.name)
-			fw.writeFile(umlPackage.qualifiedName.fileName, umlPackage.generateDocLibrary)
+			fw.writeFile(umlPackage.qualifiedName.fileName, Uml2Text.replaceOcls(umlPackage.generateDocLibrary.toString()))
 		} 
 		println("Done.")
 	}
@@ -84,7 +84,7 @@ class DocLibrary2Text {
 	def generateMA(Class umlClass) '''
 		MA «umlClass.name»
 		{
-			«FOR attr : umlClass.allAttributes.filter(attr| attr.type.isStereotypeApplied(ummStereotypes.ABIE.value))»
+			«FOR attr : umlClass.allAttributes().filter(attr| attr.type.isStereotypeApplied(ummStereotypes.ABIE.value))»
 				«attr.prefixMAAttribute» «attr.name» «attr.multiplicity» «attr.type?.name»
 			«ENDFOR»
 			

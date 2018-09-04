@@ -22,6 +22,7 @@ import org.ebix.umm.templates.Constants;
 import org.ebix.umm.templates.xsd.AbieExtension;
 import org.ebix.umm.templates.xsd.BdtLibraryExtension;
 import org.ebix.umm.templates.xsd.BieLibraryExtension;
+import org.ebix.umm.templates.xsd.DateTypesSchema;
 import org.ebix.umm.templates.xsd.MaExtension;
 import org.ebix.umm.templates.xsd.MultiplicityKindExtension;
 import org.ebix.umm.templates.xsd.Xml;
@@ -61,6 +62,10 @@ public class MaSchema {
   @Inject
   @Extension
   private MultiplicityKindExtension multiplicityExtension;
+  
+  @Inject
+  @Extension
+  private DateTypesSchema dateTypesSchema;
   
   public CharSequence compile(final MA ma, final Constants constants, final MA otherMa) {
     StringConcatenation _builder = new StringConcatenation();
@@ -136,27 +141,33 @@ public class MaSchema {
     _builder.append(_comment_2, "    ");
     _builder.newLineIfNotEmpty();
     _builder.append("    ");
-    CharSequence _comment_3 = this.xmlExtension.comment("Inclusion of Aggregated Business Information Entities");
+    CharSequence _comment_3 = this.xmlExtension.comment("Inclusion of Message Business Information Entities");
     _builder.append(_comment_3, "    ");
     _builder.newLineIfNotEmpty();
     _builder.append("    ");
     _builder.append("<xsd:include schemaLocation=\"");
     DocLibrary _library_2 = this.maExtension.library(ma);
     BIELibrary _bieLibrary = _library_2.getBieLibrary();
-    String _fileName = this.bieLibraryExtension.fileName(_bieLibrary);
+    String _fileName = this.bieLibraryExtension.fileName(_bieLibrary, otherMa);
     _builder.append(_fileName, "    ");
     _builder.append("\"/>");
     _builder.newLineIfNotEmpty();
     _builder.append("    ");
-    CharSequence _comment_4 = this.xmlExtension.comment("Inclusion of Business Data Types");
+    CharSequence _comment_4 = this.xmlExtension.comment("Inclusion of Message Data Types");
     _builder.append(_comment_4, "    ");
     _builder.newLineIfNotEmpty();
     _builder.append("    ");
     _builder.append("<xsd:include schemaLocation=\"");
     DocLibrary _library_3 = this.maExtension.library(ma);
     BDTLibrary _bdtLibrary = _library_3.getBdtLibrary();
-    String _fileName_1 = this.bdtLibraryExtension.fileName(_bdtLibrary);
+    String _fileName_1 = this.bdtLibraryExtension.fileName(_bdtLibrary, otherMa);
     _builder.append(_fileName_1, "    ");
+    _builder.append("\"/>");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("<xsd:include schemaLocation=\"");
+    String _fileName_2 = this.dateTypesSchema.getFileName();
+    _builder.append(_fileName_2, "    ");
     _builder.append("\"/>");
     _builder.newLineIfNotEmpty();
     _builder.append("    ");

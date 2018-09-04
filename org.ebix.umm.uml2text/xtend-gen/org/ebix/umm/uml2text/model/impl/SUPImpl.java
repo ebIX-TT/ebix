@@ -30,34 +30,42 @@ public class SUPImpl implements SUP {
     this.ummStereotype = ummStereotype;
   }
   
+  @Override
   public boolean isSUP(final Property umlProperty) {
     return this.ummStereotype.hasStereotype(umlProperty);
   }
   
+  @Override
   public List<String> businessTerm(final Property umlProperty) {
     return this.ummStereotype.getListOfStringValue(umlProperty, "businessTerm");
   }
   
+  @Override
   public String uniqueIdentifier(final Property umlProperty) {
     return this.ummStereotype.getStringValue(umlProperty, "uniqueIdentifier");
   }
   
+  @Override
   public String versionIdentifier(final Property umlProperty) {
     return this.ummStereotype.getStringValue(umlProperty, "versionIdentifier");
   }
   
+  @Override
   public String definition(final Property umlProperty) {
     return this.ummStereotype.getStringValue(umlProperty, "definition");
   }
   
+  @Override
   public String dictionaryEntryName(final Property umlProperty) {
     return this.ummStereotype.getStringValue(umlProperty, "dictionaryEntryName");
   }
   
+  @Override
   public String languageCode(final Property umlProperty) {
     return this.ummStereotype.getStringValue(umlProperty, "languageCode");
   }
   
+  @Override
   public List<String> usageRule(final Property umlProperty) {
     return this.ummStereotype.getListOfStringValue(umlProperty, "usageRule");
   }

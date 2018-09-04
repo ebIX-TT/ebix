@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.ENUM#getName <em>Name</em>}</li>
  *   <li>{@link org.ebix.umm.umm.ENUM#getBusinessTerm <em>Business Term</em>}</li>
@@ -24,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.ebix.umm.umm.ENUM#getUniqueIdentifier <em>Unique Identifier</em>}</li>
  *   <li>{@link org.ebix.umm.umm.ENUM#getVersionIdentifier <em>Version Identifier</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.ebix.umm.umm.UmmPackage#getENUM()
  * @model

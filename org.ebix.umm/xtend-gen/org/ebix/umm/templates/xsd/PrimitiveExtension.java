@@ -17,7 +17,6 @@
  */
 package org.ebix.umm.templates.xsd;
 
-import com.google.common.base.Objects;
 import org.ebix.umm.umm.Primitive;
 
 @SuppressWarnings("all")
@@ -25,45 +24,31 @@ public class PrimitiveExtension {
   public String xsdQualifiedType(final Primitive p) {
     String _switchResult = null;
     String _name = p.getName();
-    boolean _matched = false;
-    if (!_matched) {
-      if (Objects.equal(_name,"Boolean")) {
-        _matched=true;
+    switch (_name) {
+      case "Boolean":
         _switchResult = "xsd:boolean";
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(_name,"Decimal")) {
-        _matched=true;
+        break;
+      case "Decimal":
         _switchResult = "xsd:decimal";
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(_name,"Integer")) {
-        _matched=true;
+        break;
+      case "Integer":
         _switchResult = "xsd:integer";
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(_name,"String")) {
-        _matched=true;
+        break;
+      case "String":
         _switchResult = "xsd:string";
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(_name,"TimeDuration")) {
-        _matched=true;
+        break;
+      case "TimeDuration":
         _switchResult = "xsd:duration";
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(_name,"TimePoint")) {
-        _matched=true;
+        break;
+      case "TimePoint":
         _switchResult = "xsd:dateTime";
-      }
-    }
-    if (!_matched) {
-      _switchResult = "unk";
+        break;
+      case "Binary":
+        _switchResult = "xsd:base64Binary";
+        break;
+      default:
+        _switchResult = "unk";
+        break;
     }
     return _switchResult;
   }

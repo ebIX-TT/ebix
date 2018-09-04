@@ -172,6 +172,15 @@ class UmmValidator extends AbstractUmmValidator {
 		}
 		
 	}
+	
+		@Check
+	def matchOclRestrictions(OclInvariant oclInvariant) {
+		if (oclValidator.matchOclRestrictions(oclInvariant)) {
+			info("Invariant statement recognized as: ocl restrictions",
+					UmmPackage$Literals::OCL_INVARIANT__EXPRESSION);
+		}
+		
+	}
 
 
 }

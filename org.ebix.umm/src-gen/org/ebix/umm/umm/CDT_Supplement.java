@@ -11,12 +11,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.CDT_Supplement#getDefaultValue <em>Default Value</em>}</li>
  *   <li>{@link org.ebix.umm.umm.CDT_Supplement#getRestriction <em>Restriction</em>}</li>
  *   <li>{@link org.ebix.umm.umm.CDT_Supplement#getFixedValue <em>Fixed Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.ebix.umm.umm.UmmPackage#getCDT_Supplement()
  * @model

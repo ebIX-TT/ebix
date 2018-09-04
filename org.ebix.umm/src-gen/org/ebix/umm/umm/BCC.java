@@ -11,12 +11,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.BCC#getType <em>Type</em>}</li>
  *   <li>{@link org.ebix.umm.umm.BCC#getRestriction <em>Restriction</em>}</li>
  *   <li>{@link org.ebix.umm.umm.BCC#getFixedValue <em>Fixed Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.ebix.umm.umm.UmmPackage#getBCC()
  * @model

@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.ABIEProperty#getOr <em>Or</em>}</li>
  *   <li>{@link org.ebix.umm.umm.ABIEProperty#getBusinessTerm <em>Business Term</em>}</li>
@@ -20,7 +21,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.ebix.umm.umm.ABIEProperty#getVersionIdentifier <em>Version Identifier</em>}</li>
  *   <li>{@link org.ebix.umm.umm.ABIEProperty#getSequencingKey <em>Sequencing Key</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.ebix.umm.umm.UmmPackage#getABIEProperty()
  * @model

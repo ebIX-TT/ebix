@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.impl.InfEnvelopeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.InfEnvelopeImpl#getAssemblies <em>Assemblies</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

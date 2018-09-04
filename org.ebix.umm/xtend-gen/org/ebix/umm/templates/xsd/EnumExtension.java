@@ -17,7 +17,6 @@
  */
 package org.ebix.umm.templates.xsd;
 
-import com.google.common.base.Objects;
 import java.util.Arrays;
 import org.ebix.umm.umm.Assembled;
 import org.ebix.umm.umm.ENUM;
@@ -30,22 +29,26 @@ import org.eclipse.emf.ecore.EObject;
 @SuppressWarnings("all")
 public class EnumExtension {
   protected String _xsdName(final ENUM e) {
-    return e.getName();
+    String _name = e.getName();
+    return _name.replaceAll("\\s+", "");
   }
   
   protected String _xsdName(final Original original) {
     String _name = original.getName();
-    return ("Original" + _name);
+    String _replaceAll = _name.replaceAll("\\s+", "");
+    return ("Original" + _replaceAll);
   }
   
   protected String _xsdName(final Subset subset) {
     String _name = subset.getName();
-    return ("Subset" + _name);
+    String _replaceAll = _name.replaceAll("\\s+", "");
+    return ("Subset" + _replaceAll);
   }
   
   protected String _xsdName(final Assembled assembled) {
     String _name = assembled.getName();
-    return ("Assembled" + _name);
+    String _replaceAll = _name.replaceAll("\\s+", "");
+    return ("Assembled" + _replaceAll);
   }
   
   public ENUMLibrary library(final ENUM e) {
@@ -158,45 +161,28 @@ public class EnumExtension {
   public String codeListAgency(final ENUM e) {
     String _switchResult = null;
     String _codeListAgencyIdentifier = e.getCodeListAgencyIdentifier();
-    boolean _matched = false;
-    if (!_matched) {
-      if (Objects.equal(_codeListAgencyIdentifier,"260")) {
-        _matched=true;
+    switch (_codeListAgencyIdentifier) {
+      case "260":
         _switchResult = "ebix";
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(_codeListAgencyIdentifier,"305")) {
-        _matched=true;
+        break;
+      case "305":
         _switchResult = "etso";
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(_codeListAgencyIdentifier,"6")) {
-        _matched=true;
+        break;
+      case "6":
         _switchResult = "UNECE";
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(_codeListAgencyIdentifier,"5")) {
-        _matched=true;
+        break;
+      case "5":
         _switchResult = "ISO";
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(_codeListAgencyIdentifier,"293")) {
-        _matched=true;
+        break;
+      case "293":
         _switchResult = "BDEW";
-      }
-    }
-    if (!_matched) {
-      if (Objects.equal(_codeListAgencyIdentifier,"9")) {
-        _matched=true;
+        break;
+      case "9":
         _switchResult = "GS1";
-      }
-    }
-    if (!_matched) {
-      _switchResult = "unk";
+        break;
+      default:
+        _switchResult = "unk";
+        break;
     }
     return _switchResult;
   }

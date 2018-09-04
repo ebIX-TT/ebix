@@ -25,12 +25,12 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.impl.BBIEImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.BBIEImpl#getRestriction <em>Restriction</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.BBIEImpl#getFixedValue <em>Fixed Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

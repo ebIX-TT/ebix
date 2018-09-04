@@ -91,10 +91,8 @@ public class BieLibrary2Text {
       InputOutput.<String>println("Generating BIELibraries ...");
       EList<Element> _allOwnedElements = umlModel.allOwnedElements();
       Iterable<org.eclipse.uml2.uml.Package> _filter = Iterables.<org.eclipse.uml2.uml.Package>filter(_allOwnedElements, org.eclipse.uml2.uml.Package.class);
-      final Function1<org.eclipse.uml2.uml.Package,Boolean> _function = new Function1<org.eclipse.uml2.uml.Package,Boolean>() {
-        public Boolean apply(final org.eclipse.uml2.uml.Package p) {
-          return Boolean.valueOf(BieLibrary2Text.this.bielibraryExtension.isBieLibrary(p));
-        }
+      final Function1<org.eclipse.uml2.uml.Package, Boolean> _function = (org.eclipse.uml2.uml.Package p) -> {
+        return Boolean.valueOf(this.bielibraryExtension.isBieLibrary(p));
       };
       Iterable<org.eclipse.uml2.uml.Package> _filter_1 = IterableExtensions.<org.eclipse.uml2.uml.Package>filter(_filter, _function);
       for (final org.eclipse.uml2.uml.Package umlPackage : _filter_1) {
@@ -230,10 +228,8 @@ public class BieLibrary2Text {
     {
       EList<NamedElement> _ownedMembers = umlPackage.getOwnedMembers();
       Iterable<org.eclipse.uml2.uml.Class> _filter = Iterables.<org.eclipse.uml2.uml.Class>filter(_ownedMembers, org.eclipse.uml2.uml.Class.class);
-      final Function1<org.eclipse.uml2.uml.Class,Boolean> _function = new Function1<org.eclipse.uml2.uml.Class,Boolean>() {
-        public Boolean apply(final org.eclipse.uml2.uml.Class c) {
-          return Boolean.valueOf(c.isStereotypeApplied(BieLibrary2Text.this.ummStereotypes.ABIE.value));
-        }
+      final Function1<org.eclipse.uml2.uml.Class, Boolean> _function = (org.eclipse.uml2.uml.Class c) -> {
+        return Boolean.valueOf(c.isStereotypeApplied(this.ummStereotypes.ABIE.value));
       };
       Iterable<org.eclipse.uml2.uml.Class> _filter_1 = IterableExtensions.<org.eclipse.uml2.uml.Class>filter(_filter, _function);
       for(final org.eclipse.uml2.uml.Class abie : _filter_1) {

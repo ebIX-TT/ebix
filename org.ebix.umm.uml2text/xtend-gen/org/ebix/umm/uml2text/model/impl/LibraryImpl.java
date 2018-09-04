@@ -29,38 +29,47 @@ public abstract class LibraryImpl implements Library {
     this.ummStereotype = ummStereotype;
   }
   
+  @Override
   public String baseURN(final org.eclipse.uml2.uml.Package umlPackage) {
     return this.ummStereotype.getStringValue(umlPackage, "baseURN");
   }
   
+  @Override
   public List<String> businessTerm(final org.eclipse.uml2.uml.Package umlPackage) {
     return this.ummStereotype.getListOfStringValue(umlPackage, "businessTerm");
   }
   
+  @Override
   public List<String> copyright(final org.eclipse.uml2.uml.Package umlPackage) {
     return this.ummStereotype.getListOfStringValue(umlPackage, "copyright");
   }
   
+  @Override
   public List<String> owner(final org.eclipse.uml2.uml.Package umlPackage) {
     return this.ummStereotype.getListOfStringValue(umlPackage, "owner");
   }
   
+  @Override
   public List<String> reference(final org.eclipse.uml2.uml.Package umlPackage) {
     return this.ummStereotype.getListOfStringValue(umlPackage, "reference");
   }
   
+  @Override
   public String status(final org.eclipse.uml2.uml.Package umlPackage) {
     return this.ummStereotype.getStringValue(umlPackage, "status");
   }
   
+  @Override
   public String uniqueIdentifier(final org.eclipse.uml2.uml.Package umlPackage) {
     return this.ummStereotype.getStringValue(umlPackage, "uniqueIdentifier");
   }
   
+  @Override
   public String versionIdentifier(final org.eclipse.uml2.uml.Package umlPackage) {
     return this.ummStereotype.getStringValue(umlPackage, "versionIdentifier");
   }
   
+  @Override
   public String namespacePrefix(final org.eclipse.uml2.uml.Package umlPackage) {
     return this.ummStereotype.getStringValue(umlPackage, "namespacePrefix");
   }

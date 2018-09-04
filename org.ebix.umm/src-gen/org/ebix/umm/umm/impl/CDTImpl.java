@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.impl.CDTImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.CDTImpl#getBusinessTerm <em>Business Term</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.ebix.umm.umm.impl.CDTImpl#getVersionIdentifier <em>Version Identifier</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.CDTImpl#getProperties <em>Properties</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

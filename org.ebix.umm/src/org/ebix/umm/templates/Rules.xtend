@@ -19,6 +19,6 @@ package org.ebix.umm.templates
 
 class Rules {
 	def String typeNameRule(String name) {
-	    return name.replaceAll("_", "")
+	    return name.replaceAll("_", "").replaceAll("\\s+","")
 	}
 }

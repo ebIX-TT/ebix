@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.ebix.umm.umm.impl.ENUMLibraryImpl#getBusinessTerm <em>Business Term</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.ENUMLibraryImpl#getCopyright <em>Copyright</em>}</li>
@@ -39,7 +40,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.ebix.umm.umm.impl.ENUMLibraryImpl#getNamespacePrefix <em>Namespace Prefix</em>}</li>
  *   <li>{@link org.ebix.umm.umm.impl.ENUMLibraryImpl#getEnums <em>Enums</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

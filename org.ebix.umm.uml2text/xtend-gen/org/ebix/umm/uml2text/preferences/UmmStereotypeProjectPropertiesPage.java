@@ -37,12 +37,13 @@ import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class UmmStereotypeProjectPropertiesPage extends PropertyPage {
-  private Map<UmmStereotype,StringFieldEditor> editors = new HashMap<UmmStereotype, StringFieldEditor>();
+  private Map<UmmStereotype, StringFieldEditor> editors = new HashMap<UmmStereotype, StringFieldEditor>();
   
   public UmmStereotypeProjectPropertiesPage() {
     InputOutput.<String>println("start of UmmStereotypeProjectPropertiesPage");
   }
   
+  @Override
   public Control createContents(final Composite parent) {
     IAdaptable _element = this.getElement();
     final IProject project = ((IProject) _element);
@@ -64,6 +65,7 @@ public class UmmStereotypeProjectPropertiesPage extends PropertyPage {
     return parent;
   }
   
+  @Override
   public boolean performOk() {
     try {
       IAdaptable _element = this.getElement();
@@ -87,11 +89,10 @@ public class UmmStereotypeProjectPropertiesPage extends PropertyPage {
     }
   }
   
+  @Override
   public void performDefaults() {
-    final BiConsumer<UmmStereotype,StringFieldEditor> _function = new BiConsumer<UmmStereotype,StringFieldEditor>() {
-      public void accept(final UmmStereotype st, final StringFieldEditor st_editor) {
-        st_editor.setStringValue(st.defaultName);
-      }
+    final BiConsumer<UmmStereotype, StringFieldEditor> _function = (UmmStereotype st, StringFieldEditor st_editor) -> {
+      st_editor.setStringValue(st.defaultName);
     };
     this.editors.forEach(_function);
   }
